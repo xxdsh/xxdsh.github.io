@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TwoPointers双指针 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="Pair with Target Sum1234567...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">TwoPointers双指针</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%A4%A7%E5%8C%97%E6%96%97/img-1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">TwoPointers双指针</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 08, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>10059</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h2 id="Pair-with-Target-Sum"><a href="#Pair-with-Target-Sum" class="headerlink" title="Pair with Target Sum"></a>Pair with Target Sum</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PairWithTargetSum</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr, <span class="hljs-keyword">int</span> targetSum)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> firstPointer = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">int</span> secondPointer = arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer) &#123;<br>			<span class="hljs-keyword">if</span> (arr[firstPointer] + arr[secondPointer] &gt; targetSum)<br>				secondPointer = secondPointer - <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[firstPointer] + arr[secondPointer] &lt; targetSum)<br>				firstPointer = firstPointer + <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">else</span><br>				<span class="hljs-keyword">return</span> <span class="hljs-built_in">make_pair</span>(firstPointer, secondPointer);<br>		&#125;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = arr.<span class="hljs-built_in">size</span>(); i &lt; j; i++, j--) &#123;<br><br>		&#125;<br>		<span class="hljs-keyword">return</span> <span class="hljs-built_in">make_pair</span>(<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>);<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="26-Remove-Duplicates-删除排序数组中的重复项"><a href="#26-Remove-Duplicates-删除排序数组中的重复项" class="headerlink" title="26. Remove Duplicates(删除排序数组中的重复项)"></a>26. Remove Duplicates(删除排序数组中的重复项)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RemoveDuplicates</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">remove</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> firstPointer = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">int</span> secondPointer = <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">int</span> arrLength = arr.<span class="hljs-built_in">size</span>();<br>		<span class="hljs-keyword">if</span> (arrLength == <span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">if</span> (arrLength == <span class="hljs-number">1</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">while</span> (secondPointer &lt; arrLength) &#123;<br>			<span class="hljs-keyword">if</span> (arr[secondPointer] != arr[firstPointer]) &#123;<br>				firstPointer++;<br>				arr[firstPointer] = arr[secondPointer];<br>			&#125;<br>			secondPointer++;<br>		&#125;<br>		<span class="hljs-keyword">return</span> firstPointer+<span class="hljs-number">1</span>;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="977-Squaring-a-Sorted-Array-有序数组的平方"><a href="#977-Squaring-a-Sorted-Array-有序数组的平方" class="headerlink" title="977. Squaring a Sorted Array(有序数组的平方)"></a>977. Squaring a Sorted Array(有序数组的平方)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SortedArraySquares</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">makeSquares</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> n = arr.<span class="hljs-built_in">size</span>();<br>		<span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">squares</span><span class="hljs-params">(n)</span></span>;<br>		<span class="hljs-keyword">if</span> (arr[<span class="hljs-number">0</span>] &gt;= <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>				squares[i] = arr[i] * arr[i];<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-keyword">int</span> highestSquareIndex = n - <span class="hljs-number">1</span>, left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>				<span class="hljs-keyword">int</span> leftSquare = arr[left] * arr[left];<br>				<span class="hljs-keyword">int</span> rightSquare = arr[right] * arr[right];<br>				<span class="hljs-keyword">if</span> (leftSquare &gt; rightSquare) &#123;<br>					squares[highestSquareIndex--] = leftSquare;<br>					left++;<br>				&#125;<br>				<span class="hljs-keyword">else</span> &#123;<br>					squares[highestSquareIndex--] = rightSquare;<br>					right--;<br>				&#125;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> squares;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="15-Triplet-Sum-to-Zero-三数之和"><a href="#15-Triplet-Sum-to-Zero-三数之和" class="headerlink" title="15. Triplet Sum to Zero(三数之和)"></a>15. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">Triplet Sum to Zero(三数之和)</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TripletSumToZero</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr, <span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> targetSum, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;triplets)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> firstPointer = left;<br>		<span class="hljs-keyword">int</span> secondPointer = arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer) &#123;<br>			<span class="hljs-keyword">int</span> currentSum = arr[firstPointer] + arr[secondPointer];<br>			<span class="hljs-keyword">if</span> (currentSum == targetSum) &#123;<br>				triplets.<span class="hljs-built_in">push_back</span>(&#123; -targetSum,arr[firstPointer],arr[secondPointer] &#125;);<br>				secondPointer = secondPointer - <span class="hljs-number">1</span>;<br>				firstPointer = firstPointer + <span class="hljs-number">1</span>;<br>				<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer &amp;&amp; arr[firstPointer] == arr[firstPointer - <span class="hljs-number">1</span>])<br>					firstPointer++;<br>				<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer &amp;&amp; arr[secondPointer] == arr[secondPointer + <span class="hljs-number">1</span>])<br>					secondPointer--;<br><br>			&#125;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentSum &lt; targetSum)<br>				firstPointer = firstPointer + <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentSum &gt; targetSum)<br>				secondPointer = secondPointer - <span class="hljs-number">1</span>;<br>		&#125;<br>	&#125;<br><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-keyword">static</span> vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">searchTriplets</span>(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr) &#123;<br>		<span class="hljs-built_in">sort</span>(arr.<span class="hljs-built_in">begin</span>(), arr.<span class="hljs-built_in">end</span>());<br>		vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; triplets;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">2</span>; i++) &#123;<br>			<span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; arr[i] == arr[i - <span class="hljs-number">1</span>])<br>				<span class="hljs-keyword">continue</span>;<br>			<span class="hljs-built_in">search</span>(arr, i + <span class="hljs-number">1</span>, <span class="hljs-number">0</span> - arr[i],triplets);<br>		&#125;<br>		<span class="hljs-keyword">return</span> triplets;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Triplet-Sum-Close-to-Target"><a href="#Triplet-Sum-Close-to-Target" class="headerlink" title="Triplet Sum Close to Target"></a>Triplet Sum Close to Target</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TripletSUmcloseToTarget</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">searchTriplet</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr, <span class="hljs-keyword">int</span> targetSum)</span> </span>&#123;<br>		<span class="hljs-built_in">sort</span>(arr.<span class="hljs-built_in">begin</span>(), arr.<span class="hljs-built_in">end</span>());<br>		<span class="hljs-keyword">int</span> smallDifference = numeric_limits&lt;<span class="hljs-keyword">int</span>&gt;::<span class="hljs-built_in">max</span>();<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">2</span>; i++) &#123;<br>			<span class="hljs-keyword">int</span> firstPointer = i + <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">int</span> secondPointer = arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer) &#123;<br>				<span class="hljs-keyword">int</span> targetDiff = targetSum - arr[i] - arr[firstPointer] - arr[secondPointer];<br>				<span class="hljs-keyword">if</span> (targetDiff == <span class="hljs-number">0</span>)<br>					<span class="hljs-keyword">return</span> targetSum;<br>				<span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(targetDiff) &lt; <span class="hljs-built_in">abs</span>(smallDifference))<br>					smallDifference = targetDiff;<br>				<span class="hljs-keyword">if</span> (targetDiff &gt; <span class="hljs-number">0</span>)<br>					firstPointer++;<br>				<span class="hljs-keyword">if</span> (targetDiff &lt; <span class="hljs-number">0</span>)<br>					secondPointer--;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> targetSum - smallDifference;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Triplets-with-Smaller-Sum"><a href="#Triplets-with-Smaller-Sum" class="headerlink" title="Triplets with Smaller Sum"></a>Triplets with Smaller Sum</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TripletWithSmallerSum</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> targetSum)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> firstPointer = left;<br>		<span class="hljs-keyword">int</span> secondPointer = arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer) &#123;<br>			<span class="hljs-keyword">int</span> currentSum = arr[firstPointer] + arr[secondPointer];<br>			<span class="hljs-keyword">if</span> (currentSum &lt; targetSum) &#123;<br>				count = count + secondPointer - firstPointer;<br>				firstPointer++;<br>			&#125;<br>			<span class="hljs-keyword">else</span> &#123;<br>				secondPointer--;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> count;<br>	&#125;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">searchTriplets</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>		<span class="hljs-built_in">sort</span>(arr.<span class="hljs-built_in">begin</span>(), arr.<span class="hljs-built_in">end</span>());<br>		<span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			count = count + <span class="hljs-built_in">search</span>(arr, i+<span class="hljs-number">1</span>,target - arr[i]);<br>		&#125;<br>		<span class="hljs-keyword">return</span> count;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Dutch-National-Flag-Problem"><a href="#Dutch-National-Flag-Problem" class="headerlink" title="Dutch National Flag Problem"></a>Dutch National Flag Problem</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DutchFlag</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> temp = arr[i];<br>		arr[i] = arr[j];<br>		arr[j] = temp;<br>	&#125;<br><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> low = <span class="hljs-number">0</span>, high = arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span> (i &lt;= high) &#123;<br>			<span class="hljs-keyword">if</span> (arr[i] == <span class="hljs-number">0</span>) &#123;<br>				<span class="hljs-built_in">swap</span>(arr, i, low);<br>				i++;<br>				low++;<br>			&#125;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[i] == <span class="hljs-number">1</span>)<br>				i++;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[i] == <span class="hljs-number">2</span>) &#123;<br>				<span class="hljs-built_in">swap</span>(arr, i, high);<br>				i++;<br>				high--;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="18-Quadruple-Sum-to-Target-四数之和"><a href="#18-Quadruple-Sum-to-Target-四数之和" class="headerlink" title="18. Quadruple Sum to Target(四数之和)"></a>18. Quadruple Sum to Target(四数之和)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuadrupleSumToTarget</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr, <span class="hljs-keyword">int</span> first,<span class="hljs-keyword">int</span> second, <span class="hljs-keyword">int</span> targetSum, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; quadruplets)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> firstPointer = second + <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">int</span> secondPointer = arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer) &#123;<br>			<span class="hljs-keyword">int</span> currentSum = arr[firstPointer] + arr[secondPointer];<br>			<span class="hljs-keyword">if</span> (currentSum == targetSum) &#123;<br>				quadruplets.<span class="hljs-built_in">push_back</span>(&#123; arr[first],arr[second],arr[firstPointer],arr[secondPointer] &#125;);<br>				secondPointer = secondPointer - <span class="hljs-number">1</span>;<br>				firstPointer = firstPointer + <span class="hljs-number">1</span>;<br>				<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer &amp;&amp; arr[firstPointer] == arr[firstPointer - <span class="hljs-number">1</span>])<br>					firstPointer++;<br>				<span class="hljs-keyword">while</span> (firstPointer &lt; secondPointer &amp;&amp; arr[secondPointer] == arr[secondPointer + <span class="hljs-number">1</span>])<br>					secondPointer--;<br><br>			&#125;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentSum &lt; targetSum)<br>				firstPointer = firstPointer + <span class="hljs-number">1</span>;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentSum &gt; targetSum)<br>				secondPointer = secondPointer - <span class="hljs-number">1</span>;<br>		&#125;<br>	&#125;<br><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-keyword">static</span> vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">searchTriplets</span>(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr,<span class="hljs-keyword">int</span> target) &#123;<br>		<span class="hljs-built_in">sort</span>(arr.<span class="hljs-built_in">begin</span>(), arr.<span class="hljs-built_in">end</span>());<br>		vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; quadruplets;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">3</span>; i++) &#123;<br>			<span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; arr[i] == arr[i - <span class="hljs-number">1</span>])<br>				<span class="hljs-keyword">continue</span>;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">2</span>; j++) &#123;<br>				<span class="hljs-keyword">if</span> (j &gt; i + <span class="hljs-number">1</span> &amp;&amp; arr[j] == arr[j - <span class="hljs-number">1</span>])<br>					<span class="hljs-keyword">continue</span>;<br>				<span class="hljs-built_in">search</span>(arr, i, j, target - arr[i] - arr[j], quadruplets);<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> quadruplets;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="844-Comparing-Strings-containing-Backspaces-比较含退格的字符串"><a href="#844-Comparing-Strings-containing-Backspaces-比较含退格的字符串" class="headerlink" title="844. Comparing Strings containing Backspaces[比较含退格的字符串]"></a>844. Comparing Strings containing Backspaces[比较含退格的字符串]</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BackspaceCompare</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getNextValidCharIndex</span><span class="hljs-params">(<span class="hljs-keyword">const</span> string&amp; s,<span class="hljs-keyword">int</span> index)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> backspaceCount = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-keyword">if</span> (s[index] == <span class="hljs-string">&#x27;#&#x27;</span>) &#123;<br>				backspaceCount++;<br>				index--;<br>			&#125;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (backspaceCount &gt; <span class="hljs-number">0</span>) &#123;<br>				backspaceCount--;<br>				index--;<br>			&#125;<br>			<span class="hljs-keyword">else</span> &#123;<br>				<span class="hljs-keyword">break</span>;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> index;<br>	&#125;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-keyword">const</span> string&amp; str1, <span class="hljs-keyword">const</span> string&amp; str2)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> index1 = str1.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">int</span> index2 = str2.<span class="hljs-built_in">length</span>() - <span class="hljs-number">1</span>;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d\n&quot;</span>, index1, index2);<br>		<span class="hljs-keyword">while</span> (index1 &gt;= <span class="hljs-number">0</span> || index2 &gt;= <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;-----------------%d %d\n&quot;</span>, index1, index2);<br>			<span class="hljs-keyword">int</span> i = <span class="hljs-built_in">getNextValidCharIndex</span>(str1, index1);<br>			<span class="hljs-keyword">int</span> j = <span class="hljs-built_in">getNextValidCharIndex</span>(str2, index2);<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;+++++%d %d\n&quot;</span>, i, j);<br>			<span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">0</span> &amp;&amp; j &lt; <span class="hljs-number">0</span>)<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">0</span> || j &lt; <span class="hljs-number">0</span>)<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (str1[i] != str2[j])<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			index1 = i - <span class="hljs-number">1</span>;<br>			index2 = j - <span class="hljs-number">1</span>;<br>		&#125;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Minimum-Window-Sort"><a href="#Minimum-Window-Sort" class="headerlink" title="Minimum Window Sort"></a>Minimum Window Sort</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShortestWindowSort</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> low = <span class="hljs-number">0</span>, high = nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br><br>		<span class="hljs-comment">//step1: From the beginning and end of the array, find the first elements that are out of the sorting order. The two elements will be our candidate subarray.</span><br>		<span class="hljs-keyword">while</span> (low &lt; nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span> &amp;&amp; nums[low] &lt;= nums[low + <span class="hljs-number">1</span>])<br>			low++;<br>		<span class="hljs-keyword">if</span> (low == nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span> (high &gt; <span class="hljs-number">0</span> &amp;&amp; nums[high] &gt;= nums[high - <span class="hljs-number">1</span>])<br>			high--;<br>		<span class="hljs-comment">//step2: find the maximum and minimum of the subnumsay</span><br>		<span class="hljs-keyword">int</span> subnumsayMax = numeric_limits&lt;<span class="hljs-keyword">int</span>&gt;::<span class="hljs-built_in">min</span>(), subnumsayMin = numeric_limits&lt;<span class="hljs-keyword">int</span>&gt;::<span class="hljs-built_in">max</span>();<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = low; k &lt;= high; k++) &#123;<br>			subnumsayMax = <span class="hljs-built_in">max</span>(subnumsayMax, nums[k]);<br>			subnumsayMin = <span class="hljs-built_in">min</span>(subnumsayMin, nums[k]);<br>		&#125;<br>		<span class="hljs-comment">//step3:extend the subnumsay to include any number which is</span><br>		<span class="hljs-keyword">while</span> (low &gt; <span class="hljs-number">0</span> &amp;&amp; nums[low - <span class="hljs-number">1</span>] &gt; subnumsayMin)<br>			low--;<br>		<span class="hljs-keyword">while</span> (high &lt; nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span> &amp;&amp; nums[high + <span class="hljs-number">1</span>] &lt; subnumsayMax)<br>			high++;<br>		<span class="hljs-keyword">return</span> high - low + <span class="hljs-number">1</span>;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27. 移除元素"></a>27. 移除元素</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">removeElement</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> val)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> slowIndex = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> fastIndex = <span class="hljs-number">0</span>; fastIndex &lt; nums.<span class="hljs-built_in">size</span>(); fastIndex++) &#123;<br>            <span class="hljs-keyword">if</span> (val != nums[fastIndex]) &#123;<br>                nums[slowIndex++] = nums[fastIndex];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> slowIndex;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/08/LeetCode/twoPointers%E5%8F%8C%E6%8C%87%E9%92%88/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;08&#x2F;LeetCode&#x2F;twoPointers%E5%8F%8C%E6%8C%87%E9%92%88&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;08&#x2F;LeetCode&#x2F;twoPointers%E5%8F%8C%E6%8C%87%E9%92%88&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/TwoPointers/" rel="tag">TwoPointers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/08/LeetCode/SlidingWindow%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"><i class="iconfont iconleft"></i>SlidingWindow滑动窗口</a>
+    <a href="/2021/07/08/LeetCode/FastSlowPointer%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/">FastSlowPointer快慢指针<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pair-with-Target-Sum"><span class="toc-text">Pair with Target Sum</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-Remove-Duplicates-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="toc-text">26. Remove Duplicates(删除排序数组中的重复项)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#977-Squaring-a-Sorted-Array-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9"><span class="toc-text">977. Squaring a Sorted Array(有序数组的平方)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-Triplet-Sum-to-Zero-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">15. Triplet Sum to Zero(三数之和)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Triplet-Sum-Close-to-Target"><span class="toc-text">Triplet Sum Close to Target</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Triplets-with-Smaller-Sum"><span class="toc-text">Triplets with Smaller Sum</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dutch-National-Flag-Problem"><span class="toc-text">Dutch National Flag Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-Quadruple-Sum-to-Target-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">18. Quadruple Sum to Target(四数之和)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#844-Comparing-Strings-containing-Backspaces-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">844. Comparing Strings containing Backspaces[比较含退格的字符串]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Minimum-Window-Sort"><span class="toc-text">Minimum Window Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">27. 移除元素</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

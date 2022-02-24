@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Learn SQL(Structured Query Language) - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="视频地址 
+01 IntroductionDDL(Da...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Learn SQL(Structured Query Language)</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/Our%20Furry%20Friends/img-9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Learn SQL(Structured Query Language)</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 11, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13433</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BPHAr4QGGVE">视频地址</a> </p>
+<h3 id="01-Introduction"><a href="#01-Introduction" class="headerlink" title="01 Introduction"></a>01 Introduction</h3><p>DDL(Data Definations Language) Commands<br>DML(Data Manipulation Language) Commands<br>Retrieve Data from Multiple Tables<br>Inbuilt Functions in SQL<br><strong>What is RDBMS?</strong><br>Relational Database Management System(RDBMS)<br>In relational databases, the relationship between data files is relational. These databases connect to the data in different files by using common data numbers or a key field. Data in relational databases is stored in different access control tables, each having a key field that mainly identifies each row. In relational databases, tables or files filled up with data are called relations designates a row or record, and columns are referred to as attributes or fields.<br><strong>Normalization in DBMS</strong><br>Normalization is the process of organizing data to avoid duplication and redundancy<br>To minimize duplicate data<br>To minimize or avoid data modification issues<br>To simplify queries<br><em>Normalization Types in DBMS</em>: First Normal Form String; Second Normal Form; Third Normal Form; Boyce and codd Normal Form(BCNF)<br><strong>Data Types in SQL</strong><br>character string; numeric; date and time; binary<br>character string: char(n) nchar(n) varchar(n) varchar(max) nvarchar(n) nvarchar(max)<br>numeric: int tinyint smallint bigint money smallmoney decimal(p, s) numeric(p, s) float(n) real<br>date and time: date datetime datetime2 datetimeoffset smalldatetime time<br>binary: bit binary(n) varbinary(n) varbinary(max)<br><strong>Basic SQL Statements</strong><br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/08/M9cRtdupBfaK7nE.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Basic SQL Statements</span></p>
+<h3 id="02-Database-Commands"><a href="#02-Database-Commands" class="headerlink" title="02 Database Commands"></a>02 Database Commands</h3><p><strong>Create Database Objects</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> DARABASE Test1&#123;<br>	emp_id <span class="hljs-type">INT</span>,<br>	last_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>Alter Table Statements</strong><br>ALTER TABLE is used to : Add, Delete, Modify columns from existing table; Add/Drop constraints on an existing table</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ADD</span> <span class="hljs-operator">&lt;</span>column_name<span class="hljs-operator">&gt;</span> <span class="hljs-operator">&lt;</span>datatype<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> <span class="hljs-operator">&lt;</span>column_name<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">COLUMN</span> <span class="hljs-operator">&lt;</span>column_name<span class="hljs-operator">&gt;</span><span class="hljs-operator">&lt;</span>datatype<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<p><strong>Drop Table Statements</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>Various Constraints</strong><br>Constraints enforce rules on the table whenever rows are inserted, updated and deleted from the table<br>Prevents the deletion of a table if there are depencies from other tables<br>Define the constraints at column or table level<br>Constraints can be applied during creation of table or after table creation by using alter command<br>NOT NULL; UNIQUE; PRIMARY KEY; FOREIGN KEY; CHECK<br><em>主键</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> DARABASE Test1&#123;<br>	emp_id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY,<br>	last_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br>&#125;;<br><span class="hljs-keyword">CREATE</span> DARABASE Test2&#123;<br>	emp_id <span class="hljs-type">INT</span>,<br>	last_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>	<span class="hljs-keyword">CONSTRAINT</span> emp_pk <span class="hljs-keyword">PRIMARY</span> KEY (emp_id)<br>&#125;;<br><span class="hljs-keyword">CREATE</span> DARABASE Test3&#123;<br>	emp_id <span class="hljs-type">INT</span>,<br>	last_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br>&#125;;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> emp <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> emp_pk <span class="hljs-keyword">PRIMARY</span> KEY (emp_id);<br></code></pre></td></tr></table></figure>
+<p><em>外键</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CONSTRAINT</span> fk_prodct_id <span class="hljs-keyword">FOREIGN</span> KEY (pro_id) <span class="hljs-keyword">REFERENCES</span> product (prod_id)<br></code></pre></td></tr></table></figure>
+<p><em>Drop constraint</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> emp_pk<br></code></pre></td></tr></table></figure>
+<p><strong>Creating Views</strong><br>A view is a named, derived, virutual table. A view takes the output of a query and treats it as a table</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> <span class="hljs-operator">&lt;</span>view_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<h3 id="03-Table-Commands"><a href="#03-Table-Commands" class="headerlink" title="03 Table Commands"></a>03 Table Commands</h3><p><strong>Insert Statements</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> (Fieldname1, Fieldname2, Fieldname3, ……) <span class="hljs-keyword">VALUES</span> (value1, value2, value3, ……)<br></code></pre></td></tr></table></figure>
+<p><strong>Insert – As- Select Statement</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> (column_names)<br><span class="hljs-keyword">SELECT</span> columnnames<br><span class="hljs-keyword">FROM</span> table_name<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">condition</span><br></code></pre></td></tr></table></figure>
+<p><strong>Update Statements</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">UPDATE <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SET</span> <span class="hljs-operator">&lt;</span>field_name<span class="hljs-operator">&gt;</span> <span class="hljs-operator">=</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">value</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">condition</span><span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<p><strong>Delete Statements</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">condition</span><span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<p><strong>Select Statement</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">SELETC TOP(n) <span class="hljs-operator">&lt;</span>field_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">condition</span><span class="hljs-operator">&gt;</span><br>SELETC <span class="hljs-operator">&lt;</span>field_name_1<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">AS</span> <span class="hljs-operator">&lt;</span>alias_name_1<span class="hljs-operator">&gt;</span>, <span class="hljs-operator">&lt;</span>field_name_2<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">AS</span> <span class="hljs-operator">&lt;</span>alias_name_2<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">condition</span><span class="hljs-operator">&gt;</span><br>SELETC <span class="hljs-keyword">DISTINCT</span> <span class="hljs-operator">&lt;</span>field_name_1<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<p><strong>Sorting</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">SELETC TOP(n) <span class="hljs-operator">&lt;</span>field_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">condition</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-operator">&lt;</span>field_name<span class="hljs-operator">&gt;</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">asc</span><span class="hljs-operator">|</span><span class="hljs-keyword">desc</span><span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<p><strong>Filtering</strong><br>AND OR NOT = != &lt;&gt; &gt;= &lt;= LIKE BETWEEN IN<br><strong>CASE Expression</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CASE</span> column_name<br><span class="hljs-keyword">WHEN</span> condition1 <span class="hljs-keyword">THEN</span> result1<br><span class="hljs-keyword">WHEN</span> condition2 <span class="hljs-keyword">THEN</span> result2<br><span class="hljs-keyword">ELSE</span> <span class="hljs-keyword">result</span><br><span class="hljs-keyword">END</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="04-Joins"><a href="#04-Joins" class="headerlink" title="04 Joins"></a>04 Joins</h3><p>A join clause is used to fetch data from two or more data tables, based on join condition<br>Join clause is used to combine rows from one(Self-Join) or more tables, based on a related column(s) between them<br>self join; inner join; left join; right join; full outer join; cross join;<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/10/YSmsP7zERvNZ64K.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">QQ截图20211210181350.jpg</span><br><strong>Self-Join</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">&lt;</span>column_list<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> t1<br><span class="hljs-keyword">JOIN</span> <span class="hljs-operator">&lt;</span>table_name<span class="hljs-operator">&gt;</span> t2<br><span class="hljs-keyword">ON</span> t1.column_name <span class="hljs-operator">=</span> t2.column_name;<br><br><span class="hljs-keyword">SELECT</span> t2.firstname <span class="hljs-keyword">as</span> Employee, t1.firstname <span class="hljs-keyword">as</span> Manager<br><span class="hljs-keyword">FROM</span> employee t1<br><span class="hljs-keyword">JOIN</span> employee t2<br><span class="hljs-keyword">ON</span> t1.emp_id <span class="hljs-operator">=</span> t2.mgr_id<br></code></pre></td></tr></table></figure>
+<p><strong>Inner Join</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">&lt;</span>column_list<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name1<span class="hljs-operator">&gt;</span> t1<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-operator">&lt;</span>table_name2<span class="hljs-operator">&gt;</span> t2<br><span class="hljs-keyword">ON</span> t1.column_name <span class="hljs-operator">=</span> t2.column_name;<br></code></pre></td></tr></table></figure>
+<p><strong>Left outer Join</strong><br>The LEFT OUTER JOIN returns rows to the left(t1) even if there are no rows on the right(t2) of the join clause<br>The result is NULL for rows on RIGHT table, when there is no match</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">&lt;</span>column_list<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name1<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">as</span> t1<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-operator">&lt;</span>table_name2<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">AS</span> t2<br><span class="hljs-keyword">ON</span> t1.column_name <span class="hljs-operator">=</span> t2.column_name;<br></code></pre></td></tr></table></figure>
+<p><strong>Right outer Join</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">&lt;</span>column_list<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name1<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">as</span> t1<br><span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-operator">&lt;</span>table_name2<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">AS</span> t2<br><span class="hljs-keyword">ON</span> t1.column_name <span class="hljs-operator">=</span> t2.column_name;<br></code></pre></td></tr></table></figure>
+<p><strong>Full outer join</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">&lt;</span>column_list<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name1<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">as</span> t1<br><span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-operator">&lt;</span>table_name2<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">AS</span> t2<br><span class="hljs-keyword">ON</span> t1.column_name <span class="hljs-operator">=</span> t2.column_name;<br></code></pre></td></tr></table></figure>
+<p><strong>Cross Join</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">&lt;</span>column_list<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span>table_name1<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">as</span> t1<br><span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-operator">&lt;</span>table_name2<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">AS</span> t2<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> ;<br></code></pre></td></tr></table></figure>
+
+<h3 id="05-Functions"><a href="#05-Functions" class="headerlink" title="05 Functions"></a>05 Functions</h3><p><strong>SQL Built-in Functions</strong><br>Built-in functions are used to calculate values and manipulate data. These function can be used anywhere as expressions.<br>Some common Built-in functions in SQL server:<br>Conversion function; Logical function; Math function; Aggregate function; String function; Data function;<br>MS SQL built-in functions take zero or more inputs and returns a value.<br>Built-in functions:<br>Gets system related information<br>Used for calculations<br>Manipulate input data<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/11/BtyShkAzdVF1g5b.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Built-in</span></p>
+<p><strong>Conversion Function</strong><br>The conversion built-in functions are used to convert a expr from one data type to another<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/11/hapU2oGLsNqOuMQ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Conversion Function</span></p>
+<p><strong>Logical Functions</strong><br>Logical functions can be used to display one of several values based on a logical conditions<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/11/tuG9AhSQYfm5poR.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Logical Functions</span></p>
+<p><strong>Math Function</strong><br>Math functions can be used to calculate business and engineering calculations<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/11/6H1Splc5jbLt4io.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Math Function</span></p>
+<p><strong>Aggregate Functions</strong><br>Aggregate functions perform a calculation on a set of values and return a single value. With the exception of the COUNT aggregate function, all other aggregate functions ignore NULL values. Aggregate functions are frequently used with the GROUP BY clause of the SELECT statement<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/11/ZeVTqNCmWjHR8OK.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Aggregate Functions</span></p>
+<p><strong>String Functions</strong><br>The below scalar functions perform an operation on a string input value and return a string or numeric value<br>When string function are passed arguments that are not string values, the input type is implicitly converted to a text data type.<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/11/Hs2liKBRE6eFkaD.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">String Functions 1</span><br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/11/IpgQ2EarlKdYzTn.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">String Functions 2</span></p>
+<p><strong>Date &amp; Time Functions</strong><br>Data and time functions are scalar functions that perform an operation on a date and time input value and returns either a string, numeric, or date and time value.<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/11/ahW7cHU1e3NL4A2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Date & Time Functions</span></p>
+<p><strong>Stored Procedure</strong><br>A stored procedure is a set of sql statements with a name, that has been created and stored in the database.<br>Stored Procedure can be defined as the set of logical group of SQL statements which are grouped to perform a specific task<br>Like other programming constructs they can:<br>accept input parameters<br>return multiple values(out parameters)<br>contain programming statements<br>can call other stored procedures/functions<br>returns status to indicate success or failure</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> [<span class="hljs-keyword">OR</span> <span class="hljs-keyword">ALTER</span>] <span class="hljs-keyword">PROCEDURE</span><br>schema_name.procedure_name(<br><span class="hljs-variable">@parameter</span>_name <span class="hljs-keyword">AS</span><br>parameter_data_type[<span class="hljs-keyword">OUT</span>])<br><span class="hljs-keyword">AS</span> <span class="hljs-keyword">BEGIN</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">SQL</span> STATEMENTS<span class="hljs-operator">/</span>COMPUTATION<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<p><strong>User Defined Functions</strong><br>User Defined Functions(UDF): Like functions in programming languages, User Defined Functions are compact pieces of Transact SQL code, which can accept parameters, perform complext calculation and return either a value, or a table.<br>Scalar Valued Function<br>Table Valued Function<br><strong>Triggers</strong><br>A trigger is a special kind of stored procedure that automatically executes when an event occurs in the database server. DML triggers execute when a user tries to modify data through a data manipulation language(DML) event. DML events are INSERT, UPDATE, or DELETE statements on a table or view.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> [<span class="hljs-keyword">OR</span> <span class="hljs-keyword">ALTER</span>] <span class="hljs-keyword">TRIGGER</span> schema_name.trigger)name <br><span class="hljs-keyword">ON</span> &#123;<span class="hljs-keyword">table</span><span class="hljs-operator">|</span><span class="hljs-keyword">view</span>&#125;<br><span class="hljs-keyword">FOR</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">ALTER</span> <span class="hljs-operator">|</span> INSTEAD <span class="hljs-keyword">OF</span><br>[<span class="hljs-keyword">INSERT</span>] [,] [UPDATE] [,] [<span class="hljs-keyword">DELETE</span>]<br><span class="hljs-keyword">AS</span><br>sql_statement;<br></code></pre></td></tr></table></figure>
+
+<h3 id="06-Interview-Question"><a href="#06-Interview-Question" class="headerlink" title="06 Interview Question"></a>06 Interview Question</h3><ol>
+<li>what is the difference between DELETE and TRUNCATE statements?</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Delete</th>
+<th>Truncate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>used to delete a row in a table</td>
+<td>used to delete all the rows from a table</td>
+</tr>
+<tr>
+<td>you can rollback data after using delete statement</td>
+<td>you cannot rollback data</td>
+</tr>
+<tr>
+<td>DML command</td>
+<td>DDL command</td>
+</tr>
+<tr>
+<td>slower</td>
+<td>faster</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>What are the different subsets of SQL</li>
+</ol>
+<img    class="lazyload" data-original="https://s2.loli.net/2021/12/13/9qJvnZ7fHALGa1i.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">QQ截图20211213110228.jpg</span>
+
+<ol start="3">
+<li><p>What do you mean by DBMS? What are its different types?</p>
+<p>A Database Management System(DBMS) is a software application that interacts with the user, applications and the database itself to capture and analyse data. The data stored in the database can be modified, retrieved and deleted, and can be of any type like strings, numbers, images etc.</p>
+</li>
+<li><p>What do you mean by table and filed in SQL?</p>
+<p>A table refers to a collection of data in an organised manner in form of rows and columns.</p>
+<p>A field refers to the number of columns in a table.</p>
+</li>
+<li><p>What are joins in SQL?</p>
+<p>A join clause is used to combine rows from two or more tables, based on a related column between them. It is used to merge two tables or retrieve data from there.</p>
+</li>
+<li><p>what is the difference between CHAR and VARCHAR datatype in SQL</p>
+<p>char is used for strings of fixed length.</p>
+<p>varchar is used for character strings of va</p>
+</li>
+<li><p>What is a Primary key?</p>
+<p>A set of attributes that can be used to uniquely identify every tuple is a primary key. So, if there are 3-4 candidate keys present in a relationship, then out of those, one can chosen as a primary key.</p>
+</li>
+<li><p>What are Constraints?</p>
+<p>Constraints are used to specify the limit on the data type of the table. It can be specified while creating or altering the table statement.</p>
+</li>
+<li><p>What is the difference between SQL and MySQL?</p>
+<p>SQL is a strandard language which stands for Structured Query Language based on the English language. SQL is the core of relational database which is used for accessing and managing database.</p>
+<p>MySQL is an open-source relational database management system that works on many platforms. It provides multi-user access to support many storage enginers and is backed by Oracle.</p>
+</li>
+<li><p>What is a unique key?</p>
+<p>Uniquely identifies a single row in the table. Multiple values allowed per table.  Null values are allowed. Duplicate values are not allowed.</p>
+</li>
+<li><p>What is a Foreign key?</p>
+<p>Foreign key maintains referential integrity by enforcing a link between the data in two tables. The foreign key in the child table references the primary key in the parent table. The foreign key constraint prevents actions that would destory links between the child and parent tables.</p>
+</li>
+<li><p>Data Integrity: Accuracy Consistency Integrity Constraints</p>
+</li>
+<li><p>clustered and non clustered index in SQL: </p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Clustered Index</th>
+<th>Non Clustered Index</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>used for easy retrieval of data from the database and is faster</td>
+<td>used for  easy retrieval of data from the database and is slower</td>
+</tr>
+<tr>
+<td>alters the way records are stored in a database as it sorts out rows by the column which is set to be clustered index</td>
+<td>does not alter the way it was stored but it creates a separate object within a table which points back to the original table rows after searching</td>
+</tr>
+<tr>
+<td>One table only have one clustered index</td>
+<td>One table can  have many non-clustered index</td>
+</tr>
+</tbody></table>
+<ol start="14">
+<li><p>display the current date: SELECT GETDATE();</p>
+</li>
+<li><p>inner join; left join; right join; full join;</p>
+</li>
+<li><p>Denormalization: Denormalization refers to a technique which is use to access data from higher to lower forms of a database. Increase the performance of the entire infrastructure as it introduces redundancy into a table; Add the redundant data into a table by incorporating database queries that combine data from various tables in a single table.</p>
+</li>
+<li><p>What are the Entities and Relationships: Entities: A person, place, or thing in real world about which data can be stored in a database. Table stored data that represent one type of entity.<br>Relationships: Relation or links between entities that have something to do with each other.</p>
+</li>
+<li><p>What is an index: performance tuning method; allows faster retrieval of records from the table; creates an entry for each value.</p>
+</li>
+<li><p>Explain different types of index: clustered  index; non-clustered index; unique index</p>
+</li>
+<li><p>What is normalization and what are the advantages of it?: Normalization is the process of organizing data to avoid duplication and redundancy. Better database organization; More tables with smaller rows; Efficient data access; Greater flexibility for queries; Quickly finds the information; Easier to implement security; Allows easy modification; Reduction of redundant data and duplicate data; More compact database; Ensure consistent data after modification.</p>
+</li>
+<li><p>What is the difference between the drop and the truncate commands? </p>
+<p>Drop command basically removes the table and it cannot be rolled back from the database<br>Truncate command removes all the rows from the table and also cannot be rolled back into the database.</p>
+</li>
+<li><p>What are the different types of normalization?</p>
+</li>
+</ol>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/11/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Learn_SQL/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;11&#x2F;%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3&#x2F;Learn_SQL&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;11&#x2F;%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3&#x2F;Learn_SQL&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/12/11/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Learn_Python_in_12_Hours/"><i class="iconfont iconleft"></i>Learn Python in 12 Hours</a>
+    <a href="/2021/12/08/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/%E7%AC%AC%E4%B8%80%E6%9C%ACDocker%E4%B9%A6/">第一本Docker书<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#01-Introduction"><span class="toc-text">01 Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-Database-Commands"><span class="toc-text">02 Database Commands</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#03-Table-Commands"><span class="toc-text">03 Table Commands</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#04-Joins"><span class="toc-text">04 Joins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#05-Functions"><span class="toc-text">05 Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#06-Interview-Question"><span class="toc-text">06 Interview Question</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一章_数据结构和算法 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="1.1 解压序列赋值给多个变量解压赋值可以用在任何可迭...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第一章_数据结构和算法</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB%E5%B0%8F%E8%AE%B0%E5%BD%95/img-1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第一章_数据结构和算法</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 14, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8674</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="1-1-解压序列赋值给多个变量"><a href="#1-1-解压序列赋值给多个变量" class="headerlink" title="1.1 解压序列赋值给多个变量"></a>1.1 解压序列赋值给多个变量</h4><p>解压赋值可以用在任何可迭代对象上，列表、元组、字符串、文件对象、迭代器和生成器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">p = (<span class="hljs-number">4</span>, <span class="hljs-number">5</span>)<br>x, y = p<br>data = [<span class="hljs-string">&#x27;ZhangJie&#x27;</span>, <span class="hljs-number">1982</span>, <span class="hljs-number">12</span>, <span class="hljs-number">20</span>, (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)]<br>name, year, month, day, number = data<br>name, year, month, day, (number1, number2, number3) = data<br><span class="hljs-comment"># 解压赋值可以用在任何可迭代对象上面，而不仅仅是列表或者元组。包括字符串，文件对象，迭代器和生成器。</span><br>s = <span class="hljs-string">&#x27;Hello&#x27;</span> <br> a, b, c, d, e = s <br></code></pre></td></tr></table></figure>
+<h4 id="1-2-解压任意长度的可迭代对象"><a href="#1-2-解压任意长度的可迭代对象" class="headerlink" title="1.2 解压任意长度的可迭代对象"></a>1.2 解压任意长度的可迭代对象</h4><p>星号表达式可以用在任何位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">record = (<span class="hljs-string">&#x27;Dave&#x27;</span>, <span class="hljs-string">&#x27;dave@example.com&#x27;</span>, <span class="hljs-string">&#x27;773-555-1212&#x27;</span>, <span class="hljs-string">&#x27;847-555-1212&#x27;</span>) <br><span class="hljs-comment"># *var_name解压出的var_name永远是列表类型</span><br>name, email, *phone_numbers = record <br></code></pre></td></tr></table></figure>
+<p>星号表达式在迭代元素为可变长元组的序列时有用<br>星号解压语法在字符串操作的时候也会很有用，比如字符串的分割。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum</span>(<span class="hljs-params">items</span>):</span> <br>	head, *tail = items <br>	<span class="hljs-keyword">return</span> head + <span class="hljs-built_in">sum</span>(tail) <span class="hljs-keyword">if</span> tail <span class="hljs-keyword">else</span> head<br></code></pre></td></tr></table></figure>
+<h4 id="1-3-保留最后-N-个元素"><a href="#1-3-保留最后-N-个元素" class="headerlink" title="1.3 保留最后 N 个元素"></a>1.3 保留最后 N 个元素</h4><p>保留最后有限几个元素的历史记录？collections.deque<br>使用deque(maxlen=N)构造函数会新建一个固定大小的队列。当新的元素加入并且这个队列已满的时候，最老的元素会自动被移除掉。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> deque<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">search</span>(<span class="hljs-params">lines, pattern, history=<span class="hljs-number">5</span></span>):</span><br>    previous_lines = deque(maxlen=history)<br>    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines:<br>        <span class="hljs-keyword">if</span> pattern <span class="hljs-keyword">in</span> line:<br>            <span class="hljs-keyword">for</span> pline <span class="hljs-keyword">in</span> previous_lines:<br>                <span class="hljs-built_in">print</span>(lline, end=<span class="hljs-string">&#x27;&#x27;</span>)<br>            <span class="hljs-built_in">print</span>(line, end=<span class="hljs-string">&#x27;&#x27;</span>)<br>            <span class="hljs-built_in">print</span>()<br>        previous_lines.append(line)<br><br><span class="hljs-comment"># Example use on a file</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;somefile.txt&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>         search(f, <span class="hljs-string">&#x27;python&#x27;</span>, <span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+<h4 id="1-4-查找最大或最小的-N-个元素"><a href="#1-4-查找最大或最小的-N-个元素" class="headerlink" title="1.4 查找最大或最小的 N 个元素"></a>1.4 查找最大或最小的 N 个元素</h4><p>heapq 模块有两个函数：nlargest() 和 nsmallest()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> heapq <br>nums = [<span class="hljs-number">1</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>, <span class="hljs-number">23</span>, <span class="hljs-number">7</span>, -<span class="hljs-number">4</span>, <span class="hljs-number">18</span>, <span class="hljs-number">23</span>, <span class="hljs-number">42</span>, <span class="hljs-number">37</span>, <span class="hljs-number">2</span>] <br><span class="hljs-built_in">print</span>(heapq.nlargest(<span class="hljs-number">3</span>, nums)) <span class="hljs-comment"># Prints [42, 37, 23] </span><br><span class="hljs-built_in">print</span>(heapq.nsmallest(<span class="hljs-number">3</span>, nums)) <span class="hljs-comment"># Prints [-4, 1, 2] </span><br><span class="hljs-comment"># 两个函数都能接受一个关键字参数</span><br><span class="hljs-comment"># 对每个元素进行对比的时候，会以 price 的值进行比较。 </span><br>portfolio = [ &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;IBM&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>: <span class="hljs-number">100</span>, <span class="hljs-string">&#x27;price&#x27;</span>: <span class="hljs-number">91.1</span>&#125;, &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;AAPL&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>: <span class="hljs-number">50</span>, <span class="hljs-string">&#x27;price&#x27;</span>: <span class="hljs-number">543.22</span>&#125;, &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;FB&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>: <span class="hljs-number">200</span>, <span class="hljs-string">&#x27;price&#x27;</span>: <span class="hljs-number">21.09</span>&#125;, &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;HPQ&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>: <span class="hljs-number">35</span>, <span class="hljs-string">&#x27;price&#x27;</span>: <span class="hljs-number">31.75</span>&#125;, &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;YHOO&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>: <span class="hljs-number">45</span>, <span class="hljs-string">&#x27;price&#x27;</span>: <span class="hljs-number">16.35</span>&#125;, &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;ACME&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>: <span class="hljs-number">75</span>, <span class="hljs-string">&#x27;price&#x27;</span>: <span class="hljs-number">115.65</span>&#125; ] <br>cheap = heapq.nsmallest(<span class="hljs-number">3</span>, portfolio, key=<span class="hljs-keyword">lambda</span> s: s[<span class="hljs-string">&#x27;price&#x27;</span>]) <br>expensive = heapq.nlargest(<span class="hljs-number">3</span>, portfolio, key=<span class="hljs-keyword">lambda</span> s: s[<span class="hljs-string">&#x27;price&#x27;</span>]) <br></code></pre></td></tr></table></figure>
+<p>将集合数据进行堆排序后放入一个列表中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> heapq <br>nums = [<span class="hljs-number">1</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>, <span class="hljs-number">23</span>, <span class="hljs-number">7</span>, -<span class="hljs-number">4</span>, <span class="hljs-number">18</span>, <span class="hljs-number">23</span>, <span class="hljs-number">42</span>, <span class="hljs-number">37</span>, <span class="hljs-number">2</span>] <br>heap = <span class="hljs-built_in">list</span>(nums) <br>heapq.heapify(heap)<br>heapq.heappop(heap)  <span class="hljs-comment"># 弹出第一个元素</span><br><span class="hljs-built_in">sorted</span>(items)[:N]<br><span class="hljs-built_in">sorted</span>(items)[-N:]   <br></code></pre></td></tr></table></figure>
+<h4 id="1-5-实现一个优先级队列"><a href="#1-5-实现一个优先级队列" class="headerlink" title="1.5 实现一个优先级队列"></a>1.5 实现一个优先级队列</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PriorityQueue</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        self._queue = []<br>        self._index = <span class="hljs-number">0</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">push</span>(<span class="hljs-params">self, item, priority</span>):</span><br>        heapq.heappush(self._queue, (-priority, self._index, item))<br>        self._index += <span class="hljs-number">1</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pop</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> heapq.heappop(self._queue)[-<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-6-字典中的键映射多个值"><a href="#1-6-字典中的键映射多个值" class="headerlink" title="1.6 字典中的键映射多个值"></a>1.6 字典中的键映射多个值</h4><p>collections模块中的defaultdict会自动初始化每个 key 刚开始对应的值<br>defaultdict会自动为将要访问的键(就算目前字典中并不存在这样的键)创建映射实体。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict <br>d = defaultdict(<span class="hljs-built_in">list</span>) <br>d[<span class="hljs-string">&#x27;a&#x27;</span>].append(<span class="hljs-number">1</span>) <br>d = &#123;&#125; <span class="hljs-comment"># A regular dictionary </span><br>d.setdefault(<span class="hljs-string">&#x27;a&#x27;</span>, []).append(<span class="hljs-number">1</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="1-7-字典排序"><a href="#1-7-字典排序" class="headerlink" title="1.7 字典排序"></a>1.7 字典排序</h4><p>collections模块中的OrderedDict类可以控制一个字典中元素的顺序<br>构建一个将来需要序列化或编码成其他格式的映射<br>OrderedDict内部维护着一个根据键插入顺序排序的双向链表。每次当一个新的元素插入进来的时候，它会被放到链表的尾部。对于一个已经存在的键的重复赋值不会改变键的顺序。<br>一个OrderedDict的大小是一个普通字典的两倍，因为它内部维护着另外一个链表。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict <br>d = OrderedDict() <br>d[<span class="hljs-string">&#x27;foo&#x27;</span>] = <span class="hljs-number">1</span> <br>d[<span class="hljs-string">&#x27;bar&#x27;</span>] = <span class="hljs-number">2</span> <br></code></pre></td></tr></table></figure>
+<h4 id="1-8-字典的运算"><a href="#1-8-字典的运算" class="headerlink" title="1.8 字典的运算"></a>1.8 字典的运算</h4><p>为了对字典值执行计算操作，通常需要使用 zip() 函数先将键和值反转过来。<br>zip() 函数创建的是一个只能访问一次的迭 代器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">min_price = <span class="hljs-built_in">min</span>(<span class="hljs-built_in">zip</span>(prices.values(), prices.keys())) <br>max_price = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">zip</span>(prices.values(), prices.keys())) <br>prices_sorted = <span class="hljs-built_in">sorted</span>(<span class="hljs-built_in">zip</span>(prices.values(), prices.keys())) <br></code></pre></td></tr></table></figure>
+<p>在一个字典上执行普通的数学运算，它们仅仅作用于键，而不是值。比如： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 返回最小的键</span><br><span class="hljs-built_in">min</span>(prices)<br><span class="hljs-comment"># 返回最小的值</span><br><span class="hljs-built_in">min</span>(prices.values()) <br><span class="hljs-comment"># 返回最小的值对应的键</span><br><span class="hljs-built_in">min</span>(prices, key=<span class="hljs-keyword">lambda</span> k: prices[k])<br><span class="hljs-comment"># 获得最小的值</span><br>min_value = prices[<span class="hljs-built_in">min</span>(prices, key=<span class="hljs-keyword">lambda</span> k: prices[k])] <br></code></pre></td></tr></table></figure>
+
+<h4 id="1-9-查找两字典的相同点"><a href="#1-9-查找两字典的相同点" class="headerlink" title="1.9 查找两字典的相同点"></a>1.9 查找两字典的相同点</h4><p>键视图/元素视图支持集合操作<br>unions, intersections, and differences</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">a.keys() &amp; b.keys()<br>a.keys() - b.keys()<br>a.items() &amp; b.items()<br>c = &#123;key:a[key] <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> a.keys() - &#123;<span class="hljs-string">&#x27;z&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>&#125;&#125;  <br></code></pre></td></tr></table></figure>
+<h4 id="1-10-删除序列相同元素并保持顺序"><a href="#1-10-删除序列相同元素并保持顺序" class="headerlink" title="1.10 删除序列相同元素并保持顺序"></a>1.10 删除序列相同元素并保持顺序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dedupe</span>(<span class="hljs-params">items</span>):</span><br>    seen = <span class="hljs-built_in">set</span>()<br>    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> items:<br>        <span class="hljs-keyword">if</span> item <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> seen:<br>            <span class="hljs-keyword">yield</span> item<br>            seen.add(item)<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dedupe</span>(<span class="hljs-params">items, key=<span class="hljs-literal">None</span></span>):</span><br>    seen = <span class="hljs-built_in">set</span>()<br>    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> items:<br>        val = item <span class="hljs-keyword">if</span> key <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">else</span> key(item)<br>        <span class="hljs-keyword">if</span> val <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> seen:<br>            <span class="hljs-keyword">yield</span> item<br>            seen.add(val)<br>a = [ &#123;<span class="hljs-string">&#x27;x&#x27;</span>:<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;y&#x27;</span>:<span class="hljs-number">2</span>&#125;, &#123;<span class="hljs-string">&#x27;x&#x27;</span>:<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;y&#x27;</span>:<span class="hljs-number">3</span>&#125;, &#123;<span class="hljs-string">&#x27;x&#x27;</span>:<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;y&#x27;</span>:<span class="hljs-number">2</span>&#125;, &#123;<span class="hljs-string">&#x27;x&#x27;</span>:<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;y&#x27;</span>:<span class="hljs-number">4</span>&#125;] <br><span class="hljs-built_in">list</span>(dedupe(a, key=<span class="hljs-keyword">lambda</span> d: (d[<span class="hljs-string">&#x27;x&#x27;</span>],d[<span class="hljs-string">&#x27;y&#x27;</span>]))) <br><span class="hljs-built_in">list</span>(dedupe(a, key=<span class="hljs-keyword">lambda</span> d: d[<span class="hljs-string">&#x27;x&#x27;</span>])) <br></code></pre></td></tr></table></figure>
+<h4 id="1-11-命名切片"><a href="#1-11-命名切片" class="headerlink" title="1.11 命名切片"></a>1.11 命名切片</h4><p>硬编码切片下标处理：内置的slice()函数创建了一个切片对象，可以被用在任何切片允许使用的地方。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">SHARES = <span class="hljs-built_in">slice</span>(<span class="hljs-number">20</span>, <span class="hljs-number">23</span>) <br>PRICE = <span class="hljs-built_in">slice</span>(<span class="hljs-number">31</span>, <span class="hljs-number">37</span>) <br>cost = <span class="hljs-built_in">int</span>(record[SHARES]) * <span class="hljs-built_in">float</span>(record[PRICE])<br>a = <span class="hljs-built_in">slice</span>(<span class="hljs-number">5</span>, <span class="hljs-number">50</span>, <span class="hljs-number">2</span>) <br><span class="hljs-built_in">print</span>(a.start, a.stop, a.step)<br><span class="hljs-comment"># 通过调用切片的indices(size)方法将切片映射到一个确定大小的序列上，方法返回一个三元组(start, stop, step)，所有值都会被合适的缩小以满足边界限制，从而使用的时候避免出现IndexError异常。</span><br>s = <span class="hljs-string">&#x27;HelloWorld&#x27;</span> <br>a.indices(<span class="hljs-built_in">len</span>(s))  <span class="hljs-comment"># (5, 10, 2)</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(*a.indices(<span class="hljs-built_in">len</span>(s))): <br>	<span class="hljs-built_in">print</span>(s[i])  <br></code></pre></td></tr></table></figure>
+<h4 id="1-12-序列中出现次数最多的元素"><a href="#1-12-序列中出现次数最多的元素" class="headerlink" title="1.12 序列中出现次数最多的元素"></a>1.12 序列中出现次数最多的元素</h4><p>collections.Counter类 most_common() </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter <br>word_counts = Counter(words) <span class="hljs-comment"># 出现频率最高的 3 个单词 </span><br>top_three = word_counts.most_common(<span class="hljs-number">3</span>) <br>word_counts.update(morewords) <br></code></pre></td></tr></table></figure>
+<p>在底层实现上，一个Counter对象就是一个字典，将元素映射到它出现的次数上(元素可哈希(hashable))。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可以很容易的跟数学运算操作相结合</span><br>a = Counter(words) <br>b = Counter(morewords) <br>c = a + b <br>d = a - b <br></code></pre></td></tr></table></figure>
+
+<h4 id="1-13-通过某个关键字排序一个字典列表"><a href="#1-13-通过某个关键字排序一个字典列表" class="headerlink" title="1.13 通过某个关键字排序一个字典列表"></a>1.13 通过某个关键字排序一个字典列表</h4><p>使用operator模块的itemgetter函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> operator <span class="hljs-keyword">import</span> itemgetter<br>rows_by_fname = <span class="hljs-built_in">sorted</span>(rows, key=itemgetter(<span class="hljs-string">&#x27;fname&#x27;</span>))<br><span class="hljs-comment"># itemgetter() 函数也支持多个 keys</span><br>rows_by_lfname = <span class="hljs-built_in">sorted</span>(rows, key=itemgetter(<span class="hljs-string">&#x27;lname&#x27;</span>,<span class="hljs-string">&#x27;fname&#x27;</span>)) <span class="hljs-built_in">print</span>(rows_by_lfname)<br><span class="hljs-comment"># itemgetter() 有时候也可以用 lambda 表达式代替</span><br>rows_by_fname = <span class="hljs-built_in">sorted</span>(rows, key=<span class="hljs-keyword">lambda</span> r: r[<span class="hljs-string">&#x27;fname&#x27;</span>]) <br><span class="hljs-built_in">min</span>(rows, key=itemgetter(<span class="hljs-string">&#x27;uid&#x27;</span>))   <br></code></pre></td></tr></table></figure>
+<h4 id="1-14-排序不支持原生比较的对象"><a href="#1-14-排序不支持原生比较的对象" class="headerlink" title="1.14 排序不支持原生比较的对象"></a>1.14 排序不支持原生比较的对象</h4><p>内置的sorted()函数有一个关键字参数key ，可以传入一个callable对象给它，callable对象对每个传入的对象返回一个值，值会被 sorted 用来排序对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">sorted</span>(users, key=<span class="hljs-keyword">lambda</span> u: u.user_id)) <br><span class="hljs-built_in">sorted</span>(users, key=attrgetter(<span class="hljs-string">&#x27;user_id&#x27;</span>)) <br></code></pre></td></tr></table></figure>
+<h4 id="1-15-通过某个字段将记录分组"><a href="#1-15-通过某个字段将记录分组" class="headerlink" title="1.15 通过某个字段将记录分组"></a>1.15 通过某个字段将记录分组</h4><p>itertools.groupby() </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> operator <span class="hljs-keyword">import</span> itemgetter <br><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> groupby<br>rows.sort(key=itemgetter(<span class="hljs-string">&#x27;date&#x27;</span>))<br><span class="hljs-keyword">for</span> date, items <span class="hljs-keyword">in</span> groupby(rows, key=itemgetter(<span class="hljs-string">&#x27;date&#x27;</span>)): <br>	<span class="hljs-built_in">print</span>(date) <br>	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> items: <br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27; &#x27;</span>, i)   <br></code></pre></td></tr></table></figure>
+<p>groupby()函数扫描整个序列并且查找连续相同值(或者根据指定key函数返回值相同)的元素序列。</p>
+<h4 id="1-16-过滤序列元素"><a href="#1-16-过滤序列元素" class="headerlink" title="1.16 过滤序列元素"></a>1.16 过滤序列元素</h4><p>最简单的过滤序列元素的方法就是使用列表推导</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">[n <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> mylist <span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">0</span>]<br><span class="hljs-comment"># 使用生成器表达式迭代产生过滤的元素</span><br>pos = (n <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> mylist <span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">0</span>) <br><span class="hljs-comment"># 将过滤代码放到一个函数中，然后使用内建的 filter()函数</span><br>ivals = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">filter</span>(is_int, values)) <br><span class="hljs-comment"># 过滤的时候转换数据</span><br>[math.sqrt(n) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> mylist <span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">0</span>] <br><span class="hljs-comment"># 将不符合条件的值用新的值代替，而不是丢弃它们</span><br>clip_neg = [n <span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span> <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> mylist] <br><span class="hljs-comment"># itertools.compress() 以一个 iterable 对象和一个相对应的Boolean选择器序列作为输入参数。然后输出iterable对象中对应选择器为True的元素。</span><br>more5 = [n &gt; <span class="hljs-number">5</span> <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> counts] <br><span class="hljs-built_in">list</span>(compress(addresses, more5)) <br></code></pre></td></tr></table></figure>
+<h4 id="1-17-从字典中提取子集"><a href="#1-17-从字典中提取子集" class="headerlink" title="1.17 从字典中提取子集"></a>1.17 从字典中提取子集</h4><p>字典推导</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">p1 = &#123;key: value <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> prices.items() <span class="hljs-keyword">if</span> value &gt; <span class="hljs-number">200</span>&#125; <br>p1 = <span class="hljs-built_in">dict</span>((key, value) <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> prices.items() <span class="hljs-keyword">if</span> value &gt; <span class="hljs-number">200</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="1-18-映射名称到序列元素"><a href="#1-18-映射名称到序列元素" class="headerlink" title="1.18 映射名称到序列元素"></a>1.18 映射名称到序列元素</h4><p>collections.namedtuple() 函数<br>函数实际上是一个返回Python中标准元组类型子类的一个工厂方法。传递一个类型名和需要的字段给函数，然后函数就会返回一个类，可以初始化这个类， 为字段传递值等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> namedtuple <br>Subscriber = namedtuple(<span class="hljs-string">&#x27;Subscriber&#x27;</span>, [<span class="hljs-string">&#x27;addr&#x27;</span>, <span class="hljs-string">&#x27;joined&#x27;</span>]) <br>sub = Subscriber(<span class="hljs-string">&#x27;jonesy@example.com&#x27;</span>, <span class="hljs-string">&#x27;2012-10-19&#x27;</span>)<br><span class="hljs-built_in">print</span>(sub, sub.addr, sub.joined)<br></code></pre></td></tr></table></figure>
+<p>命名元组另一个用途就是作为字典的替代，命名元组是不可更改的。要改变属性的值：可以使用命名元组实例的_replace()方法<br>_replace() 方法特性:当命名元组拥有可选或者缺失字段时候，它是一个非常方便的填充数据的方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">Stock = namedtuple(<span class="hljs-string">&#x27;Stock&#x27;</span>, [<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>, <span class="hljs-string">&#x27;price&#x27;</span>, <span class="hljs-string">&#x27;date&#x27;</span>, <span class="hljs-string">&#x27;time&#x27;</span>]) <br>stock_prototype = Stock(<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>) <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dict_to_stock</span>(<span class="hljs-params">s</span>):</span> <br>	<span class="hljs-keyword">return</span> stock_prototype._replace(**s)<br>a = &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;ACME&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>: <span class="hljs-number">100</span>, <span class="hljs-string">&#x27;price&#x27;</span>: <span class="hljs-number">123.45</span>&#125; <br>dict_to_stock(a) 	<br></code></pre></td></tr></table></figure>
+<h4 id="1-19-转换并同时计算数据"><a href="#1-19-转换并同时计算数据" class="headerlink" title="1.19 转换并同时计算数据"></a>1.19 转换并同时计算数据</h4><p>使用一个生成器表达式参数结合数据计算与转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">nums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>] <br>s = <span class="hljs-built_in">sum</span>(x * x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> nums) <br></code></pre></td></tr></table></figure>
+<h4 id="1-20-合并多个字典或映射"><a href="#1-20-合并多个字典或映射" class="headerlink" title="1.20 合并多个字典或映射"></a>1.20 合并多个字典或映射</h4><p>collections 模块中的 ChainMap 类<br>ChainMap类只是在内部创建了一个容纳这些字典的列表并重新定义了一些常见的字典操作来遍历这个列表。<br>如果出现重复键，那么第一次出现的映射值会被返回。<br>对于字典的更新或删除操作总是影响的是列表中第一个字典。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> ChainMap <br>a = &#123;<span class="hljs-string">&#x27;x&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;z&#x27;</span>: <span class="hljs-number">3</span> &#125; <br>b = &#123;<span class="hljs-string">&#x27;y&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;z&#x27;</span>: <span class="hljs-number">4</span> &#125; <br>c = ChainMap(a,b) <br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">values = ChainMap() <br>values[<span class="hljs-string">&#x27;x&#x27;</span>] = <span class="hljs-number">1</span> <br>values = values.new_child()<br>values[<span class="hljs-string">&#x27;x&#x27;</span>] = <span class="hljs-number">2</span> <br><span class="hljs-built_in">print</span>(values, values[<span class="hljs-string">&#x27;x&#x27;</span>])<br>values = values.parents <br><span class="hljs-built_in">print</span>(values, values[<span class="hljs-string">&#x27;x&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<p>使用 update() 方法将两个字典合并:创建一个完全不同的字典对象，如果原字典做了更新，这种改变不会反应到新的合并字典中去</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/14/Python_Codebook/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;14&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;14&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/14/Python_Codebook/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%96%87%E6%9C%AC/"><i class="iconfont iconleft"></i>第二章_字符串和文本</a>
+    <a href="/2022/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/MySQL%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/">MySQL必知必会<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一章 统计学习及监督学习概论 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="[toc]
+1.1 统计学习
+统计学习的特点stati...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第一章 统计学习及监督学习概论</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/Our%20Furry%20Friends/img-5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第一章 统计学习及监督学习概论</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 19, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3134</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>[toc]</p>
+<h3 id="1-1-统计学习"><a href="#1-1-统计学习" class="headerlink" title="1.1 统计学习"></a>1.1 统计学习</h3><ol>
+<li>统计学习的特点<br>statistical learning = statistical machine learning</li>
+<li>统计学习的对象<br>数据(data)<br>基本假设：同类数据具有一定的统计规律性</li>
+<li>统计学习的目的<br>对数据的分析和预测</li>
+<li>统计学习的方法<br>监督学习(supervised learning)<br>无监督学习(unsupervised learning)<br>强化学习(reinforcement learning)<br>训练数据(training data)<br>假设空间(hypothesis space)<br>评价准则(evaluation criterion)<br>测试数据(test data)<br>统计学习方法的三要素：模型(model)/策略(strategy)/算法(algorithm)</li>
+<li>统计学习的研究<br>统计学习方法、统计学习理论以及统计学习应用</li>
+<li>统计学习的重要性<br>(1)统计学习是处理海量数据的有效方法。<br>(2)统计学习是计算机智能化的有效手段。<br>(3)统计学习是计算机科学发展的一个重要组成部分。</li>
+</ol>
+<h3 id="1-2-统计学习的分类"><a href="#1-2-统计学习的分类" class="headerlink" title="1.2 统计学习的分类"></a>1.2 统计学习的分类</h3><h4 id="1-2-1-基本分类"><a href="#1-2-1-基本分类" class="headerlink" title="1.2.1 基本分类"></a>1.2.1 基本分类</h4><p>监督督学习、无监督学习、强化学习、 半监督学习、主动学习。</p>
+<ol>
+<li>监督学习<br>监督学习(supervised learning)是指从标注数据中学习预测模型的机器学习问题。<br>(1)输入空间、特征空间和输出空间<br>监督学习中，将输入与输出所有可能取值的集合分别称为输入空间 (input space) 与输出空间 (output space)<br>每个具体的输入是一个实例(jnstance) ，通常由特征向量(feature vector)表示。所有特征向量存在的空间称为特征空间(feature space)。<br>输入与输出对又称为样本(sample)或样本点。<br>(2)联合概率分布<br>监督学习假设输入与输出的随机变量X和Y遵循联合概率分布P(X，Y)。P(X，Y)表示分布函数，或分布密度函数。<br>(3)假设空间<br>模型属于由输入空间到输出空间的映射的集合，这个集合就是假设空间 (hypothesis space)。<br>(4)问题的形式化 </li>
+<li>无监督学习</li>
+<li>强化学习<br>基于马尔可夫决策过程(Markov decision process) </li>
+<li>半监督学习与主动学习<h4 id="1-2-2-按模型分类"><a href="#1-2-2-按模型分类" class="headerlink" title="1.2.2 按模型分类"></a>1.2.2 按模型分类</h4></li>
+<li>概率模型与非概率模型<br>概率模型：局册数、朴素贝叶斯、隐马尔科夫模型、条件随机场、概率潜在语义分析、潜在狄利克雷分配、高斯混合模型<br>非概率模型：感知机、支持向量机、k近邻、AdaBoost、K均值、潜在语义分析、神经网络<br>概率图模型：贝叶斯网络、马尔可夫随机场、条件随机场</li>
+<li>线性模型与非线性模型<br>如果函数ν = f(x)或z = g(x)是线性函数，则称模型是线性模型，否则称模型是非线性模型。 </li>
+<li>参数化模型与非参数化模型<br>parametric model ：感知机、朴素贝叶斯、逻辑斯谛回归、 k 均值、高斯混合模型<br>non­parametric model：决策树、支持向量机、 AdaBoost、 k近邻、潜在语义分析、概率潜在语义分析、潜在狄利克雷分配<h4 id="1-2-3-按算法分类"><a href="#1-2-3-按算法分类" class="headerlink" title="1.2.3 按算法分类"></a>1.2.3 按算法分类</h4>在线学习(online learning)与批量学习(batch learning) <h4 id="1-2-4-按技巧分类"><a href="#1-2-4-按技巧分类" class="headerlink" title="1.2.4 按技巧分类"></a>1.2.4 按技巧分类</h4></li>
+<li>贝叶斯学习<br>贝叶斯学习(Bayesian learning) ，又称为贝叶斯推理(Bayesian inference)，是统计学、机器学习中重要的方法。其主要想法是，在概率模型的学习和推理中，利用贝叶斯定理，计算在给定数据条件下模型的条件概率，即后验概率，并应用这个原理进行模型的估计，以及对数据的预测。<br>素贝叶斯、潜在狄利克雷分配<br>假设先验分布是均匀分布，取后验概率最大，就能从贝叶斯估计得到极大似然估计</li>
+<li>核方法<br>核方法(kernel method)是使用核函数表示和学习非线性模型的一种机器学习方法，可以用于监督学习和无监督学习。<br>核函数支持向量机，核 PCA、核 k 均值<br>显式地定义从输入空间(低维空间)到特征空间(高维空间)的映射，在特征空间中进行内积计算。<br>核方法的技巧在于不显式地定义这个映射，而是直接定义核函数，即映射之后在特征空间的内积<h3 id="1-3-统计学习万法三要素"><a href="#1-3-统计学习万法三要素" class="headerlink" title="1.3 统计学习万法三要素"></a>1.3 统计学习万法三要素</h3>方法=模型+策略+算法<h4 id="1-3-1-模型"><a href="#1-3-1-模型" class="headerlink" title="1.3.1 模型"></a>1.3.1 模型</h4>模型的假设空间(hypothesis space)包含所有可能的条件概率分布或决策函数。<br>参数空间(parameter space)<h4 id="1-3-2-策略"><a href="#1-3-2-策略" class="headerlink" title="1.3.2 策略"></a>1.3.2 策略</h4>损失函数度量模型一次预测的好坏，风险函数度量平均意义下模型预测的好坏。 </li>
+<li>损失函数和风险函数<br>用一个损失函数(loss function)或代价函数 (cost function)来度量预测错误的程度。<br>(1)0-1 损失函数 (0-1 loss function)<br>(2)平方损失函数 (quadratic loss function)<br>(3)绝对损失函数 (absolute loss function)<br>(4)对数损失函数(logarithmic loss function)或对数似然损失函数(log-like1ihood loss function)<br>理论上模型f(X)关于联合分布P(X， Y)的平均意义下的损失，称为风险函数 (risk function)或期望损失(expected loss) 。<br>模型f(X)关于训练数据集的平均损失称为经验风险(empirical risk) 或经验损失 (empirical loss) </li>
+<li>经验风险最小化与结构风险最小化<br>极大似然估计(maximum likelihood estimation)就是经验风险最小化的一个例子。当模型是条件概率分布、损失函数是对数损失函数时，经验风险最小化就等价于极大似然估计。<br>结构风险最小化(structural risk minimization, SRM)<br>贝叶斯估计中的最大后验概率估计(maximum posterior probability esti-mation, MAP)就是结构风险最小化的一个例子。当模型是条件概率分布、损失函数是对数损失函数、模型复杂度由模型的先验概率表示时，结构风险最小化就等价于最大后验概率估计。 <h4 id="1-3-3-算法"><a href="#1-3-3-算法" class="headerlink" title="1.3.3 算法"></a>1.3.3 算法</h4><h3 id="1-4-模型评估与模型选择"><a href="#1-4-模型评估与模型选择" class="headerlink" title="1.4 模型评估与模型选择"></a>1.4 模型评估与模型选择</h3><h4 id="1-4-1-训练误差与测试误差"><a href="#1-4-1-训练误差与测试误差" class="headerlink" title="1.4.1 训练误差与测试误差"></a>1.4.1 训练误差与测试误差</h4><h4 id="1-4-2-过拟合与模型选择"><a href="#1-4-2-过拟合与模型选择" class="headerlink" title="1.4.2 过拟合与模型选择"></a>1.4.2 过拟合与模型选择</h4><h3 id="1-5-正则化与交叉验证"><a href="#1-5-正则化与交叉验证" class="headerlink" title="1.5 正则化与交叉验证"></a>1.5 正则化与交叉验证</h3><h4 id="1-5-1-正则化"><a href="#1-5-1-正则化" class="headerlink" title="1.5.1 正则化"></a>1.5.1 正则化</h4><h4 id="1-5-2-交叉验证"><a href="#1-5-2-交叉验证" class="headerlink" title="1.5.2 交叉验证"></a>1.5.2 交叉验证</h4><h3 id="1-6-泛化能力"><a href="#1-6-泛化能力" class="headerlink" title="1.6 泛化能力"></a>1.6 泛化能力</h3><h4 id="1-6-1-泛化误差"><a href="#1-6-1-泛化误差" class="headerlink" title="1.6.1 泛化误差"></a>1.6.1 泛化误差</h4><h4 id="1-6-2-泛化误差上界"><a href="#1-6-2-泛化误差上界" class="headerlink" title="1.6.2 泛化误差上界"></a>1.6.2 泛化误差上界</h4>学习方法的泛化能力分析往往是通过研究泛化误差的概率上界进行的，简称为泛化误差上界(generalization error bound) 。<h3 id="1-7-生成模型与判别模型"><a href="#1-7-生成模型与判别模型" class="headerlink" title="1.7 生成模型与判别模型"></a>1.7 生成模型与判别模型</h3>生成方法(generative approach)和判别方法(discriminative approach)<br>生成方法由数据学习联合概率分布P(X,Y),然后求出条件概率分布P(Y|X)作为预测的模型，即生成模型：<br>P(Y|X) = P(X,Y)/P(X)<br>判别方法由数据直接学习决策函数f(X)或者条件概率分布P(Y|X)作为预测的模型，即判别模型<br>判别模型:k近邻法、感知机、决策树、逻辑斯谛回归模型、最大熵模型、支持向量机、提升方法和条件随机场等，<h3 id="1-8-监督学习应用"><a href="#1-8-监督学习应用" class="headerlink" title="1.8 监督学习应用"></a>1.8 监督学习应用</h3>分类问题、标注问题和回归问题。<h4 id="1-8-1-分类问题"><a href="#1-8-1-分类问题" class="headerlink" title="1.8.1 分类问题"></a>1.8.1 分类问题</h4>准确率(accuracy) 精确率(precision) 召回率(recall) <h4 id="1-8-2-标注问题"><a href="#1-8-2-标注问题" class="headerlink" title="1.8.2 标注问题"></a>1.8.2 标注问题</h4>标注(tagging)<br>结构预测(structure prediction)<br>隐马尔可夫模型、条件随机场。<br>词性标注 (part of speech tagging)<br>基本名词短语 (base noun phrase)。</li>
+</ol>
+<h4 id="1-8-3-回归问题"><a href="#1-8-3-回归问题" class="headerlink" title="1.8.3 回归问题"></a>1.8.3 回归问题</h4>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;19&#x2F;%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95&#x2F;%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;19&#x2F;%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95&#x2F;%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E5%8F%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/08/27/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/%E6%84%9F%E7%9F%A5%E6%9C%BA/"><i class="iconfont iconleft"></i>第二章 感知机</a>
+    <a href="/2021/08/11/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">深度学习推荐系统<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0"><span class="toc-text">1.1 统计学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">1.2 统计学习的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E4%B8%87%E6%B3%95%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="toc-text">1.3 统计学习万法三要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="toc-text">1.4 模型评估与模型选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="toc-text">1.5 正则化与交叉验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B"><span class="toc-text">1.6 泛化能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B"><span class="toc-text">1.7 生成模型与判别模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E5%BA%94%E7%94%A8"><span class="toc-text">1.8 监督学习应用</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

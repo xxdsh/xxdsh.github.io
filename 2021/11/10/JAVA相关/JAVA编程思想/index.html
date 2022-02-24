@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JAVA编程思想 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="第一章 对象的概念抽象 程序员必须要在机器模型(“解决...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">JAVA编程思想</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB%E5%B0%8F%E8%AE%B0%E5%BD%95/img-1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JAVA编程思想</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 10, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>52123</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h3 id="第一章-对象的概念"><a href="#第一章-对象的概念" class="headerlink" title="第一章 对象的概念"></a>第一章 对象的概念</h3><p>抽象 程序员必须要在机器模型(“解决方案空间”)和实际解决的问题模型(“问题空间”)之间建立起一种关联。<br>万物皆对象；程序是一组对象，通过消息传递来告知彼此该做什么；每个对象都有自己的存储空间，可容纳其他对象；每个对象都有一种类型； 同一类所有对象都能接收相同的消息；<br>一个对象具有自己的状态，行为和标识<br>接口 服务提供<br>封装: class creators and client programmers; private protected default public<br>复用：组合(Composition)经常用来表示 “拥有” 关系（has-a relationship）；聚合（Aggregation）动态的组合。<br>继承：overriding 纯粹替代 替代原则  is-a is-like-a<br>多态：早期绑定 后期绑定 “向上转型”（upcasting） “向下转型”(downcasting)<br>集合：参数化类型机制(Parameterized Type Mechanism)<br>Object Creation &amp; Lifetime<br>在C++设计中采用的观点是效率第一，因此它将选择权交给了程序员。为了获得最大的运行时速度，程序员可以在编写程序时，通过将对象放在栈（Stack，有时称为自动变量或作用域变量）或静态存储区域(static storage area)中来确定内存占用和生存时间。(牺牲了程序的灵活性 必须要弄清楚对象的数量、生存时间还有类型)<br>在堆内存(Heap)中动态地创建对象，直到程序运行才能确定需要创建的对象数量、生存时间和类型。<br>在栈内存开辟和释放空间通常是一条将栈指针向下移动和一条将栈指针向上移动的汇编指令。开辟堆内存空间的时间取决于内 存机制的设计。<br>异常处理：异常”(Exception)是一个从出错点“抛出”(thrown)后能被特定类型的异常处理程序捕获(catch)的一个对象。</p>
+<h3 id="第二章-安装Java和本书用例"><a href="#第二章-安装Java和本书用例" class="headerlink" title="第二章 安装Java和本书用例"></a>第二章 安装Java和本书用例</h3><p>参数化类型机制(Parameterized Type Mechanism) stack 自动变量 作用域变量 静态存储区(static storage area) heap<br>面向过程程序包含数据定义和函数调用<br>Integrated Development Environments (IDEs, like Eclipse, NetBeans and IntelliJ IDEA)  basic text manipulation applications<br>Java development kit<br>choco install jdk8 </p>
+<p>编译本书中的所有java文件，除了部分错误示范的gradlew compileJava<br>编译并执行java文件(某些文件是库组件) gradlew run<br>执行所有的单元测试 gradlew test<br>编译并运行一个具体的示例程序  gradlew &lt;本书章节&gt;:&lt;示例名称&gt;<br>示例：gradlew objects:HelloDate</p>
+<h3 id="第三章-万物皆对象"><a href="#第三章-万物皆对象" class="headerlink" title="第三章 万物皆对象"></a>第三章 万物皆对象</h3><p>存储数据：寄存器(Registers); 栈内存(Stack)存在于常规内存RAM(随机访问存储器， Random Access Memory)区域中，可通过栈指针获得处理器的直接支持;堆内存(Heap)是一种通用的内存池(也在RAM区域)，所有Java对象都存在于其中;常量存储(Constant storage)常量值通常直接放在程序代码中; 非RAM存储(Non-RAM storage)<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/21/ju5vp9NzRJgyf4c.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">每种基本类型的内存占用大小</span><br>类包含：fields (sometimes called data members), and methods (sometimes called member functions)<br>高精度数值 BigInteger BigDecimal<br>垃圾收集器 内存泄漏<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/21/IDn1src96bSPBkO.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">基本类型默认值 </span><br>方法的基本组成部分包括名称、参数、返回类型、方法体。<br>方法的基本组成：the name, the arguments, the return type, and the body.<br>方法名 + 参数列表 = 方法签名(the signature of the method 方法的唯一标识)<br>Object-oriented programming can be summarized as “sending messages to objects.”<br>System.getProperties().list(System.out); System.out.println(System.getProperty(“user.name”)); System.out.println(System.getProperty(“java.library.path”));<br>命名可见性<br>当我们说某个事物是静态时，就意味着该字段或方法不依赖于任何特定的对象实例。即使我们从未创建过该类的对象，也可以调用其静态方法或访问其静态字段。 类数据(class data)和类方法(class method)<br>“驼峰命名法“ </p>
+<h3 id="第四章-运算符"><a href="#第四章-运算符" class="headerlink" title="第四章 运算符"></a>第四章 运算符</h3><p>Addition and unary plus (+), subtraction and unary minus (-), multiplication (*), division (/), and assignment (=)<br>赋值：右值和左值规则: An rvalue is any constant, variable, or expression that produces a value, but an lvalue must be a distinct, named variable.<br>Integer.toBinaryString()将Integer转化为Long<br>程序在3s后停止：new TimedAbort(3);</p>
+<p>使用可变参数列表不依赖于自动装箱，而使用的是基本类型。</p>
+<p>less than (&lt; ), greater than (&gt; ), less than or equal to (&lt;=), greater than or equal to (&gt;=), equivalent (==) and not equivalent (!=)<br>== 和 != 比较的是对象引用<br>比较两个对象的内容是否相同：必须使用所有对象(不包括基本类型)中都存在的equals()方法<br>equals()的默认行为是比较对象的引用而非具体内容。<br>大多数 Java 库类通过覆写 equals() 方法比较对象的内容而不是其引用。<br>显示整型数值类型的二进制形式： toBinaryString()<br>Java用%n实现的可以忽略平台间差异而生成适当的换行符，但只有使用System.out.printf()或System.out.format()时<br>对于System.out.println()，仍然必须使用\n；如果使用%n，println()只会输出%n而不是换行符。<br>移位可以与等号 &lt;&lt;= 或 &gt;&gt;= 或 &gt;&gt;&gt;= 组合使用， 但byte或short被提升为int型并右移，但在重新赋值时被截断。<br> “向下转换”（Narrowing Conversion）  “向上转换”（Widening conversion）<br>截断和舍入问题<br>如果对小于int的基本数据类型(即char、byte或short)执行任何算术或按位操作，这些值会在执行操作之前类型提升为int，并且结果值的类型为int。<br>通常，表达式中最大的数据类型是决定表达式结果的数据类型。 </p>
+<h3 id="第五章-控制流"><a href="#第五章-控制流" class="headerlink" title="第五章 控制流"></a>第五章 控制流</h3><p>if-else，while，do-while，for，return，break 和选择语句 switch<br>for-in 循环适用于任何可迭代（iterable）的对象。<br>Math.random() 的结果集范围包 含 0.0 ，不包含 1.0。在数学术语中，可用[0,1) 来表示。</p>
+<h3 id="第六章-初始化和清理"><a href="#第六章-初始化和清理" class="headerlink" title="第六章 初始化和清理"></a>第六章 初始化和清理</h3><p>封装(implementation hiding)(encapsulation)<br>有两个安全性问题：初始化和清理。<br>当创建一个对象时：new Object_Name() ，内存被分配，构造器被调用。构造器保证 了对象在使用它之前进行了正确的初始化。<br>无参构造器 = 默认构造器<br>方法重载：每个被重载的方法必须有独一无二的参数列表。<br>this关键字只用在一些必须显式使用当前对象引用的特殊场合。如，用在return语句中返回对当前对象的引用。this关键字在向其他方法传递当前对象时也很有用。通过this关键字实现在一个构造器中调用另一个构造器来避免代码重复。<br>finalize()：当垃圾回收器准备回收对象的内存时，首先会调用其finalize()方法，并在下一轮的垃圾回收动作发生时，才会真正回收对象占用的内存。<br>finalize():When the garbage collector is ready to release the storage used for your object, it first calls finalize(), and only on the next garbage-collection pass will it reclaim the object’s memory.<br>对象可能不被垃圾回收；垃圾回收不等同于析构；垃圾回收只与内存有关。 1. Your objects might not get garbage collected. 2. Garbage collection is not destruction. 3. Garbage collection is only about memory.<br>无论对象是如何创建的，垃圾回收器都会负责释放对象所占用的所有内存。这就将对finalize()的需求限制到一种特殊情况，即通过某种创建对象方式之外的方式为对象分配了存储空间。<br>无论是 “垃圾回收” 还是 “终结”(neither garbage collection nor finalization)，都不保证一定会发生。如果Java虚拟机(JVM)并未面临内存耗尽的情形，它可能不会浪费时间执行垃圾回收以恢复内存。<br>System.gc()用于强制进行终结动作。但是即使不这么做，只要重复地执行程序(假设程序将分配大量的存储空间而导致垃圾回收动作的执行) ，最终也能找出错误的Book对象。<br>垃圾回收器通过重新排列对象，实现了一种高速的、有无限空间可分配的堆模型。<br>The garbage collector rearranges things and makes it possible for the high-speed, infinite-free-heap model while allocating storage.<br>垃圾回收机制：引用计数(reference counting):无法处理对象循环引用的情况(self-referential groups)<br>对于任意 “活” 的对象，一定能最终追溯到其存活在栈或静态存储区中的引用。<br>if you start in the stack and in the static storage area and walk through all the references, you’ll find all the live objects.<br>Java 虚拟机采用了一种自适应的垃圾回收技术(adaptive garbage-collection scheme)-自适应的、分代的、停止-复制、标记-清扫” 式的垃圾回收器。<br>停止-复制(stop-and-copy)(不属于后台回收模式) “copy collectors”<br>其一：得有两个堆，然后在这两个分离的堆之间来回折腾，得维护比实际需要多一倍的空间。某些Java虚拟机对此问题的处理方式是，按需从堆中分配几块较大的内存，复制动作发生在这些大块内存之间。其二在于复制本身。<br>标记-清扫(mark-and-sweep) 每个块都有年代数来记录自己是否存活。<br>“标记-清扫”所依据的思路仍然是从栈和静态存储区出发，遍历所有的引用，找出所有存活的对象。但是，每当找到一个存活对象，就给对象设一个标记，并不回收它。只有当标记过程完成后，清理动作才开始。在清理过程中，没有标记的对象将被释放，不会发生任何复制动作。“<br>Java虚拟机会监视，如果所有对象都很稳定，垃圾回收的效率降低的话，就切换到“标记-清扫”方式。同样，Java虚拟机会跟踪“标记-清扫”的效果，如果堆空间出现很多碎片，就会切换回“停止-复制”方式</p>
+<p>“即时”(Just-In-Time, JIT）编译器: 把程序全部或部分翻译成本地机器码，所以不需要JVM来进行翻译，因此运行得更快。当需要装载某个类(通常是创建该类的第一个对象)时，编译器会先找到其.class文件，然后将该类的字节码装入内存。可以让即时编译器编译所有代码，但这种做法有两个缺点：一是这种加载动作贯穿整个程序生命周期内，累加起来需要花更多时间；二是会增加可执行代码的长度（字节码要比即时编译器展开后的本地机器码小很多），这会导致页面调度，从而一定降低程序速度。<br>惰性评估(lazy evaluation)：即时编译器只有在必要的时候才编译代码。</p>
+<p>在类中变量定义的顺序决定了它们初始化的顺序。变量会在任何方法（包括构造器）被调用之前得到初始化。即使变量定义散布在方法定义之间，它们仍会在任何方法（包括构造器）被调用之前得到初始化。<br>初始化的顺序先是静态对象(如果它们之前没有被初始化的话)，然后是非静态对象。静态初始化只会在首次加载Class对象时初始化一次。<br>“静态子句”(有时叫做静态块):只执行一次，当首次创建这个类的对象或首次访问这个类的静态成员(甚至不需要创建该类的对象)时。这种语法对于支持“匿名内部类”的初始化是必须的，但是也可以使用它保证某些操作一定会发生，而不管哪个构造器被调用。</p>
+<p>可变参数 varargs</p>
+<p>枚举(enum): EnumName name = EnumName.XXXX; EnumName.values(); name.ordinal();</p>
+<h3 id="第七章-封装"><a href="#第七章-封装" class="headerlink" title="第七章 封装"></a>第七章 封装</h3><p>Access control (or implementation hiding)<br>重构(refactoring: rewrites working code to make it more readable, understandable, and thus maintainable)<br>面向对象设计中的一个基本问题：“如何区分变动的事物和不变的事物”。<br>“separate the things that change from the things that stay the same.”<br>访问修饰符(access specifier): 访问控制权限的等级，从“最大权限”到“最小权限”依次是：public，protected，包访问权限（package access)(没有关键字)和private。<br>The levels of access control span from “most access” to “least access”: public, protected, package access (which has no keyword), and private.<br>未命名包或默认包：the “unnamed” or default package</p>
+<p>包内包含一组类，它们被组织在一个单独的命名空间（namespace）下。<br>之所以使用导入，是为了提供一种管理命名空间的机制。所有类名之间都是相互隔离的。<br>一个Java源代码文件称为一个编译单元(compilation unit)(有时也称翻译单元(translation unit))。每个编译单元的文件名后缀必须是.java。在编译单元中可以有一个public类，它的类名必须与文件名相同（包括大小写，但不包括后缀名.java）。每个编译单元中只能有一个public类，否则编译器不接受。<br>A Java source-code file is called a compilation unit (sometimes a translation unit).</p>
+<p>每个编译单元中只能有一个public类，否则编译器不接受。<br>当编译一个.java文件时.java文件的每个类都会有一个输出文件。每个输出的文件名和.java文件中每个类的类名相同，只是后缀名是.class<br>在Java中，可运行程序是一组.class文件，它们可以打包压缩成一个Java文档文件(JAR，使用jar文档生成器)。Java解释器负责查找、加载和解释这些文件。<br>A working program is a bunch of .class files, which can be packaged and compressed into a Java ARchive (JAR) file (using the jar archiver).<br>将所有的文件放在一个子目录还解决了其他的两个问题：创建独一无二的包名和查找可能隐藏于目录结构某处的类。<br>当创建一个包时，包名就隐含了目录结构。这个包必须位于包名指定的目录中，该目录必须在以CLASSPATH开始的目录中可以查询到。包名对应目录路径</p>
+<p>包访问权限(Package Access) 默认访问权限(default access)<br>public: 接口访问权限; private: 无法访问; protected: 继承访问权限  相同包内的其他类可以访问protected元素。在同一个包中继承，就可以操作所有的包访问权限的成员。<br>当你定义一个具有包访问权限的类时，你可以在类中定义一个public构造器，编译器不会报错：</p>
+<p>访问控制通常被称为隐藏实现(implementation hiding).将数据和方法包装进类中并把具体实现隐藏被称作是封装(encapsulation)<br>Access control is often called implementation hiding. Wrapping data and methods within classes in combination with implementation hiding is called encapsulation. </p>
+<p>访问控制在数据类型内部划定了边界：原因：to establish what client programmers can and cannot use； to separate interface from implementation.</p>
+<p>类既不能是private的(这样除了该类自身，任何类都不能访问它)，也不能是protected的。通过将所有的构造器声明为private的方式防止直接创建某个类的对象。</p>
+<p>设计模式：单例模式(Singleton)<br>控制成员访问权限有两个原因:第一个原因是使用户不要接触他们不该接触的部分;第二个是为了让类库设计者更改类内部的工作方式，而不用担心会影响到客户端程序员。</p>
+<h3 id="第八章-复用"><a href="#第八章-复用" class="headerlink" title="第八章 复用"></a>第八章 复用</h3><p>组合(Composition) 继承(inheritance) 委托(delegation)<br>初始化引用有四种方法: 1. 当对象被定义时。这意味着它们总是在调用构造函数之前初始化。 2. 在该类的构造函数中。 3. 在实际使用对象之前。这通常称为延迟初始化。在对象创建开销大且不需要每次 都创建对象的情况下，它可以减少开销。 4. 使用实例初始化。<br>There are four ways to initialize references: 1. When the objects are defined. This means they’ll always be initialized before the constructor is called. 2. In the constructor for that class. 3. Right before you actually use the object. This is often called lazy initialization. It can reduce overhead in situations where object creation is expensive and the object doesn’t need to be created every time. 4. Using instance initialization. </p>
+<p>基类的子对象被包装在派生类的对象中<br>组合(composition)和继承(inheritance) 委托(delegation)介于继承和组合之间。“是一个” 的关系是用继承来表达的，而 “有一个 “的关系则用组合来表达。继承可以表述为 “新类是已有类的一种类型”。当你想在新类中包含一个已有类的功能时，使用组合，而非继承。<br>委托：将一个成员对象放在正在构建的类中(比如组合)，但同时又在新类中公开来自成员对象的所有方法(比如继承)。</p>
+<p>重载(overload)和重写(override)<br>向上转型(upcasting) 向下转型(downcasting)<br>final 设计或效率 数据、方法和类</p>
+<ol>
+<li>一个永不改变的编译时常量。 2. 一个在运行时初始化就不会改变的值。<br>A constant is useful for two reasons: 1. It can be a compile-time constant that won’t ever change. 2. It can be a value initialized at run time that you don’t want changed.</li>
+</ol>
+<p>空白final指的是没有初始化值的final属性。编译器确保空白final在使用前必须被初始化。这样既能使一个类的每个对象的final属性值不同，也能保持它的不变性。<br>final基本类型参数:主要用于传递数据给匿名内部类<br>使用final方法的原因：方法上锁，防止子类通过覆写改变方法的行为；效率：同意编译器把对该方法的调用转化为内嵌调用；<br>类中所有的private方法都隐式地指定为final。<br>当一个类被final修饰时，就意味着它不能被继承</p>
+<p>每个类的编译代码都存在于它自己独立的文件中。该文件只有在使用程序代码时才会被加载。一般可以说“类的代码在首次使用时加载“。这通常是指创建类的第一个对象，或者是访问了类的static属性或方法。<br>构造器也是一个static方法尽管它的static关键字是隐式的。<br>a class is first loaded when any one of its static members is accessed.<br>组合将已有类型作为新类型底层实现的一部分，继承复用的是接口。<br>Composition reuses existing types as part of the underlying implementation of the new type, and inheritance reuses the interface. </p>
+<h3 id="第九章-多态"><a href="#第九章-多态" class="headerlink" title="第九章 多态"></a>第九章 多态</h3><p>多态(也称为动态绑定或后期绑定或运行时绑定)<br>polymorphism (also called dynamic binding or late binding or runtime binding)<br>多态(Polymorphism):改善代码的组织，提高代码的可读性，能创建有扩展性的程序<br>多态提供了另一个维度的接口与实现分离，以解耦做什么和怎么做。</p>
+<p>将一个方法调用和一个方法主体关联起来称作绑定。(Connecting a method call to a method body is called binding.)<br>后期绑定也称为动态绑定或运行时绑定。Late binding is also called dynamic binding or runtime binding.<br>Java中除了static和final方法（private方法也是隐式的final）外，其他所有方法都是后期绑定。如果在构造器中调用了动态绑定方法，就会用到那个方法的重写定义。然而，调用的结果难以预料因为被重写的方法在对象被完全构造出来之前已经被调用，这使得一些bug很隐蔽，难以发现。<br>All method binding in Java uses late binding unless the method is static or final (private methods are implicitly final).<br>final有效地”关闭了“动态绑定，或者说告诉编译器不需要对其进行动态绑定。</p>
+<p>多态是一项“将改变的事物与不变的事物分离”的重要技术<br>如果一个方法是静态(static)的，它的行为就不具有多态性<br>协变返回类型:派生类的被重写方法可以返回基类方法返回类型的派生类型：<br>使用继承表达行为的差异，使用属性表达状态的变化。<br>Use inheritance to express differences in behavior, and fields to express variations in state.</p>
+<p>在运行时检查类型的行为称作运行时类型信息(runtime type information (RTTI))。</p>
+<h3 id="第十章-接口"><a href="#第十章-接口" class="headerlink" title="第十章 接口"></a>第十章 接口</h3><p>接口和抽象类提供了一种将接口与实现分离的更加结构化的方法。<br>抽象类，一种介于普通类和接口之间的折中手段。<br>创建一个抽象类是为了通过通用接口操纵一系列类。<br>抽象方法(abstract method)只有声明没有方法体。<br>abstract void f(); </p>
+<p>包含抽象方法的类叫做抽象类。如果一个类包含一个或多个抽象方法，那么类本身也必须限定为抽象的，否则，编译器会报错。可以将一个不包含任何抽象方法的类指明为abstract，<br>接口自动将其方法指明为public。事实上，接口只允许public方法，如果不加访问修饰符的话，接口的方法不是friendly而是public。<br>使用interface关键字创建接口。</p>
+<p>before Java 8: interface关键字产生一个完全抽象的类，没有提供任何实现。只能描述类应该像什么，做什么，但不能描述怎么做，即只能决定方法名、参数列表和返回类型，但是无法确定方法体。接口只提供形式，通常来说没有实现，尽管在某些受限制的情况下可以有实现。<br>Java 8 允许接口包含默认方法和静态方法<br>接口的典型使用是代表一个类的类型或一个形容词，如Runnable或Serializable，而抽象类通常是类层次结构的一部分或一件事物的类型，如String或ActionHero。 </p>
+<p>接口中的方法默认为public，所以当实现一个接口时， 来自接口中的方法必须被定义为 public<br>默认方法有时也被称为守卫方法或虚拟扩展方法。<br>default methods are sometimes also called defender methods or virtual extension methods.<br>结合多个源的实现。只要基类方法中的方法名和参数列表不同，就能工作得很好，否则会得到编译器错误<br>Java 8 允许在接口中添加静态方法。</p>
+<p>接口可以包含属性，属性被隐式指明为static和final,方法是public的。<br>使用关键字default为方法提供默认的实现<br>方法签名包括方法名和参数类型，编译器通过方法签名区分方法。(返回类型不是方法签名的一部分)<br>一个类implements两个接口，且这两个接口包含同名同参数默认函数(default),则需要override该函数，或者通过接口名.super.函数名()指定<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/25/n5ea7yuMlDvQV3A.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">接口和抽象方法的比较</span></p>
+<p>可以使用继承轻松地向接口添加新方法声明，也可以通过继承将多个接口组合成一个新接口。<br>使用继承扩展接口extends只能用于单一类，但是在构建接口时可以引用多个基类接口。</p>
+<p>创建一个能根据传入的参数类型从而具备不同行为的方法称为策略设计模式。 方法包含算法中不变的部分，策略包含变化的部分。<br>接口是创建一组常量的方便的工具(接口中的字段默认是static和final)。<br>接口中定义的字段不能是“空final”，但是可以用非常量表达式初始化。Random RAND = new Random(47); int RANDOM_INT = RAND.nextInt(10);<br>接口可以嵌套在类或其他接口中<br>类中嵌套接口，接口访问控制可以是public/private/package<br>接口中的元素必须是public的——在此都会被严格执行，所以嵌套在另一个接口中的接口自动就是public的，不能指明为private。<br>private接口不能在定义它的类之外被实现，实现private接口是一种可以强制该接口中的方法定义不会添加任何类型信息(即不可以向上转型)的方式。 </p>
+<p>工厂方法设计模式。不同于直接调用构造器，只需调用工厂对象中的创建方法就能生成对象的实现—理论上，通过这种方式可以将接口与实现的代码完全分离，使得可以透明地将某个实现替换为另一个实现。<br>任何抽象性都应该是由真正的需求驱动的。<br>迭代器设计模式( Iterator design pattern)</p>
+<h3 id="第十一章-内部类"><a href="#第十一章-内部类" class="headerlink" title="第十一章 内部类"></a>第十一章 内部类</h3><p>一个定义在另一个类中的类，叫作内部类。<br>内部类是一种非常有用的特性，因为它允许你把一些逻辑相关的类组织在一起，并 控制位于内部的类的可见性。<br>当生成一个内部类的对象时，此对象与制造它的外部对象(enclosing object)之间就有了一种联系，所以它能访问其外部对象的所有成员，而不需要任何特殊条件。<br>内部类还拥有其外部类的所有元素的访问权。<br>如果想从外部类的非静态方法之外的任意位置创建某个内部类的对象，必须具体地指明这个对象的类型：OuterClassName.InnerClassName。<br>内部类自动拥有对其外部类所有成员的访问权：当某个外部类的对象创建了一个内部类对象时，此内部类对象必定会秘密地捕获一个指向那个外部类对象的引用。<br>如果需要生成对外部类对象的引用，可以使用外部类的名字后面紧跟圆点和this。<br>DotNew dn = new DotNew();<br>DotNew.Inner dni = dn.new Inner();<br>在new表达式中提供对其他外部类对象的引用:外部类对象.new Inner()</p>
+<p>当将内部类向上转型为其基类，尤其是转型为一个接口的时候，内部类就有了用武之地。(从实现了某个接口的对象，得到对此接口的引用，与向上转型为这个对象的基类，实质上效果是一样的。)这是因为此内部类-某个接口的实现-能够完全不可见，并且不可用。所得到的只是指向基类或接口的引用，所以能够很方便地隐藏实现细节。<br>普通(非内部)类的访问权限不能被设为private或者protected；他们只能设置为public或package访问权限。<br>Normal (non-inner) classes cannot be made private or protected; they can only be given public or package access.<br>private内部类给类的设计者提供了一种途径，通过这种方式可以完全阻止任何依赖于类型的编码，并且完全隐藏了实现的细节。</p>
+<p>局部内部类:在方法的作用域内(而不是在其他类的作用域内)创建一个完整的类。不能有访问说明符，因为它不是外部类的一部分；可以有构造器<br>匿名内部类:如果定义一个匿名内部类，并且希望它使用一个在其外部定义的对象，那么编译器会要求其参数引用是final的(也就是说，它在初始化后不会改变，所以可以被当作final)。通过实例初始化，能够达到为匿名内部类创建一个构造器的效果<br>普通的内部类对象隐式地保存了一个引用，指向创建它的外部类对象。<br>嵌套类:如果不需要内部类对象与其外部类对象之间有联系，那么可以将内部类声明为static，1. 要创建嵌套类的对象，并不需要其外部类的对象。 2. 不能从嵌套类的对象中访问非静态的外部类对象。<br>普通内部类的字段与方法，只能放在类的外部层次上，所以普通的内部类不能有static数据和static字段，也不能包含嵌套类。但是嵌套类可以包含所有。<br>如果你想要创建某些公共代码，使得它们可以被某个接口的所有不同实现所共用，那么使用接口内部的嵌套类会显得很方便。<br>接口中的任何类都自动地是public和static的<br>可以使用嵌套类来放置测试代码<br>一个内部类被嵌套多少层并不重要——它能透明地访问所有它所嵌入的外部类的所有成员<br>内部类实现一个接口与外部类实现这个接口有什么区别呢？后者不是总能享用到接口带来的方便，有时需要用到接口的实现。<br>每个内部类都能独立地继承自一个(接口的)实现，所以无论外部类是否已经继承了某个(接口的)实现，对于内部类都没有影响。</p>
+<ol>
+<li>内部类可以有多个实例，每个实例都有自己的状态信息，并且与其外部类对象的信息相互独立。 2. 在单个外部类中，可以让多个内部类以不同的方式实现同一个接口，或继承同一个类。稍后就会展示一个这样的例子。 3. 创建内部类对象的时刻并不依赖于外部类对象的创建 4. 内部类并没有令人迷惑的 “is-a” 关系，它就是一个独立的实体。<br>闭包（closure）是一个可调用的对象，它记录了一些信息，这些信息来自于创建它的作用域。<br>内部类是面向对象的闭包，因为它不仅包含外部类对象(创建内部类的作用域)的信息，还自动拥有一个指向此外部类对象的引用，在此作用域内，内部类有权操作所有的成员，包括private成员。</li>
+</ol>
+<p>内部类和lambda表达式可以实现闭包<br>通过回调(callback)，对象能够携带一些信息，这些信息允许它在稍后的某个时刻调用初始的对象。<br>通过内部类提供闭包的功能是优良的解决方案，它比指针更灵活、更安全<br>应用程序框架（application framework）就是被设计用以解决某类特定问题的一个类或一组类。<br>控制框架(control framework)是一类特殊的应用程序框架，它用来解决响应事件的需求。主要用来响应事件的系统被称作事件驱动系统。</p>
+<p>内部类的构造器必须连接到指向其外部类对象的引用<br>继承内部类：问题在于，那个指向外部类对象的“秘密的”引用必须被初始化，而在派生类中不再存在可连接的默认对象。当生成一个构造器时，需要传递一个指向外部类对象的引用。必须在构造器内使用如下语法： enclosingClassReference.super(); </p>
+<p>局部内部类：局部内部类不能有访问说明符，因为它不是外部类的一部分；但是它可以访问当前代码块内的常量，以及此外部类的所有成员。为什么仍然使用局部内部类而不是匿名内部类呢？需要一个已命名的构造器，或者需要重载构造器，而匿名内部类只能使用实例初始化。 或者需要不止一个该内部类的对象。 </p>
+<p>内部类标识符：外部类的名字，加上 “$” ，再加上内部类的名字。<br>编译后，每个类都会生成一个.class文件，其中包含有关如何创建该类型对象的所有信息。加载时，每个类文件都会生成一个称为Class对象的“meta-class”。内部类.class命名：the name of the enclosing class, followed by a $, followed by the name of the inner class. 如果内部类是匿名的，编译器会简单地产生一个数字作为其标识符。</p>
+<h3 id="第十二章-集合"><a href="#第十二章-集合" class="headerlink" title="第十二章 集合"></a>第十二章 集合</h3><p>需要在任意时刻和任意位置创建任意数量的对象。<br>集合类(collection classes)  List 、Set 、Queue 和 Map<br>泛型和类型安全的集合<br>注解以“@”符号开头，可以带参数。@SuppressWarnings(“unchecked”)这里的@SuppressWarning注解及其参数表示只抑制“unchecked”类型的警告<br>ArrayList apples = new ArrayList()</p>
+<p> “菱形语法” (diamond syntax)  类型推断(type inference)<br>Object默认的toString()方法:打印类名+对象的散列码的无符号十六进制表示(这个散列码是通过hashCode()方法产生的)<br>“持有对象”(holding objects)</p>
+<ol>
+<li>集合(Collection)：一个独立元素的序列，这些元素都服从一条或多条规则。List必须以插入的顺序保存元素，Set不能包含重复元素，Queue按照排队规则来确定对象产生的顺序。</li>
+<li>映射(Map)： 一组成对的“键值对”对象，允许使用键来查找值。ArrayList使用数字来查找对象，因此在某种意义上讲，它是将数字和对象关联在一起。map允许使用一个对象来查找另一个对象，它也被称作关联数组(associative array)，或者称作字典（dictionary）.<br>List<Apple> apples = new ArrayList&lt;&gt;();<br>应该创建一个具体类的对象，将其向上转型为对应的接口，然后在其余代码中都是用这个接口。</li>
+</ol>
+<p>Collection接口概括了序列的概念—一种存放一组对象的方式。<br>Arrays.asList()方法接受一个数组或是逗号分隔的元素列表(使用可变参数)，并将其转换为List对象。<br>Collections.addAll()方法接受一个Collection对象，以及一个数组或是一个逗号分隔的列表，将其中元素添加到Collection中。<br>Collection.addAll()方法只能接受另一个Collection作为参数，因此它没有Arrays.asList()或Collections.addAll()灵活。</p>
+<p>Arrays.<ClassName>asList() 显式类型参数说明(explicit type argument specification)<br>Collection: List Set Queue ArrayList&lt;&gt;(excels at randomly accessing elements, slower when inserting and removing elements in the middle of a List) LinkedList&lt;&gt; HashSet&lt;&gt;(order is unimportant) TreeSet&lt;&gt;(keeps the objects in ascending comparison order 通过比较结果的升序来保存键) LinkedHashSet&lt;&gt;(keeps the objects in the order in which they were added 保持HashMap查找速度的同时按键的插入顺序保存键)<br>Map: HashMap&lt;&gt; TreeMap&lt;&gt; LinkedHashMap&lt;&gt;</p>
+<p>List: add() contains() get() indexOf() remove() subList() containsAll() retainAll()() removeAll() set() addAll() toArray()</p>
+<p>1.使用iterator()方法要求集合返回一个Iterator。Iterator将准备好返回序列中的第一个元素。2.使用next()方法获得序列中的下一个元素。3.使用hasNext()方法检查序列中是否还有元素。 4.使用remove()方法将迭代器最近返回的那个元素删除。<br>Iterator的真正威力：能够将遍历序列的操作与该序列的底层结构分离。迭代器统一了对集合的访问方式。 </p>
+<p>ListIterator是一个更强大的Iterator子类型，它只能由各种List类生成。Iterator只能向前移动，而ListIterator可以双向移动。它可以生成迭代器在列表中指向位置的后一个和前一个元素的索引，并且可以使用set()方法替换它访问过的最近一个元素。可以通过调用listIterator()方法来生成指向List开头处的ListIterator ， 还可以通过调用listIterator(n)创建一个一开始就指向列表索引号为n的元素处的ListIterator<br>it.hasNext() it.nextIndex() it.previousIndex() it.hasPrevious() it.previous().id() it.next() it.set(Pets.get())</p>
+<p>LinkedList还添加了一些方法，使其可以被用作栈、队列或双端队列(deque)<br>返回列表的头部元素：getFirst() element() 如果List为空，则抛出NoSuchElementException异常 peek() 在列表为空时返回null<br>删除并返回列表的头部元素：removeFirst() remove() 如果List为空，则抛出NoSuchElementException异常 poll() 在列表为空时返回null<br>在列表的开头插入一个元素: addFirst()<br>在列表的尾部（末尾）添加一个元素: offer()  add()  addLast()<br>删除并返回列表的最后一个元素: removeLast()<br>字典顺序(lexicographically) 字母顺序(alphabetically)<br>PriorityQueue<Integer> priorityQueue = new PriorityQueue&lt;&gt;();<br>List<Integer> ints = Arrays.asList(25, 22, 20, 18, 14, 9, 3, 1, 1, 2, 3, 9, 14, 18, 21, 23, 25);<br>priorityQueue = new PriorityQueue&lt;&gt;( ints.size(), Collections.reverseOrder()); </p>
+<p>Collection是所有序列集合共有的根接口。它可能会被认为是一种“附属接口”(incidental interface), 即因为要表示其他若干个接口的共性而出现的接口。此外，java.util.AbstractCollection类提供了Collection的默认实现，使得你可以创建AbstractCollection的子类型，而其中没有不必要的代码重复。<br>for(Map.Entry entry: System.getenv().entrySet()) {System.out.println(entry.getKey() + “: “ + entry.getValue()); }<br>An array works in for-in, but it’s not Iterable:<br>You must explicitly convert it to an Iterable:<br>static <T> void test(Iterable<T> ib) { for(T t : ib) System.out.print(t + “ “); }<br>String[] strings = { “A”, “B”, “C” };<br>test(Arrays.asList(strings)); </p>
+<p>适配器方法(Adapter Method)<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/08/3BzIrPM7QRaUtmy.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">QQ截图20211108233035.png</span></p>
+<p>函数式编程<br>Lambda Expressions and Method References<br>自修改代码(self-modifying code)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IntCall</span> </span>&#123; <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">call</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arg)</span></span>; &#125; <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RecursiveFactorial</span> </span>&#123; <br>	<span class="hljs-keyword">static</span> IntCall fact; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123; <br>		fact = n -&gt; n == <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : n * fact.call(n - <span class="hljs-number">1</span>); <br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++)<br>			System.out.println(fact.call(i)); <br>	&#125; <br>&#125; <br></code></pre></td></tr></table></figure>
+<p>方法引用组成：类名或对象名，后面跟 :: ，然后跟方法名称。<br>未绑定的方法引用是指没有关联对象的普通（非静态）方法。使用未绑定的引用时，必须先提供对象：<br>可以捕获构造函数的引用，然后通过引用调用该构造函数。<br>java.util.function包:包含一组接口，这些接口是Lambda表达式和方法引用的目标类型。每个接口只包含一个抽象方法，称为 函数式方法。</p>
+<p>被Lambda表达式引用的局部变量必须是final或者是等同final效果的。<br>函数组合（Function Composition）意为“多个函数组合成新函数”。<br>柯里化意为：将一个多参数的函数，转换为一系列单参数函数。 </p>
+<p>叠加栈(pushdown stack)<br>尽管已经有了 java.util.Stack ，但是 ArrayDeque 可以产生更好的 Stack ，因 此更可取。<br>Set 不保存重复的元素。如果试图将相同对象的多个实例添加到 Set 中，那么它会 阻止这种重复行为。<br>add() contains() containsAll()<br>字典顺序(lexicographically) 字母顺序（alphabetically） String.CASE_INSENSITIVE_ORDER<br>队列：Queue<Integer> queue = new LinkedList&lt;&gt;();<br>poll() remove() offer() peek() element()<br>先进先出（FIFO）描述了最典型的队列规则（queuing discipline） 。队列规则是指 在给定队列中的一组元素的情况下，确定下一个弹出队列的元素的规则。先进先出声明 的是下一个弹出的元素应该是等待时间最长的元素。<br>生成 Iterator 是将序列与消费该序列的方法连接在一起耦合度最小的方式，并且 与实现 Collection 相比，它在序列类上所施加的约束也少得多。<br>尝试将数组作为一个 Iterable 参数传递会导致失败。这说明不存在任何从数组到 Iterable 的自动转换; 必须手工执行这种转换。<br>适配器方法（Adapter Method）<br>重要的是要 注意 Arrays.asList() 生成一个 List 对象，该对象使用底层数组作为其物理实现。如 果执行的操作会修改这个 List ，并且不希望修改原始数组，那么就应该在另一个集合 中创建一个副本。<br>实际上只有四个基本的集合组件：Map，List，Set和Queue</p>
+<p>Collection: [add, addAll, clear, contains, containsAll, equals, forEach, hashCode, isEmpty, iterator, parallelStream, remove, removeAll, removeIf, retainAll, size, spliterator, stream, toArray]<br>Interfaces in Collection: [Iterable]</p>
+<p>Set extends Collection, adds: []<br>Interfaces in Set: [Collection]<br>HashSet extends Set, adds: []<br>Interfaces in HashSet: [Set, Cloneable, Serializable]<br>LinkedHashSet extends HashSet, adds: []<br>Interfaces in LinkedHashSet: [Set, Cloneable, Serializable]<br>TreeSet extends Set, adds: [headSet, descendingIterator, descendingSet, pollLast, subSet, floor, tailSet, ceiling, last, lower, comparator, pollFirst, first, higher]<br>Interfaces in TreeSet: [NavigableSet, Cloneable, Serializable]</p>
+<p>List extends Collection, adds: [replaceAll, get, indexOf, subList, set, sort, lastIndexOf, listIterator]<br>Interfaces in List: [Collection]<br>ArrayList extends List, adds: [trimToSize, ensureCapacity]<br>Interfaces in ArrayList: [List, RandomAccess, Cloneable, Serializable]<br>LinkedList extends List, adds: [offerFirst, poll, getLast, offer, getFirst, removeFirst, element, removeLastOccurrence, peekFirst, peekLast, push, pollFirst, removeFirstOccurrence, descendingIterator, pollLast, removeLast, pop, addLast, peek, offerLast, addFirst]<br>Interfaces in LinkedList: [List, Deque, Cloneable, Serializable] </p>
+<p>Queue extends Collection, adds: [poll, peek, offer, element]<br>Interfaces in Queue: [Collection]<br>PriorityQueue extends Queue, adds: [comparator]<br>Interfaces in PriorityQueue: [Serializable] </p>
+<p>Map: [clear, compute, computeIfAbsent, computeIfPresent, containsKey, containsValue, entrySet, equals, forEach, get, getOrDefault, hashCode, isEmpty, keySet, merge, put, putAll, putIfAbsent, remove, replace, replaceAll, size, values]<br>HashMap extends Map, adds: [] Interfaces in HashMap: [Map, Cloneable, Serializable]<br>LinkedHashMap extends HashMap, adds: []<br>Interfaces in LinkedHashMap: [Map]<br>SortedMap extends Map, adds: [lastKey, subMap, comparator, firstKey, headMap, tailMap]<br>Interfaces in SortedMap: [Map]<br>TreeMap extends Map, adds: [descendingKeySet, navigableKeySet, higherEntry, higherKey, floorKey, subMap, ceilingKey, pollLastEntry, firstKey, lowerKey, headMap, tailMap, lowerEntry, ceilingEntry, descendingMap, pollFirstEntry, lastKey, firstEntry, floorEntry, comparator, lastEntry]<br>Interfaces in TreeMap: [NavigableMap, Cloneable, Serializable]</p>
+<h3 id="第十三章-函数式编程"><a href="#第十三章-函数式编程" class="headerlink" title="第十三章 函数式编程"></a>第十三章 函数式编程</h3><p>OO（object oriented，面向对象）是抽象数据，FP（functional programming，函数 式编程）是抽象行为。<br>“不可变对象和无副作用” 范式解决了并发编程中最基本和最棘手的问 题之一（当程序的某些部分同时在多个处理器上运行时） 。<br>为 “并行编程”，“代码可靠性” 和 “代码创建和库复用”。<br>方法引用和 Lambda 表达式的出现可以在需要时传递功能，而不是仅在必要时才这么做。<br>Lambda 表达式是使用最小可能语法编写的函数定义： 1. Lambda 表达式产生函数，而不是类。2. Lambda 语法尽可能少，这正是为了使 Lambda 易于编写和使用。<br>任何 Lambda 表达式的基本语法是：1. 参数。 2. 接着 -&gt;，可视为 “产出”。 3. -&gt; 之后的内容都是方法体。<br>递归方法必须是实例变量或静态变量，否则会出现编译时错误。<br>方法引用组成：类名或对象名，后面跟 ::  ，然后跟方法名称。<br>Lambda 表达式包含类型推导(编译器会自动推导出类型信息，避免了程序员显式地声明)<br>在编写接口时，可以使用 @FunctionalInterface 注解强制执行此 “函数式方法” 模式：<br>@FunctionalInterface的作用：接口中如果有多个抽象方法则会产生编译期错误。<br>如果将方法引用或Lambda表达式赋值给函数式接口(类型需要匹配)，Java 会适配你的赋值到目标接口。编译器会在后台把方法引用或Lambda表达式包装进实现目标接口的类的实例中。 </p>
+<ol>
+<li>如果只处理对象而非基本类型，名称则为 Function，Consumer，Predicate 等。 参数类型通过泛型添加。 2. 如果接收的参数是基本类型，则由名称的第一部分表示，如LongConsumer， DoubleFunction，IntPredicate 等，但返回基本类型的 Supplier 接口例外。 3. 如果返回值为基本类型， 则用To表示， 如ToLongFunction <T>和IntToLongFunction。 4. 如果返回值类型与参数类型一致， 则是一个运算符： 单个参数使用UnaryOperator， 两个参数使用 BinaryOperator。 5. 如果接收两个参数且返回值为布尔值，则是一个谓词（Predicate） 。 6. 如果接收的两个参数类型不同，则名称中有一个 Bi。 </li>
+</ol>
+<p>高阶函数(Higher-order Function)只是一个消费或产生函数的函数。<br>被 Lambda 表达式引用的局部变量必须是 final 或者是等同 final 效果的。<br>如果局部变量的初始值永远不会改变，那么它实际上就是 final 的。<br>函数组合(Function Composition)意为“多个函数组合成新函数”。<br>柯里化意为：将一个多参数的函数，转换为一系列单参数函数。 </p>
+<h3 id="第十四章-流式编程"><a href="#第十四章-流式编程" class="headerlink" title="第十四章 流式编程"></a>第十四章 流式编程</h3><p>集合优化了对象的存储，而流(Streams)则是关于一组组对象的处理。<br>流(Streams)是与任何特定存储机制无关的元素序列——实际上，我们说流是 “没有存储” 的。<br>流可以在不曾使用赋值或可变数据的情况下，对有状态的系统建模<br>声明式编程(Declarative programming)是一种编程风格——它声明了要做什么， 而不是指明(每一步)如何做<br>显式地编写迭代过程的方式称为外部迭代(external iteration)<br>内部迭代(internal iteration)是流式编程的一个核心特征<br>流是懒加载的，即只在绝对必要时才计算<br>流的中间操作(intermediate stream operation)<br>ints() limit() sorted() distinct() forEach()<br>流操作的类型：创建流，修改流元素(中间操作，Intermediate Operations)，消费流元素(终端操作，Terminal Operations)<br>流创建：可以通过 Stream.of() 将一组元素转化成为流； 每个集合都可以通过调用 stream() 方法来产生一个流<br>List<String> words = new ArrayList&lt;&gt;();<br>List<String> lines = Files.readAllLines(Paths.get(fname));<br>words.stream().collect(Collectors.joining(“ “));<br>Stream.generate()：可以把任意Supplier<T> 用于生成 T 类型的流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : range(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>).toArray()) <br>	result += i; <br>System.out.println(range(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>).sum()); <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Repeat</span> </span>&#123; <br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">repeat</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, Runnable action)</span> </span>&#123;<br>		range(<span class="hljs-number">0</span>, n).forEach(i -&gt; action.run()); <br>	&#125; <br>&#125; <br></code></pre></td></tr></table></figure>
+<p>repeat()可以用来替换简单的 for 循环: repeat(3, () -&gt; System.out.println(“Looping!”));<br>建造者模式（Builder design pattern）<br>Stream.Builder<String> builder = Stream.builder();<br>Arrays 类中含有一个名为 stream() 的静态方法用于把数组转换成为流。我<br>splitAsStream(): 根据传入的公式将字符序列转化为流。<br>中间操作用于从一个流中获取对象，并将对象作为另一个流从后端输出，以连接到 其他操作。<br>peek() 操作的目的是帮助调试。它允许你无修改地查看流中的元素<br>.sorted(Comparator.reverseOrder())<br>distinct()：用于消除流中的重复元素<br>filter(Predicate)：过滤操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">public static Boolean isPrime(long n) &#123; <br>	<span class="hljs-keyword">return</span> rangeClosed(<span class="hljs-number">2</span>, (long)Math.sqrt(n)).noneMatch(i -&gt; n % i == <span class="hljs-number">0</span>); &#125;<br></code></pre></td></tr></table></figure>
+<p>Stream.of(“5”, “7”, “9”) .mapToInt(Integer::parseInt) .forEach(n -&gt; System.out.format(“%d “, n));<br>flatMap() 做了两件事：将产生流的函数应用在每个元素上（与 map() 所做的相 同） ，然后将每个流都扁平化为元素，因而最终产生的仅仅是元素。<br>Stream.of(1, 2, 3, 4, 5) .flatMapToInt(i -&gt; IntStream.concat( rand.ints(0, 100).limit(i), IntStream.of(-1))) .forEach(n -&gt; System.out.format(“%d “, n));<br>一些标准流操作返回 Optional 对象，因为它们并不能保证预期结果一定存在。findFirst() findAny() max() min() 流为空，返回Optional.empty reduce() verage()<br>Stream.<String>empty().findFirst())<br>IntStream.empty().average()<br>当接收到 Optional 对象时，应首先调用 isPresent() 检查其中是否包含元素。 如果存在，可使用 get() 获取。<br>便利函数解包Optional ifPresent(Consumer) orElse(otherObject) orElseGet(Supplier) orElseThrow(Supplier)<br>创建Optional empty() of(value) ofNullable(value)<br>Optional对象操作 : filter(Predicate) map(Function) flatMap(Function)<br>终端操作(Terminal Operations) 以下操作将会获取流的最终结果。至此我们无法再继续往后传递流。<br>数组：toArray() toArray(generator)<br>循环：forEach(Consumer) forEachOrdered(Consumer)<br>集合：collect(Collector)  collect(Supplier, BiConsumer, BiConsumer)<br>组合：reduce(BinaryOperator) reduce(identity, BinaryOperator) reduce(identity, BiFunction, BinaryOperator)<br>匹配：allMatch(Predicate)  anyMatch(Predicate) noneMatch(Predicate)<br>查找：findFirst() findAny()<br>parallel()：可实现多处理器并行操作。<br>.collect(Collectors.toCollection(TreeSet::new));<br>OptionalInt last = IntStream.range(10, 20) .reduce((n1, n2) -&gt; n2);<br>System.out.println(last.orElse(-1));<br>Optional<String> lastobj = Stream.of(“one”, “two”, “three”) .reduce((n1, n2) -&gt; n2);<br>System.out.println( lastobj.orElse(“Nothing there!”));<br>信息：count() max(Comparator) min(Comparator)<br>数字流信息: average() max() min() sum() summaryStatistics()</p>
+<h3 id="第十五章-异常"><a href="#第十五章-异常" class="headerlink" title="第十五章 异常"></a>第十五章 异常</h3><p>To create a robust system, each component must be robust.<br>Java 使用异常来提供一致的错误报告模型，使得构件能够与客户端代码可靠地沟通问题。<br>对于构造大型、健壮、可维护的程序而言，这种错误处理模式已经成为了主要障碍。<br>异常情形（exceptional condition）是指阻止当前方法或作用域继续执行的问题。<br>异常处理程序：将程序从错误状态中恢复，以使程序能要么换一种方式运行，要么继续运行下去。<br>监控区域(guarded region)：它 是一段可能产生异常的代码，并且后面跟着处理这些异常的代码。<br>使用java.util.logging工具将输出记录到日志中。<br>printStackTrace()方法：将打印 “从方法调用处直到异常抛出处” 的方法调用序列。<br>如果将一个 java.io.StringWriter 对象传递给这个 PrintWriter 的构造器，那么通过调用 toString() 方法，就可以将输出抽取为一个 String。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Logger logger = Logger.getLogger(<span class="hljs-string">&quot;LoggingExceptions2&quot;</span>); <br>StringWriter trace = <span class="hljs-keyword">new</span> StringWriter();<br>e.printStackTrace(<span class="hljs-keyword">new</span> PrintWriter(trace)); <br>logger.severe(trace.toString()); <br></code></pre></td></tr></table></figure>
+
+<p>异常说明使用了附加的关键字 throws，后面接一个所有潜在异常类型的列表，所以方法定义可能看起来像这样：<br>从RuntimeException继承的异常，它们可以在没有异常说明的情况下被抛出<br>“作弊” 的地方：可以声明方法将抛出异常，实际上却不抛出。<br>这种在编译时被强制检查的异常称为被检查的异常。<br>捕获异常类型的基类 Exception 可以只写一个异常处理程序来捕获所有类型的异常。<br>String getMessage() String getLocalizedMessage() String toString() void printStackTrace() void printStackTrace(PrintStream) void printStackTrace(java.io.PrintWriter) Throwable fillInStackTrace() getClass()  getName() getSimpleName()<br>printStackTrace() 方法所提供的信息可以通过 getStackTrace() 方法来直接访问， 这个方法将返回一个由栈轨迹中的元素所构成的数组，其中每一个元素都表示栈中的一桢。<br>元素 0 是栈顶元素，并且是调用序列中的最后一个方法调用（这个 Throwable 被 创建和抛出之处） 。<br>for(StackTraceElement ste : e.getStackTrace()) System.out.println(ste.getMethodName());<br>重抛异常会把异常抛给上一级环境中的异常处理程序，同一个 try 块的后续 catch 子句将被忽略。<br>如果只是把当前异常对象重新抛出，那么 printStackTrace() 方法显示的将是原来异常抛出点的调用栈信息，而并非重新抛出点的信息。要想更新这个信息，可以调用fillInStackTrace() 方法，这将返回一个 Throwable 对象，它是通过把当前调用栈信息填入原来那个异常对象而建立的，<br>throw e;  throw (Exception)e.fillInStackTrace();<br>所有 Throwable 的子类在构造器中都可以接受一个 cause（因由）对象作为参数。这个 cause 就用来表示原始异常，这样通过把原始异常传递给新的异常，使得即使在当前位置创建并抛出了新的异常，也能通过这个异常链追踪到异常最初发生的位置。<br>在Throwable 的子类中，只有三种基本的异常类提供了带 cause 参数 的构造器。它们是 Error（用于 Java 虚拟机报告系统错误） 、Exception 以及 Runtime-Exception。<br>如果要把其他类型的异常链接起来，应该使用 initCause() 方法而不是构造 器。<br>Throwable：用来表示任何可以作为异常被抛出的类。Throwable 对 象可分为两种类型（指从 Throwable 继承而得到的类型） ：Error 用来表示编译时和系统错误（除特殊情况外，一般不用你关心） ；Exception 是可以被抛出的基本类型，在 Java 类库、用户方法以及运行时故障中都可能抛出 Exception 型异常。<br>这些异常设置为 RuntimeException 的子类而把它们归类起来-具有相同特征和行为的一组类型。<br>RuntimeException 代表的是编程错误：1. 无法预料的错误。比如从你控制范围之外传递进来的 null 引用。2. 作为程序员，应该在代码中进行检查的错误。<br>代码中只有 RuntimeException（及其子类）类型的异常可以被忽略， 因为编译器强制要求处理所有受检查类型的异常<br>对于没有垃圾回收和析构函数自动调用机制的语言来说，finally 非常重要。<br>当要把除内存之外的资源恢复到它们的初始状态时，就要用到 finally 子句。<br>异常作为程序出错的标志，决不应该被忽略，但它还是有可能被轻易地忽略。<br>派生类构造器不能捕获基类构造器抛出的异常。<br>在设计异常时有一个问题：应该把异常全部放在这一层处理；还是先处理一部分，然后再向上层抛出相同的（或新的）异常；又或者是不做任何处理直接向上层抛出。<br>Java的缺陷：除了内存的清理之外，所有的清理都不会自动发生。<br>创建需要清理的对象之后，立即进入一个 try-finally 语句块：资源规范头(resource specification header)<br>查找的时候并不要求抛出的异常同处理程序所声明的异常完全匹配。<br>只有在你知道如何处理的情况下才捕获异常”。<br>“被检查的异常”  </p>
+<ol>
+<li>不在于编译器是否会强制程序员去处理错误，而是要有一致的、使用异常来报告 错误的模型。 2. 不在于什么时候进行检查，而是一定要有类型检查。也就是说，必须强制程序使 用正确的类型，至于这种强制施加于编译时还是运行时，那倒没关系。 </li>
+</ol>
+<p>反射和泛型 就是用来补偿静态类型检查所带来的过多限制，在<br>好的程序设计语言能帮助程序员写出好程序， 但无论哪种语言都避免不了程 序员用它写出坏程序。<br>Passing Exceptions to the Console 将异常传递给控制台<br>Converting Checked to Unchecked Exceptions 把 “被检查的异常” 转换为 “不检查的异常”<br>try-with-resources 语法<br>java.lang.AutoCloseable 接口<br>异常指南 应该在下列情况下使用异常： 1. 尽可能使用 try-with-resource。 2. 在恰当的级别处理问题。(在知道该如何处理的情况下才捕获异常。) 3. 解决问题并且重新调用产生异常的方法。 4. 进行少许修补，然后绕过异常发生的地方继续执行。 5. 用别的数据进行计算，以代替方法预计会返回的值。 6. 把当前运行环境下能做的事情尽量做完，然后把相同的异常重抛到更高层。 7. 把当前运行环境下能做的事情尽量做完，然后把不同的异常抛到更高层。 8. 终止程序。 9. 进行简化。(如果你的异常模式使问题变得太复杂，那用起来会非常痛苦也很烦 人。) 10. 让类库和程序更安全。(这既是在为调试做短期投资，也是在为程序的健壮性做长 期投资。)</p>
+<h3 id="第十六章-代码校验-Validating-Your-Code"><a href="#第十六章-代码校验-Validating-Your-Code" class="headerlink" title="第十六章 代码校验(Validating Your Code )"></a>第十六章 代码校验(Validating Your Code )</h3><p><strong>测试</strong><br>如果没有测试过，它就是不能工作的。<br><strong>单元测试</strong><br><strong>JUnit</strong><br>“trying the simplest thing that could possibly work” (A key phrase from Extreme Programming<br>(XP)).<br>“尝试最简单可行的方法”(极限编程中的一个关键短语)<br>标准做法是将测试放在它们自己的子目录中。测试还必须放在包中，以便 JUnit 能发现它们<br>契约式设计<br>The concept of the precondition comes from Design By Contract (DbC) and is implemented using the basic assertion mechanism.<br>ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);<br>在面向对象编程中，服务通常由对象提供，对象的边界 — 供应者和消费者之间的划分 — 是对象类的接口。<br>前置条件、后置条件和不变项: preconditions, postconditions and invariants<br>检查指令：check instruction<br>使用 Guava 前置条件</p>
+<p>@BeforeAll 注解是在任何其他测试操作之前运行一次的方法。<br>@BeforeAll annotates a method that runs once before any other test operations.<br>@AfterAll是所有其他测试操作之后只运行一次的方法。两个方法都必须是静态的。<br>@AfterAll is for a method that runs once after all other test operations. Both methods must be static.</p>
+<p>@BeforeEach注解是通常用于创建和初始化公共对象的方法，并在每次测试前运行。<br>@BeforeEach annotates a method typically used to create and initialize a common set of objects and runs before each test.<br>如果必须在每次测试后执行清理(如果修改了需要恢复的静态文件，打开文件需要关闭，打开数据库或者网络连接，etc)，那就用注解 @AfterEach。<br>JUnit 使用 @Test 注解发现这些方法，并将每个方法作为测试运行。<br>在方法内部，可以执行任何所需的操作并使用JUnit断言方法(以“assert”开头)验证测试的正确性。如果断言失败，将显示导致失败的表达式和值。也可以使用每个JUnit断言语句的重载版本，它包含一个字符串，以便在断言失败时显示。<br>断言语句不是必须的；你可以在没有断言的情况下运行测试，如果没有异常，则认为测试是成功的。<br>使用build.gradle控制测试，运行本章节的测试，使用命令：gradlewvalidating:test，Gradle 不会运行已经运行过的测试，所以如果没有得到测试结果，得先运行：gradlew validating:clean。<br>用下面这个命令运行本书的所有测试：<br>gradlew test<br><strong>测试覆盖率的幻觉</strong><br>不要依赖覆盖率来得到测试质量的任何信息。<br><strong>前置条件</strong><br>前置条件的概念来自于契约式设计 (Design By Contract, DbC), 利用断言机制实现。<br>assert boolean-expression；<br>assert boolean-expression: information-expression;<br>AssertionError 是 Throwable 的派生类，因此不需要异常说明。<br>需要在运行程序时显式启用断言。一种简单的方法是使用-ea标志，它也可以表示为: -enableassertion，这将运行程序并执行任何断言语句。<br>可以基于类名或包名打开或关闭断言<br>日志记录（Logging）或者调试 （Debugging）, 可能是捕获这类信息的更好工具。<br>可以通过编程的方式通过链接到类加载器对象（ClassLoader）来控制断言。<br>ClassLoader.getSystemClassLoader(). setDefaultAssertionStatus(true);<br>static { boolean assertionsEnabled = false; // Note intentional side effect of assignment: assert assertionsEnabled = true; if(!assertionsEnabled) throw new RuntimeException(“Assertions disabled”); }<br>Guava 团队添加一个始终启用的用来替换断言的 Verify 类。<br>契约式设计 (DbC) 是 Eiffel 语言的发明者 Bertrand Meyer 提出的一个概念，通过 确保对象遵循某些规则来帮助创建健壮的程序</p>
+<ol>
+<li>应该明确指定行为，就好像它是一个契约一样。 2. 通过实现某些运行时检查来保证这种行为，他将这些检查称为前置条件、后置条件和不变项。<br>前置条件确保客户端 (调用此方法的代码) 履行其部分契约。</li>
+</ol>
+<p>后置条件测试在方法中所做的操作的结果。<br>不变性保证了必须在方法调用之间维护的对象的状态。<br>安全性逐渐降低：禁用方法调用开始不变性检查 禁用后置条件检查 禁用方法调用末尾的不变性检查 禁用前置条件检查<br>将契约式设计中的概念与单元测试相结合的有效性<br>测试驱动开发（TDD）<br>DynamicTest.stream()：对象集合上的迭代器 (versions)  Function  Consumer<br>每个使用@TestFactory注释的方法都会生成一个DynamicTest对象的Stream(通过 testVersions()) ，每个JUnit都像常规的 @Test 方法一样执行。<br>测试驱动 vs. 测试优先  Test-Driven vs. Test-First<br><strong>日志</strong><br>日志会给出正在运行的程序的各种信息。<br>通过更改配置文件来修改日志属性，从而起到启用跟踪语句但不用重新编译程序会更方便。<br>private static Logger log = LoggerFactory.getLogger(SLF4JLogging.class);<br>log.trace(“Hello”); log.debug(“Logging”); log.info(“Using”); log.warn(“the SLF4J”); log.error(“Facade”);<br><strong>调试</strong><br>使用 JDB 调试<br>jdb SimpleDebugging<br>命令catch Exception在任何抛出异常的地方设置 断点 run list cont<br>locals 能转储所有的局部变量值<br>wherei 打印进入当前线程的方法栈中的栈帧信息：<br>图形化调试器<br>命令行调试器需要显式的命令去查看变量的状态 (locals, dump)，列出源代码中的执行点 (list)，查找系统中的线程 (threads)，设置断点 (stop in, stop at) 等等。<br><strong>基准测试</strong><br>基准测试Benchmarking()意味着对代码或算法片段进行计时看哪个跑得更快，与下一节的分析和优化(Profiling and Optimizing)截然相反，分析优化是观察整个程序，找到程序中最耗时的部分。<br>long[] la = new long[SIZE];<br>Arrays.parallelSetAll(la, n -&gt; r.nextLong())));<br>Arrays.setAll(la, n -&gt; r.nextLong())));<br>SplittableRandom sr = new SplittableRandom();<br>微基准测试系统<br>Java Microbench-marking Harness，简称 JMH。<br>可以在命令行编写 JMH 代码并运行它，但是推荐的方式是让 JMH 系统为你运行测试；<br>@State(Scope.Thread)<br>@BenchmarkMode(Mode.AverageTime)<br>@OutputTimeUnit(TimeUnit.MICROSECONDS)<br>@Warmup(iterations = 5)<br>@Measurement(iterations = 5)<br>@Fork(1)<br>gradlew validating:jmh<br>Mode以avgt展示，代表“平均时长”； Cnt（测试的数目）； Units 是 us/op，是 “Microseconds per operation” 的缩写；<br>C：客户端执行操作的线程数量 P：并行算法使用的并行数量 N：数组的大小：10ˆ(2*k)，通常来说，k=1..7 足够来练习不同的缓存占用。 Q：setter 的操作成本<br>@Param 会自动地将其自身的值注入到变量中。<br><strong>剖析和优化</strong><br>剖析关注的是已经运行在真实数据上的整个程序，而基准测试关注的是程序中隔离的片段，通常是去优化算法。<br>VisualVM jvisualvm<br>优化准则 • 避免为了性能牺牲代码的可读性。 • 不要独立地看待性能。衡量与带来的收益相比所需投入的工作量。 • 程序的大小很重要。性能优化通常只对运行了长时间的大型项目有价值。性能通 常不是小项目的关注点。 • 运行起来程序比一心钻研它的性能具有更高的优先级。一旦你已经有了可工作的 程序，如有必要的话，你可以使用剖析器提高它的效率。只有当性能是关键因素 时，才需要在设计/开发阶段考虑性能。 • 不要猜测瓶颈发生在哪。运行剖析器，让剖析器告诉你。• 无论何时有可能的话，显式地设置实例为 null 表明你不再用它。这对垃圾收集器 来说是个有用的暗示。 • static final 修饰的变量会被 JVM 优化从而提高程序的运行速度。因而程序中的 常量应该声明 static final。<br><strong>风格检测</strong><br>Checkstyle<br>运行所有风格检测的命令是： gradlew checkstyleMain<br>针对一个具体的章节运行代码检测: gradlew annotations:checkstyleMain<br><strong>静态错误分析</strong><br>Findbugs gradlew findbugsMain<br><strong>代码重审</strong><br>代码重审是一个或一群人的一段代码被另一个或一群人阅读和评估的众多方式之一。这最初<br><strong>结对编程</strong><br>一个人 “驱动”（敲击键 盘，输入代码） ，另一人（观察者或指引者）重审和分析代码，同时也要思考策略。<br>分享知识和防止阻塞<br><strong>重构</strong><br>技术负债是指迭代发展的软件中为了应急而生的丑陋解决方案从而导致设计难以理解， 代码难以阅读的部分。</p>
+<p>1.测试（通常，JUnit 测试作为最小的根基） ，因此你能确保重构不会改变代码的行 为。 2. 自动构建，因而你能轻松地构建代码，运行所有的测试。通过这种方式做些小修 改并确保修改不会破坏任何事物是毫不费力的。例如Gradle构建系统。 3. 版本控制，以便你能回退到可工作的代码版本，能够一直记录重构的每一步。 </p>
+<p><strong>持续集成</strong><br>“瀑布流模型”  “极限编程”<br>持续集成（ continuous integration, CI）<br>正如重构一样，持续集成需要分布式版本管理， 自动构建和自动测试系统作为基础。<br>CI服务器起初是完全空白状态，即只是可用的操作系统的最小配置<br>在任何时刻都可以交付叫做持续交付<br>代码校验不是单一的过程或技术。</p>
+<h3 id="第十七章-文件"><a href="#第十七章-文件" class="headerlink" title="第十七章 文件"></a>第十七章 文件</h3><p>java.nio.file  nio:non-blocking 非阻塞 io(io 就是 input/output 输入/输出)<br>文件操作的两个基本组件： 1. 文件或者目录的路径； 2. 文件本身。<br><strong>文件和目录路径</strong><br>java.nio.file.Paths 类包含一个重载方法 static get()， 该方法接受一系列 String 字符串或一个统一资源标识符 (URI) 作为参数，并且进行转 换返回一个 Path 对象：<br>System.out.println(System.getProperty(“os.name”));  show(“toString”, p); show(“Exists”, Files.exists(p)); show(“RegularFile”, Files.isRegularFile(p)); show(“Directory”, Files.isDirectory(p)); show(“Absolute”, p.isAbsolute()); show(“FileName”, p.getFileName()); show(“Parent”, p.getParent()); show(“Root”, p.getRoot());<br>p = Paths.get(“C:”, “path”, “to”, “nowhere”, “NoFile.txt”))<br>p.toAbsolutePath();<br>p.toRealPath())<br>URI u = p.toUri();<br>Path puri = Paths.get(u);<br>for(int i = 0; i &lt; p.getNameCount(); i++)<br>    System.out.println(p.getName(i));<br>遍历 Path 对象并不包含根路径<br>for(Path pp : p)<br>Path p = Paths.get(“PathAnalysis.java”).toAbsolutePath();<br>Files.exists(p) Files.isDirectory(p) Files.isExecutable(p) Files.isReadable(p)  Files.isRegularFile(p) Files.isWritable(p) Files.notExists(p) Files.isHidden(p) Files.size(p) Files.getFileStore(p) Files.getLastModifiedTime(p) Files.getOwner(p) Files.probeContentType(p)<br>Files.isSymbolicLink(p) Files.readSymbolicLink(p)<br>FileSystems.getDefault().supportedFileAttributeViews().contains(“posix”) Files.getPosixFilePermissions(p)</p>
+<p>**preVisitDirectory()**：在访问目录中条目之前在目录上运行。<br>**visitFile()**：运行目录中的每一个文件。<br>**visitFileFailed()**：调用无法访问的文件。<br>**postVisitDirectory()**：在访问目录中条目之后在目录上运行，包括所有的子目录。<br>static String sep = FileSystems.getDefault().getSeparator();<br>通过在 FileSystem 对象上调用 getPathMatcher() 获得一个 PathMatcher， 然后传入感兴趣的模式。<br>Files.lines() 方便地将文件转换为行的 Stream</p>
+<h3 id="第十八章-字符串"><a href="#第十八章-字符串" class="headerlink" title="第十八章 字符串"></a>第十八章 字符串</h3><p><strong>字符串的不可变</strong><br><strong>+ 的重载与StringBuilder</strong><br>StringBuilder  insert() replace() substring() reverse() append() toString()<br><strong>意外递归</strong><br>要打印对象的内存地址，应该调用 Object.toString() 方法<br><strong>格式化输出</strong><br>System.out.printf(“Row 1: [%d %f]%n”, x, y);<br>格式修饰符<br>System.out.format()<br>在 Java 中，所有的格式化功能都是由 java.util.Formatter 类处理的。<br>Formatter 的重载构造器支持输出到多个路径，不过最常用的还是PrintStream()、OutputStream 和 File<br>%[argument_index$][flags][width][.precision]conversion<br><img    class="lazyload" data-original="https://s2.loli.net/2022/01/03/VIlz9wk43BFh7WO.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">常用的类型转换</span><br>Formatter f = new Formatter(System.out);<br>f.format(“s: %s%n”, u);<br>String.format() 是一个 static 方法，它接受与 Formatter.format() 方法一样的参数，但返回一个 String 对象。<br>StringBuilder result = new StringBuilder();<br>result.append(String.format(“%02X “, b));<br>result.toString();<br><strong>正则表达式</strong><br>字符串操作还主要集中于 String、StringBuffer 和 StringTokenizer 类。与正则表达式相比较，它们只能提供相当简单的功能。<br>匹配、选择、编辑以及验证<br>System.out.println(“-1234”.matches(“-?\\d+”));<br>split()方法，其功能是“将字符串从正则表达式匹配的地方切开。”<br>s.replaceFirst(“f\\w+”, “located”)<br><img    class="lazyload" data-original="https://s2.loli.net/2022/01/03/usZSEHikDLKrTF7.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">QQ截图20220103171517.png</span><br><img    class="lazyload" data-original="https://s2.loli.net/2022/01/03/9ibxLaXSzR6PyhQ.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">创建字符类的典型方式</span><br><img    class="lazyload" data-original="https://s2.loli.net/2022/01/03/QBgISkfWOZy2FAR.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">逻辑操作符</span><br><img    class="lazyload" data-original="https://s2.loli.net/2022/01/03/2pW1kcOmEfxLNCq.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">边界匹配符</span><br>量词描述了 一个模式捕获输入文本的方式：<br>贪婪型 勉强型 占有型<br><img    class="lazyload" data-original="https://s2.loli.net/2022/01/03/TptraRCoNzYDhlJ.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">量词类型</span><br>CharSequence从CharBuffer、String、StringBuffer、 StringBuilder类中抽象出了字符序列的一般化定义：<br>多数正则表达式操作都接受CharSequence 类型参数。<br>Pattern 和 Matcher<br>Pattern.compile() #编译正则表达式<br>matcher() 方法会生成一个 Matcher 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">Pattern p = Pattern.compile(arg); <br>Matcher m = p.matcher(args[<span class="hljs-number">0</span>]); <br><span class="hljs-keyword">while</span>(m.find()) &#123; <br>	System.out.println( <span class="hljs-string">&quot;Match \&quot;&quot;</span> + m.group() + <span class="hljs-string">&quot;\&quot; at positions &quot;</span> + m.start() + <span class="hljs-string">&quot;-&quot;</span> + (m.end() - <span class="hljs-number">1</span>)); <br>&#125; <br></code></pre></td></tr></table></figure>
+<p>static boolean matches(String regex, CharSequence input)<br>boolean matches() boolean lookingAt() boolean find() boolean find(int start)<br>组（Groups）组是用括号划分的正则表达式，可以根据组的编号来引用某个组。组号为 0 表示整个表达式，组号 1 表示被第一对括号括起来的组，以此类推。<br>public int groupCount()   public String group()  public String group(int i) public int start(int group) public int end(int group)<br>注意，find() 可以在输入的任意位置定位正则表达式，而lookingAt() 和 matches() 只有在正则表达式与输入的最开始处就开始匹配时才会成功。matches()只有在整个输入都匹配正则表达式时才会成功，而 lookingAt() 只要输入的第一部分匹配就会成功<br>Pattern Pattern.compile(String regex, int flag)<br>Pattern.CANON_EQ  Pattern.CASE_INSENSITIVE(?i) Pattern.COMMENTS(?x) Pattern.DOTALL(?s) Pattern.MULTILINE(?m) Pattern.UNICODE_CASE(?u) Pattern.UNIX_LINES(?d)<br>split()方法将输入String断开成String对象数组，断开边界由正则表达式确定：<br>String[] split(CharSequence input)<br>String[] split(CharSequence input, int limit)<br>替换操作<br>replaceFirst(String replacement)<br>replaceAll(String replacement)<br>appendReplacement(StringBuffer sbuf, String replacement)<br>appendTail(StringBuffer sbuf)<br>通过 reset() 方法，可以将现有的 Matcher 对象应用于一个新的字符序列<br>Matcher m = Pattern.compile(“[frb][aiu][gx]“) .matcher(“fix the rug with bags”);<br>while(m.find()) System.out.print(m.group() + “ “);<br>m.reset(“fix the rig with rags”);<br>JGrep.java 有两个参数：文件名以及要匹配的正则表达式。输出的是每行有匹配的部分以及匹配部分在行中的位置。<br><strong>扫描输入</strong><br>Scanner stdin = new Scanner(SimpleRead.input);<br>IOException  ioException()<br>Scanner 分隔符: 默认为空白字符 scanner.useDelimiter(“\\s*,\\s*“);<br>返回当前正在作为分隔符使用的 Pattern 对象：delimiter()<br>StringTokenizer stoke = new StringTokenizer(input);<br>stoke.hasMoreElements() stoke.nextToken()<br>Scanner scanner = new Scanner(input);<br>scanner.hasNext() scanner.next()</p>
+<h3 id="第十九章-类型信息"><a href="#第十九章-类型信息" class="headerlink" title="第十九章 类型信息"></a>第十九章 类型信息</h3><p>RTTI（RunTime Type Information， 运行时类型信息）能够在程序运行时发 现和使用类型信息 </p>
+<ol>
+<li>“传统的” RTTI：假定我们在编译时已经知道了所有的类型； 2. “反射” 机制：允许我们在运行时发现和使用类的信息。</li>
+</ol>
+<p><strong>Class 对象</strong><br>类型信息在运行时是如何表示的：这项工作是由称为 Class 对象的特殊对象完成的，它包含了与类有关的信息。Class 对象就是用来创建该类所有 “常规” 对象的。Java 使用 Class 对象来实现 RTTI，即便是类型转换这样的操作都是用 Class 对象实现的。<br>类加载器子系统可能包含一条类加载器链，但有且只有一个原生类加载器(primordial class loader )，它是JVM 实现的一部分。可以挂载额外的类加载器。<br>forName() 是 Class 类的一个静态方法，可以使用 forName() 根据目标类的类名（String）得到该类的 Class 对象。<br>Class.forName(“Gum”);<br>只要你想在运行时使用类型信息，就必须先得到那个 Class 对象的引 用。<br>getClass() 方法获取 Class 引用<br>getName() 来产生完整类名; getSimpleName() 产生不带包名的类名 getCanonicalName()产生完整类名（除内部类和数组外，对大部分类产生的结果与 getName() 相同; isInterface() 用于判断某个 Class 对象代表 的是否为一个接口<br>Class.getInterfaces()方法返回的是存放Class对象的数组，里面的Class对象表示的是那个类实现的接口。<br>getSuperclass()方法得到父类的Class对象，再用父类的Class对象调用该方法，重复多次，你就可以得到一个对象完整的类继承结构。<br>Class对象的newInstance()方法是实现“虚拟构造器”的一种途径，虚拟构造器可以让你在不知道一个类的确切类型的时候，创建这个类的对象。<br>使用newInstance()来创建的类，必须带有无参数的构造器。<br>类字面常量<br>对于基本数据类型的包装类，还有一个标准字段TYPE。TYPE字段是一个引用，指向对应的基本数据类型的Class对象，<br>当使用.class来创建对Class对象的引用时，不会自动地初始化该 Class 对象。<br>加载(Loading) 链接(Linking) 初始化(Initialization)<br>仅使用.class语法来获得对类对象的引用不会引发初始化。<br>用Class.forName() 来产生 Class 引用会立即就进行初始化<br>普通的类引用可以重新赋值指向任何其他的Class对象，但是使用泛型限定的类引用只能指向其声明的类型。<br>Class intClass = int.class; Class<Integer> genericIntClass = int.class; genericIntClass = Integer.class; // 同一个东西 intClass = double.class; // genericIntClass = double.class; // 非法<br>为了创建一个限定指向某种类型或其子类的Class引用，需要将通配符与 extends 关键字配合使用，创建一个范围限定。<br>Class&lt;? extends Number&gt; bounded = int.class;<br>Building b = new House(); Class<House> houseType = House.class; House h = houseType.cast(b); h = (House)b; // … 或者这样做.<br><strong>类型转换检测</strong><br>Class.asSubclass()，该方法允许将一个Class对象转型为更加具体的类型。<br>if(x instanceof Dog) ((Dog)x).bark();<br>baseType.isAssignableFrom(type)<br>x instanceof Base等价于Base.class.isInstance(x)<br>x.getClass() == Base.class等价于x.getClass().equals(Base.class)<br><strong>反射：运行时类信息</strong><br>如果不知道对象的确切类型，RTTI会告诉你。但是，有一个限制：必须在编译时知道类型，才能使用RTTI检测它，并对信息做一些有用的事情。换句话说，编译器必须知道你使用的所有类。<br>基于组件的编程：可以在应用程序构建器集成开发环境中使用快速应用程序开发（RAD）构建项目。<br>反射提供了检测可用方法并生成方法名称的机制。<br>远程方法调用(RMI):提供跨网络在远程平台上创建和执行对象的能力<br>类 Class 支持反射的概念，java.lang.reflect 库中包含类 Field、Method 和 Constructor（每一个都实现了 Member 接口） 。<br>get() set() invoke() getFields() getMethods() getConstructors()<br>RTTI和反射的真正区别在于，使用RTTI时，编译器在编译时会打开并检查 .class 文件。换句话说，可以用“正常”的方式调用一个对象的所有方法。通过反射，.class 文件在编译时不可用；它由运行时环境打开并检查。<br>反射提供了一种方法，可以简单地编写一个工具类自动地向你展示所有的接口<br><strong>动态代理</strong><br>当希望将额外的操作与“真实对象”做分离时，代理可能会有所帮助，尤其是当想要轻松地启用额外的操作时<br>不仅动态创建代理对象而且动态处理对代理方法的调用。<br>可以通过调用静态方法Proxy.newProxyInstance()来创建动态代理，该方法需要一个类加载器（通常可以从已加载的对象中获取），希望代理实现的接口列表（不是类或抽象类），以及接口InvocationHandler的一个实现。动态代理会将所有调用重定向到调用处理程序，因此通常为调用处理程序的构造函数提供对“真实”对象的引用，以便一旦执行中介任务便可以转发请求。<br>Optional 类<br>java.util.Optional为null值提供了一个轻量级代理，Optional 对象可以防止你的代码直接抛出 NullPointException。<br>Mock 对象和桩<br>Mock对象往往是轻量级的，且用于自测试。而桩只是返回桩数据，它通常是重量级的，并且经常在多个测试中被复用。桩可以根据它们被调用的方式，通过配置进行修改。<br><strong>接口和类型</strong><br>接口并不是对解耦的一种无懈可击的保障。<br>javap（一个随JDK发布的反编译器）<br>javap -private C -private 标志表示所有的成员都应该显示，甚至包括私有成员。因此，任何人都可以获取你最私有的方法的名字和签名，然后调用它们。<br>Method g = a.getClass().<br>getDeclaredMethod(methodName);<br>g.setAccessible(true); g.invoke(a);</p>
+<p>WithPrivateFinalField pf = new WithPrivateFinalField();<br>Field f = pf.getClass().getDeclaredField(“i”);<br>f.setAccessible(true);<br>System.out.println( “f.getInt(pf): “ + f.getInt(pf));<br>一致性错误报告模型的存在使我们能够通过使用反射编写动态代码。</p>
+<h3 id="第二十章-泛型"><a href="#第二十章-泛型" class="headerlink" title="第二十章 泛型"></a>第二十章 泛型</h3><p>普通的类和方法只能使用特定的类型：基本数据类型或类类型。<br>some unspecified type  “非特定的类型”<br>泛型实现了参数化类型<br>编程语言中泛型出现的初衷是通过解耦类或方法与所使用的类型之间的约束，使得类或方法具备最宽泛的表达力。<br>理解C++模板(泛型的主要灵感来源，包括基本语法)的某些特性，有助于理解泛型的基础理念。<br>了解 Java 泛型的局限是什么，以及为什么会有这些局限。<br><strong>简单泛型</strong><br>泛型的主要目的之一就是用来约定集合要存储什么类型的对象，并且通过编译器确保规约得以满足。<br>public class GenericHolder<T><br>GenericHolder<Automobile> h3 = new GenericHolder<Automobile>();<br>元组:将一组对象直接打包存储于单一对象中。可以从该对象读取其中的元素，但不允许向其中存储新对象（这个概念也称为数据传输对象或信使） 。<br><strong>泛型接口</strong><br>生成器无需额外的信息就知道如何创建新对象。<br>java.util.function 类库中的 Supplier 就是一个生成器，调用其 get() 获取对象。<br>Java 泛型的一个局限性：基本类型无法作为类型参数。<br><strong>泛型方法</strong><br>要定义泛型方法，请将泛型参数列表放置在返回值之前<br>对于泛型类，必须在实例化该类时指定类型参数。使用泛型方法时，通常不需要指 定参数类型，因为编译器会找出这些类型。<br>类型参数推断<br>变长参数和泛型方法 public static <T> List<T> makeList(T… args)<br>@SafeVarargs 注解保证我们不会对变长参数列表进行任何修改<br><strong>构建复杂模型</strong><br><strong>泛型擦除</strong><br>Class.getTypeParameters()“返回一个TypeVariable对象数组，表示泛型声明中声明的类型参数…”<br>List<Frob> list = new ArrayList&lt;&gt;();<br>Arrays.toString(list.getClass().getTypeParameters()) # [E]<br>在泛型代码内部，无法获取任何有关泛型参数类型的信息。<br>可以知道如类型参数标识符和泛型边界这些信息，但无法得知实际的类型参数从而用来创建特定的实例。<br>Java 泛型是使用擦除实现的。<br>擦除减少了泛型的泛化性。<br>迁移兼容性: 擦除的核心动机是可以在泛化的客户端上使用非泛型的类库，反之亦然。<br>擦除主要的正当理由是从非泛化代码到泛化代码的转变过程，以及在不破坏 现有类库的情况下将泛型融入到语言中。<br>@SuppressWarnings(“unchecked”)  这个注解放置在产生警告的方法上，而不是整个类上。<br>边界处的动作<br>泛型的所有动作都发生在边界处——对入参的编译器检查和对返回值的转型。<br><strong>补偿擦除</strong><br>引入类型标签来补偿擦除。这意味着为所需的类型显式传递一个Class对象，以在类型表达式中使用它。<br><strong>边界</strong><br>边界允许我们对泛型使用的参数类型施加约束。尽管这可以强制执行有关应用了泛型类型的规则，但潜在的更重要的效果是我们可以在绑定的类型中调用方法。<br><strong>通配符</strong><br>List&lt;? extends Fruit&gt;一个具有任何从 Fruit 继承的类型的列表<br>add() 接受一个 泛型参数类型的参数，但 contains() 和 indexOf() 接受的参数类型是 Object。<br>捕获转换：未指定的通配符类型被捕获，并被转换为确切类型。<br><strong>自限定的类型</strong><br>class SelfBounded&lt;T extends SelfBounded<T>&gt; {<br>class GenericType<T> {}<br>public class CuriouslyRecurringGeneric extends GenericType<CuriouslyRecurringGeneric> {}<br>我在创建一个新类，它继承自一个泛型类型，这个泛型类型接受我的类的名字作为其参数。”<br>泛型基类变成了一种其所有导出类的公共功能的模版，但是这些功能对于其所有参数和返回值，将使用导出类型。<br>自限定限制只能强制作用于继承关系。<br>自限定类型的价值在于它们可以产生协变参数类型——方法参数类型会随子类而变化。<br><strong>动态类型安全</strong><br>checkedCollection() 、 checkedList()、 checkedMap() 、checkedSet() 、checkedSortedMap() 和 checkedSortedSet()。<br><strong>泛型异常</strong><br><strong>混型</strong><br>混型的价值之一是它们可以将特性和行为一致地应用于多个类之上。<br>mixins have part of the flavor of aspect-oriented programming (AOP)<br>混型有一点面向切面编程（AOP）的味道，而 切面经常被建议用来解决混型问题。<br>泛型类不能直接继承自一个泛型参数<br>装饰器模式使用分层对象来动态透明地向单个对象中添加责任。装饰器指定包装在最初的对象周围的所有对象都具有相同的基本接口。<br>装饰器是通过使用组合和形式化结构(可装饰物/装饰器层次结构)来实现的，而混型是基于继承的。因此可以将基于参数化类型的混型当作是一种泛型装饰器机制，这种机制不需要装饰器设计模式的继承结构。<br><strong>潜在类型机制</strong><br>在类型机制或结构化类型机制 = 鸭子类型机制<br>潜在类型机制是一种代码组织和复用机制。<br>潜在类型机制不要求静态或动态类型检查。<br><strong>对缺乏潜在类型机制的补偿</strong><br><strong>Java8 中的辅助潜在类型</strong><br>Java8中的非绑定方法引用能够产生一种潜在类型的形式，以满足创建一段可工作在不相干类型上的代码。</p>
+<h3 id="第二十一章-数组"><a href="#第二十一章-数组" class="headerlink" title="第二十一章 数组"></a>第二十一章 数组</h3><p><strong>数组特性</strong><br>将数组和其他类型的集合区分开来的原因有三：效率，类型，保存基本数据类型的能力。<br>一个数组可以保存基本数据类型，而一个预泛型的集合不可以。然而对于泛型而言，集合可以指定和检查他们保存对象的类型，而通过自动装箱(autoboxing)机制，集合表现地就像它们可以保存基本数据类型一样，因为这种转换是自动的。<br>数组是保存指向其他对象的引用的对象，数组可以隐式地创建，作为数组初始化语法的一部分，也可以显式地创建。<br>对象数组存储的是对象的引用，而基元数组则直接存储基本数据类型的值。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">class_name[] a;<br>class_name[] b = <span class="hljs-keyword">new</span> class_name[<span class="hljs-number">5</span>];<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; b.length; i++)<br>	<span class="hljs-keyword">if</span>(b[i] == <span class="hljs-keyword">null</span>) b[i] = <span class="hljs-keyword">new</span> class_name();<br><span class="hljs-comment">// 聚合初始化</span><br>class_name[] c = &#123;<span class="hljs-keyword">new</span> class_name(), <span class="hljs-keyword">new</span> class_name()&#125;<br><span class="hljs-comment">// 动态聚合初始化</span><br>a = <span class="hljs-keyword">new</span> class_name[]&#123;<span class="hljs-keyword">new</span> class_name(), <span class="hljs-keyword">new</span> class_name()&#125;;<br></code></pre></td></tr></table></figure>
+<p>Arrays.deepToString(a) # 将多维数组转换成 String 类型<br>Arrays.setAll()  # 使用生成器来生成插入数组中的值。必须将 int 数组索引作为参数<br>不能实例化参数化类型的数组，可以参数化数组本身的类型<br>Peel<Banana>[] peels = new Peel<Banana>[10]; // Illegal<br>Java 标准库 Arrays 类包括一个普通的 fill() 方法，该方法将单个值复制到整个数组，或者在对象数组的情况下，将相同的引用复制到整个数组<br>增量生成：用于为不同类型生成增量值<br>new Conut.Interger() new Count.Pint()<br>fill() setAll()/parallelSetAll() asList() copyOf() copyOfRange() equals() deepEquals() stream() HashCode() deepHashCode() sort() parallelSort() binarySearch() parallelPrefix() spliterator() toString() deepToString() </p>
+<h3 id="第二十二章-枚举"><a href="#第二十二章-枚举" class="headerlink" title="第二十二章 枚举"></a>第二十二章 枚举</h3><p>用 enum 的 values() 方法， 可以遍历 enum 实例.values() 方法返回 enum 实例的数组<br>创建enum时，编译器会生成一个相关的类，这个类继承自 Java.lang.Enum。<br>s.ordinal() s.compareTo(Shrubbery.CRAWLING) s.equals(Shrubbery.CRAWLING) s == Shrubbery.CRAWLING s.getDeclaringClass() s.name() Shrubbery shrub = Enum.valueOf(Shrubbery.class, s);<br>OSExecute.command( “javap -cp build/classes/main Explore”);<br>Enum e = Search.HITHER;<br>e.getClass().getEnumConstants()<br>使用 enum 分发<br>使用常量相关的方法<br>使用 EnumMap 进行分发<br>使用二维数组 </p>
+<h3 id="第二十三章-注解"><a href="#第二十三章-注解" class="headerlink" title="第二十三章 注解"></a>第二十三章 注解</h3><p>注解可以以编译器验证的格式存储程序的额外信息。<br>通过使用注解，可以将元数据保存在Java源代码中。并拥有如下优势：简单易读的代码，编译器类型检查，使用annotation API为注解构造处理工具。<br>5种标准注解：@Override @Deprecated @SuppressWarnings @SafeVarargs @FunctionalInterface<br>5种元注解（meta-annotation）：<br>@Target定义注解可以应用在哪里(CONSTRUCTOR; FIELD; LOCAL_VARIABLE; METHOD; PACKAGE; PARAMETER; TYPE; ) 。@Retention定义了注解在哪里可用，在源代码中(SOURCE)，class文件(CLASS)中或者是在运行时(RUNTIME)。@Documented @Inherited @Repeatable<br>标记注解(marker annotation):不包含任何元素的注解<br>注解元素可用的类型：所有基本类型(int、float、boolean 等); String; Class; enum; Annotation; 以上类型的数组 </p>
+<h3 id="第二十四章-并发编程"><a href="#第二十四章-并发编程" class="headerlink" title="第二十四章 并发编程"></a>第二十四章 并发编程</h3><p>“并发”， “并行”， “多任务”， “多处理”， “多线程”，“分布式系统”<br>concurrent, parallel, multitasking, multiprocessing, multithreading, distributed systems<br>并发是关于正确有效地控制对共享资源的访问。<br>并行是使用额外的资源来更快地产生结果。<br>Concurrency is about correctly and efficiently controlling access to shared resources. Parallelism uses additional resources to produce an answer faster.<br>并发：同时完成多任务。无需等待当前任务完成即可执行其他任务。 I/O 密集型任务<br>并行：同时在多个位置完成多任务。CPU 密集型问题<br>Concurrency is a collection of performance techniques focused on the reduction of waiting.<br>并发性是一系列性能技术，专注于减少等待<br>“共享内存” 竞争条件<br>使用多处理器机器，可以在这些处理器之间分配多个任务，这可以显着提高吞吐量。<br>With a multiprocessor machine, multiple tasks can be distributed across those processors, which can dramatically improve throughput.<br>Parallel Streams（并行流）<br>Executor：执行者管理一些低级 Thread 对象（Java 中最原始的并发形式） 。创 建一个任务，然后将其交给 Executor 去运行。<br>Future<br>CompletableFuture：将操作链接在一起， 因此不必将代码写入接口排序操作。<br>低级并发 (Appendix: Low-Level Concurrency)。<br>ExecutorService exec =Executors.newSingleThreadExecutor();<br>ExecutorService exec =Executors.newCachedThreadPool();<br>.forEach(exec::execute);<br>exec.shutdown();<br>任务终止的最佳方法是设置任务周期性检查的标志。<br>Atomic类：提供了一组可以使用的类型，而不必担心并发问题。<br>在链中插入一个 CompletableFuture 调用。有三个选项 exceptionally()，handle()，whenComplete()<br><strong>死锁</strong></p>
+<ol>
+<li>互斥条件。任务使用的资源中至少有一个不能共享的。</li>
+<li>至少有一个任务它必须持有一个资源且正在等待获取一个被当前别的任务持有的资源。</li>
+<li>资源不能被任务抢占，任务必须把资源释放当作普通事件。</li>
+<li>必须有循环等待，这时，一个任务等待其它任务所持有的资源，后者又在等待另一个任务所持有的资源，这样一直下去，直到有一个任务在等待第一个任务所持有的资源，使得大家都被锁住。</li>
+</ol>
+<p><strong>构造方法非线程安全</strong><br>没必要使构造器的线程同步，因为它会锁定正在构造的对象，直到构造器完成初始化后才对其他线程可见。</p>
+<h3 id="第二十五章-设计模式"><a href="#第二十五章-设计模式" class="headerlink" title="第二十五章 设计模式"></a>第二十五章 设计模式</h3><p>单例模式：提供一个且只有一个对象实例的方法</p>
+<p>1.创建型： 如何创建对象。这通常涉及隔离对象创建的细节，这样代码就不依赖于具体的对象的类型，因此在添加新类型的对象时不会更改。 单例模式(Singleton)被归类为创作模式 2. 构造型：设计对象以满足特定的项目约束。它们处理对象与其他对象连接的方式，以确保系统中的更改不需要更改这些连接。 3. 行为型：处理程序中特定类型的操作的对象。这些封装要执行的过程，例如解释语言、实现请求、遍历序列(如在迭代器中)或实现算法。</p>
+<ol>
+<li>Elegance always pays off.</li>
+<li>First make it work, then make it fast. </li>
+<li>Remember the “divide and conquer” principle. </li>
+<li>Separate the class creator from the class user ( client programmer).</li>
+<li>When you create a class, attempt to make your names so clear that comments are unnecessary.</li>
+<li>Your analysis and design must produce, at minimum, the classes in your system, their public interfaces, and their relationships to other classes, especially base classes.</li>
+<li>Automate everything. </li>
+<li>Write the test code first (before you write the class) to verify that your class design is complete.</li>
+<li>All software design problems can be simplified by introducing an extra level of conceptual indirection. </li>
+<li>An indirection should have a meaning</li>
+<li>Make classes as atomic as possible.</li>
+<li>Watch for long argument lists. </li>
+<li>Don’t repeat yourself. </li>
+<li>Watch for switch statements or chained if-else clauses. </li>
+<li>From a design standpoint, look for and separate things that change from things that stay the same. </li>
+<li>Don’t extend fundamental functionality by subclassing. </li>
+<li>Less is more.</li>
+<li>Read your classes aloud to make sure they’re logical. </li>
+<li>When deciding between inheritance and composition, ask if you must upcast to the base type. </li>
+<li>Watch for overloading.</li>
+<li>Use exception hierarchies</li>
+<li>Sometimes simple aggregation does the job. </li>
+<li>Consider the perspective of the client programmer and the person maintaining the code. </li>
+<li>Watch out for “giant object syndrome.”</li>
+<li>If you must do something ugly, at least localize the ugliness inside a class. </li>
+<li>If you must do something nonportable, make an abstraction for that service and localize it within a class. </li>
+<li>Objects should not simply hold some data. </li>
+<li>Choose composition first when creating new classes from existing classes. </li>
+<li>Use inheritance and method overriding to express differences in behavior, and fields to express variations in state. </li>
+<li>Watch out for variance.</li>
+<li>Watch out for limitation during inheritance. </li>
+<li>Use design patterns to eliminate “naked functionality.” </li>
+<li>Watch out for “analysis paralysis.” </li>
+<li>When you think you’ve got a good analysis, design, or implementation, do a walkthrough.</li>
+<li>Follow coding conventions. </li>
+<li>Whatever coding style you use, it really does make a difference if your team (and even better, your company) standardizes on it. </li>
+<li>Follow standard capitalization rules.</li>
+<li>Don’t create your own “decorated” private field names. </li>
+<li>Follow a “canonical form” when creating a class for general-purpose use.</li>
+<li>Use the “get,” “set,” and “is” naming conventions for methods that read and change private fields. </li>
+<li>For each class you create, include JUnit tests for that class (</li>
+<li>Sometimes you need inheritance in order to access protected members of the base class. </li>
+<li>Avoid the use of final methods for efficiency purposes. </li>
+<li>If two classes are associated with each other in some functional way (such as collections and iterators), try to make one an inner class of the other. </li>
+<li>Anytime you notice that classes appear to have high coupling with each other, consider the coding and maintenance improvements you might get by using inner classes. </li>
+<li>Don’t fall prey to premature optimization.</li>
+<li>Keep scopes as small as possible so the visibility and lifetime of your objects are as small as possible. </li>
+<li>Use the collections in the standard Java library.</li>
+<li>For a program to be robust, each component must be robust.</li>
+<li>Prefer compile-time errors to run-time errors. </li>
+<li>Watch for long method definitions. </li>
+<li>Keep things as “private as possible” . </li>
+<li>Use comments liberally, and use the Javadoc comment-documentation syntax to produce your program documentation. </li>
+<li>Avoid using “magic numbers” . </li>
+<li>When creating constructors, consider exceptions. </li>
+<li>Inside constructors, do only what is necessary to set the object into the proper state. </li>
+<li>If your class requires any cleanup when the client programmer is finished with the object, place the cleanup code in a single, well-defined method, </li>
+<li>The responsibility of finalize() can only be to verify “the termination condition” of an object for debugging. </li>
+<li>If an object must be cleaned up (other than by garbage collection) within a particular scope, use the following idiom: initialize the object and, if successful, immediately enter a try block with a finally clause that performs the cleanup.</li>
+<li>When overriding finalize() during inheritance, remember to call super.finalize().</li>
+<li>When creating a fixed-size collection of objects, transfer them to an array, especially if you’re returning this collection from a method. </li>
+<li>Choose interfaces over abstract classes.</li>
+<li>To avoid a highly frustrating experience, make sure there is only one unpackaged class of each name anywhere in your classpath. </li>
+<li>Watch for accidental overloading.</li>
+<li>Watch for premature optimization. </li>
+<li>Remember that code is read much more than it is written. </li>
+</ol>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/11/10/JAVA%E7%9B%B8%E5%85%B3/JAVA%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;10&#x2F;JAVA%E7%9B%B8%E5%85%B3&#x2F;JAVA%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;10&#x2F;JAVA%E7%9B%B8%E5%85%B3&#x2F;JAVA%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/11/10/JAVA%E7%9B%B8%E5%85%B3/JAVA%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="iconfont iconleft"></i>JAVA实战学习笔记</a>
+    <a href="/2021/11/10/%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">百面机器学习<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">第一章 对象的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%89%E8%A3%85Java%E5%92%8C%E6%9C%AC%E4%B9%A6%E7%94%A8%E4%BE%8B"><span class="toc-text">第二章 安装Java和本书用例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%B8%87%E7%89%A9%E7%9A%86%E5%AF%B9%E8%B1%A1"><span class="toc-text">第三章 万物皆对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">第四章 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="toc-text">第五章 控制流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%B8%85%E7%90%86"><span class="toc-text">第六章 初始化和清理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%B0%81%E8%A3%85"><span class="toc-text">第七章 封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%A4%8D%E7%94%A8"><span class="toc-text">第八章 复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%A4%9A%E6%80%81"><span class="toc-text">第九章 多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%8E%A5%E5%8F%A3"><span class="toc-text">第十章 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">第十一章 内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E9%9B%86%E5%90%88"><span class="toc-text">第十二章 集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B"><span class="toc-text">第十三章 函数式编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0-%E6%B5%81%E5%BC%8F%E7%BC%96%E7%A8%8B"><span class="toc-text">第十四章 流式编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E5%BC%82%E5%B8%B8"><span class="toc-text">第十五章 异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E4%BB%A3%E7%A0%81%E6%A0%A1%E9%AA%8C-Validating-Your-Code"><span class="toc-text">第十六章 代码校验(Validating Your Code )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0-%E6%96%87%E4%BB%B6"><span class="toc-text">第十七章 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">第十八章 字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E7%B1%BB%E5%9E%8B%E4%BF%A1%E6%81%AF"><span class="toc-text">第十九章 类型信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E7%AB%A0-%E6%B3%9B%E5%9E%8B"><span class="toc-text">第二十章 泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E7%AB%A0-%E6%95%B0%E7%BB%84"><span class="toc-text">第二十一章 数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E7%AB%A0-%E6%9E%9A%E4%B8%BE"><span class="toc-text">第二十二章 枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%B3%A8%E8%A7%A3"><span class="toc-text">第二十三章 注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%AB%A0-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B"><span class="toc-text">第二十四章 并发编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%94%E7%AB%A0-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">第二十五章 设计模式</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Learn Python in 12 Hours - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="01 IntroductionEasy + Free ...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Learn Python in 12 Hours</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%A4%A7%E5%8C%97%E6%96%97/img-4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Learn Python in 12 Hours</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 11, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>19278</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h3 id="01-Introduction"><a href="#01-Introduction" class="headerlink" title="01 Introduction"></a>01 Introduction</h3><p>Easy + Free + Applications + Library + Support + Simplicity + Portability(可移植) + Embeddable &amp; Extensible + Interpreted + Object Orientation<br>Average Salary = Experience + Location + Skillset<br>Software Engineer + Data Analyst + Data Scientist<br>Popularity + Features + Salary Trends<br><strong>Introduction to PyCharm</strong><br>Features: Code Editor; Code Navigation; Refactoring; Support for popular Web Technologies; Support for Python Scientific Libraries<br>Tools: Database Tools; Visual Debugger; Built-in Terminal; Software Testing; Remote Development Capabilities<br><strong>Comments in Python</strong><br>Precise and clear; Short and relevant; Specific to the block of code; Maintain languagr ethic; Least redundant</p>
+<h2 id="02-Variables-amp-Data-Types"><a href="#02-Variables-amp-Data-Types" class="headerlink" title="02 Variables &amp; Data Types"></a>02 Variables &amp; Data Types</h2><p>Variable definition &amp; Declaration<br>Data Types: numbers string list dictionary tuple set<br>integer float complex boolean<br><strong>Python Collections</strong><br>namedtuple() returns a tuple with a named value for each element in the tuple</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">a = namedtuple(<span class="hljs-string">&#x27;courses&#x27;</span>, <span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;technology&#x27;</span>)<br>s = a(<span class="hljs-string">&#x27;data science&#x27;</span>, <span class="hljs-string">&#x27;python&#x27;</span>)<br>s = a._make([<span class="hljs-string">&#x27;artificial intelligence&#x27;</span>, <span class="hljs-string">&#x27;python&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<p>deque pronounced as ‘deck’ is an optimised list to perform insertion and detection easily</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">a = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]<br>d = deque(a)<br>d.append(<span class="hljs-string">&#x27;c&#x27;</span>)<br>d.appendleft(<span class="hljs-string">&#x27;a&#x27;</span>)<br>d.pop()<br>d.popleft()<br></code></pre></td></tr></table></figure>
+<p>chainmap is a dictionary like class for creating a single view of multiple mappings.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">a = &#123;<span class="hljs-number">1</span>:<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-number">2</span>:<span class="hljs-string">&#x27;2&#x27;</span>&#125;<br>b = &#123;<span class="hljs-number">3</span>:<span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-number">4</span>:<span class="hljs-string">&#x27;4&#x27;</span>&#125;<br>ab = ChinaMap(a, b)<br><span class="hljs-built_in">print</span>(ab)<br></code></pre></td></tr></table></figure>
+<p>Counter is a dictionary subclass for counting hashtable objects</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]<br>c = Counter(a)<br><span class="hljs-built_in">print</span>(c)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(c.elements()))<br><span class="hljs-built_in">print</span>(c.most_common())<br>sub = [<span class="hljs-number">2</span>:<span class="hljs-number">1</span>, <span class="hljs-number">6</span>:<span class="hljs-number">1</span>]<br><span class="hljs-built_in">print</span>(c.subtract(sub))<br><span class="hljs-built_in">print</span>(c.most_common())<br></code></pre></td></tr></table></figure>
+<p>OrderedDict is dictionary subclass which remembers the order in which the entries were done<br>defaultdict is a dictionary subclass which calls a factory function to supply missing values.<br>UserDict is a wrapper around dictionary objects for easier dictionary sub-classing.<br>UserList is a wrapper around list objects for easier List sub-classing<br>UserString is a wrapper around string objects for easier string sub-classing</p>
+<p><strong>Arrays</strong><br>An array is basically a data structure which can hold more than one value at a time. It is a collection or ordered series of elements of the same type.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> array<br><span class="hljs-keyword">import</span> array <span class="hljs-keyword">as</span> arr<br><span class="hljs-keyword">from</span> array <span class="hljs-keyword">import</span> *<br>a = array.array(<span class="hljs-string">&#x27;i&#x27;</span>,[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])<br></code></pre></td></tr></table></figure>
+<p><em>Basic Array Operations:</em> Find the length; Add or Change element; Remove or Delete elements; Array concatenation; Slicing; Looping through an array<br>len() append() extend() insert() pop() remove() + :<br><strong>Hash Table and HashMap</strong><br>hash table or hashmap is a type of data structure that maps keys to its value pairs</p>
+<h3 id="03-Operators-in-Python"><a href="#03-Operators-in-Python" class="headerlink" title="03 Operators in Python"></a>03 Operators in Python</h3><p><em>Arithmetic</em> operators are used to perform arithmetic operations between variables. + - * / % ** //<br><em>assignment</em> operators are used to assign values. == += -= *= %= **= //= |= ^= &amp;=<br><em>comparision</em> operators are used to compare two values. = != &gt; &lt; &lt;= &gt;=<br><em>logical</em> operators are used to combine conditional statements. and or not<br><em>identity</em> operators are used to compare objects. is is not<br><em>Membership</em> operators are used to check if a sequence is present in an object. in not in<br><em>bitwise</em> operators are used to compare binary numbers. &amp; | ^ ~ &lt;&lt; &gt;&gt;</p>
+<h3 id="04-Loops-in-Python"><a href="#04-Loops-in-Python" class="headerlink" title="04 Loops in Python"></a>04 Loops in Python</h3><p>for while nested</p>
+<h3 id="05-Patterns-in-Python"><a href="#05-Patterns-in-Python" class="headerlink" title="05 Patterns in Python"></a>05 Patterns in Python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># pascal&#x27;s triangle</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pattern</span>(<span class="hljs-params">n</span>):</span><br>	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, n):<br>		<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, i + <span class="hljs-number">1</span>):<br>			<span class="hljs-built_in">print</span>(function(i, j), <span class="hljs-string">&quot; &quot;</span>, end=<span class="hljs-string">&quot;&quot;</span>)<br>		<span class="hljs-built_in">print</span>()<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function</span>(<span class="hljs-params">n, k</span>):</span><br>	res = <span class="hljs-number">1</span><br>	<span class="hljs-keyword">if</span>(k &gt; n - k):<br>		k = n - k<br>	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, k):<br>		res = res * (n - i)<br>		res = res // (i + <span class="hljs-number">1</span>)<br>	<span class="hljs-keyword">return</span> res<br></code></pre></td></tr></table></figure>
+
+<h3 id="06-File-Handling"><a href="#06-File-Handling" class="headerlink" title="06 File Handling"></a>06 File Handling</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">open</span>(filename, mode)<br>mode: r(read) a(append) w(write) x(create)<br>file.read(n) n指定读取的字符数量<br>file.readline()<br>file.readline(<span class="hljs-number">3</span>)<br>file.readlines()<br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> file:<br>	file.readline()<br>os.path.exists(file_path)<br>os.remove(file_path)<br>os.rmdir(folder_path)<br></code></pre></td></tr></table></figure>
+
+<h3 id="07-Decorator"><a href="#07-Decorator" class="headerlink" title="07 Decorator"></a>07 Decorator</h3><p><strong>Functions in Python</strong><br>first-class object; inner-function<br><strong>Decorators in Python</strong><br>Decorators in python are very powerful which modify the behavior of a function without modifying it permanently. It basically wraps another function and since both functions are callable, it returns a callable.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function1</span>(<span class="hljs-params">function</span>):</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span>():</span><br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello&quot;</span>) <span class="hljs-comment"># 1</span><br>		function()<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;--------------------&quot;</span>) <span class="hljs-comment"># 3</span><br>	<span class="hljs-keyword">return</span> wrapper<br><br>/*<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function2</span>():</span><br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;qaq&quot;</span>) <span class="hljs-comment"># 2</span><br><br>function2 = function1(function2)<br>function2()*/<br><br><span class="hljs-meta">@function1</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function2</span>():</span><br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;qaq&quot;</span>) <span class="hljs-comment"># 2</span><br>function2()<br></code></pre></td></tr></table></figure>
+
+<p>Python Decorator With Arguments</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function1</span>(<span class="hljs-params">function</span>):</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span>(<span class="hljs-params">*args, **kwargs</span>):</span><br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello&quot;</span>) <span class="hljs-comment"># 1</span><br>		function(*args, **kwargs)<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;--------------------&quot;</span>) <span class="hljs-comment"># 3</span><br>	<span class="hljs-keyword">return</span> wrapper<br><br><span class="hljs-meta">@function1</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function2</span>(<span class="hljs-params">name</span>):</span><br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;name&#125;</span>&quot;</span>) <span class="hljs-comment"># 2</span><br>function2(<span class="hljs-string">&quot;Jason&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>Returning Values From A Decorated Function</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function1</span>(<span class="hljs-params">function</span>):</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span>(<span class="hljs-params">*args, **kwargs</span>):</span><br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello&quot;</span>) <span class="hljs-comment"># 1</span><br>	<span class="hljs-keyword">return</span> wrapper<br><span class="hljs-meta">@function1</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">function2</span>(<span class="hljs-params">name</span>):</span><br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;name&#125;</span>&quot;</span>)<br>function2(<span class="hljs-string">&quot;Jason&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>Timing Functions</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span>:</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, side</span>):</span><br>		self._side = side<br><span class="hljs-meta">	@property</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">side</span>(<span class="hljs-params">self</span>):</span><br>		<span class="hljs-keyword">return</span> self._side;<br><span class="hljs-meta">	@side.setter</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">side</span>(<span class="hljs-params">self, value</span>):</span><br>		<span class="hljs-keyword">if</span> value &gt;= <span class="hljs-number">0</span>:<br>			self._side = value<br>		<span class="hljs-keyword">else</span>:<br>			<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;error&quot;</span>)<br><span class="hljs-meta">	@property</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">area</span>(<span class="hljs-params">self</span>):</span><br>		<span class="hljs-keyword">return</span> self._side * self._side;<br><span class="hljs-meta">	@classmethod</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">unit_square</span>(<span class="hljs-params">cls</span>):</span><br>		<span class="hljs-keyword">return</span> cls(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="08-Lambda"><a href="#08-Lambda" class="headerlink" title="08 Lambda"></a>08 Lambda</h3><p>One-time use<br>I/O of other functions<br>Reduce code size<br><strong>How to write Anonymous functions?</strong><br>lambda arguments: expression<br>x = lambda a : a * a<br>x(3)<br>lambda functions are best used within other higher-order functions</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">new_func</span>(<span class="hljs-params">x</span>):</span><br>	<span class="hljs-keyword">return</span>(<span class="hljs-keyword">lambda</span> y : x + y)<br>t = new_func(<span class="hljs-number">3</span>) <span class="hljs-comment"># t = lambda y : 3 + y</span><br>u = new_func(<span class="hljs-number">2</span>) <span class="hljs-comment"># t = lambda y : 2 + y</span><br><span class="hljs-built_in">print</span>(t(<span class="hljs-number">3</span>)) <span class="hljs-comment"># 6</span><br><span class="hljs-built_in">print</span>(u(<span class="hljs-number">3</span>)) <span class="hljs-comment"># 5</span><br></code></pre></td></tr></table></figure>
+<p><strong>Introduction to map(), filter(), reduce()</strong><br>filter(): used to filter the given iterables(list, sets, etc) with the help of another function passed as an argument to test all the elements to be true or false.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">my_list = [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>]<br>new_list = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">filter</span>(<span class="hljs-keyword">lambda</span> a : (a/<span class="hljs-number">3</span> ==<span class="hljs-number">2</span>), my_list))<br><span class="hljs-built_in">print</span>(new_list) <span class="hljs-comment"># 6</span><br></code></pre></td></tr></table></figure>
+<p>map(): applies a given function to all the iterables and returns a new list</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">my_list = [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>]<br>new_list = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> a : (a/<span class="hljs-number">3</span> !=<span class="hljs-number">2</span>), my_list))<br><span class="hljs-built_in">print</span>(new_list) <span class="hljs-comment"># [True, True, True, True, False,  True, True]</span><br></code></pre></td></tr></table></figure>
+<p>reduce(): applies some other function to a list of elements that are passed as a parameter to it and finally returns a single value.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">reduce(<span class="hljs-keyword">lambda</span> a,b : a + b, [<span class="hljs-number">23</span>,<span class="hljs-number">21</span>,<span class="hljs-number">45</span>,<span class="hljs-number">98</span>]) <span class="hljs-comment">#187</span><br></code></pre></td></tr></table></figure>
+<p>filter with map</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">res = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x : x + x, <span class="hljs-built_in">filter</span>(<span class="hljs-keyword">lambda</span> x : (x &gt;= <span class="hljs-number">4</span>), [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])))<br><span class="hljs-built_in">print</span>(res) <span class="hljs-comment"># [8, 10]</span><br>res = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">filter</span>(<span class="hljs-keyword">lambda</span> x : (x &gt;= <span class="hljs-number">4</span>), <span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x : x + x, [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])))<br><span class="hljs-built_in">print</span>(res) <span class="hljs-comment"># [4, 6, 8, 10]</span><br></code></pre></td></tr></table></figure>
+
+<p>map and filter within reduce</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">res = reduce(<span class="hljs-keyword">lambda</span> x,y : x + y, <span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x : x + x, <span class="hljs-built_in">filter</span>(<span class="hljs-keyword">lambda</span> x : (x &gt;= <span class="hljs-number">4</span>), [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])))<br><span class="hljs-built_in">print</span>(res) <br></code></pre></td></tr></table></figure>
+
+<h3 id="09-Generators"><a href="#09-Generators" class="headerlink" title="09 Generators"></a>09 Generators</h3><p>Generators are functions that return traversable objects.<br>Generators produce items one at a time and only when required.<br>Generators are run along with ‘for’ loops</p>
+<p>Generators created using the ‘def’ keyword<br>Make use of the yield keyword instead of return</p>
+<p>Resemble list comprehensions and like lambda functions.<br>generator expressions create anonymous generator functions.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">f = <span class="hljs-built_in">range</span>(<span class="hljs-number">6</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;List comprehension:&quot;</span>)<br>q = [x + <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> f]<br><span class="hljs-built_in">print</span>(q)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;gen exp:&quot;</span>)<br>r = (x + <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> f)<br><span class="hljs-built_in">print</span>(r)<br><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> r:<br>	<span class="hljs-built_in">print</span>(x)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">min</span>(r))<br></code></pre></td></tr></table></figure>
+<p><strong>Use-Cases</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># fib 斐波那契</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span>():</span><br>	f, s = <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br>	<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>		<span class="hljs-keyword">yield</span> f<br>		f, s = s, f + s<br><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> fib():<br>	<span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">50</span>:<br>		<span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="10-OOPS-Concepts"><a href="#10-OOPS-Concepts" class="headerlink" title="10 OOPS Concepts"></a>10 OOPS Concepts</h3><p>A class is the blueprint from which specific objects are created.<br>class: class variable; instance variable; data member;<br>object-oriented programming<br>Inheritance Encapsulation Abstraction<br><em>Inheritance:</em> A class can inherit attributes and behavior methods from another class, called the superclass. A class which inherits from a superclass is called a subclass, also called heir class or child class.<br><em>Encapsulation:</em> Building the data and code together as a single unit. Securing data by hiding the implementation details to user.<br><em>Abstraction:</em> Hides the implementation details and only provides the functionality to the user. You can achieve abstraction using Abstract classes and interfaces.<br><strong>Inheritance in Python</strong><br>__init__() function is calledautomatically every time the class is used to create an object<br><em>Types of inheritance:</em><br>Single-when the inheritance involve on child class and one parent class.<br>Multiple-It involves more than one parent class<br>Multilevel-The child class acts as a parent class for another class.<br>Hierarchical-More than one type of inheritance</p>
+<p><em>Python Super Function</em><br>super function directly calls the parent class method.<br>super().function()<br><em>Method Overriding</em><br>Method Overriding can be achieved to change functionality of parent class function.</p>
+<h3 id="11-Exception-Handling"><a href="#11-Exception-Handling" class="headerlink" title="11 Exception Handling"></a>11 Exception Handling</h3><p>Definition of exception: An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program’s instructions.<br>Exception Handling: Process pf responding to the occurrence, during computation, of exceptional conditions requiring special processing-often changing the normal flow of the program execution.<br>try except else finally<br>raise Exception()<br>assert<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/12/6aurgifNnC5bB3O.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">QQ截图20211212172436.png</span></p>
+<h3 id="12-Python-Module"><a href="#12-Python-Module" class="headerlink" title="12 Python Module"></a>12 Python Module</h3><p>A module is simply a file containing python code, it may contain functions, classes etc.<br>Simply writing a python code in a file is how we can create a module.<br>Built in modules are written in C and interpreted using the python interpreter.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt;&gt;&gt;<span class="hljs-built_in">help</span>(<span class="hljs-string">&#x27;modules&#x27;</span>)<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> xxx <span class="hljs-keyword">import</span> yyy<br>&gt;&gt;&gt;<span class="hljs-built_in">print</span>(<span class="hljs-built_in">dir</span>(yyy))<br></code></pre></td></tr></table></figure>
+
+<p>When we import a module, python searches for the module at certain places. If it cannot find the module in the built-in modules, it searches through the list in the sys.path<br><strong>Date &amp; Time</strong><br>Begins recording time from epoch that begins at 00:00:00, 1st Jan 1970<br>import time<br>time() ctime() sleep() localtime() gmtime() mktime() asctime() strftime() strptime()<br>attributes of struct_time class: tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec, tm_wday, tm_yday, tm_isdst(是否为夏令时)<br>import datetime<br>datetime() datetime.today() datetime.now() date() time() datetime.fromstamp() timedelta()</p>
+<p><strong>Numpy</strong><br>Numpy is the core library for scientific computing in Python. It provides a high-performance multidimensional array object, and tools for working with these arrays.<br><em>Numpy vs List</em>：less memory; fast; convenient<br>size() shape() reshape() linspace(1,3,10) min() max() sum() axis=0 axis=1<br><em>Numpy vs SciPy</em> Numpy and Scipy used for mathematical and numerical analysis; Numpy contains array data and basic operations; Scipy consists of all the numerical code; SciPy contains full-featured versions of mathematical and scientific functions; help() info() source()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> special<br>x = np.arange(<span class="hljs-number">0</span>, <span class="hljs-number">3</span> * np.pi, <span class="hljs-number">0.1</span>)<br>y = np.sin(x)<br>plt.plot(x, y)<br>plt.show()<br>a = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>])<br><span class="hljs-built_in">print</span>(np.exp(a))<br>a = special.exp10(<span class="hljs-number">2</span>)<br><span class="hljs-built_in">print</span>(a) <span class="hljs-comment"># 100</span><br>b = special.exp2(<span class="hljs-number">3</span>) <br><span class="hljs-built_in">print</span>(b) <span class="hljs-comment"># 8</span><br>c = special.sindg(<span class="hljs-number">90</span>)<br><span class="hljs-built_in">print</span>(c) <span class="hljs-comment"># 1.0</span><br>c = special.cosdg(<span class="hljs-number">90</span>)<br><span class="hljs-built_in">print</span>(c)<br></code></pre></td></tr></table></figure>
+<p><em>Intergration</em> deals with adding slices to determine the whole. Integration can be used to find displacement, area, etc.<br>General Integration; Double Integration<br><em>Fourier Transformations:</em> Fourier analysis is a method that deals with expressing a function as a sum of periodic components and recoving the signal from those components.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.fftpack <span class="hljs-keyword">import</span> fft, ifft<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>x = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])<br>y = fft(x) <span class="hljs-comment"># 傅里叶变换</span><br><span class="hljs-built_in">print</span>(x)<br><span class="hljs-built_in">print</span>(y)<br>y = iff(x) <span class="hljs-comment"># 逆变换</span><br><span class="hljs-built_in">print</span>(y)<br></code></pre></td></tr></table></figure>
+
+<p><em>Linear Algebra:</em>  SciPy is built on ATLAS LAPACK and BLAS libraries and is extremely fast in solving problems related to linear algebra</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> linalg<br>a = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]])<br>b = linalg.inv(a)<br><span class="hljs-built_in">print</span>(b)<br></code></pre></td></tr></table></figure>
+
+<p><em>Interpolation functions:</em> Interpolation refers to constructing new data points within a set of known data points. The scipy.interpolate consists of spline functions and classes, one-dimensional and multi-dimensional(univariate and multivariate) interpolation classes.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> interpolate<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>x = np.arange(<span class="hljs-number">5</span>, <span class="hljs-number">20</span>)<br>y = np.exp(x / <span class="hljs-number">3.0</span>)<br><span class="hljs-built_in">print</span>(x)<br><span class="hljs-built_in">print</span>(y)<br>f = interpolate.interp1d(x, y)<br>x1 = np.arange(<span class="hljs-number">6</span>, <span class="hljs-number">12</span>)<br>y1 = f(x1)<br><span class="hljs-built_in">print</span>(x1)<br>plt.plot(x, y, <span class="hljs-string">&#x27;o&#x27;</span>, x1, y1, <span class="hljs-string">&#x27;--&#x27;</span>)<br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p><strong>Pandas</strong><br>Python Applications: Web Scraping; Web Development; Testing; Data Analysis<br>data -&gt; data warehousing -&gt; data analysis -&gt; data visualization<br>Pandas is a software library written fro the Python programming language for data manipulation and analysis.<br>Pandas is will suited for many different kinds of data: Tabular data with heterogenously-typed columns. Ordered and unordered time series data. Arbitrary matrix data with row and column labels. Any other form of observational/statistical data sets. The data actually need not be labeled at all to be placed into a pandas data structure.<br><em>Pandas Operations</em><br>Slicing the DataFrame<br>Joining and Merging<br>Changing the Index<br>Concatenation<br>Data Conversion<br>Changing the Column Headers<br><em>Python for Statistics</em><br>mean mode median variance</p>
+<p><strong>Pydoop</strong><br>Pydoop is a Python interface to Hadoop that allows you to write MapReduce applications and interact with HDFS in pure Python.<br><strong>Matplotlib</strong><br>Data visualization is the presentation of data in a pictorial or graphical format.<br>Bar graph; Histograms; Scatter plot; Pie plot; Hexagonal Bin Plot; Area Plot</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python">折线图<br><span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> style<br>style.use(<span class="hljs-string">&quot;ggplot&quot;</span>)<br><br>x = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>]<br>y = [<span class="hljs-number">12</span>, <span class="hljs-number">16</span>, <span class="hljs-number">6</span>]<br>x1 = [<span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">11</span>]<br>y1 = [<span class="hljs-number">6</span>, <span class="hljs-number">15</span>, <span class="hljs-number">7</span>]<br><br>plt.plot(x, y, <span class="hljs-string">&#x27;g&#x27;</span>, label=<span class="hljs-string">&#x27;line one&#x27;</span>, linewidth=<span class="hljs-number">5</span>)<br>plt.plot(x1, y2, <span class="hljs-string">&#x27;c&#x27;</span>, label=<span class="hljs-string">&#x27;line two&#x27;</span>, linewidth=<span class="hljs-number">5</span>)<br><span class="hljs-comment"># plt.scatter(x, y, label=&#x27;skitscat&#x27;, color=&#x27;k&#x27;, s=25, marker=&#x27;o&#x27;)</span><br><br>plt.title(<span class="hljs-string">&quot;info&quot;</span>)<br>plt.ylabel(<span class="hljs-string">&quot;Y axis&quot;</span>) <span class="hljs-comment"># 坐标轴</span><br>plt.xlabel(<span class="hljs-string">&quot;X axis&quot;</span>)<br>plt.legend() <span class="hljs-comment"># 图例</span><br>plt.grid(<span class="hljs-literal">True</span>, color=<span class="hljs-string">&#x27;k&#x27;</span>) <span class="hljs-comment"># 网格</span><br><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># bar</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>plt.bar([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>], label=<span class="hljs-string">&#x27;Example one&#x27;</span>)<br>plt.bar([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>], [<span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>], label=<span class="hljs-string">&#x27;Example two&#x27;</span>, color=<span class="hljs-string">&#x27;g&#x27;</span>)<br>plt.legend()<br>plt.xlabel(<span class="hljs-string">&quot;bar number&quot;</span>) <span class="hljs-comment"># 坐标轴</span><br>plt.ylabel(<span class="hljs-string">&quot;bar height&quot;</span>)<br>plt.title(<span class="hljs-string">&quot;My plot yo!&quot;</span>)<br><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># hist</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>population_ages = [<span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">25</span>, <span class="hljs-number">30</span>, <span class="hljs-number">21</span>]<br>bins = [<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>]<br>plt.hist(population_ages, bins, histtype=<span class="hljs-string">&#x27;bar&#x27;</span>, rwidth=<span class="hljs-number">0.8</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;x&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;y&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;Histogram&#x27;</span>)<br>plt.legend()<br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>days = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>sleeping = [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">11</span>, <span class="hljs-number">7</span>]<br>eating = [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>]<br>working = [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>]<br>playing = [<span class="hljs-number">8</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">13</span>]<br><br>plt.plot([],[], color=<span class="hljs-string">&#x27;m&#x27;</span>, label=<span class="hljs-string">&#x27;Sleeping&#x27;</span>, linewidth=<span class="hljs-number">5</span>)<br>plt.plot([],[], color=<span class="hljs-string">&#x27;c&#x27;</span>, label=<span class="hljs-string">&#x27;Eating&#x27;</span>, linewidth=<span class="hljs-number">5</span>)<br>plt.plot([],[], color=<span class="hljs-string">&#x27;r&#x27;</span>, label=<span class="hljs-string">&#x27;Working&#x27;</span>, linewidth=<span class="hljs-number">5</span>)<br>plt.plot([],[], color=<span class="hljs-string">&#x27;k&#x27;</span>, label=<span class="hljs-string">&#x27;Playing&#x27;</span>, linewidth=<span class="hljs-number">5</span>)<br><br>plt.stackplot(days, sleeping, eating, working, playing, colors=[<span class="hljs-string">&#x27;m&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-string">&#x27;k&#x27;</span>])<br><br>plt.xlabel(<span class="hljs-string">&#x27;x&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;y&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;Area Plot&#x27;</span>)<br>plt.legend()<br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">slices = [<span class="hljs-number">7</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">13</span>]<br>activities = [<span class="hljs-string">&#x27;Sleeping&#x27;</span>, <span class="hljs-string">&#x27;Eating&#x27;</span>, <span class="hljs-string">&#x27;Working&#x27;</span>, <span class="hljs-string">&#x27;Playing&#x27;</span>]<br>cols = [<span class="hljs-string">&#x27;m&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-string">&#x27;k&#x27;</span>]<br>plt.pie(slices, labels=activities, colors=cols, startangle=<span class="hljs-number">90</span>, shadow=<span class="hljs-literal">True</span>, explode=(<span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), autopct=<span class="hljs-string">&#x27;%1.1f%%&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p><em>Multiple Plots</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span>(<span class="hljs-params">t</span>):</span><br>	<span class="hljs-keyword">return</span> np.exp(-t) * np.cos(<span class="hljs-number">2</span> * np.pi * t)<br>t1 = np.arange(<span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">0.1</span>)<br>t2 = np.arange(<span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">0.02</span>)<br><br>plt.suplot(<span class="hljs-number">211</span>)<br>plt.plot(t1, f(t1), <span class="hljs-string">&#x27;bo&#x27;</span>, t2, f(t2))<br><br>plt.suplot(<span class="hljs-number">212</span>)<br>plt.plot(t2, np.cos(<span class="hljs-number">2</span> * np.pi * t2))<br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p><strong>Seaborn</strong><br><em>Seaborn Library:</em> used for data visualization; based on matplotlib; seaborn allows the creation of statistical graphics<br><em>Functions:</em> Allows comparison between multiple variables; supports multi-plot grids; Available univariate and bivariate visualizations; Availability of different colour paletters; Estimates and plots linear regression automatically.<br><em>Seaborn vs Matplotlib</em><br>Seaborn fixes two shortcomings of Matplotlib: Matplotlib settings are difficult to figure out. Seaborn comes with numerous customized themes and high-level interfaces; Matplotlib doesn’t serve well when it comes to dealing with DataFrames, while Seaborn functions actually work on DataFrames.<br><em>Python Seaborn Functions</em><br>Visualizing Statistical Relationships: Process of understanding relationships between variables of a dataset<br>Plotting with Categorical Data: Main variable is futher divided into discrete groups<br>Visualizing the distribution of a dataset: Understanding datasets with context to being univariate or bivariate</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns<br><br>a = sns.load_dataset(<span class="hljs-string">&quot;flights&quot;</span>)<br>sns.relplot(x=<span class="hljs-string">&quot;passengers&quot;</span>, y=<span class="hljs-string">&quot;month&quot;</span>, data=a)<br>sns.relplot(x=<span class="hljs-string">&quot;passengers&quot;</span>, y=<span class="hljs-string">&quot;month&quot;</span>, hue=<span class="hljs-string">&quot;year&quot;</span>, data=a)<br><br>a = sns.load_dataset(<span class="hljs-string">&quot;tips&quot;</span>)<br>sns.relplot(x=<span class="hljs-string">&quot;time&quot;</span>, y=<span class="hljs-string">&quot;tip&quot;</span>, data=a, kind=<span class="hljs-string">&quot;line&quot;</span>)<br>sns.catplot(x=<span class="hljs-string">&quot;day&quot;</span>, y=<span class="hljs-string">&quot;total_bill&quot;</span>, data=a)<br>sns.catplot(x=<span class="hljs-string">&quot;day&quot;</span>, y=<span class="hljs-string">&quot;total_bill&quot;</span>, kind=<span class="hljs-string">&quot;violin&quot;</span>, data=a)<br>sns.catplot(x=<span class="hljs-string">&quot;day&quot;</span>, y=<span class="hljs-string">&quot;total_bill&quot;</span>, kind=<span class="hljs-string">&quot;boxen&quot;</span>, data=a<br><br><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats<br>c = np.random.normal(loc=<span class="hljs-number">5</span>, size=<span class="hljs-number">100</span>, scale=<span class="hljs-number">2</span>)<br>sns.distplot(c)<br><br>x = pd.DataFrame(&#123;<span class="hljs-string">&#x27;Day&#x27;</span>:[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>], <span class="hljs-string">&#x27;Gracery&#x27;</span>:[<span class="hljs-number">30</span>, <span class="hljs-number">80</span>, <span class="hljs-number">45</span>, <span class="hljs-number">23</span>, <span class="hljs-number">51</span>, <span class="hljs-number">46</span>, <span class="hljs-number">76</span>], <span class="hljs-string">&#x27;Clothes&#x27;</span>:[<span class="hljs-number">13</span>, <span class="hljs-number">40</span>, <span class="hljs-number">34</span>, <span class="hljs-number">23</span>, <span class="hljs-number">54</span>, <span class="hljs-number">67</span>, <span class="hljs-number">98</span>], <span class="hljs-string">&#x27;Utensils&#x27;</span>: [<span class="hljs-number">12</span>, <span class="hljs-number">32</span>, ]&#125;)<br>y = pd.DataFrame(&#123;<span class="hljs-string">&#x27;Day&#x27;</span>:[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>], <span class="hljs-string">&#x27;Gracery&#x27;</span>:[<span class="hljs-number">30</span>, <span class="hljs-number">80</span>, <span class="hljs-number">45</span>, <span class="hljs-number">23</span>, <span class="hljs-number">51</span>, <span class="hljs-number">46</span>, <span class="hljs-number">76</span>], <span class="hljs-string">&#x27;Clothes&#x27;</span>:[<span class="hljs-number">13</span>, <span class="hljs-number">40</span>, <span class="hljs-number">34</span>, <span class="hljs-number">23</span>, <span class="hljs-number">54</span>, <span class="hljs-number">67</span>, <span class="hljs-number">98</span>], <span class="hljs-string">&#x27;Utensils&#x27;</span>: [<span class="hljs-number">12</span>, <span class="hljs-number">32</span>, ]&#125;)<br>mean, cov = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], [(<span class="hljs-number">1</span>, <span class="hljs-number">0.5</span>), (<span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>)]<br>data = np.random.multivariate_normal(mean, cov, <span class="hljs-number">200</span>)<br><span class="hljs-keyword">with</span> sns.axes_style(<span class="hljs-string">&quot;white&quot;</span>):<br>	sns.joinplot(x=x, y=y, kind=<span class="hljs-string">&quot;kde&quot;</span>, color=<span class="hljs-string">&quot;b&quot;</span>)<br>	<br>a = sns.load_dataset(<span class="hljs-string">&quot;iris&quot;</span>)<br>b = sns.FacetGrid(a, col=<span class="hljs-string">&quot;species&quot;</span>)<br>b.<span class="hljs-built_in">map</span>(plt.hist, <span class="hljs-string">&quot;sepal_length&quot;</span>)<br><br>a = sns.load_dataset(<span class="hljs-string">&quot;flights&quot;</span>)<br>b = sns.PairGrid(a)<br>b.<span class="hljs-built_in">map</span>(plt.scatter)<br><br>sns.<span class="hljs-built_in">set</span>(style=<span class="hljs-string">&quot;darkgrid&quot;</span>)<br>a = sns.load_dataset(<span class="hljs-string">&quot;flights&quot;</span>)<br>b = sns.PairGrid(a)<br>b.<span class="hljs-built_in">map</span>(plt.scatter)<br><br>sns.<span class="hljs-built_in">set</span>(style=<span class="hljs-string">&quot;white&quot;</span>, color_codes=<span class="hljs-literal">True</span>)<br>a = sns.load_dataset(<span class="hljs-string">&quot;tips&quot;</span>)<br>sns.boxplot(x=<span class="hljs-string">&quot;day&quot;</span>, y=<span class="hljs-string">&quot;total_bill&quot;</span>, data=a)<br>sns.despine(offset=<span class="hljs-number">10</span>, trim=<span class="hljs-literal">True</span>)<br><br>c = sns.color_palette()<br>sns.palplot(c)<br></code></pre></td></tr></table></figure>
+<p><strong>FIFA Use-case</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>% matplotlib inline<br><br>df = pd.read_csv(<span class="hljs-string">&quot;FullData,csv&quot;</span>)<br>df.head()<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">df</span>[&#x27;<span class="hljs-title">National_kit</span>&#x27;]</span><br><span class="hljs-function"><span class="hljs-title">df</span>.<span class="hljs-title">head</span>()</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-title">plt</span>.<span class="hljs-title">figure</span>(<span class="hljs-params">figsize=(<span class="hljs-params"><span class="hljs-number">15</span>,<span class="hljs-number">32</span></span>)</span>)</span><br><span class="hljs-function"><span class="hljs-title">sns</span>.<span class="hljs-title">countplot</span>(<span class="hljs-params">y = df.Nationality, palette=<span class="hljs-string">&quot;Set2&quot;</span></span>)</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-title">plt</span>.<span class="hljs-title">figure</span>(<span class="hljs-params">figsize=(<span class="hljs-params"><span class="hljs-number">15</span>,<span class="hljs-number">6</span></span>)</span>)</span><br><span class="hljs-function"><span class="hljs-title">sns</span>.<span class="hljs-title">countplot</span>(<span class="hljs-params">x=<span class="hljs-string">&quot;Age&quot;</span>, data=df</span>)</span><br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/11/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Learn_Python_in_12_Hours/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;11&#x2F;%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3&#x2F;Learn_Python_in_12_Hours&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;11&#x2F;%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3&#x2F;Learn_Python_in_12_Hours&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/12/17/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/%E6%B5%81%E7%95%85%E7%9A%84Python/"><i class="iconfont iconleft"></i>流畅的Python</a>
+    <a href="/2021/12/11/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Learn_SQL/">Learn SQL(Structured Query Language)<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#01-Introduction"><span class="toc-text">01 Introduction</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-Variables-amp-Data-Types"><span class="toc-text">02 Variables &amp; Data Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#03-Operators-in-Python"><span class="toc-text">03 Operators in Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#04-Loops-in-Python"><span class="toc-text">04 Loops in Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#05-Patterns-in-Python"><span class="toc-text">05 Patterns in Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#06-File-Handling"><span class="toc-text">06 File Handling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#07-Decorator"><span class="toc-text">07 Decorator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#08-Lambda"><span class="toc-text">08 Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#09-Generators"><span class="toc-text">09 Generators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-OOPS-Concepts"><span class="toc-text">10 OOPS Concepts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Exception-Handling"><span class="toc-text">11 Exception Handling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Python-Module"><span class="toc-text">12 Python Module</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

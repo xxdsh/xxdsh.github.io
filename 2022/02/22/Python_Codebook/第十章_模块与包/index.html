@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第十章_模块与包 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="10.1 构建一个模块的层级包文件__init__.p...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第十章_模块与包</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%BC%80%E5%BC%80%E5%BF%83%E5%BF%83%E6%B5%AA%E6%B5%AA%E9%92%89/img-3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第十章_模块与包</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2424</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="10-1-构建一个模块的层级包"><a href="#10-1-构建一个模块的层级包" class="headerlink" title="10.1 构建一个模块的层级包"></a>10.1 构建一个模块的层级包</h4><p>文件__init__.py的目的是要包含不同运行级别的包的可选的初始化代码 </p>
+<h4 id="10-2-控制模块被全部导入的内容"><a href="#10-2-控制模块被全部导入的内容" class="headerlink" title="10.2 控制模块被全部导入的内容"></a>10.2 控制模块被全部导入的内容</h4><p>在模块中定义一个变量__all__来明确地列出需要导出的内容。 </p>
+<h4 id="10-3-使用相对路径名导入包中子模块"><a href="#10-3-使用相对路径名导入包中子模块" class="headerlink" title="10.3 使用相对路径名导入包中子模块"></a>10.3 使用相对路径名导入包中子模块</h4><p>from . import grok<br>from ..B import bar<br>相对导入只适用于在合适的包中的模块。尤其是在顶层的脚本的简单模块中，它们将不起作用。如果包的部分被作为脚本直接执行，那它们将不起作用<br>python3 mypackage/A/spam.py # Relative imports fail<br>python3 -m mypackage.A.spam # Relative imports work </p>
+<h4 id="10-4-将模块分割成多个文件"><a href="#10-4-将模块分割成多个文件" class="headerlink" title="10.4 将模块分割成多个文件"></a>10.4 将模块分割成多个文件</h4><p>程序模块可以通过变成包来分割成多个独立的文件。<br>延迟加载的主要缺点是继承和类型检查可能会中断。</p>
+<h4 id="10-5-利用命名空间导入目录分散的代码"><a href="#10-5-利用命名空间导入目录分散的代码" class="headerlink" title="10.5 利用命名空间导入目录分散的代码"></a>10.5 利用命名空间导入目录分散的代码</h4><p>定义一个顶级Python包，作为一个大集合分开维护子包的命名空间。<br>包命名空间是一种特殊的封装设计，为合并不同的目录的代码到一个共同的命名空间。对<br>sys.path.extend([‘foo-package’, ‘bar-package’])<br>包命名空间的关键是确保顶级目录中没有 __init__.py 文件来作为共同的命名空间。<br>解释器创建了一个由所有包含匹配包名的目录组成的列表。<br>一个包是否被作为一个包命名空间的主要方法是检查其__file__ 属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">spam.__path__ <br>_NamespacePath([<span class="hljs-string">&#x27;foo-package/spam&#x27;</span>, <span class="hljs-string">&#x27;bar-package/spam&#x27;</span>]) <br></code></pre></td></tr></table></figure>
+
+<h4 id="10-6-重新加载模块"><a href="#10-6-重新加载模块" class="headerlink" title="10.6 重新加载模块"></a>10.6 重新加载模块</h4><p>使用imp.reload()来重新加载先前加载的模块。<br>reload()擦除了模块底层字典的内容，并通过重新执行模块的源代码来刷新它。</p>
+<h4 id="10-7-运行目录或压缩文件"><a href="#10-7-运行目录或压缩文件" class="headerlink" title="10.7 运行目录或压缩文件"></a>10.7 运行目录或压缩文件</h4><p>如果__main__.py存在，可以简单地在顶级目录运行 Python 解释器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">bash % python3 myapplication<br>bash % <span class="hljs-built_in">zip</span> -r myapp.<span class="hljs-built_in">zip</span> *.py <br>bash % python3 myapp.<span class="hljs-built_in">zip</span>  <br></code></pre></td></tr></table></figure>
+<h4 id="10-8-读取位于包中的数据文件"><a href="#10-8-读取位于包中的数据文件" class="headerlink" title="10.8 读取位于包中的数据文件"></a>10.8 读取位于包中的数据文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 由此产生的变量data是包含该文件的原始内容的字节字符串。 </span><br>data = pkgutil.get_data(__package__, <span class="hljs-string">&#x27;somedata.dat&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="10-9-将文件夹加入到-sys-path"><a href="#10-9-将文件夹加入到-sys-path" class="headerlink" title="10.9 将文件夹加入到 sys.path"></a>10.9 将文件夹加入到 sys.path</h4><p>使用 PYTHONPATH 环境变量来添加<br>bash % env PYTHONPATH=/some/dir:/other/dir python3<br>创建一个.pth 文件，将目录列举出来<br>这个.pth 文件需要放在某个 Python 的 site-packages 目录<br>当解释器启动时， .pth文件里列举出来的存在于文件系统的目录将被添加到 sys.path</p>
+<h4 id="10-10-通过字符串名导入模块"><a href="#10-10-通过字符串名导入模块" class="headerlink" title="10.10 通过字符串名导入模块"></a>10.10 通过字符串名导入模块</h4><p>使用 importlib.import_module() 函数来手动导入名字为字符串给出的一个模块或 者包的一部分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">math = importlib.import_module(<span class="hljs-string">&#x27;math&#x27;</span>) <br>b = importlib.import_module(<span class="hljs-string">&#x27;.b&#x27;</span>, __package__) <br></code></pre></td></tr></table></figure>
+<h4 id="10-11-通过钩子远程加载模块"><a href="#10-11-通过钩子远程加载模块" class="headerlink" title="10.11 通过钩子远程加载模块"></a>10.11 通过钩子远程加载模块</h4><p>加载远程模块的第一种方法是创建一个显示的加载函数来完成它。<br>创建一个自定义导入器:创建一个元路径导入器;编写一个钩子直接嵌入到 sys.path 变量中去</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> imp <span class="hljs-keyword">import</span> urllib.request <br><span class="hljs-keyword">import</span> sys <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">load_module</span>(<span class="hljs-params">url</span>):</span> <br>	u = urllib.request.urlopen(url) <br>	source = u.read().decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>) <br>	mod = sys.modules.setdefault(url, imp.new_module(url)) <br>	code = <span class="hljs-built_in">compile</span>(source, url, <span class="hljs-string">&#x27;exec&#x27;</span>) <br>	mod.__file__ = url <br>	mod.__package__ = <span class="hljs-string">&#x27;&#x27;</span> <br>	<span class="hljs-built_in">exec</span>(code, mod.__dict__) <br>	<span class="hljs-keyword">return</span> mod <br></code></pre></td></tr></table></figure>
+<p>如果想创建一个新的模块对象，使用 imp.new_module() 函数<br>模块对象通常有一些期望属性，包括 __file__ （运行模块加载语句的文件名）和 __package__ (包名)。<br>模块会被解释器缓存起来。模块缓存可以在字典 sys.modules 中被找到</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">m = sys.modules.setdefault(<span class="hljs-string">&#x27;spam&#x27;</span>, imp.new_module(<span class="hljs-string">&#x27;spam&#x27;</span>)) <br>pprint(sys.path) <br>pprint(sys.path_importer_cache) <br></code></pre></td></tr></table></figure>
+<p>最高层上，导入操作被一个位于 sys.meta_path 列表中的“元路径”查找器处理。</p>
+<h4 id="10-12-导入模块的同时修改模块"><a href="#10-12-导入模块的同时修改模块" class="headerlink" title="10.12 导入模块的同时修改模块"></a>10.12 导入模块的同时修改模块</h4><h4 id="10-13-安装私有的包"><a href="#10-13-安装私有的包" class="headerlink" title="10.13 安装私有的包"></a>10.13 安装私有的包</h4><p>python3 setup.py install –user<br>pip install –user packagename<br>通常包会被安装到系统的site-packages 目录中去，路径类似“/usr/local/lib/python3.3/site-packages” 。</p>
+<h4 id="10-14-创建新的-Python-环境"><a href="#10-14-创建新的-Python-环境" class="headerlink" title="10.14 创建新的 Python 环境"></a>10.14 创建新的 Python 环境</h4><p>可以使用pyvenv命令创建一个新的“虚拟”环境。</p>
+<h4 id="10-15-分发包"><a href="#10-15-分发包" class="headerlink" title="10.15 分发包"></a>10.15 分发包</h4>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E7%AB%A0_%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%8C%85/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E7%AB%A0_%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%8C%85&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E7%AB%A0_%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%8C%85&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0_%E7%BD%91%E7%BB%9C%E4%B8%8EWEB%E7%BC%96%E7%A8%8B/"><i class="iconfont iconleft"></i>第十一章_网络与Web编程</a>
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E4%B9%9D%E7%AB%A0_%E5%85%83%E7%BC%96%E7%A8%8B/">第九章_元编程<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

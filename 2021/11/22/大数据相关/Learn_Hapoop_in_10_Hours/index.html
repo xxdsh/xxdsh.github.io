@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hadoop//Learn Hapoop in 10 Hours - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="Hadoop//Learn Hapoop in 10 ...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Hadoop//Learn Hapoop in 10 Hours</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%A4%A7%E5%8C%97%E6%96%97/img-2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Hadoop//Learn Hapoop in 10 Hours</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 22, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>15997</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h2 id="Hadoop-Learn-Hapoop-in-10-Hours"><a href="#Hadoop-Learn-Hapoop-in-10-Hours" class="headerlink" title="Hadoop//Learn Hapoop in 10 Hours"></a>Hadoop//Learn Hapoop in 10 Hours</h2><h3 id="1-Introduction-to-Big-Data"><a href="#1-Introduction-to-Big-Data" class="headerlink" title="1 Introduction to Big Data"></a>1 Introduction to Big Data</h3><p>Evolution of Technology; IOT; Social Media; Data evolved to Big Data; Other Factors;<br><strong>What is Big Data?</strong> Big data is the term for collection of data sets so <font color=red>large and complex</font> that it becomes diffcult to process using on-hand database system tools or traditional data processing applications<br><strong>5 V’s of big data</strong>: Volume Variety(Structed Semi-Structed Un-Structed) Velocity Value Veracity<br><strong>Big Data as an Opportunity</strong><br><strong>IBM Big Data Analytics Use-Case</strong><br><strong>Big Data Analytics &amp; Use-Case</strong><br><strong>What is Big Data Analytics?</strong> Big data analytics examines large and different types of data to uncover hidden patterns, correlations and other insights<br><strong>Stages of Big Data Analytics</strong> identifying problem; designing data requirement; pre-processing data; performing analytics over data; visualizing data;<br><strong>Types of Big Data Analytics</strong> descriptive analysis(what is happening now based on incoming data); predictive analysis(what might happen in the future); prescriptive analysis(what action should be taken); diagnostic analysis(why did it happen);<br><strong>Big Data Analytics in Different Domains</strong> healthcare telecom finance automobile insurance goverment education retail </p>
+<h3 id="2-Introduction-to-Hadoop"><a href="#2-Introduction-to-Hadoop" class="headerlink" title="2 Introduction to Hadoop"></a>2 Introduction to Hadoop</h3><p><strong>Problems with Big Data</strong><br>Heterogenous data is being generated at an alarming rate by multiple sources<br>Issue 1: Two many orders per hour<br>Solution: Hiring multiple cook, but food shelf becomes the bottleneck<br>Multiple processing unit for data processing<br>Bringing data to processing generated lots of network overhead<br>Issue 2: Food shelf becomes the bottleneck<br>Solution: Distributed and parallel approach<br><strong>Apache Hadoop</strong><br>Hadoop is a framework that allows us to store and process large data sets in parallel and distributed fashion<br>HDFS: storage: distributed file system; mapreduce: processing: allows parallel &amp; distributed processing<br><strong>Hadoop Master-Slave Architecture</strong></p>
+<h3 id="3-HDFS"><a href="#3-HDFS" class="headerlink" title="3 HDFS"></a>3 HDFS</h3><p><strong>NameNode &amp; DataNode</strong><br>NameNode: maintains and manages DataNodes; Records metadata i.e. information about data blocks e.g. location of blocks stored, the size of the files, permissions, hierarchy, etc; receives heartbeat and block report from all the DataNodes<br>DataNode: Slave daemons; Stores actual data; Serves read and write requests from the clients<br><strong>Secondary Namenode &amp; Checkpointing</strong><br>checkpoingingt is a process of combining edit logs with FsImage<br>Secondary NameNode takes over the responsibility of checkpoinging, therefore, making NameNode more available<br>allows faster failover as it prevents edit logs from getting two huge<br>checkpoinging happens periodically<br><strong>HDFS Data Blocks</strong><br>Each file is stored on HDFS as blocks<br>The default size of each block is 128MB in Apache Hadoop 2.x(64MB in Apache Hadoop 1.x)<br><strong>HDFS Replication</strong><br>Replication factor: each data blocks are replicated(thrice by default) and are distributed across different DataNodes<br><strong>HDFS Write Mechanism</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/EM3Z7yxk96QimK8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Setting up HDFS-Write Pipeline</span><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/V5O7fI6pQW9xBtX.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">HDFS-Write pipeline</span><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/ra9nEH6A5k1DRvy.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Acknowlwdgement in HDFS-write</span><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/jJZd6TcSyYslnz3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">HDFS Multi - Block Write Pipeline</span><br><strong>HDFS Read Mechanism</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/fSmqwClivWMHg4o.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">HDFS - Read Architecture</span></p>
+<h3 id="4-MapReduce"><a href="#4-MapReduce" class="headerlink" title="4 MapReduce"></a>4 MapReduce</h3><p><strong>What is MapReduce?</strong><br>MapReduce is a programming framework that allows us to perform distributed and parallel processing on large data sets in a distributed environment<br><strong>MapReduce Word Count Program</strong><br>Input; Splitting; Mapping(list(k2, v2)); Shuffling(k2, list(v2); Reduce; Final Result(list(k3,v3));<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/rVJwq82Kp3CYLtl.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Mapper</span><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/YE3QqXtNnwaLjmu.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Reducer</span></p>
+<h3 id="5-YARN"><a href="#5-YARN" class="headerlink" title="5 YARN"></a>5 YARN</h3><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/PzndhIiVM2Xy4Lb.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">YARN Components</span>
+**MapReduce Job Workflow**
+<img    class="lazyload" data-original="https://i.loli.net/2021/11/18/fvJFxaBSNHUAYgm.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">MapReduce Job Workflow</span>
+<img    class="lazyload" data-original="https://i.loli.net/2021/11/18/XUKB8uOsMcQ9T3Y.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">MapReduce Job Workflow</span>
+**YARN Architecture**
+<img    class="lazyload" data-original="https://i.loli.net/2021/11/18/R6vMxzBNd5u3PXi.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">YARN Architecture</span>
+**Hadoop Architecture**
+<img    class="lazyload" data-original="https://i.loli.net/2021/11/18/rdp93PNuc2DSOYB.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Hadoop Architecture</span>
+
+<h3 id="6-Hadoop-Ecosystem"><a href="#6-Hadoop-Ecosystem" class="headerlink" title="6 Hadoop Ecosystem"></a>6 Hadoop Ecosystem</h3><p><strong>Hadoop Cluster Modes</strong><br>Standalone(or local) Mode: No daemons, everything runs in a single JVM; Suitable for running MapRedue programs during development; Has no DFS or Distributed File System;<br>Pseudo Distributed Mode: All Hadoop daemons run on the local machine;<br>Multi-Node Cluster Node: Hadoop daemmons run on a cluster of machines;<br><strong>Hadoop Ecosystem</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/18/NJXG6IYC3bQES7a.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Hadoop Ecosystem</span></p>
+<h3 id="7-Hadoop-Installation"><a href="#7-Hadoop-Installation" class="headerlink" title="7 Hadoop Installation"></a>7 Hadoop Installation</h3><h3 id="8-MapReduce-Examples"><a href="#8-MapReduce-Examples" class="headerlink" title="8 MapReduce Examples"></a>8 MapReduce Examples</h3><p><strong>Weather Data Set Analysis</strong><br><strong>MapReduce Last.FM Example</strong></p>
+<h3 id="9-Apache-Sqoop-Tutorial"><a href="#9-Apache-Sqoop-Tutorial" class="headerlink" title="9 Apache Sqoop Tutorial"></a>9 Apache Sqoop Tutorial</h3><p><strong>What is Sqoop?</strong><br>RDBMS: data importing was tedious task; diffcult to handle large dataset; cant store unstructured data; time consuming task<br>tool used for transfer bulk data between HDFS &amp; Relational Database Servers<br>sqoop 是 apache 旗下一款“Hadoop 和关系数据库服务器之间传送数据”的工具。<br>核心的功能有两个：导入、迁入;导出、迁出<br><strong>Features of Sqoop</strong><br>full load; incremental load; parallel import/export; compression; kerberos security integration<br><strong>Sqoop Architecture</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/19/h5cqs9H3AvWLjfm.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Sqoop Architecture</span><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/19/REt9KeFUvi42JZP.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">import *& export</span><br><strong>Import Sqoop Command</strong><br>sqoop import –connect URL –username UserName –password PassWord –table user –hive-impirt<br><strong>Export Sqoop Command</strong><br>sqoop export –connect URL –username UserName<br><strong>List Database Command</strong><br>sqoop list-databases –connect URL –username UserName –password PassWord<br>sqoop list-tables –connect URL –username UserName –password PassWord</p>
+<h3 id="10-Apache-Flume-Tutorial"><a href="#10-Apache-Flume-Tutorial" class="headerlink" title="10 Apache Flume Tutorial"></a>10 Apache Flume Tutorial</h3><p>Flume是Cloudera提供的一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume支持在日志系统中定制各类数据发送方，用于收集数据；同时，Flume提供对数据进行简单处理，并写到各种数据接受方（可定制）的能力。<br>scalable; reliable; fault tolerant; centralized data storage; data ingestion; large data sets; multilpe hop flows; real-time data streaming; source &amp; destination;<br><strong>Flume Architecture</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/19/qhWcyoILw8TBZNv.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">flume architecture</span><br><strong>Flume Twitter Streaming</strong><br>flume-ng agent –conf conf –conf-file File –name Name</p>
+<h3 id="11-Apache-Pig-Tutorial"><a href="#11-Apache-Pig-Tutorial" class="headerlink" title="11 Apache Pig Tutorial"></a>11 Apache Pig Tutorial</h3><p><strong>Pig vs MapReduce</strong><br>Apache Pig是MapReduce的一个抽象。它是一个工具/平台，用于分析较大的数据集，并将它们表示为数据流。<br>Pig提供了一种称为Pig Latin的高级语言。该语言提供了各种操作符，程序员可以利用它们开发自己的用于读取，写入和处理数据的功能。<br>代码1/20 开发时间1/16<br>|                             Pig                              |                          MapReduce                          |<br>| :———————————————————-: | :———————————————————: |<br>|                  High-level data flow tool                   |             low-level data processing paradigm              |<br>|              No need to write complex programs               |         You need write programs in Java/Python etc.         |<br>| Build-in support for data operations like joins, filters, ordering, sorting etc. | Performing data operations in MapReduce is a humongous task |<br>|    Provides nested data types like tuples, bags, and maps    |        Nested data types are not there in MapReduce         |</p>
+<p><strong>Twitter Case Study</strong><br>Apache Pig具有以下特点: 丰富的运算符集 - 它提供了许多运算符来执行诸如join，sort，filer等操作。 易于编程 - Pig Latin与SQL类似，如果你善于使用SQL，则很容易编写Pig脚本。 优化机会 - Apache Pig中的任务自动优化其执行，因此程序员只需要关注语言的语义。 可扩展性 - 使用现有的操作符，用户可以开发自己的功能来读取、处理和写入数据。 用户定义函数 - Pig提供了在其他编程语言（如Java）中创建用户定义函数的功能，并且可以调用或嵌入到Pig脚本中。 处理各种数据 - Apache Pig分析各种数据，无论是结构化还是非结构化，它将结果存储在HDFS中。<br><strong>Pig Architecture</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/20/qplmSOv4WGgDXed.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Pig Architecture</span><br><strong>Pig Components</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/20/Az5FOJD7s1n63iu.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Pig Components</span><br>MapReduce Mode; Local Mode;<br><strong>Pig Data Models</strong><br>Atom: is basic data type which is used in all the languages like string, int, float, long, double, char[], byte[]<br>Tuple: is an ordered set of fields which may contain different data types for each field.<br>Bag: is a collection of a set of tuples and these tuples are subset of rows or entire rows of a tables<br>Map: is key-value pairs used to present data elements<br><strong>Pig Commands</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/20/nESBiMd6PXrTIwA.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Pig Commands</span><br>hadoop dfs -put input /PigInput<br>hadoop dfs -cat /pigInput<br>pig<br>employee = LOAD ‘/pigInput’ using PigStorage(‘,’) AS (ssn:chararray, name:chararray, department:chararray, city:chararray)<br>dump employee<br>emp foreach = foreach employee generate name, department<br>emp filter = filter employee by city == ‘Austin’<br>emp order = order employee by ssn desc<br>dump emp_order<br>STORE emp filter into ‘/pigresult’</p>
+<h3 id="12-Apache-Hive-Tutorial"><a href="#12-Apache-Hive-Tutorial" class="headerlink" title="12 Apache Hive Tutorial"></a>12 Apache Hive Tutorial</h3><p><strong>What is Hive?</strong><br>tables can be partitioned and bucketed;<br>schema fiexibility and evolution;<br>easy to plug-in custom mapper/reducer code;<br>JDBC/ODBC drivers are avaliable;<br>Hive tables can be defibed directly on HDFS;<br>Extensible; types; formats; functions; scripts;</p>
+<p>Data Warehousing package built on top of hadoop;<br>Used for data analysis;<br>Targeted towards users comfortable with SQL;<br>It is similar to SQL and called HiveQL;<br>For managing and querying structed data;<br>Abstracts comlexity of Hadoop;<br>No need learn Java and Hadoop APIs;<br>Developed by Facebook and contributed to community;<br>Facebook analyzed serveal Terabytes of data everyday using Hive;</p>
+<p>Definrns SQL-Like Query Language called QL;<br>Dta Warehouse Infrastructure;<br>Allows programmers to plug-in custom mappers and reducers;<br>Provides tools to enable easy data ETL;</p>
+<p>Data Ming; Document Indexing; Customer-facing Business Intelligence; Predictive Modeling; Hypothesis Testing; Log Processing</p>
+<p><strong>PigLatin Vs HiveQL</strong><br>PigLatin: Procedural data-flow language; pig is used by Programmers and researchers<br>HiveQL: Declarative SQLish language; Hive is used by Analysts generating dally reports<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/21/3ROFJZBU9hk1Ydn.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">PigLatin Vs HiveQL</span><br><strong>Hive Architecture</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/21/GzHAVJitrYfCqXn.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Hive Architecture</span><br><strong>Hive Components</strong><br>shell; metastore; execution engine; compiler; driver;<br><strong>Metastore</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/21/ne1OuwY7i3NLRES.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">Metastore</span><br>Does not offer real-time queries and row level updates;<br>Not designed for online transaction processing;<br>latency for hive queries is generally very high;<br>provides acceptable (not optimal) latency for interactive data browsing;</p>
+<p>Hive Query Language: Ability to filter rows from a table using a ‘where’ clause;<br>Ability to do equi-joins between two tables;<br>Ability to store the results of a query in Hadoop dfs directory;<br>Ability to manage tables and partitions(create, drop &amp; alter);<br>Ability to store the results of a query into another table;<br><strong>Hive Commands</strong><br><strong>Hive Setup</strong><br>Schema on Read vs. Schema on Write: Hive does not verifies the data when it is loaded, but rather when a query is issued;<br>Schema on read makes for a very fast initial load, since the data does not have to be read, parse and serialized to disk in the database’s internal format. The load operation is just a file copy or move<br>No updates, transactions and indexes<br><strong>Type Systems</strong><br>Boolean Type: BOOLEAN-TRUE/FALSE;<br>Integers: TINYINT - 1 byte integer; SMALLINT - 2 byte integer; INT - 4 byte integer; BIGINT - 8 BYTE Integer<br>Floating Point Numbers: FLOAT - Single Precision; DOUBLE - Double Precision<br>String Type: STRING - Sequene of characters<br><strong>Hive Data Models</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/21/MkwFhdrfWvXS8OL.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">Hive Data Models</span><br><strong>Hive Partitioning</strong><br>Partition means dividing a table into a coarse grained parts based on the value of a partition column such as a date. This make it faster to do queries on slices of thr data;<br>Partition keys determine how the data is dtored;<br>Each unique value of the partition keys defines a partition of the table;<br>Partitions are named after dates for convenience;</p>
+<p><strong>Bucketing in Hive</strong><br><strong>External Table</strong><br>Create the table in another hdfs location and not in warehouse directory;<br>Not managed by hive:<br>CREATE EXTERNAL TABLE external_table (dummy STRING)<br>LOCATION ‘\user/notroot/external_table’<br>Hive does not delete the table(or hdfs files) even when the tables are dropper. It leaves the table untouched and only metadata about the tables are deleted.</p>
+<h3 id="13-Apache-HBase-Tutorial"><a href="#13-Apache-HBase-Tutorial" class="headerlink" title="13 Apache HBase Tutorial"></a>13 Apache HBase Tutorial</h3><p>Huge Data; Fast Random Access; Structureed Data; Variable Schema; Need of Compression; Need of Compression; Need of Distribution(Sharding)<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/22/vw12s8CmgyADXOT.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">NoSQL Landscape</span><br>HBase is a key/value store. Specifically it is.<br><strong>Types of NoSQL Databases</strong><br>Sparse; Sorted Map; Distributed; Consistent; Multi-dimensional</p>
+<p><strong>History of HBase</strong><br>2006-BigTable paper; 2007-Hadoop’s contrib; 2008-Hadoop’s sub project; 2010-Apache top-level project; 2011-0.92 release<br><strong>HBase vs RDBMS</strong></p>
+<table>
+<thead>
+<tr>
+<th>HBase</th>
+<th>RDBMS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Column-oriented</td>
+<td>Row oriented(mostly)</td>
+</tr>
+<tr>
+<td>Flexible schema, add columns on the fly</td>
+<td>Fixed schema</td>
+</tr>
+<tr>
+<td>Good with sparse tables</td>
+<td>Not optimized for sparse tables</td>
+</tr>
+<tr>
+<td>Joins using MR-not optimized</td>
+<td>Optimized for joins</td>
+</tr>
+<tr>
+<td>Tight integration with MR</td>
+<td>Not really</td>
+</tr>
+<tr>
+<td>Horizontal scalability-just add hardware</td>
+<td>Hard to shard and scale</td>
+</tr>
+<tr>
+<td>Good for semi-structured data as well as structured data</td>
+<td>Good for structured data</td>
+</tr>
+</tbody></table>
+<p><strong>Uses of HBase</strong><br>Unstructed Data; High Scalability; Versioned Data; Generating data from an MR work flow; Column-oriented data; High volume data to be stored;<br><strong>Companies Using HBase</strong></p>
+<p><strong>HBase Operation</strong><br>显示数据表: list<br>Create Table:<br>create ‘table_name’, ‘column_family’<br>Store Data: put ‘table_name’, ‘ROW_KEY’, ‘column_family:column_name’, ‘value’<br>Get the value from hbase:<br>(select * ) scan ‘table_name’<br>(select * ) get ‘table_name’, ‘ROW_KEY’<br>get ‘table_name’, ‘ROW_KEY’ {COLUMN=&gt;’cf:c3’, VERSIONS=&gt;3}<br>Update/Modify: put ‘table_name’, ‘ROW_KEY’, ‘column_family:column_name’, ‘value_modified’<br>Delete data:<br>delete ‘table_name’, ‘ROW_KEY’, ‘column_family:column_name’<br>Drop/alter table:<br>disable ‘table_name’<br>drop ‘table_name’<br><strong>HBase Shell</strong><br><strong>Single Map</strong><br><strong>Multidimensional Map</strong><br><strong>Multidimensional Columns</strong><br><strong>Row vs Column Oriented Databases</strong><br><strong>HBase Data Models</strong><br>Table Schema only defines it’s Column Families<br>Consists of any number of columns;<br>Consists of any number of versions;<br>Columns exist when inserted;<br>Columns in a family are sorted &amp; sorted together<br><strong>HBase Physical Storage</strong><br><img    class="lazyload" data-original="https://i.loli.net/2021/11/23/HCaDyg3bWPpuTcK.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">HBase Physical Storage</span><br><strong>HBase Architecture</strong><br>The HBaseMaster; The HRegionServer; The HBase Client;<br><strong>HBase Components</strong><br>Table mode of regions<br>Region - a range of rows stored together<br>Region servers - serves one or more regions: A region is served by only one region server<br>Master server - daemon responsible for managing HBase cluster<br>HBase stores its data into HDFS: Relies on HDFS’s High Availability and fault tolerance<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/24/iLhzr3a7Uxksvlt.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">HBase Components</span><br><strong>HBase Read Write Mechanism</strong><br>HBase write path. Every write to HBase requires confirmation from both the WAL(write-ahead log) and the MemStore(in-memory write buffer). The two steps ensure that every write to HBase happens as fast as possible while maintaining durability. The MemStore is flushed to a new HFile when it fills up.<br>HBase read path. Data is reconciled from the BlockCache, the Mem-Store, and the HFile to give the client an up-to-date view of the row(s) it asked for.<br>Note that HFiles contain a snapshot of the MemStore at the point when it was flushed, Data for a complete row can be stored across multiple HFiles. In order to read a complete row, HBase must read across all HFiles that might contain information for that row in order to compose the complete record.<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/24/wTzd3AOhJeQ6rKb.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">HBase Storage Architecture</span><br><strong>Compaction in HBase</strong><br>HBase writes out immutable files as data is added: Each store consists of rowkey-ordered files; Immutable - More files accumulate over time;<br>Compaction rewrites several files into one: Lesser files - faster reads;<br>Major compaction rewrites all files in a store into one: can drop deleted records and old versions<br>In a minor compation, files to compact are selected based on a heuristic<br><strong>HBase Shell</strong><br><strong>HBase Client API</strong><br><strong>Hadoop E-Commerce Projects</strong><br><strong>Distributed Cache</strong><br><strong>Code Sections</strong></p>
+<h3 id="14-Hadoop-Projects"><a href="#14-Hadoop-Projects" class="headerlink" title="14 Hadoop Projects"></a>14 Hadoop Projects</h3><h3 id="15-How-to-Become-a-Big-Data-Engineer"><a href="#15-How-to-Become-a-Big-Data-Engineer" class="headerlink" title="15 How to Become a Big Data Engineer?"></a>15 How to Become a Big Data Engineer?</h3><p><strong>Who is a Big Data Engineer?</strong><br>Data Engineers are the ones who Develops Cconstructs Tests Maintains the complete architecture of the large-scale processing system.<br><strong>Big Data Engineer Responsibilities</strong></p>
+<ul>
+<li>Design, Develop, Construct, Install, Test &amp; Maintain the complete data management &amp; processing systems</li>
+<li>Building highly scalable, robust &amp; fault-tolerant systems</li>
+<li>Taking care of the complete ETL(Extract, Transfore &amp; Load) process</li>
+<li>Ensuring architecture is planned in such a way that it meets all the business requirements</li>
+<li>Deploying Disaster Recovery Techniques</li>
+<li>Introducing new data management tools &amp; technologies into the existing system to make it more efficient</li>
+</ul>
+<p>Data Ingestion: Acquiring data from the various sources &amp; then ingesting it into the data lake<br>Data Transformation: Converting data from one format to other, or from one structure to another based on the use-case<br>Performance Optimization: Building a system which is both scalable &amp; efficient<br><strong>Big Data Engineer Skills</strong><br>Big Data Frameworks:<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/26/eSOMAxWF7ws6r2c.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">Big Data Engineer Skills</span><br>Real-time Processing Fraamework: Spark<br>DBMS &amp; Database Architecture: DBMS: Databse; Software Technology; Data; System Management<br>SQL-based Technologies: MySQL; SQL server; SQLite; PostgreSQL; ORACLE DATABASE; IBM DB2<br>NoSQL Technologies: HBase;  cassandra; mongaDB;<br>Programming Language: python R Java<br>ETL/Data Warehousing: talend; Qlik; SQL Server<br>Operating Systems: Windows Linux UNIX<br><strong>Big Data Engineer Learning Path</strong><br>编程语言+操作系统 关系型数据库 NoSQL数据库 pig/hive Spark 云<br><strong>Big Data &amp; Hadoop Interview Questions</strong></p>
+<ol>
+<li>大数据5V ： Volume（大量），Velocity（高速），Variety（多样），Value（低价值密度），Veracity（真实）。</li>
+<li>结构化数据、半结构化数据和无结构化数据的区别：</li>
+<li>Hadoop和使用RDBMS的传统处理系统的区别：<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/26/8Wtl9nB6QTohsYX.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">RDBMS VS. Hadoop</span></li>
+<li>解释Hadoop组件和它们的服务<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/26/2ta6J9BAogflZkQ.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">QQ截图20211126170924.png</span></li>
+<li>Hadoop配置文件：<br>hadoop-env.sh; core-site.xml; hdfs-site.xml; yarn-site.xml; mapred-site.xml; masters; slaves</li>
+<li>HDFS中存在很多小文件的问题及解决方案：<br><img    class="lazyload" data-original="https://i.loli.net/2021/11/26/RBhcSCEp5kMAVPK.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">QQ截图20211126180005.png</span></li>
+</ol>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Learn_Hapoop_in_10_Hours/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;22&#x2F;%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3&#x2F;Learn_Hapoop_in_10_Hours&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;22&#x2F;%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3&#x2F;Learn_Hapoop_in_10_Hours&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/12/08/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Learn_Machine_learning_in_10_Hours/"><i class="iconfont iconleft"></i>Learn Machine Learning in 10 Hours</a>
+    <a href="/2021/11/10/%E5%85%AC%E5%8A%A1%E5%91%98%E7%9B%B8%E5%85%B3/%E8%A1%8C%E6%B5%8B/">行测<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop-Learn-Hapoop-in-10-Hours"><span class="toc-text">Hadoop&#x2F;&#x2F;Learn Hapoop in 10 Hours</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Introduction-to-Big-Data"><span class="toc-text">1 Introduction to Big Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Introduction-to-Hadoop"><span class="toc-text">2 Introduction to Hadoop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HDFS"><span class="toc-text">3 HDFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-MapReduce"><span class="toc-text">4 MapReduce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-YARN"><span class="toc-text">5 YARN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Hadoop-Ecosystem"><span class="toc-text">6 Hadoop Ecosystem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Hadoop-Installation"><span class="toc-text">7 Hadoop Installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-MapReduce-Examples"><span class="toc-text">8 MapReduce Examples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Apache-Sqoop-Tutorial"><span class="toc-text">9 Apache Sqoop Tutorial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Apache-Flume-Tutorial"><span class="toc-text">10 Apache Flume Tutorial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Apache-Pig-Tutorial"><span class="toc-text">11 Apache Pig Tutorial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Apache-Hive-Tutorial"><span class="toc-text">12 Apache Hive Tutorial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-Apache-HBase-Tutorial"><span class="toc-text">13 Apache HBase Tutorial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-Hadoop-Projects"><span class="toc-text">14 Hadoop Projects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-How-to-Become-a-Big-Data-Engineer"><span class="toc-text">15 How to Become a Big Data Engineer?</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

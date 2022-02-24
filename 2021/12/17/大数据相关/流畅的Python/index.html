@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>流畅的Python - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="流畅的Python第一部分 序幕第一章 Python数...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">流畅的Python</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-5.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">流畅的Python</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 17, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11809</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h2 id="流畅的Python"><a href="#流畅的Python" class="headerlink" title="流畅的Python"></a>流畅的Python</h2><h3 id="第一部分-序幕"><a href="#第一部分-序幕" class="headerlink" title="第一部分 序幕"></a>第一部分 序幕</h3><h4 id="第一章-Python数据模型"><a href="#第一章-Python数据模型" class="headerlink" title="第一章 Python数据模型"></a>第一章 Python数据模型</h4><p>数据模型是对Python框架的描述，它规范了这门语言自身构建模块的接口，这些模块包括但不限于序列、迭代器、函数、类和上下文管理 器。<br>迭代 集合类 属性访问 运算法重载 函数和方法的调用 对象的创建和销毁 字符串表示形式和格式化 管理上下文(with)<br>魔术方法(magic method) 特殊方法 双下-getitem 双下方法(dunder method)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> collections <br><span class="hljs-comment"># namedtuple用于构架只有少数属性但是没有方法的对象</span><br>Card = collections.namedtuple(<span class="hljs-string">&#x27;Card&#x27;</span>, [<span class="hljs-string">&#x27;rank&#x27;</span>, <span class="hljs-string">&#x27;suit&#x27;</span>])<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FrenchDeck</span>:</span><br>	ranks = [<span class="hljs-built_in">str</span>(n) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, <span class="hljs-number">11</span>)] + <span class="hljs-built_in">list</span>(<span class="hljs-string">&#x27;JQKA&#x27;</span>)<br>	suits = <span class="hljs-string">&#x27;spades diamonds clubs hearts&#x27;</span>.split()<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>		self._cards = [Card(rank, suit) <span class="hljs-keyword">for</span> suit <span class="hljs-keyword">in</span> self.suitsfor <span class="hljs-keyword">for</span> rank <span class="hljs-keyword">in</span> self.ranks]<br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__len__</span>(<span class="hljs-params">self</span>):</span><br>		<span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(self._cards)<br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getitem__</span>(<span class="hljs-params">self, position</span>):</span><br>		<span class="hljs-keyword">return</span> self._cards[position] <br>beer_card = Card(<span class="hljs-string">&#x27;7&#x27;</span>, <span class="hljs-string">&#x27;diamonds&#x27;</span>)<br>deck = FrenchDeck()<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(deck), deck[<span class="hljs-number">0</span>])<br><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> choice<br><span class="hljs-built_in">print</span>(choice(deck))<br><span class="hljs-built_in">print</span>(deck[:<span class="hljs-number">3</span>]) <span class="hljs-comment"># 查看最上面3张</span><br><span class="hljs-built_in">print</span>(deck[<span class="hljs-number">12</span>:<span class="hljs-number">13</span>]) <span class="hljs-comment"># 抽出索引是12的牌；每隔13张拿一张</span><br><span class="hljs-keyword">for</span> card <span class="hljs-keyword">in</span> <span class="hljs-built_in">reversed</span>(deck): <span class="hljs-comment"># 反向迭代</span><br>	<span class="hljs-built_in">print</span>(card)<br><span class="hljs-built_in">print</span>(Card(<span class="hljs-string">&#x27;Q&#x27;</span>, <span class="hljs-string">&#x27;hearts&#x27;</span>) <span class="hljs-keyword">in</span> deck)<br>suit_values = <span class="hljs-built_in">dict</span>(spades=<span class="hljs-number">3</span>, hearts=<span class="hljs-number">2</span>, diamonds=<span class="hljs-number">1</span>, clubs=<span class="hljs-number">0</span>)<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">spades_high</span>(<span class="hljs-params">card</span>):</span><br>	rank_value = FrenchDeck.ranks.index(card.rank)<br>	<span class="hljs-keyword">return</span> rank_value * <span class="hljs-built_in">len</span>(suit_values) + suit_values[card.suit]<br><span class="hljs-built_in">print</span>(spades_high(Card(<span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;clubs&#x27;</span>))) <span class="hljs-comment"># 0</span><br><span class="hljs-keyword">for</span> card <span class="hljs-keyword">in</span> <span class="hljs-built_in">sorted</span>(deck, key=spades_high):<br>	<span class="hljs-built_in">print</span>(card)<br></code></pre></td></tr></table></figure>
+<p>Python内置对象，__len__会直接返回PyVarObject(表示内存中长度可变的内置对象的C语言结构体)里的ob_size属性，高效<br>模拟数值类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> hypot<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vector</span>:</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, x=<span class="hljs-number">0</span>, y=<span class="hljs-number">0</span></span>):</span><br>        self.x = x<br>        self.y = y<br>	<span class="hljs-comment"># 对象的字符串表示形式 __str__在str()函数中被使用，或是在用print函数打印一个对象的时候被调用,返货的字符串对终端用户更友好</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Vector(%r, %r)&#x27;</span> % (self.x, self.y)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__abs__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> hypot(self.x, self.y)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__bool__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">bool</span>(<span class="hljs-built_in">abs</span>(self)) <span class="hljs-comment"># return bool(self.x or self.y)</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__add__</span>(<span class="hljs-params">self, other</span>):</span><br>        x = self.x + other.x<br>        y = self.y + other.y<br>        <span class="hljs-keyword">return</span> Vector(x, y)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__mul__</span>(<span class="hljs-params">self, scalar</span>):</span><br>        <span class="hljs-keyword">return</span> Vector(self.x * scalar, self.y * scalar)<br></code></pre></td></tr></table></figure>
+<p>特殊方法：一元运算符；算术运算符、反向算术运算符、增量赋值算术运算符、位运算符、反向位运算符、增量赋值为运算符、比较运算符；字符串/字节序列表示形式； 数值转换；集合模拟；迭代枚举； 可调用模拟； 上下文管理； 实例床架和销毁； 属性管理； 属性描述符； 跟类相关的服务； </p>
+<h3 id="第二部分-数据结构"><a href="#第二部分-数据结构" class="headerlink" title="第二部分 数据结构"></a>第二部分 数据结构</h3><h4 id="第二章-序列构成的数组"><a href="#第二章-序列构成的数组" class="headerlink" title="第二章 序列构成的数组"></a>第二章 序列构成的数组</h4><p>容器序列(存放不同类型的数据 存放对象的引用): list tuple collection.deque<br>扁平序列(只能容纳一种类型 存放对象的值)：str bytes bytearray memoryview array.array<br>可变序列(MutableSequence)：list bytearray array.array collections.deque memoryview<br>不可变序列(Sequence)：tuple str bytes<br>列表推导(list comprehension, listcoms): 生成列表<br>生成器表达式(generator expression, genexps): 生成列表以外的序列类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用列表推导计算笛卡尔积</span><br>colors = [<span class="hljs-string">&#x27;black&#x27;</span>, <span class="hljs-string">&#x27;white&#x27;</span>] <br>sizes = [<span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;M&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>] <br>tshirts = [(color, size) <span class="hljs-keyword">for</span> color <span class="hljs-keyword">in</span> colors <span class="hljs-keyword">for</span> size <span class="hljs-keyword">in</span> sizes] <span class="hljs-comment"># 先颜色，再尺码</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">symbols = <span class="hljs-string">&#x27;$¢£¥€¤&#x27;</span> <br><span class="hljs-built_in">tuple</span>(<span class="hljs-built_in">ord</span>(symbol) <span class="hljs-keyword">for</span> symbol <span class="hljs-keyword">in</span> symbols)<br>array.array(<span class="hljs-string">&#x27;I&#x27;</span>, (<span class="hljs-built_in">ord</span>(symbol) <span class="hljs-keyword">for</span> symbol <span class="hljs-keyword">in</span> symbols))<br><span class="hljs-comment"># 使用生成器表达式计算笛卡尔积 避免额外的内存占用</span><br>colors = [<span class="hljs-string">&#x27;black&#x27;</span>, <span class="hljs-string">&#x27;white&#x27;</span>] <br>sizes = [<span class="hljs-string">&#x27;S&#x27;</span>, <span class="hljs-string">&#x27;M&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>] <br><span class="hljs-keyword">for</span> tshirt <span class="hljs-keyword">in</span> (<span class="hljs-string">&#x27;%s %s&#x27;</span> % (c, s) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> colors <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> sizes):<br>	<span class="hljs-built_in">print</span>(tshirt)<br></code></pre></td></tr></table></figure>
+<p>元组中的每个元素都存放了记录中一个字段的数据，外加这个字段的位置。<br>元组拆包 = 可迭代元组拆包<br>用 * 运算符把一个可迭代对象拆开作为函数的参数<br>函数用 *args 来获取不确定数量的参数算是一种经典写法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># * 前缀只能用在一个变量名前面，但是这个变量可以出现在赋值表达式的任意位置</span><br>a, b, *rest = <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>) <br>a, *body, c, d = <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>) <br></code></pre></td></tr></table></figure>
+<p>collections.namedtuple是一个工厂函数，它可以用来构建一个带字段名的元组和一个有名字的类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> namedtuple <br>City = namedtuple(<span class="hljs-string">&#x27;City&#x27;</span>, <span class="hljs-string">&#x27;name country population coordinates&#x27;</span>)  <span class="hljs-comment">#类名， 各个字段的名字</span><br>tokyo = City(<span class="hljs-string">&#x27;Tokyo&#x27;</span>, <span class="hljs-string">&#x27;JP&#x27;</span>, <span class="hljs-number">36.933</span>, (<span class="hljs-number">35.689722</span>, <span class="hljs-number">139.691667</span>)) <br><span class="hljs-built_in">print</span>(tokyo.population)<br><span class="hljs-built_in">print</span>(city._fields) <span class="hljs-comment"># 包含这个类所有字段名称</span><br>LatLong = namedtuple(<span class="hljs-string">&#x27;LatLong&#x27;</span>, <span class="hljs-string">&#x27;lat long&#x27;</span>)<br>delhi_data = (<span class="hljs-string">&#x27;Delhi NCR&#x27;</span>, <span class="hljs-string">&#x27;IN&#x27;</span>, <span class="hljs-number">21.935</span>, LatLong(<span class="hljs-number">28.613889</span>, <span class="hljs-number">77.208889</span>)) <br>delhi = City._make(delhi_data)  <span class="hljs-comment"># _make()通过接受一个可迭代对象来生成这个类的一个实例，作用和City(*delhi_data)一样</span><br>delhi._asdict() <span class="hljs-comment"># 把具名元组以collections.OrderedDict的形式返回，可以利用 它把元组里的信息友好地呈现出来</span><br></code></pre></td></tr></table></figure>
+<p>切片：seq[start:stop:step]  Python 会调用 seq.__getitem__(slice(start, stop, step))。<br>DESCRIPTION = slice(6, 40)<br>a[i, j] a.__getitem__((i, j))</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">board = [[<span class="hljs-string">&#x27;_&#x27;</span>] * <span class="hljs-number">3</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>)]<br>board[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] = <span class="hljs-string">&#x27;X&#x27;</span><br><span class="hljs-built_in">print</span>(board)<br><span class="hljs-comment"># 指向同一个对象的引用</span><br>weird_board = [[<span class="hljs-string">&#x27;_&#x27;</span>] * <span class="hljs-number">3</span>] * <span class="hljs-number">3</span> <br>weird_board[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] = <span class="hljs-string">&#x27;O&#x27;</span><br>pirnt(weird_board)<br></code></pre></td></tr></table></figure>
+<p>+=背后的特殊方法是__iadd__</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 可变序列和不可变序列之间的差异</span><br>l = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(l))<br>l *= <span class="hljs-number">2</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(l))<br>t = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(l))<br>t *= <span class="hljs-number">2</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(t))<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 元组不可变性</span><br><span class="hljs-comment"># 不要把可变对象放在元组里； 增量赋值不是一个原子操作；查看Python的字节码 </span><br>t = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, [<span class="hljs-number">30</span>, <span class="hljs-number">40</span>]) <br>t[<span class="hljs-number">2</span>] += [<span class="hljs-number">50</span>, <span class="hljs-number">60</span>] <br></code></pre></td></tr></table></figure>
+<p>list.sort()就地排序列表，返回None; sorted()函数新建一个列表作为返回值；参数：reverse=True:降序；reverse=False:升序；默认False; key 一个只有一个参数的函数 默认值是恒等函数(identity function)(默认用元素自己的值来排序<br>bisect和insort利用二分查找算法在有序序列中查找或插入元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">index = bisect(haystack, needle)<br>haystack.insert(index, needle)<br><span class="hljs-comment"># bisect_right()和bisect_left()区别在于相等元素的处理</span><br><span class="hljs-comment"># 根据分数找到对应的成绩</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">grade</span>(<span class="hljs-params">score, breakpoints=[<span class="hljs-number">60</span>, <span class="hljs-number">70</span>, <span class="hljs-number">80</span>, <span class="hljs-number">90</span>], grades=<span class="hljs-string">&#x27;FDCBA&#x27;</span></span>):</span> <br>	i = bisect.bisect(breakpoints, score) <br>	<span class="hljs-keyword">return</span> grades[i] <br><span class="hljs-built_in">print</span>([grade(score) <span class="hljs-keyword">for</span> score <span class="hljs-keyword">in</span> [<span class="hljs-number">33</span>, <span class="hljs-number">99</span>, <span class="hljs-number">77</span>, <span class="hljs-number">70</span>, <span class="hljs-number">89</span>, <span class="hljs-number">90</span>, <span class="hljs-number">100</span>]] )<br></code></pre></td></tr></table></figure>
+<p>bisect.insort(seq, item) # 将变量item插入到序列seq中，保持seq的升序<br>memoryview是一个内置类，它能让用户在不复制内容的情况下操作同一个数组的不同切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">numbers = array.array(<span class="hljs-string">&#x27;h&#x27;</span>, [-<span class="hljs-number">2</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]) <br>memv = <span class="hljs-built_in">memoryview</span>(numbers) <br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(memv), memv[<span class="hljs-number">0</span>]) <span class="hljs-comment"># 5 2</span><br>memv_oct = memv.cast(<span class="hljs-string">&#x27;B&#x27;</span>)<br><span class="hljs-built_in">print</span>(memv_oct.tolist()) @ [<span class="hljs-number">254</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>] <br>memv_oct[<span class="hljs-number">5</span>] = <span class="hljs-number">4</span><br><span class="hljs-built_in">print</span>(numbers) <span class="hljs-comment"># array(&#x27;h&#x27;, [-2, -1, 1024, 1, 2])</span><br></code></pre></td></tr></table></figure>
+<p>numpy和scipy</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy<br>a = numpy.arange(<span class="hljs-number">12</span>)   <span class="hljs-comment"># array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  11]) </span><br>floats = numpy.loadtxt(<span class="hljs-string">&#x27;floats-10M-lines.txt&#x27;</span>) <br><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> perf_counter <span class="hljs-keyword">as</span> pc<br>t0 = pc(); floats /= <span class="hljs-number">3</span>; <span class="hljs-built_in">print</span>(pc() - t0)<br>numpy.save(<span class="hljs-string">&#x27;floats-10M&#x27;</span>, floats)<br>floats2 = numpy.load(<span class="hljs-string">&#x27;floats-10M.npy&#x27;</span>, <span class="hljs-string">&#x27;r+&#x27;</span>) <span class="hljs-comment"># 内存映射 内存不足仍然可以对数组切片 </span><br>floats2 *= <span class="hljs-number">6</span> <br></code></pre></td></tr></table></figure>
+<p>collections.deque类（双向队列）是一个线程安全、可以快速从两端添加或者删除元素的数据类型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> deque <br>dq = deque(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>), maxlen=<span class="hljs-number">10</span>)  <span class="hljs-comment"># maxlen:队列可以容纳的元素的数量 </span><br>dq <span class="hljs-comment"># deque([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], maxlen=10) </span><br>dq.rotate(<span class="hljs-number">3</span>) <span class="hljs-comment"># 队列的最右边的n个元素会被移动到队列的左边。</span><br>dq <span class="hljs-comment"># deque([7, 8, 9, 0, 1, 2, 3, 4, 5, 6], maxlen=10) </span><br>dq.rotate(-<span class="hljs-number">4</span>) <span class="hljs-comment"># 最左边的 n 个元素会被 移动到右边</span><br>dq <span class="hljs-comment"># deque([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], maxlen=10) </span><br>dq.appendleft(-<span class="hljs-number">1</span>)  <br>dq <span class="hljs-comment"># deque([-1, 1, 2, 3, 4, 5, 6, 7, 8, 9], maxlen=10) </span><br>dq.extend([<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>])  <br>dq <span class="hljs-comment"># deque([3, 4, 5, 6, 7, 8, 9, 11, 22, 33], maxlen=10) </span><br>dq.extendleft([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>]) <br>dq <span class="hljs-comment"># deque([40, 30, 20, 10, 3, 4, 5, 6, 7, 8], maxlen=10) </span><br></code></pre></td></tr></table></figure>
+<p>queue:  Queue、LifoQueue 和 PriorityQueue<br>multiprocessing: Queue JoinableQueue<br>asyncio: Queue、LifoQueue、PriorityQueue 和 JoinableQueue<br>heapq: heappush 和 heappop </p>
+<h4 id="第三章-字典和集合"><a href="#第三章-字典和集合" class="headerlink" title="第三章 字典和集合"></a>第三章 字典和集合</h4><p>dict 类型不但在各种程序里广泛使用，它也是 Python 语言的基石。模 块的命名空间、实例的属性和函数的关键字参数中都可以看到字典的身 影。跟它有关的内置函数都在 __builtins__.__dict__模块中。 </p>
+<h5 id="3-1-泛映射类型"><a href="#3-1-泛映射类型" class="headerlink" title="3.1 泛映射类型"></a>3.1 泛映射类型</h5><p>collections.abc 模块中有 Mapping 和 MutableMapping抽象基类，作用：为 dict 和其他类似的类型定义形式接口<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/16/phF9yJmY58XQAT1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">collections.abc 中的 MutableMapping 和它的超类 </span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">my_dict = &#123;&#125; <br><span class="hljs-built_in">isinstance</span>(my_dict, abc.Mapping) <br></code></pre></td></tr></table></figure>
+<p>只有可散列的数据类型才能用作这些映射里的键 __hash__() __eq__()<br>原子不可变数据类型（str、bytes和数值类型）是可散列类型，frozenset是可散列的，根据其定义，frozenset里只能容纳可散列类型。当元组包含的所有元素都是可散列类型，元组是可散列的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 字典的构造方法</span><br>a = <span class="hljs-built_in">dict</span>(one=<span class="hljs-number">1</span>, two=<span class="hljs-number">2</span>, three=<span class="hljs-number">3</span>) <br>b = &#123;<span class="hljs-string">&#x27;one&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;two&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;three&#x27;</span>: <span class="hljs-number">3</span>&#125; <br>c = <span class="hljs-built_in">dict</span>(<span class="hljs-built_in">zip</span>([<span class="hljs-string">&#x27;one&#x27;</span>, <span class="hljs-string">&#x27;two&#x27;</span>, <span class="hljs-string">&#x27;three&#x27;</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])) <br>d = <span class="hljs-built_in">dict</span>([(<span class="hljs-string">&#x27;two&#x27;</span>, <span class="hljs-number">2</span>), (<span class="hljs-string">&#x27;one&#x27;</span>, <span class="hljs-number">1</span>), (<span class="hljs-string">&#x27;three&#x27;</span>, <span class="hljs-number">3</span>)])<br>e = <span class="hljs-built_in">dict</span>(&#123;<span class="hljs-string">&#x27;three&#x27;</span>: <span class="hljs-number">3</span>, <span class="hljs-string">&#x27;one&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;two&#x27;</span>: <span class="hljs-number">2</span>&#125;) <br>a == b == c == d == e  <span class="hljs-comment"># True</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="3-2-字典推导"><a href="#3-2-字典推导" class="headerlink" title="3.2 字典推导"></a>3.2 字典推导</h5><p>字典推导（dictcomp）可以从任何以键值对作为元素的可迭代对象中构建出字典。</p>
+<h5 id="3-3-常见的映射方法"><a href="#3-3-常见的映射方法" class="headerlink" title="3.3 常见的映射方法"></a>3.3 常见的映射方法</h5><p>dict、collections.defaultdict和 collections.OrderedDict</p>
+<h5 id="3-4-映射的弹性键查询"><a href="#3-4-映射的弹性键查询" class="headerlink" title="3.4 映射的弹性键查询"></a>3.4 映射的弹性键查询</h5><p>defaultdict default_factory __getitem__ __missing__<br>StrKeyDict0在键不存在的情况下，把它转换为字符串<br>collections.UserDict</p>
+<h5 id="3-5-字典的变种"><a href="#3-5-字典的变种" class="headerlink" title="3.5 字典的变种"></a>3.5 字典的变种</h5><p>collections.OrderedDict<br>OrderedDict 的 popitem 方法默认删除并返回的是字典里的最后一个元素， my_odict.popitem(last=False)删除并返回第一个被添加进去的元素。<br>collections.ChainMap<br>collections.Counter<br>colllections.UserDict</p>
+<h5 id="3-6-子类化UserDict"><a href="#3-6-子类化UserDict" class="headerlink" title="3.6 子类化UserDict"></a>3.6 子类化UserDict</h5><p>MutableMapping.update<br>Mapping.get</p>
+<h5 id="3-7-不可变映射类型"><a href="#3-7-不可变映射类型" class="headerlink" title="3.7 不可变映射类型"></a>3.7 不可变映射类型</h5><p>types模块中引入了一个封装类名叫MappingProxyType。如果给这个类一个映射，它会返回一个只读的映射视图。虽然是个只读视图，但是它是动态的。</p>
+<h5 id="3-8-集合论"><a href="#3-8-集合论" class="headerlink" title="3.8 集合论"></a>3.8 集合论</h5><p>查看字节码：from dis import dis dis()<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/16/gl8xaWrEXOjnMHG.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">collections.abc中，MutableSet和它的超类的UML类图</span></p>
+<h5 id="3-9-dict和set背后"><a href="#3-9-dict和set背后" class="headerlink" title="3.9 dict和set背后"></a>3.9 dict和set背后</h5><p>键必须是可散列的；字典在内存上的开销巨大；键查询很快； 键的次序取决于添加次序；往字典里添加新键可能会改变已有键的顺序<br>不要对字典同时进行迭代和修改。</p>
+<h4 id="第四章-文本和字节序列"><a href="#第四章-文本和字节序列" class="headerlink" title="第四章 文本和字节序列"></a>第四章 文本和字节序列</h4><h5 id="4-1-字符问题"><a href="#4-1-字符问题" class="headerlink" title="4.1 字符问题"></a>4.1 字符问题</h5><p>一个字符串是一个字符序列<br>字符的标识，即码位，是 0<del>1 114 111 的数字（十进制），在 Unicode 标准中以 4</del>6 个十六进制数字表示，而且加前缀“U+”。<br>字符的具体表述取决于所用的编码<br>字符的具体表述取决于所用的编码。编码是在码位和字节序列之间转换时使用的算法。<br>把字节序列变成人类可读的文本字符串就是解码，而把字符串变成用于存储或传输的字节序列就是编码。 </p>
+<h5 id="4-2-字节概要"><a href="#4-2-字节概要" class="headerlink" title="4.2 字节概要"></a>4.2 字节概要</h5><p>Python内置了两种基本的二进制序列类型：Python 3 引入的不可变 bytes 类型和 Python 2.6 添加的可变 bytearray 类型。<br>bytes 或 bytearray 对象的各个元素是介于 0~255（含）之间的整数, XX对象的切片还是XX对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">cafe = <span class="hljs-built_in">bytes</span>(<span class="hljs-string">&#x27;café&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf_8&#x27;</span>)<br><span class="hljs-built_in">print</span>(cafe) <span class="hljs-comment"># b&#x27;caf\xc3\xa9&#x27; </span><br><span class="hljs-built_in">print</span>(cafe[<span class="hljs-number">0</span>], cafe[:<span class="hljs-number">1</span>]) <span class="hljs-comment"># 99  b&#x27;c&#x27; </span><br>cafe_arr = <span class="hljs-built_in">bytearray</span>(cafe) <br><span class="hljs-built_in">print</span>(cafe_arr) <span class="hljs-comment"># bytearray(b&#x27;caf\xc3\xa9&#x27;) </span><br><span class="hljs-built_in">print</span>(cafe_arr[-<span class="hljs-number">1</span>:] ) <span class="hljs-comment"># bytearray(b&#x27;\xa9&#x27;) </span><br></code></pre></td></tr></table></figure>
+<p>format format_map casefold isdecimal isidentifier isnumeric isprintable encode<br>endswith replace strip translate upper</p>
+<h5 id="4-3-基本的编解码器"><a href="#4-3-基本的编解码器" class="headerlink" title="4.3 基本的编解码器"></a>4.3 基本的编解码器</h5><p>典型编码：latin1（即 iso8859_1）； cp1252；cp437； gb2312； utf-8； utf-16le；</p>
+<h5 id="4-4-了解编解码问题"><a href="#4-4-了解编解码问题" class="headerlink" title="4.4 了解编解码问题"></a>4.4 了解编解码问题</h5><p>UnicodeError UnicodeEncodeError(把字符串转换成二进制序列时) UnicodeDecodeError(把二进制序列转换成字符串时) SyntaxError</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">city = <span class="hljs-string">&#x27;São Paulo&#x27;</span> <br>city.encode(<span class="hljs-string">&#x27;cp437&#x27;</span>, errors=<span class="hljs-string">&#x27;ignore&#x27;</span>) <br>city.encode(<span class="hljs-string">&#x27;cp437&#x27;</span>, errors=<span class="hljs-string">&#x27;replace&#x27;</span>) <br>city.encode(<span class="hljs-string">&#x27;cp437&#x27;</span>, errors=<span class="hljs-string">&#x27;xmlcharrefreplace&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<p>找出字节序列的编码：chardetect<br>UTF-16 编码的序列开头有几个额外的字节： b’\xff\xfe’。BOM，即字节序标记（byte-order mark），指明编码时使用 Intel CPU 的小字节序(最低有效字节在前面)。<br>UTF-8编码的U+FEFF字符是一个三字节序列：b’\xef\xbb\xbf’。</p>
+<h5 id="4-5-处理文本文件"><a href="#4-5-处理文本文件" class="headerlink" title="4.5 处理文本文件"></a>4.5 处理文本文件</h5><p>sys.getdefaultencoding()<br>locale.getpreferredencoding()<br>sys.getfilesystemencoding()用于编解码文件名（不是文件内容）</p>
+<h5 id="4-6-为了正确比较而规范化Unicode字符串"><a href="#4-6-为了正确比较而规范化Unicode字符串" class="headerlink" title="4.6 为了正确比较而规范化Unicode字符串"></a>4.6 为了正确比较而规范化Unicode字符串</h5><p>‘é’ 和 ‘e\u0301’ 这样的序列叫“标准等价物”(canonical equivalent)<br>使用unicodedata.normalize函数提供的Unicode规范化<br>‘NFC’、’NFD’、’NFKC’ 和 ‘NFKD’<br>NFC(Normalization Form C) NFD</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">shave_marks</span>(<span class="hljs-params">txt</span>):</span><br>	<span class="hljs-string">&quot;&quot;&quot;去掉全部变音符号&quot;&quot;&quot;</span><br>	norm_txt = unicodedata.normalize(<span class="hljs-string">&#x27;NFD&#x27;</span>, txt)<br>	shaved = <span class="hljs-string">&#x27;&#x27;</span>.join(c <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> norm_txt <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> unicodedata.combining(c))<br>	<span class="hljs-keyword">return</span> unicodedata.normalize(<span class="hljs-string">&#x27;NFC&#x27;</span>, shaved)<br>	<br>unicodedata.combining(c) <br></code></pre></td></tr></table></figure>
+<h5 id="4-7-Unicode文本排序"><a href="#4-7-Unicode文本排序" class="headerlink" title="4.7 Unicode文本排序"></a>4.7 Unicode文本排序</h5><p>非 ASCII 文本的标准排序方式是使用locale.strxfrm函数 “把字符串转换成适合所在区域进行比较的形式”</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> locale <br>locale.setlocale(locale.LC_COLLATE, <span class="hljs-string">&#x27;pt_BR.UTF-8&#x27;</span>) <br>fruits = [<span class="hljs-string">&#x27;caju&#x27;</span>, <span class="hljs-string">&#x27;atemoia&#x27;</span>, <span class="hljs-string">&#x27;cajá&#x27;</span>, <span class="hljs-string">&#x27;açaí&#x27;</span>, <span class="hljs-string">&#x27;acerola&#x27;</span>] <br>sorted_fruits = <span class="hljs-built_in">sorted</span>(fruits, key=locale.strxfrm) <br><span class="hljs-built_in">print</span>(sorted_fruits) <span class="hljs-comment"># [&#x27;açaí&#x27;, &#x27;acerola&#x27;, &#x27;atemoia&#x27;, &#x27;cajá&#x27;, &#x27;caju&#x27;]</span><br></code></pre></td></tr></table></figure>
+<p>PyUCA库（<a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/pyuca/%EF%BC%89%EF%BC%8C%E6%98%AFUnicode%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88Unicode">https://pypi.python.org/pypi/pyuca/），是Unicode排序算法（Unicode</a> Collation Algorithm，UCA）的纯Python实现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pyuca <br>coll = pyuca.Collator() <br>fruits = [<span class="hljs-string">&#x27;caju&#x27;</span>, <span class="hljs-string">&#x27;atemoia&#x27;</span>, <span class="hljs-string">&#x27;cajá&#x27;</span>, <span class="hljs-string">&#x27;açaí&#x27;</span>, <span class="hljs-string">&#x27;acerola&#x27;</span>] <br>sorted_fruits = <span class="hljs-built_in">sorted</span>(fruits, key=coll.sort_key) <br><span class="hljs-built_in">print</span>(sorted_fruits) <span class="hljs-comment"># [&#x27;açaí&#x27;, &#x27;acerola&#x27;, &#x27;atemoia&#x27;, &#x27;cajá&#x27;, &#x27;caju&#x27;] </span><br></code></pre></td></tr></table></figure>
+<p>如果想定制排序方式，可以把自定义的排序表路径传给Collator()构造方法。</p>
+<h5 id="4-9-支持字符串和字节序列的双模式API"><a href="#4-9-支持字符串和字节序列的双模式API" class="headerlink" title="4.9 支持字符串和字节序列的双模式API"></a>4.9 支持字符串和字节序列的双模式API</h5><p>如果使用字节序列构建正则表达式， \d和\w等模式只能匹配ASCII字符；相比之下，如果是字符串模式，就能匹配ASCII之外的Unicode数字或字母。<br><img    class="lazyload" data-original="https://s2.loli.net/2021/12/17/cRJwLIWGH3a9NUr.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">remanujan.py的输出结果</span><br>正则表达式re.ASCII标志：只匹配ASCII字符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">os.listdir(<span class="hljs-string">&#x27;.&#x27;</span>) <span class="hljs-comment"># [&#x27;abc.txt&#x27;, &#x27;digits-of-π.txt&#x27;] </span><br>os.listdir(<span class="hljs-string">b&#x27;.&#x27;</span>) <span class="hljs-comment"># [b&#x27;abc.txt&#x27;, b&#x27;digits-of-\xcf\x80.txt&#x27;]</span><br>pi_name_bytes = os.listdir(<span class="hljs-string">b&#x27;.&#x27;</span>)[<span class="hljs-number">1</span>]<br>pi_name_str = pi_name_bytes.decode(<span class="hljs-string">&#x27;ascii&#x27;</span>, <span class="hljs-string">&#x27;surrogateescape&#x27;</span>) <br><span class="hljs-built_in">print</span>(pi_name_str) <span class="hljs-comment"># &#x27;digits-of-\udccf\udc80.txt&#x27; </span><br>pi_name_str.encode(<span class="hljs-string">&#x27;ascii&#x27;</span>, <span class="hljs-string">&#x27;surrogateescape&#x27;</span>)  <span class="hljs-comment"># b&#x27;digits-of-\xcf\x80.txt </span><br></code></pre></td></tr></table></figure>
+<p>fsencode(filename):如果filename是str类型，使用sys.getfilesystemencoding()返回的编解码器把filename编码成字节序列；否则，返回未经修改的 filename 字节序列。<br>fsdecode(filename)：<br>Unix使用surrogateescape错误处理方式以避免遇到意外字节序列时卡住(把每个无法解码的字节替换成Unicode中U+DC00到U+DCFF之间的码位(Low Surrogate Area,保留码位，没有分配字符))。Windows使用strict<br>纯文本：只由特定标准的码位序列组成的计算机编码文本，其中不含其他格式化或结构化信息。 </p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/12/17/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/%E6%B5%81%E7%95%85%E7%9A%84Python/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;17&#x2F;%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3&#x2F;%E6%B5%81%E7%95%85%E7%9A%84Python&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;12&#x2F;17&#x2F;%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3&#x2F;%E6%B5%81%E7%95%85%E7%9A%84Python&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/01/07/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/MySQL%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/"><i class="iconfont iconleft"></i>MySQL必知必会</a>
+    <a href="/2021/12/11/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3/Learn_Python_in_12_Hours/">Learn Python in 12 Hours<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%95%85%E7%9A%84Python"><span class="toc-text">流畅的Python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E5%BA%8F%E5%B9%95"><span class="toc-text">第一部分 序幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">第二部分 数据结构</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Geometry几何 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="57. Insert Interval(插入区间)14...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Geometry几何</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Geometry几何</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 12, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>14919</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h2 id="57-Insert-Interval-插入区间"><a href="#57-Insert-Interval-插入区间" class="headerlink" title="57. Insert Interval(插入区间)"></a>57. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/insert-interval/">Insert Interval(插入区间)</a></h2><h2 id="149-Max-Points-on-a-Line-直线上最多的点数"><a href="#149-Max-Points-on-a-Line-直线上最多的点数" class="headerlink" title="149. Max Points on a Line(直线上最多的点数)"></a>149. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-points-on-a-line/">Max Points on a Line(直线上最多的点数)</a></h2><p>for each point count lines by slope count duplicated points</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxPoints</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> n = points.<span class="hljs-built_in">size</span>(); <br>		<span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>			map&lt;pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt;, <span class="hljs-keyword">int</span>&gt; count; <span class="hljs-comment">//&#123;&#123;dy,dx&#125;,点的数量&#125;</span><br>			<span class="hljs-keyword">int</span> same_points = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">int</span> max_points = <span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; p1 = points[i];<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; n; ++j)&#123;<br>				<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; p2 = points[j];<br>				<span class="hljs-keyword">if</span> (p1[<span class="hljs-number">0</span>] == p2[<span class="hljs-number">0</span>] &amp;&amp; p1[<span class="hljs-number">1</span>] == p2[<span class="hljs-number">1</span>])<br>					same_points++;<br>				<span class="hljs-keyword">else</span><br>					max_points = <span class="hljs-built_in">max</span>(max_points, ++count[<span class="hljs-built_in">getSlope</span>(p1, p2)]);<br>			&#125;<br>			ans = <span class="hljs-built_in">max</span>(ans, same_points + max_points);   <br>		&#125;<br>		<span class="hljs-keyword">return</span> ans;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-function">pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">getSlope</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; p1, <span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; p2)</span></span>&#123;<br>		<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> dx = p2[<span class="hljs-number">0</span>] - p1[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> dy = p2[<span class="hljs-number">1</span>] - p1[<span class="hljs-number">1</span>];<br>		<span class="hljs-comment">// horizontal line</span><br>        <span class="hljs-keyword">if</span> (dy == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> &#123; p1[<span class="hljs-number">1</span>], <span class="hljs-number">0</span> &#125;;<br>        <span class="hljs-comment">// vertical line</span><br>        <span class="hljs-keyword">if</span> (dx == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> &#123; <span class="hljs-number">0</span>, p1[<span class="hljs-number">0</span>] &#125;;<br>		<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> d = <span class="hljs-built_in">gcd</span>(dx, dy);<br>		<span class="hljs-keyword">return</span> &#123;dy/d, dx/d&#125;;<br>	&#125;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n)</span></span>&#123;<br>		<span class="hljs-keyword">return</span> n == <span class="hljs-number">0</span> ? m : <span class="hljs-built_in">gcd</span>(n, m%n);<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="391-Perfect-Rectangle-完美矩阵"><a href="#391-Perfect-Rectangle-完美矩阵" class="headerlink" title="391. Perfect Rectangle(完美矩阵)"></a>391. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/perfect-rectangle/">Perfect Rectangle(完美矩阵)</a></h2><p>Requirement:</p>
+<ol>
+<li>Exact 4 corners (unmatched points)</li>
+<li>sum(area) = area of 4-corner enclosed area<br>use a hashtable to store all unmatched points<br>Time complexity: O(n)</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isRectangleCover</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; rectangles)</span> </span>&#123;<br>		set&lt;pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt;&gt; corners;<br>		<span class="hljs-keyword">int</span> area = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; rect : rectangles)&#123;<br>			pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; p1 = &#123;rect[<span class="hljs-number">0</span>],rect[<span class="hljs-number">1</span>]&#125;;<br>			pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; p2 = &#123;rect[<span class="hljs-number">2</span>],rect[<span class="hljs-number">1</span>]&#125;;<br>			pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; p3 = &#123;rect[<span class="hljs-number">2</span>],rect[<span class="hljs-number">3</span>]&#125;;<br>			pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; p4 = &#123;rect[<span class="hljs-number">0</span>],rect[<span class="hljs-number">3</span>]&#125;;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; p : &#123;p1,p2,p3,p4&#125;)&#123;<br>				<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; ret = corners.<span class="hljs-built_in">insert</span>(p);<br>				<span class="hljs-keyword">if</span> (!ret.second) corners.<span class="hljs-built_in">erase</span>(ret.first);<br>			&#125;<br>			area += (p3.first - p1.first) * (p3.second - p1.second);<br>		&#125;<br>        <span class="hljs-keyword">if</span>(corners.<span class="hljs-built_in">size</span>() != <span class="hljs-number">4</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; p1 = *<span class="hljs-built_in">begin</span>(corners);<br>		<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; p3 = *<span class="hljs-built_in">rbegin</span>(corners);<br>		<span class="hljs-keyword">return</span> area == (p3.first - p1.first) * (p3.second - p1.second);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="452-Minimum-Number-of-Arrows-to-Burst-Balloons-用最少数量的箭引爆气球"><a href="#452-Minimum-Number-of-Arrows-to-Burst-Balloons-用最少数量的箭引爆气球" class="headerlink" title="452. Minimum Number of Arrows to Burst Balloons(用最少数量的箭引爆气球)"></a>452. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/">Minimum Number of Arrows to Burst Balloons(用最少数量的箭引爆气球)</a></h2><h2 id="699-Falling-Squares-掉落的方块"><a href="#699-Falling-Squares-掉落的方块" class="headerlink" title="699. Falling Squares(掉落的方块)"></a>699. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/falling-squares/">Falling Squares(掉落的方块)</a></h2><h3 id="方法一：Brute-Force"><a href="#方法一：Brute-Force" class="headerlink" title="方法一：Brute Force"></a>方法一：Brute Force</h3><p>Time Complexity: O(n^2)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">fallingSquares</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; positions)</span> </span>&#123;<br>		vector&lt;<span class="hljs-keyword">int</span>&gt; ans;<br>        vector&lt;Interval&gt; intervals;<br>        <span class="hljs-keyword">int</span> maxHeight = INT_MIN;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; kv: positions)&#123;<br>			vector&lt;Interval&gt; tmp;<br>            <span class="hljs-keyword">int</span> start = kv.first;<br>            <span class="hljs-keyword">int</span> end = start + kv.second;            <br>            <span class="hljs-keyword">int</span> baseHeight = <span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> Interval&amp; interval : intervals) &#123;<br>				<span class="hljs-keyword">if</span> (interval.start &gt;= end || interval.end &lt;= start)&#123;<br>					tmp.<span class="hljs-built_in">push_back</span>(interval);                <br>                    <span class="hljs-keyword">continue</span>;<br>				&#125;<br>				baseHeight = <span class="hljs-built_in">max</span>(baseHeight, interval.height);<br>				<span class="hljs-keyword">if</span> (interval.start &lt; start || interval.end &gt; end)<br>                    tmp.<span class="hljs-built_in">push_back</span>(interval);<br>			&#125;<br>			<span class="hljs-keyword">int</span> height = kv.second + baseHeight;<br>            tmp.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">Interval</span>(start, end, height));<br>            intervals.<span class="hljs-built_in">swap</span>(tmp);<br>            maxHeight = <span class="hljs-built_in">max</span>(maxHeight, height);<br>            ans.<span class="hljs-built_in">push_back</span>(maxHeight);<br>		&#125;<br>		<span class="hljs-keyword">return</span> ans;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Interval</span> &#123;</span><br>        <span class="hljs-keyword">int</span> start;<br>        <span class="hljs-keyword">int</span> end;<br>        <span class="hljs-keyword">int</span> height;<br>        <span class="hljs-built_in">Interval</span>(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end, <span class="hljs-keyword">int</span> height) <br>            : <span class="hljs-built_in">start</span>(start), <span class="hljs-built_in">end</span>(end), <span class="hljs-built_in">height</span>(height) &#123;&#125;<br>    &#125;;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="方法二：Map"><a href="#方法二：Map" class="headerlink" title="方法二：Map"></a>方法二：Map</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">fallingSquares</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; positions)</span> </span>&#123;<br>		vector&lt;<span class="hljs-keyword">int</span>&gt; ans;<br>        map&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;, <span class="hljs-keyword">int</span>&gt; b; <span class="hljs-comment">// &#123;&#123;start, end&#125;, height&#125; </span><br>        <span class="hljs-keyword">int</span> maxHeight = INT_MIN;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; kv: positions)&#123;<br>            <span class="hljs-keyword">int</span> start = kv[<span class="hljs-number">0</span>];<br>			<span class="hljs-keyword">int</span> size = kv[<span class="hljs-number">1</span>];<br>            <span class="hljs-keyword">int</span> end = start + size;<br>			<span class="hljs-keyword">auto</span> it = b.<span class="hljs-built_in">upper_bound</span>(&#123;start, end&#125;);<br>			<span class="hljs-keyword">if</span> (it != b.<span class="hljs-built_in">begin</span>())&#123;<br>				<span class="hljs-keyword">auto</span> it2 = it;<br>				<span class="hljs-keyword">if</span> ((--it2)-&gt;first.second &gt; start) it = it2;<br>			&#125;<br>            <span class="hljs-keyword">int</span> baseHeight = <span class="hljs-number">0</span>;<br>			vector&lt;tuple&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt;&gt; ranges;<br>			<br>			<span class="hljs-keyword">while</span> (it != b.<span class="hljs-built_in">end</span>() &amp;&amp; it-&gt;first.first &lt; end)&#123;<br>				<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> s = it-&gt;first.first;<br>				<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> e = it-&gt;first.second;<br>				<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> h = it-&gt;second;<br>				<span class="hljs-keyword">if</span> (s &lt; start) ranges.<span class="hljs-built_in">emplace_back</span>(s,start,h);<br>				<span class="hljs-keyword">if</span> (e &gt; end) ranges.<span class="hljs-built_in">emplace_back</span>(end, e, h);<br>				baseHeight = <span class="hljs-built_in">max</span>(baseHeight, h);<br>				it = b.<span class="hljs-built_in">erase</span>(it);<br>			&#125;<br>			<br>			<span class="hljs-keyword">int</span> newHeight = size + baseHeight;<br>			b[&#123;start, end&#125;] = newHeight;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; range : ranges)<br>				b[&#123;get&lt;<span class="hljs-number">0</span>&gt;(range), get&lt;<span class="hljs-number">1</span>&gt;(range)&#125;] = get&lt;<span class="hljs-number">2</span>&gt;(range);<br>            maxHeight = <span class="hljs-built_in">max</span>(maxHeight, newHeight);<br>            ans.<span class="hljs-built_in">push_back</span>(maxHeight);<br>		&#125;<br>		<span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="759-Employee-Free-Time-员工空闲时间"><a href="#759-Employee-Free-Time-员工空闲时间" class="headerlink" title="759. Employee Free Time(员工空闲时间)"></a>759. <a href="">Employee Free Time(员工空闲时间)</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;Interval&gt; <span class="hljs-title">employeeFreeTime</span><span class="hljs-params">(vector&lt;vector&lt;Interval&gt;&gt;&amp; schedule)</span> </span>&#123;<br>      vector&lt;Interval&gt; all;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> intervals : schedule)<br>        all.<span class="hljs-built_in">insert</span>(all.<span class="hljs-built_in">end</span>(), intervals.<span class="hljs-built_in">begin</span>(), intervals.<span class="hljs-built_in">end</span>());<br>      std::<span class="hljs-built_in">sort</span>(all.<span class="hljs-built_in">begin</span>(), all.<span class="hljs-built_in">end</span>(), <br>                [](<span class="hljs-keyword">const</span> Interval&amp; a, <span class="hljs-keyword">const</span> Interval&amp; b)&#123;<br>                  <span class="hljs-keyword">return</span> a.start &lt; b.start;<br>                &#125;);<br>      vector&lt;Interval&gt; ans;<br>      <span class="hljs-keyword">int</span> end = all.<span class="hljs-built_in">front</span>().end;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> Interval&amp; busy : all) &#123;<br>        <span class="hljs-keyword">if</span> (busy.start &gt; end) <br>          ans.<span class="hljs-built_in">emplace_back</span>(end, busy.start);  <br>        end = <span class="hljs-built_in">max</span>(end, busy.end);<br>      &#125;<br>      <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Related-Problems-732-731-729"><a href="#Related-Problems-732-731-729" class="headerlink" title="Related Problems : 732 731 729"></a>Related Problems : 732 731 729</h2><h2 id="732-My-Calendar-III-我的日程安排表III"><a href="#732-My-Calendar-III-我的日程安排表III" class="headerlink" title="732. My Calendar III(我的日程安排表III)"></a>732. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/my-calendar-iii/">My Calendar III(我的日程安排表III)</a></h2><h3 id="方法一：Count-Boundaries"><a href="#方法一：Count-Boundaries" class="headerlink" title="方法一：Count Boundaries"></a>方法一：Count Boundaries</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCalendarThree</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MyCalendarThree</span>() &#123;<br><br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>		++deltas_[start];<br>        --deltas_[end];<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> curr = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; kv : deltas_)            <br>            ans = <span class="hljs-built_in">max</span>(ans, curr += kv.second);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; deltas_;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your MyCalendarThree object will be instantiated and called as such:</span><br><span class="hljs-comment"> * MyCalendarThree* obj = new MyCalendarThree();</span><br><span class="hljs-comment"> * int param_1 = obj-&gt;book(start,end);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="方法二：Increment-the-Intersection-regions"><a href="#方法二：Increment-the-Intersection-regions" class="headerlink" title="方法二：Increment the Intersection regions"></a>方法二：Increment the Intersection regions</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCalendarThree</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MyCalendarThree</span>() &#123;<br>        counts_[INT_MIN] = <span class="hljs-number">0</span>;<br>        counts_[INT_MAX] = <span class="hljs-number">0</span>;<br>        max_count_ = <span class="hljs-number">0</span>;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;        <br>        <span class="hljs-keyword">auto</span> l = <span class="hljs-built_in">prev</span>(counts_.<span class="hljs-built_in">upper_bound</span>(start));   <span class="hljs-comment">// l-&gt;first &lt; start</span><br>        <span class="hljs-keyword">auto</span> r = counts_.<span class="hljs-built_in">lower_bound</span>(end);           <span class="hljs-comment">// r-&gt;first &gt;= end</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> curr = l, next = curr; curr != r; curr = next) &#123;<br>            ++next;<br>            <br>            <span class="hljs-keyword">if</span> (next-&gt;first &gt; end)<br>                counts_[end] = curr-&gt;second;<br>            <br>            <span class="hljs-keyword">if</span> (curr-&gt;first &lt;= start &amp;&amp; next-&gt;first &gt; start)<br>                max_count_ = <span class="hljs-built_in">max</span>(max_count_, counts_[start] = curr-&gt;second + <span class="hljs-number">1</span>);            <br>            <span class="hljs-keyword">else</span><br>                max_count_ = <span class="hljs-built_in">max</span>(max_count_, ++curr-&gt;second);<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> max_count_;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; counts_;<br>    <span class="hljs-keyword">int</span> max_count_;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="方法三：Segment-Tree"><a href="#方法三：Segment-Tree" class="headerlink" title="方法三：Segment Tree"></a>方法三：Segment Tree</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCalendarThree</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MyCalendarThree</span>(): <span class="hljs-built_in">max_count_</span>(<span class="hljs-number">0</span>) &#123;<br>        root_.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100000000</span>, <span class="hljs-number">0</span>));        <br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>        <span class="hljs-built_in">Add</span>(start, end, root_.<span class="hljs-built_in">get</span>());<br>        <span class="hljs-keyword">return</span> max_count_;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>        <span class="hljs-built_in">Node</span>(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> count):<span class="hljs-built_in">l</span>(l), <span class="hljs-built_in">m</span>(<span class="hljs-number">-1</span>), <span class="hljs-built_in">r</span>(r), <span class="hljs-built_in">count</span>(count)&#123;&#125;<br>        <span class="hljs-keyword">int</span> l;<br>        <span class="hljs-keyword">int</span> m;<br>        <span class="hljs-keyword">int</span> r;<br>        <span class="hljs-keyword">int</span> count;<br>        std::unique_ptr&lt;Node&gt; left;<br>        std::unique_ptr&lt;Node&gt; right;<br>    &#125;;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end, Node* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (root-&gt;m != <span class="hljs-number">-1</span>) &#123;<br>            <span class="hljs-keyword">if</span> (end &lt;= root-&gt;m) <br>                <span class="hljs-built_in">Add</span>(start, end, root-&gt;left.<span class="hljs-built_in">get</span>());<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(start &gt;= root-&gt;m)<br>                <span class="hljs-built_in">Add</span>(start, end, root-&gt;right.<span class="hljs-built_in">get</span>());<br>            <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-built_in">Add</span>(start, root-&gt;m, root-&gt;left.<span class="hljs-built_in">get</span>());<br>                <span class="hljs-built_in">Add</span>(root-&gt;m, end, root-&gt;right.<span class="hljs-built_in">get</span>());<br>            &#125;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <br>        <span class="hljs-keyword">if</span> (start == root-&gt;l &amp;&amp; end == root-&gt;r)<br>            max_count_ = <span class="hljs-built_in">max</span>(max_count_, ++root-&gt;count);<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (start == root-&gt;l) &#123;<br>            root-&gt;m = end;<br>            root-&gt;left.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(start, root-&gt;m, root-&gt;count + <span class="hljs-number">1</span>));<br>            root-&gt;right.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(root-&gt;m, root-&gt;r, root-&gt;count));<br>            max_count_ = <span class="hljs-built_in">max</span>(max_count_, root-&gt;count + <span class="hljs-number">1</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(end == root-&gt;r) &#123;<br>            root-&gt;m = start;<br>            root-&gt;left.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(root-&gt;l, root-&gt;m, root-&gt;count));<br>            root-&gt;right.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(root-&gt;m, root-&gt;r, root-&gt;count + <span class="hljs-number">1</span>));<br>            max_count_ = <span class="hljs-built_in">max</span>(max_count_, root-&gt;count + <span class="hljs-number">1</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            root-&gt;m = start;<br>            root-&gt;left.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(root-&gt;l, root-&gt;m, root-&gt;count));<br>            root-&gt;right.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(root-&gt;m, root-&gt;r, root-&gt;count));<br>            <span class="hljs-built_in">Add</span>(start, end, root-&gt;right.<span class="hljs-built_in">get</span>());<br>        &#125;<br>    &#125;<br>    <br>    std::unique_ptr&lt;Node&gt; root_;<br>    <span class="hljs-keyword">int</span> max_count_;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="731-My-Calendar-II-我的日程安排表II"><a href="#731-My-Calendar-II-我的日程安排表II" class="headerlink" title="731. My Calendar II(我的日程安排表II)"></a>731. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/my-calendar-ii/">My Calendar II(我的日程安排表II)</a></h2><h3 id="方法一：Brute-Force-1"><a href="#方法一：Brute-Force-1" class="headerlink" title="方法一：Brute Force"></a>方法一：Brute Force</h3><p>Store all events and all overlaps<br>注意判断区间是否有重叠部分的条件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCalendarTwo</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MyCalendarTwo</span>() &#123;<br><br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>		<span class="hljs-comment">//当前区间和现有区间的重叠部分重叠，返回false</span><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; kv : overlaps_)<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">max</span>(start, kv.first) &lt; <span class="hljs-built_in">min</span>(end, kv.second)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>		<span class="hljs-comment">//当前区间和现有区间是否有重合部分，如果有则将重叠部分加入overlaps_</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; kv : booked_) &#123;<br>            <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ss = <span class="hljs-built_in">max</span>(start, kv.first);<br>            <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ee = <span class="hljs-built_in">min</span>(end, kv.second);<br>            <span class="hljs-keyword">if</span> (ss &lt; ee) overlaps_.<span class="hljs-built_in">emplace_back</span>(ss, ee);<br>        &#125;<br>        <br>        booked_.<span class="hljs-built_in">emplace_back</span>(start, end);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br><br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    vector&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; booked_;<br>    vector&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; overlaps_;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your MyCalendarTwo object will be instantiated and called as such:</span><br><span class="hljs-comment"> * MyCalendarTwo* obj = new MyCalendarTwo();</span><br><span class="hljs-comment"> * bool param_1 = obj-&gt;book(start,end);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="方法二：Count-Boundaries"><a href="#方法二：Count-Boundaries" class="headerlink" title="方法二：Count Boundaries"></a>方法二：Count Boundaries</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCalendarTwo</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MyCalendarTwo</span>() &#123;<br><br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>		++deltas_[start];<br>        --deltas_[end];<br>        <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; kv : deltas_)&#123;<br>			count += kv.second;<br>			<span class="hljs-keyword">if</span> (count == <span class="hljs-number">3</span>)&#123;<br>				--deltas_[start];<br>				++deltas_[end];<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			&#125;<br>			<span class="hljs-keyword">if</span> (kv.first &gt; end) <span class="hljs-keyword">break</span>;<br>		&#125;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;	<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; deltas_;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your MyCalendarTwo object will be instantiated and called as such:</span><br><span class="hljs-comment"> * MyCalendarTwo* obj = new MyCalendarTwo();</span><br><span class="hljs-comment"> * bool param_1 = obj-&gt;book(start,end);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="729-My-Calendar-I-我的日程安排表I"><a href="#729-My-Calendar-I-我的日程安排表I" class="headerlink" title="729. My Calendar I(我的日程安排表I)"></a>729. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/my-calendar-i/">My Calendar I(我的日程安排表I)</a></h2><h3 id="方法一：Brute-Force-2"><a href="#方法一：Brute-Force-2" class="headerlink" title="方法一：Brute Force"></a>方法一：Brute Force</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCalendar</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>    vector&lt;pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt;&gt; booked_;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MyCalendar</span>() &#123;<br>        <br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt;&amp; event : booked_)&#123;<br>            <span class="hljs-keyword">int</span> s = event.first;<br>            <span class="hljs-keyword">int</span> e = event.second;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">max</span>(s,start) - <span class="hljs-built_in">min</span>(e,end) &lt; <span class="hljs-number">0</span>)<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        booked_.<span class="hljs-built_in">emplace_back</span>(start,end);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="方法二：Binary-Search"><a href="#方法二：Binary-Search" class="headerlink" title="方法二：Binary Search"></a>方法二：Binary Search</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCalendar</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>   map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; booked_;<br>   <br>    <br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MyCalendar</span>() &#123;<br>        <br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>        map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt;::iterator it = booked_.<span class="hljs-built_in">upper_bound</span>(start);<br>        <span class="hljs-keyword">if</span> (it != booked_.<span class="hljs-built_in">cend</span>() &amp;&amp; it-&gt;first &lt; end)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">if</span> (it != booked_.<span class="hljs-built_in">cbegin</span>() &amp;&amp; (--it)-&gt;second &gt; start)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        booked_[start] = end;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your MyCalendar object will be instantiated and called as such:</span><br><span class="hljs-comment"> * MyCalendar* obj = new MyCalendar();</span><br><span class="hljs-comment"> * bool param_1 = obj-&gt;book(start,end);</span><br><span class="hljs-comment"> */</span><br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="973-K-Closest-Points-to-Origin-最接近原点和K个点"><a href="#973-K-Closest-Points-to-Origin-最接近原点和K个点" class="headerlink" title="973. K Closest Points to Origin(最接近原点和K个点)"></a>973. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/k-closest-points-to-origin/">K Closest Points to Origin(最接近原点和K个点)</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">kClosest</span>(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; points, <span class="hljs-keyword">int</span> k) &#123;<br>		vector&lt;pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt;&gt; toSort;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; points.<span class="hljs-built_in">size</span>(); i++)&#123;<br>			toSort.<span class="hljs-built_in">emplace_back</span>(points[i][<span class="hljs-number">0</span>] * points[i][<span class="hljs-number">0</span>] + points[i][<span class="hljs-number">1</span>] * points[i][<span class="hljs-number">1</span>], i);<br>		&#125;<br>		<span class="hljs-built_in">sort</span>(toSort.<span class="hljs-built_in">begin</span>(), toSort.<span class="hljs-built_in">end</span>());<br>		vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; ans;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++)<br>			ans.<span class="hljs-built_in">push_back</span>(points[toSort[i].second]);<br>		<span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="1610-Maximum-Number-of-Visible-Points-可见点的最大数目"><a href="#1610-Maximum-Number-of-Visible-Points-可见点的最大数目" class="headerlink" title="1610. Maximum Number of Visible Points(可见点的最大数目)"></a>1610. <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-number-of-visible-points/">Maximum Number of Visible Points(可见点的最大数目)</a></h2><h3 id="方法一：Sliding-Window"><a href="#方法一：Sliding-Window" class="headerlink" title="方法一：Sliding Window"></a>方法一：Sliding Window</h3><ol>
+<li>Transfer the coordinate system, treat location[0], location[1] as original</li>
+<li>Compute the angle of each point w.r.t to new origin, <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="15.416ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 6637.2 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">angle \in (-\pi,\pi]</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-67" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6C" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-3C0" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-61" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-6E" x="529" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-67" x="1130" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-6C" x="1610" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-65" x="1909" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2208" x="2653" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-28" x="3598" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2212" x="3988" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-3C0" x="4766" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2C" x="5340" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-3C0" x="5785" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-5D" x="6358" y="0"></use>
+</g>
+</svg></li>
+<li>sort all the angles</li>
+<li>Maintain a window [l, r] s.t. angle[r] - angle[l] &lt;= FOV</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">visiblePoints</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; points, <span class="hljs-keyword">int</span> angle, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; location)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> at_origin = <span class="hljs-number">0</span>;<br>		vector&lt;<span class="hljs-keyword">double</span>&gt; ps;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; p : points)&#123;<br>			<span class="hljs-keyword">if</span> (p[<span class="hljs-number">0</span>] == location[<span class="hljs-number">0</span>] &amp;&amp; p[<span class="hljs-number">1</span>] == location[<span class="hljs-number">1</span>])<br>				++at_origin;<br>			<span class="hljs-keyword">else</span><br>				ps.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">atan2</span>(p[<span class="hljs-number">1</span>] - location[<span class="hljs-number">1</span>], p[<span class="hljs-number">0</span>] - location[<span class="hljs-number">0</span>]));<br>		&#125;<br>		<span class="hljs-built_in">sort</span>(<span class="hljs-built_in">begin</span>(ps), <span class="hljs-built_in">end</span>(ps));<br>		<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> n = ps.<span class="hljs-built_in">size</span>();<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)<br>			ps.<span class="hljs-built_in">push_back</span>(ps[i] + <span class="hljs-number">2.0</span> * M_PI); <span class="hljs-comment">// duplicate the array +2PI</span><br>		<span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">double</span> fov = angle * M_PI / <span class="hljs-number">180.0</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>; r &lt; ps.<span class="hljs-built_in">size</span>(); ++r) &#123;<br>			<span class="hljs-keyword">while</span> (ps[r] - ps[l] &gt; fov) ++l;<br>			ans = <span class="hljs-built_in">max</span>(ans, r - l + <span class="hljs-number">1</span>);<br>		&#125;<br>		<span class="hljs-keyword">return</span> ans + at_origin;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h2><p>double atan2 (double y, double x);<br>Compute arc tangent with two parameters<br>Returns the principal value of the arc tangent of y/x, expressed in radians.<br>To compute the value, the function takes into account the sign of both arguments in order to determine the quadrant.<br>弧度和角度之间的换算关系：2π弧度=360° 1弧度 = 180°/π * 1角度   1角度 = π/180° * 1弧度</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/12/LeetCode/Geometry%E5%87%A0%E4%BD%95/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;12&#x2F;LeetCode&#x2F;Geometry%E5%87%A0%E4%BD%95&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;12&#x2F;LeetCode&#x2F;Geometry%E5%87%A0%E4%BD%95&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Greedy-Algorithm/" rel="tag">Greedy Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag">贪心算法</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/14/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C/"><i class="iconfont iconleft"></i>Linux命令行</a>
+    <a href="/2021/07/12/LeetCode/Simulation%E6%A8%A1%E6%8B%9F/">Simulation模拟<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#57-Insert-Interval-%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4"><span class="toc-text">57. Insert Interval(插入区间)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#149-Max-Points-on-a-Line-%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0"><span class="toc-text">149. Max Points on a Line(直线上最多的点数)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#391-Perfect-Rectangle-%E5%AE%8C%E7%BE%8E%E7%9F%A9%E9%98%B5"><span class="toc-text">391. Perfect Rectangle(完美矩阵)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#452-Minimum-Number-of-Arrows-to-Burst-Balloons-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83"><span class="toc-text">452. Minimum Number of Arrows to Burst Balloons(用最少数量的箭引爆气球)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#699-Falling-Squares-%E6%8E%89%E8%90%BD%E7%9A%84%E6%96%B9%E5%9D%97"><span class="toc-text">699. Falling Squares(掉落的方块)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9ABrute-Force"><span class="toc-text">方法一：Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9AMap"><span class="toc-text">方法二：Map</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#759-Employee-Free-Time-%E5%91%98%E5%B7%A5%E7%A9%BA%E9%97%B2%E6%97%B6%E9%97%B4"><span class="toc-text">759. Employee Free Time(员工空闲时间)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Related-Problems-732-731-729"><span class="toc-text">Related Problems : 732 731 729</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#732-My-Calendar-III-%E6%88%91%E7%9A%84%E6%97%A5%E7%A8%8B%E5%AE%89%E6%8E%92%E8%A1%A8III"><span class="toc-text">732. My Calendar III(我的日程安排表III)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9ACount-Boundaries"><span class="toc-text">方法一：Count Boundaries</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9AIncrement-the-Intersection-regions"><span class="toc-text">方法二：Increment the Intersection regions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9ASegment-Tree"><span class="toc-text">方法三：Segment Tree</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#731-My-Calendar-II-%E6%88%91%E7%9A%84%E6%97%A5%E7%A8%8B%E5%AE%89%E6%8E%92%E8%A1%A8II"><span class="toc-text">731. My Calendar II(我的日程安排表II)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9ABrute-Force-1"><span class="toc-text">方法一：Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9ACount-Boundaries"><span class="toc-text">方法二：Count Boundaries</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#729-My-Calendar-I-%E6%88%91%E7%9A%84%E6%97%A5%E7%A8%8B%E5%AE%89%E6%8E%92%E8%A1%A8I"><span class="toc-text">729. My Calendar I(我的日程安排表I)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9ABrute-Force-2"><span class="toc-text">方法一：Brute Force</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9ABinary-Search"><span class="toc-text">方法二：Binary Search</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#973-K-Closest-Points-to-Origin-%E6%9C%80%E6%8E%A5%E8%BF%91%E5%8E%9F%E7%82%B9%E5%92%8CK%E4%B8%AA%E7%82%B9"><span class="toc-text">973. K Closest Points to Origin(最接近原点和K个点)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1610-Maximum-Number-of-Visible-Points-%E5%8F%AF%E8%A7%81%E7%82%B9%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE"><span class="toc-text">1610. Maximum Number of Visible Points(可见点的最大数目)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9ASliding-Window"><span class="toc-text">方法一：Sliding Window</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3"><span class="toc-text">相关</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

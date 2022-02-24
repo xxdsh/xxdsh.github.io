@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第五章_文件与 IO - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="5.1 读写文本数据使用带有rt模式的open()函数...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第五章_文件与 IO</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB%E5%B0%8F%E8%AE%B0%E5%BD%95/img-1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第五章_文件与 IO</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 15, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4478</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="5-1-读写文本数据"><a href="#5-1-读写文本数据" class="headerlink" title="5.1 读写文本数据"></a>5.1 读写文本数据</h4><p>使用带有rt模式的open()函数读取文本文件。<br>系统编码 sys.getdefaultencoding()<br>ascii, latin-1, utf-8 和 utf-16<br>当读取一个未知编码的文本时使用 latin-1 编码永远不会产生解码错误。<br>参数 newline=’’ 参数 encoding=’ascii’ 参数 errors=’replace’</p>
+<h4 id="5-2-打印输出至文件中"><a href="#5-2-打印输出至文件中" class="headerlink" title="5.2 打印输出至文件中"></a>5.2 打印输出至文件中</h4><p>文件必须是以文本模式打开。<br>print(‘Hello World!’, file=f) </p>
+<h4 id="5-3-使用其他分隔符或行终止符打印"><a href="#5-3-使用其他分隔符或行终止符打印" class="headerlink" title="5.3 使用其他分隔符或行终止符打印"></a>5.3 使用其他分隔符或行终止符打印</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;ACME&#x27;</span>, <span class="hljs-number">50</span>, <span class="hljs-number">91.5</span>, sep=<span class="hljs-string">&#x27;,&#x27;</span>, end=<span class="hljs-string">&#x27;!!\n&#x27;</span>) <br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;,&#x27;</span>.join((<span class="hljs-string">&#x27;ACME&#x27;</span>,<span class="hljs-string">&#x27;50&#x27;</span>,<span class="hljs-string">&#x27;91.5&#x27;</span>))) <br></code></pre></td></tr></table></figure>
+<h4 id="5-4-读写字节数据"><a href="#5-4-读写字节数据" class="headerlink" title="5.4 读写字节数据"></a>5.4 读写字节数据</h4><p>使用模式为rb或wb的open()函数来读取或写入二进制数据。<br>索引和迭代动作返回的是字节的值而不是字节字符串。<br>从二进制模式的文件中读取或写入文本数据，必须确保要进行解码和编码操作。<br>数组和 C 结构体类型能直接被写入<br>”缓冲接口” 直接暴露其底层的内存缓冲区给能处理它的操作<br>文件对象的readinto()方法直接读取二进制数据到其底层的内存中去</p>
+<h4 id="5-5-文件不存在才能写入"><a href="#5-5-文件不存在才能写入" class="headerlink" title="5.5 文件不存在才能写入"></a>5.5 文件不存在才能写入</h4><p>可以在 open() 函数中使用 x 模式来代替 w 模式</p>
+<h4 id="5-6-字符串的-I-O-操作"><a href="#5-6-字符串的-I-O-操作" class="headerlink" title="5.6 字符串的 I/O 操作"></a>5.6 字符串的 I/O 操作</h4><p>使用io.StringIO()和io.BytesIO()类来创建类文件对象操作字符串数据。<br>StringIO和BytesIO实例并没有正确的整数类型的文件描述符。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">s = io.StringIO() <br>s.write(<span class="hljs-string">&#x27;Hello World\n&#x27;</span>) <br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;This is a test&#x27;</span>, file=s) <br>s.getvalue() <br>s = io.StringIO(<span class="hljs-string">&#x27;Hello\nWorld\n&#x27;</span>) <br>s.read(<span class="hljs-number">4</span>) <br></code></pre></td></tr></table></figure>
+
+<h4 id="5-7-读写压缩文件"><a href="#5-7-读写压缩文件" class="headerlink" title="5.7 读写压缩文件"></a>5.7 读写压缩文件</h4><p>gzip.open(‘somefile.gz’, ‘rt’)<br>bz2.open(‘somefile.bz2’, ‘rt’)<br>写入压缩数据时，可以使用compresslevel这个可选的关键字参数来指定一个压缩级别。<br>默认的等级是9，也是最高的压缩等级。等级越低性能越好，但是数据压缩程度也越低。</p>
+<h4 id="5-8-固定大小记录的文件迭代"><a href="#5-8-固定大小记录的文件迭代" class="headerlink" title="5.8 固定大小记录的文件迭代"></a>5.8 固定大小记录的文件迭代</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">records = <span class="hljs-built_in">iter</span>(partial(f.read, RECORD_SIZE), <span class="hljs-string">b&#x27;&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="5-9-读取二进制数据到可变缓冲区中"><a href="#5-9-读取二进制数据到可变缓冲区中" class="headerlink" title="5.9 读取二进制数据到可变缓冲区中"></a>5.9 读取二进制数据到可变缓冲区中</h4><p>文件对象的readinto()方法能被用来为预先分配内存的数组填充数据<br>memoryview可以通过零复制的方式对已存在的缓冲区执行切片操作，甚至还能修改它的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">buf = <span class="hljs-built_in">bytearray</span>(os.path.getsize(filename)) <br>f.readinto(buf) <br></code></pre></td></tr></table></figure>
+<h4 id="5-10-内存映射的二进制文件"><a href="#5-10-内存映射的二进制文件" class="headerlink" title="5.10 内存映射的二进制文件"></a>5.10 内存映射的二进制文件</h4><p>内存映射一个二进制文件到一个可变字节数组中<br>mmap模块<br>mmap()返回的mmap对象同样也可以作为一个上下文管理器来使用<br>mmap.ACCESS_COPY mmap.ACCESS_READ<br>内存映射一个文件并不会导致整个文件被读取到内存中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">memory_map</span>(<span class="hljs-params">filename, access=mmap.ACCESS_WRITE</span>):</span> <br>	size = os.path.getsize(filename) <br>	fd = os.<span class="hljs-built_in">open</span>(filename, os.O_RDWR) <br>	<span class="hljs-keyword">return</span> mmap.mmap(fd, size, access=access) <br></code></pre></td></tr></table></figure>
+<h4 id="5-11-文件路径名的操作"><a href="#5-11-文件路径名的操作" class="headerlink" title="5.11 文件路径名的操作"></a>5.11 文件路径名的操作</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">path = <span class="hljs-string">&#x27;/Users/beazley/Data/data.csv&#x27;</span> os.path.basename(path) <span class="hljs-comment"># &#x27;data.csv&#x27;</span><br>os.path.dirname(path) <span class="hljs-comment"># &#x27;/Users/beazley/Data&#x27; </span><br>os.path.join(<span class="hljs-string">&#x27;tmp&#x27;</span>, <span class="hljs-string">&#x27;data&#x27;</span>, os.path.basename(path)) <span class="hljs-comment"># &#x27;tmp/data/data.csv&#x27; </span><br>path = <span class="hljs-string">&#x27;~/Data/data.csv&#x27;</span><br>os.path.expanduser(path)  <span class="hljs-comment">#&#x27;/Users/beazley/Data/data.csv&#x27;</span><br>os.path.splitext(path) <span class="hljs-comment"># (&#x27;~/Data/data&#x27;, &#x27;.csv&#x27;) </span><br></code></pre></td></tr></table></figure>
+<h4 id="5-12-测试文件是否存在"><a href="#5-12-测试文件是否存在" class="headerlink" title="5.12 测试文件是否存在"></a>5.12 测试文件是否存在</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">os.path.exists(<span class="hljs-string">&#x27;/etc/passwd&#x27;</span>) <br>os.path.isfile(<span class="hljs-string">&#x27;/etc/passwd&#x27;</span>) <br>os.path.isdir(<span class="hljs-string">&#x27;/etc/passwd&#x27;</span>) <br>os.path.islink(<span class="hljs-string">&#x27;/usr/local/bin/python3&#x27;</span>) <br>os.path.realpath(<span class="hljs-string">&#x27;/usr/local/bin/python3&#x27;</span>)<br>os.path.getsize(<span class="hljs-string">&#x27;/etc/passwd&#x27;</span>)<br>os.path.getmtime(<span class="hljs-string">&#x27;/etc/passwd&#x27;</span>)<br>os.path.getmtime(<span class="hljs-string">&#x27;/etc/passwd&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h4 id="5-13-获取文件夹中的文件列表"><a href="#5-13-获取文件夹中的文件列表" class="headerlink" title="5.13 获取文件夹中的文件列表"></a>5.13 获取文件夹中的文件列表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">names = os.listdir(<span class="hljs-string">&#x27;somedir&#x27;</span>) <br>pyfiles = glob.glob(<span class="hljs-string">&#x27;somedir/*.py&#x27;</span>) <br>pyfiles = [name <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> os.listdir(<span class="hljs-string">&#x27;somedir&#x27;</span>) <span class="hljs-keyword">if</span> fnmatch(name, <span class="hljs-string">&#x27;*.py&#x27;</span>)] <br>file_metadata = [(name, os.stat(name)) <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> pyfiles]<br><span class="hljs-keyword">for</span> name, meta <span class="hljs-keyword">in</span> file_metadata: 		<br>	<span class="hljs-built_in">print</span>(name, meta.st_size, meta.st_mtime) <br></code></pre></td></tr></table></figure>
+<h4 id="5-14-忽略文件名编码"><a href="#5-14-忽略文件名编码" class="headerlink" title="5.14 忽略文件名编码"></a>5.14 忽略文件名编码</h4><p>默认情况下，所有的文件名都会根据 sys.getfilesystemencoding() 返回的文本 编码来编码或解码。</p>
+<h4 id="5-15-打印不合法的文件名"><a href="#5-15-打印不合法的文件名" class="headerlink" title="5.15 打印不合法的文件名"></a>5.15 打印不合法的文件名</h4><p>从文件名中获取未解码的字节值比如\xhh并将它映射成Unicode字符\udchh表示的所谓的”代理编码” 。</p>
+<h4 id="5-16增加或改变已打开文件的编码"><a href="#5-16增加或改变已打开文件的编码" class="headerlink" title="5.16增加或改变已打开文件的编码"></a>5.16增加或改变已打开文件的编码</h4><p>给一个以二进制模式打开的文件添加Unicode编码/解码方式，可以使用io.TextIOWrapper()对象包装它。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">u = urllib.request.urlopen(<span class="hljs-string">&#x27;http://www.python.org&#x27;</span>) <br>f = io.TextIOWrapper(u, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <br>text = f.read() <br><br>sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding=<span class="hljs-string">&#x27;latin-1&#x27;</span>) <br>sys.stdout.encoding<br><span class="hljs-comment"># I/O 系统以层级结构的形式构建而成。</span><br>f = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;sample.txt&#x27;</span>,<span class="hljs-string">&#x27;w&#x27;</span>) <br>f f.buffer f.buffer.raw <br></code></pre></td></tr></table></figure>
+
+<h4 id="5-17-将字节写入文本文件"><a href="#5-17-将字节写入文本文件" class="headerlink" title="5.17 将字节写入文本文件"></a>5.17 将字节写入文本文件</h4><p>将字节数据直接写入文件的缓冲区即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">sys.stdout.buffer.write(<span class="hljs-string">b&#x27;Hello\n&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="5-18-将文件描述符包装成文件对象"><a href="#5-18-将文件描述符包装成文件对象" class="headerlink" title="5.18 将文件描述符包装成文件对象"></a>5.18 将文件描述符包装成文件对象</h4><p>文件描述符仅仅是一个由操作系统指定的整数，用来指代某个系统的I/O通道。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">fd = os.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;somefile.txt&#x27;</span>, os.O_WRONLY | os.O_CREAT) <br>f = <span class="hljs-built_in">open</span>(fd, <span class="hljs-string">&#x27;wt&#x27;</span>, closefd=<span class="hljs-literal">False</span>)) <br>f.write(<span class="hljs-string">&#x27;hello world\n&#x27;</span>) <br>f.close() <br></code></pre></td></tr></table></figure>
+<h4 id="5-19-创建临时文件和文件夹"><a href="#5-19-创建临时文件和文件夹" class="headerlink" title="5.19 创建临时文件和文件夹"></a>5.19 创建临时文件和文件夹</h4><p>tempfile 模块<br>使用 mkstemp() 和 mkdtemp() 来创建临时文件和目录</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">with</span> TemporaryFile(<span class="hljs-string">&#x27;w+t&#x27;</span>) <span class="hljs-keyword">as</span> f: <br><span class="hljs-keyword">with</span> TemporaryFile(<span class="hljs-string">&#x27;w+t&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>, errors=<span class="hljs-string">&#x27;ignore&#x27;</span>) <span class="hljs-keyword">as</span> f:<br><span class="hljs-keyword">with</span> NamedTemporaryFile(<span class="hljs-string">&#x27;w+t&#x27;</span>) <span class="hljs-keyword">as</span> f:  <br><span class="hljs-keyword">with</span> NamedTemporaryFile(<span class="hljs-string">&#x27;w+t&#x27;</span>, delete=<span class="hljs-literal">False</span>) <span class="hljs-keyword">as</span> f:<br><span class="hljs-keyword">with</span> TemporaryDirectory() <span class="hljs-keyword">as</span> dirname: <br>tempfile.gettempdir() <br>f = NamedTemporaryFile(prefix=<span class="hljs-string">&#x27;mytemp&#x27;</span>, suffix=<span class="hljs-string">&#x27;.txt&#x27;</span>, <span class="hljs-built_in">dir</span>=<span class="hljs-string">&#x27;/tmp&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="5-20-与串行端口的数据通信"><a href="#5-20-与串行端口的数据通信" class="headerlink" title="5.20 与串行端口的数据通信"></a>5.20 与串行端口的数据通信</h4><p>pySerial 包 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">ser = serial.Serial(<span class="hljs-string">&#x27;/dev/tty.usbmodem641&#x27;</span>, baudrate=<span class="hljs-number">9600</span>, bytesize=<span class="hljs-number">8</span>, parity=<span class="hljs-string">&#x27;N&#x27;</span>, stopbits=<span class="hljs-number">1</span>) <br></code></pre></td></tr></table></figure>
+
+<h4 id="5-21-序列化-Python-对象"><a href="#5-21-序列化-Python-对象" class="headerlink" title="5.21 序列化 Python 对象"></a>5.21 序列化 Python 对象</h4><p>pickle 模块。 pickle 是一种 Python 特有的自描述的数据编码。<br>通过自描述，被序列化后的数据包含每个对象开始和结束以及它的类型信息。<br>依赖外部系统状态的对象，不能被序列化：打开的文件，网络连接，线程，进程，栈帧等<br>__getstate__() 和 __setstate__() 方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">pickle.dump(data, f) <br>s = pickle.dumps(data) <br>data = pickle.load(f) <br>data = pickle.loads(s) <br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/15/Python_Codebook/%E7%AC%AC%E4%BA%94%E7%AB%A0_%E6%96%87%E4%BB%B6%E4%B8%8EIO/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;15&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%BA%94%E7%AB%A0_%E6%96%87%E4%BB%B6%E4%B8%8EIO&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;15&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%BA%94%E7%AB%A0_%E6%96%87%E4%BB%B6%E4%B8%8EIO&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/15/Python_Codebook/%E7%AC%AC%E5%85%AD%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E5%92%8C%E5%A4%84%E7%90%86/"><i class="iconfont iconleft"></i>第六章_数据编码和处理</a>
+    <a href="/2022/02/15/Python_Codebook/%E7%AC%AC%E5%9B%9B%E7%AB%A0_%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%94%9F%E6%88%90%E5%99%A8/">第四章_迭代器与生成器<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

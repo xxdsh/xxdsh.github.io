@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第三部分_虚拟机执行子系统 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="第6章 类文件结构6.1 概述越来越多的程序语言选择了...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第三部分_虚拟机执行子系统</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-16.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第三部分_虚拟机执行子系统</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>9037</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="第6章-类文件结构"><a href="#第6章-类文件结构" class="headerlink" title="第6章 类文件结构"></a>第6章 类文件结构</h4><p><strong>6.1 概述</strong><br>越来越多的程序语言选择了与操作系统和机器指令集无关的、平台中立的格式作为程序编译后的存储格式。<br><strong>6.2 无关性的基石</strong><br>各种不同平台的Java虚拟机，以及所有平台都统一支持的程序存储格式——字节码(Byte Code)是构成平台无关性的基石<br>Kotlin、Clojure、Groovy、JRuby、JPython、Scala等<br>实现语言无关性的基础仍然是虚拟机和字节码存储格式。<br>Class文件中包含了Java虚拟机指令集、符号表以及若干其他辅助信息。<br><strong>6.3 Class类文件的结构</strong> 任何一个Class文件都对应着唯一的一个类或接口的定义信息，但是反过来说，类或接口并不一定都得定义在文件里(譬如类或接口也可以动态生成，直接送入类加载器中)。<br>Class文件是一组以8个字节为基础单位的二进制流，各个数据项目严格按照顺序紧凑地排列在文件之中，中间没有添加任何分隔符，这使得整个Class文件中存储的内容几乎全部是程序运行的必要数据，没有空隙存在。<br>伪结构：”无符号数”和”表”<br><em>魔数与Class文件的版本</em><br>每个Class文件的头4个字节被称为魔数(Magic Number)，它的唯一作用是确定这个文件是否为一个能被虚拟机接受的Class文件。<br>0xCAFEBABE<br>紧接着魔数的4个字节存储的是Class文件的版本号：第5和第6个字节是次版本号(Minor Version)，第7和第8个字节是主版本号(Major Version)。<br>《Java虚拟机规范》在Class文件校验部分明确要求了即使文件格式并未发生任何变化，虚拟机也必须拒绝执行超过其版本号的Class文件。<br>将副版本号用于标识”技术预览版”功能特性的支持<br><em>常量池</em><br>常量池是Class文件结构中与其他项目关联最多的数据，通常也是占用Class文件空间最大的数据项目之一，另外，它还是在Class文件中第一个出现的表类型数据项目。<br>常量池中主要存放两大类常量：字面量(Literal)和符号引用(Symbolic References)。<br>字面量接近于Java语言层面的常量概念，如文本字符串、被声明为final的常量值等。<br>符号引用则属于编译原理方面的概念，主要包括下面几类常量：被模块导出或者开放的包(Package); 类和接口的全限定名(Fully Qualified Name); 字段的名称和描述符(Descriptor); 方法的名称和描述符; 方法句柄和方法类型(Method Handle、Method Type、Invoke Dynamic); 动态调用点和动态常量(Dynamically-Computed Call Site、Dynamically-Computed Constant)<br>当虚拟机做类加载时，将会从常量池获得对应的符号引用，再在类创建时或运行时解析、翻译到具体的内存地址之中。<br>在JDK的bin目录中，一个专门用于分析Class文件字节码的工具：javap。<br>部分常量的确不来源于Java源代码，它们都是编译器自动生成的，会被后面即将讲到的字段表(field_info)、方法表(method_info)、属性表(attribute_info)所引用，它们将会被用来描述一些不方便使用”固定字节”进行表达的内容，譬如描述方法的返回值是什么，有几个参数，每个参数的类型是什么。<br><em>访问标志</em><br>用于识别一些类或者接口层次的访问信息<br><em>类索引、父类索引与接口索引集合</em><br>类索引用于确定这个类的全限定名，父类索引用于确定这个类的父类的全限定名。<br>接口索引集合用来描述这个类实现了哪些接口，这些被实现的接口将按implements关键字(如果这个Class文件表示的是一个接口，则应当是extends关键字)后的接口顺序从左到右排列在接口索引集合中。<br><em>字段表集合</em>字段表(field_info)用于描述接口或者类中声明的变量。<br>字段可以包括的修饰符有字段的作用域(public、private、protected修饰符)、是实例变量还是类变量(static修饰符)、可变性(final)、并发可见性(volatile修饰符，是否强制从主内存读写)、可否被序列化(transient修饰符)、字段数据类型(基本类型、对象、数组)、字段名称。<br><em>方法表集合</em><br>方法表的结构如同字段表一样，依次包括访问标志(access_flags)、名称索引(name_index)、描述符索引(descriptor_index)、属性表集合(attributes)几项<br>方法里的Java代码，经过Javac编译器编译成字节码指令之后，存放在方法属性表集合中一个名为“Code”的属性里<br><em>属性表集合</em><br>StackMapTable属性会在虚拟机类加载的字节码验证阶段被新类型检查验证器(Type Checker)使用<br>类型检查验证器会通过检查目标方法的局部变量和操作数栈所需要的类型来确定一段字节码指令是否符合逻辑约束。<br><strong>6.4 字节码指令简介</strong><br>Java虚拟机的指令由一个字节长度的、代表着某种特定操作含义的数字(称为操作码，Opcode)以及跟随其后的零至多个代表此操作所需的参数(称为操作数，Operand)构成。<br><em>字节码与数据类型</em><br><em>加载和存储指令</em><br>加载和存储指令用于将数据在栈帧中的局部变量表和操作数栈之间来回传输，这类指令包括：将一个局部变量加载到操作栈;将一个数值从操作数栈存储到局部变量表;将一个常量加载到操作数栈;扩充局部变量表的访问索引的指令;<br><em>运算指令</em><br>算术指令用于对两个操作数栈上的值进行某种特定运算，并把结果重新存入到操作栈顶。加法指令;减法指令;乘法指令;除法指令;求余指令;取反指令;按位或指令;按位与指令;按位异或指令;局部变量自增指令;比较指令<br><em>类型转换指令</em><br>类型转换指令可以将两种不同的数值类型相互转换，这些转换操作一般用于实现用户代码中的显式类型转换操作，或者用来处理字节码指令集中数据类型相关指令无法与数据类型一一对应的问题。<br>i2b、i2c、i2s、l2i、f2i、f2l、d2i、d2l和d2f<br><em>对象创建与访问指令</em><br>创建类实例的指令;创建数组的指令;访问类字段(static字段，或者称为类变量)和实例字段(非static字段，或者称为实例变量)的指令;把一个数组元素加载到操作数栈的指令; 将一个操作数栈的值储存到数组元素中的指令; 取数组长度的指令; 检查类实例类型的指令<br><em>操作数栈管理指令</em><br>用于直接操作操作数栈的指令:将操作数栈的栈顶一个或两个元素出栈; 复制栈顶一个或两个数值并将复制值或双份的复制值重新压入栈顶; 将栈最顶端的两个数值互换：swap<br><em>控制转移指令</em><br>控制转移指令可以让虚拟机有条件或无条件地从指定位置指令(而不是控制转移指令)的下一条指令继续执行程序<br>条件分支; 复合条件分支; 无条件分支<br><em>方法调用和返回指令</em><br>invokevirtual指令; invokeinterface指令; invokespecial指令; invokestatic指令; invokedynamic指令<br><em>异常处理指令</em>在Java程序中显式抛出异常的操作(throw语句)都由athrow指令来实现<br>在Java虚拟机中，处理异常(catch语句)不是由字节码指令来实现的，而是采用异常表来完成。<br><em>同步指令</em><br>Java虚拟机可以支持方法级的同步和方法内部一段指令序列的同步，这两种同步结构都是使用管程(Monitor，更常见的是直接将它称为“锁”)来实现的。<br>方法级的同步是隐式的，无须通过字节码指令来控制，它实现在方法调用和返回操作之中。<br>Java虚拟机的指令集中有monitorenter和monitorexit两条指令来支持synchronized关键字的语义，正确实现synchronized关键字需要Javac编译器与Java虚拟机两者共同协作支持<br><strong>6.5 公有设计，私有实现</strong><br>Java虚拟机应有的共同程序存储格式：Class文件格式以及字节码指令集。<br><strong>6.6 Class文件结构的发展</strong><br>Class文件格式所具备的平台中立(不依赖于特定硬件及操作系统)、紧凑、稳定和可扩展的特点，是Java技术体系实现平台无关、语言无关两项特性的重要支柱。</p>
+<h4 id="第7章-虚拟机类加载机制"><a href="#第7章-虚拟机类加载机制" class="headerlink" title="第7章 虚拟机类加载机制"></a>第7章 虚拟机类加载机制</h4><p><strong>7 .1 概述</strong><br>Java虚拟机把描述类的数据从Class文件加载到内存，并数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这个过程被称作虚拟机的类加载机制。<br>类型的加载、连接和初始化过程都是在程序运行期间完成的<br><strong>7.2 类加载的时机</strong>一个类型从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期将会经历加载(Loading)、验证(Verification)、准备(Preparation)、解析(Resolution)、初始化(Initialization)、使用(Using)和卸载(Unloading)七个阶段，其中验证、准备、解析三个部分统称为连接(Linking)。<br><strong>7.3 类加载的过程</strong><br><em>加载</em><br>“加载”(Loading)阶段是整个”类加载”(Class Loading)过程中的一个阶段<br>1)通过一个类的全限定名来获取定义此类的二进制字节流。 2)将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。 3)在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。<br><em>验证</em><br>确保Class文件的字节流中包含的信息符合《Java虚拟机规范》的全部约束要求，保证这些信息被当作代码运行后会危害虚拟机自身的安全。<br>文件格式验证、元数据验证、字节码验证和符号引用验证。<br>文件格式验证<br>保证输入的字节流能正确地解析并存储于方法区之内，格式上符合描述一个Java类型信息的要求。<br>这阶段的验证是基于二进制字节流进行的，只有通过了这个阶段的验证之后，这段字节流才被允许进入Java虚拟机内存的方法区中进行存储，所以后面的三个验证阶段全部是基于方法区的存储结构上进行的，不会再直接读取、操作字节流了。<br>元数据验证 第二阶段是对字节码描述的信息进行语义分析，以保证其描述的信息符合《Java语言规范》的要求<br>对类的元数据信息进行语义校验，保证不存在与《Java 语言规范》定义相悖的元数据信息。<br>字节码验证<br>通过数据流分析和控制流分析，确定程序语义是合法的、符合逻辑的。<br>“停机问题”(Halting Problem)，即不能通过程序准确地检查出程序是否能在有限的时间之内结束运行。<br>使用类型检查来完成数据流分析校验则是唯一的选择，不允许再退回到原来的类型推导的校验方式。<br>符号引用验证<br>校验行为发生在虚拟机将符号引用转化为直接引用的时候，这个转化动作将在连接的第三阶段——解析阶段中发生。对类自身以外(常量池中的各种符号引用)的各类信息进行匹配性校验<br><em>准备</em><br>正式为类中定义的变量(即静态变量，被static修饰的变量)分配内存并设置类变量初始值的阶段<br><em>解析</em><br>Java虚拟机将常量池内的符号引用替换为直接引用的过程<br>符号引用(Symbolic References)：符号引用以一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能无歧义地定位到目标即可。符号引用与虚拟机实现的内存布局无关，引用的目标并不一定是已经加载到虚拟机内存当中的内容。各种虚拟机实现的内存布局可以各不相同，但是它们能接受的符号引用必须都是一致的，因为符号引用的字面量形式明确定义在《Java虚拟机规范》的Class文件格式中。<br>直接引用(Direct References)：直接引用是可以直接指向目标的指针、相对偏移量或者是一个能间接定位到目标的句柄。直接引用是和虚拟机实现的内存布局直接相关的，同一个符号引用在不同虚拟机实例上翻译出来的直接引用一般不会相同。如果有了直接引用，那引用的目标必定已经在虚拟机 的内存中存在。<br>解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符这7类符号引用进行<br><em>初始化</em><br>类的初始化阶段是类加载过程的最后一个步骤<br>初始化阶段就是执行类构造器<clinit>()方法的过程。<br><clinit>()方法是由编译器自动收集类中的所有类变量的赋值动作和静态语句块(static{}块)中的语句合并产生的，编译器收集的顺序是由语句在源文件中出现的顺序决定的，静态语句块中只能访问到定义在静态语句块之前的变量，定义在它之后的变量，在前面的静态语句块可以赋值，但是不能访问<br><strong>7.4 类加载器</strong> “通过一个类的全限定名来获取描述该类的二进制字节 流”这个动作放到Java虚拟机外部去实现，以便让应用程序自己决定如何去获取所需的类。实现这个动作的代码被称为”类加载器”(Class Loader)。<br>对于任意一个类，都必须由加载它的类加载器和这个类本身一起共同确立其在Java虚拟机中的唯一性，每一个类加载器，都拥有一个独立的类名称空间。<br>“相等”:代表类的Class对象的equals()方法、isAssignableFrom()方法、isInstance() 方法的返回结果，使用instanceof关键字做对象所属关系判定等各种情况。<br>站在Java虚拟机的角度来看，只存在两种不同的类加载器：一种是启动类加载器(Bootstrap ClassLoader)，这个类加载器使用C++语言实现，是虚拟机自身的一部分；另外一种就是其他所有的类加载器，这些类加载器都由Java语言实现，独立存在于虚拟机外部，并且全都继承自抽象类 java.lang.ClassLoader。<br>Java一直保持着三层类加载器、双亲委派的类加载架构<br>启动类加载器(Bootstrap Class Loader); 扩展类加载器(Extension Class Loader); 应用程序类加载器(Application Class Loader)<br>各种类加载器之间的层次关系被称为类加载器的”双亲委派模型(Parents Delegation Model)”<br>双亲委派模型的工作过程是：如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到最顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求(它的搜索范围中没有找到所需的类)时，子加载器才会尝试自己去完成加载。<br>代码热替换(Hot Swap)、模块热部署(Hot Deployment)<br><strong>7.5 Java模块化系统</strong><br>Java模块化系统(Java Platform Module System，JPMS)<br>可配置的封装隔离机制<br>jlink -p $JAVA_HOME/jmods –add-modules java.base –output jre</p>
+<h4 id="第8章-虚拟机字节码执行引擎"><a href="#第8章-虚拟机字节码执行引擎" class="headerlink" title="第8章 虚拟机字节码执行引擎"></a>第8章 虚拟机字节码执行引擎</h4><p><strong>8.1 概述</strong><br>执行引擎是Java虚拟机核心的组成部分之一。<br>从外观上来看，所有的Java虚拟机的执行引擎输入、输出都是一致的：输入的是字节码二进制流，处理过程是字节码解析执行的等效过程，输出的是执行结果<br><strong>8.2 运行时栈帧结构</strong><br>Java虚拟机以方法作为最基本的执行单元<br>“栈帧”(Stack Frame)是用于支持虚拟机进行方法调用和方法执行背后的数据结构，是虚拟机运行时数据区中的虚拟机栈(Virtual Machine Stack)的栈元素。<br>“当前栈帧”(Current Stack Frame) “当前方法”(Current Method)<br>栈帧中的局部变量表、操作数栈、动态连接、方法返回地址<br><em>局部变量表</em><br>局部变量表(Local Variables Table)是一组变量值的存储空间，用于存放方法参数和方法内部定义的局部变量。<br>局部变量表的容量以变量槽(Variable Slot)为最小单位<br><em>操作数栈</em><br>Java虚拟机的解释执行引擎被称为”基于栈的执行引擎”<br><em>动态连接</em><br>每个栈帧都包含一个指向运行时常量池中该栈帧所属方法的引用，持有这个引用是为了支持方法调用过程中的动态连接(Dynamic Linking)。<br><em>方法返回地址</em><br>“正常调用完成”(Normal Method Invocation Completion)<br>“异常调用完成”(Abrupt Method Invocation Completion)<br><em>附加信息</em><br>一般会把动态连接、方法返回地址与其他附加信息全部归为一类，称为栈帧信息。<br><strong>8.3 方法调用</strong>Class文件的编译过程中不包含传统程序语言编译的连接步骤，一切方法调用在Class文件里面存储的都只是符号引用，而不是方法在实际运行时内存布局中的入口地址(也就是之前说的直接引用)。<br><em>解析</em><br>在类加载的解析阶段，会将常量池中的一部分符号引用转化为直接引用，这种解析能够成立的前提是：方法在程序真正运行之前就有一个可确定的调用版本，并且这个方法的调用版本在运行期是不可改变的。换句话说，调用目标在程序代码写好、编译器进行编译那一刻就已经确定下来。这类方法的调用被称为解析(Resolution)。<br>“编译期可知，运行期不可变”：静态方法和私有方法<br>“非虚方法”(Non-Virtual Method)：静态方法、私有方法、实例构造器、父类方法(被invokestatic和invokespecial指令调用) 被final 修饰的方法(使用invokevirtual指令调用)<br>invokestatic invokespecial invokevirtual invokeinterface invokedynamic<br>分派(Dispatch)调用可能是静态的也可能是动态的，按照分派依据的宗量数可分为单分派和多分派。<br><em>分派</em><br>静态分派 重载(overload)<br>变量的”静态类型”(Static Type)或者叫”外观类型”(Apparent Type)<br>变量的”实际类型”(Actual Type)或者叫”运行时类 型”(Runtime Type）<br>虚拟机(或者准确地说是编译器)在重载时是通过参数的静态类型而不是实际类型作为判定依据的<br>所有依赖静态类型来决定方法执行版本的分派动作，都称为静态分派。<br>静态分派的最典型应用表现就是方法重载。<br>动态分派 重写(Override)<br>在运行期根据实际类型确定方法执行版本的分派过程称为动态分派。<br>单分派与多分派<br>方法的接收者与方法的参数统称为方法的宗量<br>单分派是根据一个宗量对目标方法进行选择，多分派则是根据多于一个宗量对目标方法进行选择。<br>静态多分派、动态单分派的<br>虚拟机动态分派的实现<br>动态分派的方法版本选择过程需要运行时在接收者类型的方法元数据中搜索合适的目标方法<br>使用虚方法表索引来代替元数据查找以提高性能<br>类型继承关系分析(Class Hierarchy Analysis，CHA)、守护内联(Guarded Inlining)、内联缓存(Inline Cache)等多种非稳定的激进优化<br><strong>8.4 动态类型语言支持</strong><br>invokedynamic指令: 实现动态类型语言(Dynamically Typed Language)支持而进行的改进之一，也是为JDK 8里可以顺利实现Lambda表达式而做的技术储备<br>动态类型语言:关键特征:它的类型检查的主体过程是在运行期而不是编译期进行的<br>运行时异常(Runtime Exception): 指只要代码不执行到这一行就不会出现问题。<br>连接时异常: 即使导致连接时异常的代码放在一条根本无法被执行到的路径分支上，类加载时(Java的连接过程不在编译阶段，而在类加载阶段)也照样会抛出异常。<br>“变量无类型而变量值才有类型”这个特点也是动态类型语言的一个核心特征。<br>动态类型语言与动态语言、弱类型语言并不是一个概念，需要区别对待。<br>一种新的动态确定目标方法的机制，称为”方法句柄”(Method Handle)。<br>每一处含有invokedynamic指令的位置都被称作”动态调用点(Dynamically-Computed Call Site)”<br><strong>8.5 基于栈的字节码解释执行引擎</strong><br><img    class="lazyload" data-original="https://s2.loli.net/2022/02/13/eEz7awl2cq3QTgI.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">编译过程</span><br>Javac编译器输出的字节码指令流，基本上是一种基于栈的指令集架构(Instruction Set Architecture，ISA)<br>基于栈的指令集主要优点是可移植，因为寄存器由硬件直接提供，程序直接依赖这些硬件寄存器则不可避免地要受到硬件的约束。<br>代码相对更加紧凑(字节码中每个字节就对应一条指令，而多地址指令集中还需要存放参数)、编译器实现更加简单(不需要考虑空间分配的问题，所需空间都在栈上操作)等。<br>理论上执行速度相对来说会稍慢一些，所有主流物理机的指令集都是寄存器架构也从侧面印证了这点。<br>由于指令数量和内存访问的原因，导致了栈架构指令集的执行速度会相对慢上一点。</p>
+<h4 id="第9章-类加载及执行子系统的案例与实战"><a href="#第9章-类加载及执行子系统的案例与实战" class="headerlink" title="第9章 类加载及执行子系统的案例与实战"></a>第9章 类加载及执行子系统的案例与实战</h4><p><strong>9.1 概述</strong><br>能通过程序进行操作的，主要是字节码生成与类加载器这两部分的功能<br><strong>9.2 案例分析</strong><br>关于类加载器和字节码的案例<br>Tomcat：正统的类加载器架构<br>被放置到不同路径中的类库，具备不同的访问范围和服务对象，通常每一个目录都会有一个相应的自定义类加载器去加载放置在里面的Java类库。<br>OSGi(Open Service Gateway Initiative)是OSGi联盟(OSGi Alliance)制订的一个基于Java语言的动态模块化规范(在JDK 9引入的JPMS是静态的模块系统)<br>目的是使服务提供商通过住宅网关为各种家用智能设备提供服务<br>OSGi中的每个模块(称为Bundle)与普通的Java类库区别并不太大，两者一般都以JAR格式进行封装，并且内部存储的都是Java的Package和Class。但是一个Bundle可以声明它所依赖的Package(通过Import-Package描述)，也可以声明它允许导出发布的Package(通过Export-Package描述)。<br>“Java逆向移植”的工具(Java Backporting Tools）应 运而生，Retrotranslator和Retrolambda是这类工具中的杰出代表。<br>对Java类库API的代码增强; 在前端编译器层面做的改进; 需要在字节码中进行支持的改动; 需要在JDK整体结构层面进行支持的改进; 集中在虚拟机内部的改进<br><strong>9.3 实战：自己动手实现远程执行功能</strong><br>实现”在服务端执行临时代码”</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86_%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%89%A7%E8%A1%8C%E5%AD%90%E7%B3%BB%E7%BB%9F/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA&#x2F;%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86_%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%89%A7%E8%A1%8C%E5%AD%90%E7%B3%BB%E7%BB%9F&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA&#x2F;%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86_%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%89%A7%E8%A1%8C%E5%AD%90%E7%B3%BB%E7%BB%9F&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86_%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E4%B8%8E%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/"><i class="iconfont iconleft"></i>第四部分_程序编译与代码优化</a>
+    <a href="/2022/02/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86_%E8%87%AA%E5%8A%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">第二部分_自动内存管理<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

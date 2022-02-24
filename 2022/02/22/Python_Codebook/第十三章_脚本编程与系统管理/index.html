@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第十三章_脚本编程与系统管理 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="解析命令行选项、获取有用的系统配置数据
+13.1 通过...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第十三章_脚本编程与系统管理</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/Our%20Furry%20Friends/img-9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第十三章_脚本编程与系统管理</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3458</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>解析命令行选项、获取有用的系统配置数据</p>
+<h4 id="13-1-通过重定向-管道-文件接受输入"><a href="#13-1-通过重定向-管道-文件接受输入" class="headerlink" title="13.1 通过重定向/管道/文件接受输入"></a>13.1 通过重定向/管道/文件接受输入</h4><p>将命令行的输出通过管道传递给该脚本、重定向文件到该脚本，或在命令行中传递一个文件名或文件名列表给该脚本。<br>fileinput 模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">with</span> fileinput.<span class="hljs-built_in">input</span>() <span class="hljs-keyword">as</span> f_input: <br>	<span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f: <br>		<span class="hljs-built_in">print</span>(f.filename(), f.lineno(), line, end=<span class="hljs-string">&#x27;&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<p>fileinput.input()创建并返回一个FileInput类的实例。</p>
+<h4 id="13-2-终止程序并给出错误信息"><a href="#13-2-终止程序并给出错误信息" class="headerlink" title="13.2 终止程序并给出错误信息"></a>13.2 终止程序并给出错误信息</h4><p>raise SystemExit(‘It failed!’)<br>将消息在sys.stderr中打印，然后程序以状态码1退出。</p>
+<h4 id="13-3-解析命令行选项"><a href="#13-3-解析命令行选项" class="headerlink" title="13.3 解析命令行选项"></a>13.3 解析命令行选项</h4><p>argparse 模块可被用来解析命令行选项。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">parser = argparse.ArgumentParser(description=<span class="hljs-string">&#x27;Search some files&#x27;</span>) <br>args = parser.parse_args() <br></code></pre></td></tr></table></figure>
+<p>手动处理sys.argv或者使用getopt模块；使用optparse库解析选项</p>
+<h4 id="13-4-运行时弹出密码输入提示"><a href="#13-4-运行时弹出密码输入提示" class="headerlink" title="13.4 运行时弹出密码输入提示"></a>13.4 运行时弹出密码输入提示</h4><p>Python 的 getpass 模块：弹出密码输入提示，并且不会在用户终端回显密码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">user = getpass.getuser() <br>passwd = getpass.getpass()<br>user = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;Enter your username: &#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="13-5-获取终端的大小"><a href="#13-5-获取终端的大小" class="headerlink" title="13.5 获取终端的大小"></a>13.5 获取终端的大小</h4><p>使用os.get_terminal_size()函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">sz = os.get_terminal_size() <span class="hljs-comment"># os.terminal_size(columns=80, lines=24)  </span><br></code></pre></td></tr></table></figure>
+<p>读取环境变量；执行底层的ioctl()函数</p>
+<h4 id="13-6-执行外部命令并获取它的输出"><a href="#13-6-执行外部命令并获取它的输出" class="headerlink" title="13.6 执行外部命令并获取它的输出"></a>13.6 执行外部命令并获取它的输出</h4><p>使用subprocess.check_output()函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">out_bytes = subprocess.check_output([<span class="hljs-string">&#x27;netstat&#x27;</span>,<span class="hljs-string">&#x27;-a&#x27;</span>])<br><br><span class="hljs-keyword">try</span>: <br>	out_bytes = subprocess.check_output([<span class="hljs-string">&#x27;cmd&#x27;</span>,<span class="hljs-string">&#x27;arg1&#x27;</span>,<span class="hljs-string">&#x27;arg2&#x27;</span>]) <br><span class="hljs-keyword">except</span> subprocess.CalledProcessError <span class="hljs-keyword">as</span> e: <br>	out_bytes = e.output <span class="hljs-comment"># Output generated before error </span><br>	code = e.returncode <span class="hljs-comment"># Return code  </span><br></code></pre></td></tr></table></figure>
+<p>使用shlex.quote()函数来将参数正确的用双引用引起来。<br>subprocess模块对于依赖TTY的外部命令不合适用。</p>
+<h4 id="13-7-复制或者移动文件和目录"><a href="#13-7-复制或者移动文件和目录" class="headerlink" title="13.7 复制或者移动文件和目录"></a>13.7 复制或者移动文件和目录</h4><p>shutil模块有很多便捷的函数可以复制文件和目录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 只想复制符号链接本身，那么需要指定关键字参数follow_symlinks</span><br>shutil.copy2(src, dst, follow_symlinks=<span class="hljs-literal">False</span>)<br><span class="hljs-comment"># 保留被复制目录中的符号链接</span><br>shutil.copytree(src, dst, symlinks=<span class="hljs-literal">True</span>)<br><span class="hljs-comment"># 提供一个忽略函数，接受一个目录名和文件名列表作为输入，返回一个忽略的名称列表 </span><br>shutil.copytree(src, dst, ignore=shutil.ignore_patterns(<span class="hljs-string">&#x27;*~&#x27;</span>, <span class="hljs-string">&#x27;*.pyc&#x27;</span>)) <br></code></pre></td></tr></table></figure>
+<h4 id="13-8-创建和解压归档文件"><a href="#13-8-创建和解压归档文件" class="headerlink" title="13.8 创建和解压归档文件"></a>13.8 创建和解压归档文件</h4><p>shutil模块拥有两个函数——make_archive()和unpack_archive() </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用get_archive_formats()获取所有支持的归档格式列表</span><br>shutil.get_archive_formats() <br></code></pre></td></tr></table></figure>
+<h4 id="13-9-通过文件名查找文件"><a href="#13-9-通过文件名查找文件" class="headerlink" title="13.9 通过文件名查找文件"></a>13.9 通过文件名查找文件</h4><p>os.walk()方法遍历目录树，每次进入一个目录，它会返回一个三元组，包含相对于查找目录的相对路径，一个该目录下的目录名列表，以及那个目录下面的文件名列表。<br>os.path.abspath()<br>os.path.normpath()<br>os.path.getmtime(fullpath) </p>
+<h4 id="13-10-读取配置文件"><a href="#13-10-读取配置文件" class="headerlink" title="13.10 读取配置文件"></a>13.10 读取配置文件</h4><p>configparser 模块被用来读取普通.ini 格式的配置文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">cfg = ConfigParser() <br>cfg.read(<span class="hljs-string">&#x27;config.ini&#x27;</span>) <br>cfg.sections() <br>cfg.get(<span class="hljs-string">&#x27;installation&#x27;</span>,<span class="hljs-string">&#x27;library&#x27;</span>) <br>cfg.getboolean(<span class="hljs-string">&#x27;debug&#x27;</span>,<span class="hljs-string">&#x27;log_errors&#x27;</span>)<br>cfg.<span class="hljs-built_in">set</span>(<span class="hljs-string">&#x27;server&#x27;</span>,<span class="hljs-string">&#x27;port&#x27;</span>,<span class="hljs-string">&#x27;9000&#x27;</span>) <br>cfg.write(sys.stdout) <br>cfg.write(sys.stdout) <br></code></pre></td></tr></table></figure>
+<p>配置文件作为一个整体读取，变量在使用它的变量之前或之后定义都是可以</p>
+<h4 id="13-11-给简单脚本增加日志功能"><a href="#13-11-给简单脚本增加日志功能" class="headerlink" title="13.11 给简单脚本增加日志功能"></a>13.11 给简单脚本增加日志功能</h4><p>打印日志最简单方式是使用 logging 模块<br>critical(), error(), warning(), info(), debug()<br>basicConfig()的level参数是一个过滤器。所有级别低于此级别的日志消息都会被忽略掉。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">logging.basicConfig( filename=<span class="hljs-string">&#x27;app.log&#x27;</span>, level=logging.WARNING, <span class="hljs-built_in">format</span>=<span class="hljs-string">&#x27;%(levelname)s:%(asctime)s:%(message)s&#x27;</span>) <br><br>logging.config.fileConfig(<span class="hljs-string">&#x27;logconfig.ini&#x27;</span>)<br><br>logging.getLogger().level = logging.DEBUG <br></code></pre></td></tr></table></figure>
+<h4 id="13-12-给函数库增加日志功能"><a href="#13-12-给函数库增加日志功能" class="headerlink" title="13.12 给函数库增加日志功能"></a>13.12 给函数库增加日志功能</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">log = logging.getLogger(__name__) <br>log.addHandler(logging.NullHandler()) <br>logging.basicConfig() <br></code></pre></td></tr></table></figure>
+<h4 id="13-13-实现一个计时器"><a href="#13-13-实现一个计时器" class="headerlink" title="13.13 实现一个计时器"></a>13.13 实现一个计时器</h4><p>time.perf_counter; time.process_time();  time.time() 或 time. clock() </p>
+<h4 id="13-14-限制内存和-CPU-的使用量"><a href="#13-14-限制内存和-CPU-的使用量" class="headerlink" title="13.14 限制内存和 CPU 的使用量"></a>13.14 限制内存和 CPU 的使用量</h4><p>resource模块对在Unix系统上面运行的程序设置内存或CPU的使用限制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">time_exceeded</span>(<span class="hljs-params">signo, frame</span>):</span> <br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Time&#x27;s up!&quot;</span>) <br>	<span class="hljs-keyword">raise</span> SystemExit(<span class="hljs-number">1</span>) <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_max_runtime</span>(<span class="hljs-params">seconds</span>):</span> <br>	soft, hard = resource.getrlimit(resource.RLIMIT_CPU) <br>	resource.setrlimit(resource.RLIMIT_CPU, (seconds, hard)) <br>	signal.signal(signal.SIGXCPU, time_exceeded) <br></code></pre></td></tr></table></figure>
+<p>设置子进程数量、打开文件数以及类似系统资源的限制</p>
+<h4 id="13-15-启动一个-WEB-浏览器"><a href="#13-15-启动一个-WEB-浏览器" class="headerlink" title="13.15 启动一个 WEB 浏览器"></a>13.15 启动一个 WEB 浏览器</h4><p>webbrowser模块能被用来启动一个浏览器，并且与平台无关。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">webbrowser.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;http://www.python.org&#x27;</span>) <br>webbrowser.open_new(<span class="hljs-string">&#x27;http://www.python.org&#x27;</span>) <br>webbrowser.open_new_tab(<span class="hljs-string">&#x27;http://www.python.org&#x27;</span>) <br><br>c = webbrowser.get(<span class="hljs-string">&#x27;firefox&#x27;</span>) <br>c.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;http://www.python.org&#x27;</span>) <br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0_%E6%B5%8B%E8%AF%95%E8%B0%83%E8%AF%95%E5%92%8C%E5%BC%82%E5%B8%B8/"><i class="iconfont iconleft"></i>第十四章_测试调试和异常</a>
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">第十二章_并发编程<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

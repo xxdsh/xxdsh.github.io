@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>配置应用程序 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="第8章 优化服务器设置从理解MySQL内核和行为开始，...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">配置应用程序</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">配置应用程序</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7979</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h3 id="第8章-优化服务器设置"><a href="#第8章-优化服务器设置" class="headerlink" title="第8章 优化服务器设置"></a>第8章 优化服务器设置</h3><p>从理解MySQL内核和行为开始，然后可以利用这些知识来指导配置MySQL。<br>最好是从查询语句和响应时间入手来开始分析问题，而不是通过配置项。<br>另一个节省时间和避免麻烦的好办法是使用默认配置，除非是明确地知道默认值会有问题。</p>
+<h4 id="8-1-MySQL-配置的工作原理"><a href="#8-1-MySQL-配置的工作原理" class="headerlink" title="8.1 MySQL 配置的工作原理"></a>8.1 MySQL 配置的工作原理</h4><p>MySQL从哪里获得配置信息:命令行参数和配置文件<br>$which mysqld<br>$/usr/sbin/mysq1d –verbose –help| grep -A 1’ Default options’<br>配置文件通常分成多个部分，每个部分的开头是一个用方括号括起来的分段名称。MySQL程序通常读取跟它同名的分段部分，许多客户端程序还会读取client部分，这是一个存放公用设置的地方。服务器通常读取mysqld这一段。一定要确认配置项放在了文件正确的分段中，否则配置是不会生效的。<br>SHOW GLOBAL VARIABLES<br>有个特殊的值可以通过SET命令赋值给变量:DEFAULT。把这个值赋给会话级变量可以把变量改为使用全局值，把它赋值给全局变量可以设置这个变量为编译内置的默认值(不是在配置文件中指定的值)。<br>key_buffer_size：可以一次性为键缓冲区(key buffer,也叫键缓存key cache)分配所有指定的空间。table cache size； thread_cache_size；query_cache_size；read_buffer_size；read_rnd_buffer_size；sort_buffer_size</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SET @saved_ &lt;unique_variable_name&gt; := @@session. sort_buffer_size;<br>SET @@session.sort_ buffer_ size := &lt;value&gt;;<br>-- Execute the query...<br>SET @@session.sort_ buffer_ size := @saved_ &lt;unique_ variable_ name&gt;;<br></code></pre></td></tr></table></figure>
+<p>不要根据一些“比率”来调优:命中率取决于工作负载-某些工作负载就是无法缓存的，不管缓存有多大;其次,缓存命中没有什么意义<br>不要使用调优脚本<br>MySQL不是一个完全严格控制内存分配的数据库服务器。</p>
+<h4 id="8-3-创建MySQL配置文件"><a href="#8-3-创建MySQL配置文件" class="headerlink" title="8.3 创建MySQL配置文件"></a>8.3 创建MySQL配置文件</h4><p>配置服务器的首选途径:了解它内部做了什么，以及参数之间如何相互影响，然后再决定。<br>有时可以使用SHOW GLOBAL STATUS 的输出，作为配置的输入，以更好地通过工作负载来自定义配置。<br>每隔60秒来查看状态变量的增量变化:$ mysqladmin extended-status -ri60</p>
+<h4 id="8-4-配置内存使用"><a href="#8-4-配置内存使用" class="headerlink" title="8.4 配置内存使用"></a>8.4 配置内存使用</h4><p>可以认为MySQL的内存消耗分为两类:可以控制的内存和不可以控制的内存。<br>在任何给定的操作系统上，MySQL都有允许使用的内存上限。机器上安装了多少物理内存 + 考虑操作系统或架构的限制<br>在MySQL手册中记载了每个变量的最大值，有需要可以查阅。<br>MySQL保持一个连接(线程)只需要少量的内存。它还要求一个基本量的内存来执行任何给定查询。<br>如果没有虚拟内存正在交换(Paging)到磁盘，就是表明操作系统内存足够的最佳迹象。<br>InnoDB缓冲池并不仅仅缓存索引:它还会缓存行的数据、自适应哈希索引、插入缓冲(Insert Buffer)、锁，以及其他内部数据结构。<br>MyISAM的键缓存也被称为键缓冲，默认只有一个键缓存，但也可以创建多个。<br>查询INFORMATION_SCHEMA表的INDEX_LENGTH字段，把它们的值相加，就可以得到索引存储占用的空间:<br>SELECT SUM(INDEX_LENGTH) FROM INFORMATION_SCHEMA.TABLES WHERE ENGINE=’ MYISAM’ ;<br>CACHE INDEX t1, t2 IN key_buffer_1;<br>可把表的索引预载入到缓存中，通过init_file设置或者LOAD INDEX 命令:<br>L0AD INDEX INTO CACHE t1, t2;<br>可以通过SHOW STATUS和SHOW VARIABLES命令的信息来监控键缓冲的使用情况。<br>100 - ( (Key_blocks_unused * key_cache_block_size) * 100 / key_buffer_size)<br>每秒缓存未命中的次数: Key_reads / Uptime<br>$ mysqladmin extended-status -r -i 10| grep Key_reads<br>MySQL键缓存块大小(Key Block Size)<br>块大小也是很重要的‘(尤其是写密集型负载)，因为它影响了MyISAM、操作系统缓存，以及文件系统之间的交互。<br>可以设置MyISAM的索引块大小跟操作系统一样，以避免写时读取。myisam_block_size KEY_BLOCK_SIZE<br>线程缓存保存那些当前没有与连接关联但是准备为后面新的连接服务的线程。thread_cache_size  Threads created<br>表缓存和线程缓存的概念是相似的，但存储的对象代表的是表。每个在缓存中的对象包含相关表frm文件的解析结果，加上一些其他数据。准确地说，在对象里的其他数据的内容依赖于表的存储引擎。<br>表缓存的设计是服务器和存储引擎之间分离不彻底的产物，属于历史问题。<br>表缓存分离成两部分:一个是打开表的缓存，一个是表定义缓存(通过table_open_cache和table_definition_cache变量来配置)。<br>InnoDB有自己的表缓存，可以称为表定义缓存或者数据字典。<br>可以在MySQL5.6中打开innodb_analyze_is_persistent选项来持久化存储统计信息到磁盘。</p>
+<h4 id="8-5-配置MySQL的I-O行为"><a href="#8-5-配置MySQL的I-O行为" class="headerlink" title="8.5 配置MySQL的I/O行为"></a>8.5 配置MySQL的I/O行为</h4><p><strong>InnoDB I/O 配置</strong><br>InnoDB不仅允许控制怎么恢复，还允许控制怎么打开和刷新数据(文件), 这会对恢复和整体性能产生巨大的影响。<br><img    class="lazyload" data-original="https://s2.loli.net/2022/02/18/2LcSrR5gueCB7TX.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">InnoDB的缓存和文件</span><br>InnoDB事务日志<br>InnoDB使用日志来减少提交事务时的开销。<br>整体的日志文件大小受控于innodb_log_file_size和innodb_log_files_in_group两个参数，这对写性能非常重要。<br>要确定理想的日志文件大小，必须权衡正常数据变更的开销和崩溃恢复需要的时间。<br>数据大小和访问模式也将影响恢复时间。<br>当InnoDB变更任何数据时，会写一条变更记录到内存日志缓冲区。在缓冲满的时候、事务提交的时候，或者每一秒钟，InnoDB都会刷写缓冲区的内容到磁盘日志文件。变量innodb_1og_buffer_size可以控制日志缓冲区的大小。<br>可以通过检查SHOW INNODB STATUS的输出中LOG部分来监控InnoDB的日志和日志缓冲<br>区的I/O性能，通过观察Innodb_os_log_written状态变量来查看InnoDB对日志文件<br>写出了多少数据。<br>“把日志缓冲写到日志文件”和“把日志刷新到持久化存储”不同<br>高性能事务处理需要的最佳配置是把innodb_flush_log_at_trx_commit设置为1且把日志文件放到一个有电池保护的写缓存的RAID卷中。这兼顾了安全和速度。<br>使用innodb_flush_method选项可以配置InnoDB如何跟文件系统相互作用。<br>fdatasync/fsync(); 0_DIRECT; ALL 0 DIRECT; 0_ DSYNC; async_unbuffered; unbuffered; normal; Nosync和littlesync<br>InnoDB把数据保存在表空间内，本质上是一个由一个或多个磁盘文件组成的虚拟文件系统。<br>InnoDB用表空间实现很多功能,并不只是存储表和索引。它还保存了回滚日志(旧版本行)、插入缓冲(Insert Buffer)、双写缓冲(DoublewriteBuffer)，以及其他内部数据结构。<br>通过innodb_data_file_path配置项可以定制表空间文件。<br>… ibdata3:1G: autoextend:max:2G<br>SHOW INNODB STATUS的数据可以帮助定位问题。<br>为了控制写入速度，可以设置innodb_max_purge_lag变量为一个大于0的值。<br>InnoDB用双写缓冲来避免页没写完整所导致的数据损坏。<br>SHOW VARIABLES LIKE ‘ myisam_recover_options ‘ ;</p>
+<h4 id="8-6-配置MySQL并发"><a href="#8-6-配置MySQL并发" class="headerlink" title="8.6 配置MySQL并发"></a>8.6 配置MySQL并发</h4><p>InnoDB有自己的“线程调度器”控制线程怎么进入内核访问数据，以及它们在内核中一次可以做哪些事。最基本的限制并发的方式是使用innodb_thread_concurrency变量，它会限制一次性可以有多少线程进入内核，0表示不限制。<br>并发值=CPU数量*磁盘数量*2<br>InnoDB使用两段处理来尝试让线程尽可能高效地进入内核。两段策略减少了因操作系统调度引起的上下文切换。线程第一次休眠innodb_thread_sleep_delay微秒，然后再重试。如果它依然不能进入内核，则放入一个等待线程队列，让操作系统来处理。<br>innodb_concurrency_tickets选项控制票据的数量。<br>innodb_commit_concurrency变量控制有多少个线程可以在同一时间提交。如<br>使用线程池(Thread Pool)来限制并发。</p>
+<h4 id="8-7-基于工作负载的配置"><a href="#8-7-基于工作负载的配置" class="headerlink" title="8.7 基于工作负载的配置"></a>8.7 基于工作负载的配置</h4><p>配置服务器的一个目标是把它定制得符合特定的工作负载。这需要精通所有类型的服务器活动的数量、类型，以及频率-不仅仅是查询语句，也包括其他的活动，例如连接服务器以及刷新表。<br><strong>优化 BLOB和 TEXT的场景</strong><br>服务器不能在内存临时表中存储BLOB值<br>通过SUBSTRING()函数把值转换为VARCHAR，或者让临时表更快一些。<br><strong>优化排序(Filesorts)</strong><br>MySQL有两种排序算法。如果查询中所有需要的列和ORDER BY的列总大小超过max_length_for_sort_data字节，则采用two-pass算法。或者当任何需要的列-即使没有被ORDER BY使用的列-是BLOB或者TEXT，也会采用这个算法。</p>
+<h4 id="8-8-完成基本配置"><a href="#8-8-完成基本配置" class="headerlink" title="8.8 完成基本配置"></a>8.8 完成基本配置</h4><p>tmp_table_size和max_heap_table_size：SHOW PROCESSLIST；SHOW STATUS； Created_tmp_disk_tables； Created_tmp_tables<br>max_connections<br>thread_cache_size：Threads_connected状态变量 Threads_cached Slow_launch_threads<br>table_cache_size: Open_tables</p>
+<h4 id="8-9-安全和稳定的设置"><a href="#8-9-安全和稳定的设置" class="headerlink" title="8.9 安全和稳定的设置"></a>8.9 安全和稳定的设置</h4><p>expire_logs_days；max_allowed_packet；max_connect_errors；skip_name_resolve；sql_mode；sysdate_is_now<br>下面的选项可以控制复制行为，并且对防止备库出问题非常有帮助:<br>read_only；skip_slave_start；slave_net_timeout；sync_master_info、sync_relay_log、sync_relay_log_info</p>
+<h4 id="8-10-高级lnnoDB设置"><a href="#8-10-高级lnnoDB设置" class="headerlink" title="8.10 高级lnnoDB设置"></a>8.10 高级lnnoDB设置</h4><p>innodb；innodb_autoinc_lock_mode；innodb_buffer_pool_instances；innodb_io_ capacity；innodb_read_io_threads和innodb_write_io_threads；innodb_strict_mode；innodb_old_blocks_time</p>
+<h4 id="8-11-总结"><a href="#8-11-总结" class="headerlink" title="8.11 总结"></a>8.11 总结</h4><h3 id="第9章-操作系统和硬件优化"><a href="#第9章-操作系统和硬件优化" class="headerlink" title="第9章 操作系统和硬件优化"></a>第9章 操作系统和硬件优化</h3><h4 id="9-1-什么限制了MySQL的性能"><a href="#9-1-什么限制了MySQL的性能" class="headerlink" title="9.1 什么限制了MySQL的性能"></a>9.1 什么限制了MySQL的性能</h4><h4 id="9-2如何为MySQL选择CPU"><a href="#9-2如何为MySQL选择CPU" class="headerlink" title="9.2如何为MySQL选择CPU"></a>9.2如何为MySQL选择CPU</h4><p>可以通过检查CPU利用率来判断是否是CPU密集型的工作负载，但是仅看CPU整体的负载是不合理的，还需要看看CPU使用率和大多数重要的查询的I/O之间的平衡，并注意CPU负载是否分配均匀。<br>低延时(快速响应) + 高吞吐<br>多CPU在联机事务处理(OLTP)系统的场景中非常有用。<br>逻辑并发问题 + 内部并发问题<br>如果规划一个大的升级,必须要同时考虑硬件、服务器版本和工作负载。<br>归根结底，多个内核和多个物理CPU哪个更好，这是由硬件体系结构决定的。</p>
+<h4 id="9-3-平衡内存和磁盘资源"><a href="#9-3-平衡内存和磁盘资源" class="headerlink" title="9.3 平衡内存和磁盘资源"></a>9.3 平衡内存和磁盘资源</h4><p>关键是要平衡内存和磁盘的大小、速度、成本和其他因素,以便为工作负载提供高性能的表现。<br>顺序IO比随机I/O快；存储引擎执行顺序读比随机读快。<br>多次写入，一次刷新；I/O合并<br>每个应用程序都有一个数据的“工作集”–就是做这个工作确实需要用到的数据。<br>工作集包括数据和索引，所以应该采用缓存单位来计数。一个缓存单位是存储引擎工作的数据最小单位。不同存储引擎的缓存单位大小是不一样的，因此也使得工作集的大小不一样。<br>一个高性能的I/O系统与带电池支持的写缓存或固态存储<br>快速访问时间 + 快速的传输速度 延迟 + 吞吐量<br>存储容量 传输速度 访问时间 主轴转速 物理尺寸<br>和CPU一样，MySQL如何扩展到多个磁盘上取决于存储引擎和工作负载。</p>
+<h4 id="9-4-固态存储"><a href="#9-4-固态存储" class="headerlink" title="9.4 固态存储"></a>9.4 固态存储</h4><p>固态(闪存)存储器实际上是有30年历史的技术，但是它作为新一代驱动器而成为热门则是最近几年的事。<br>固态存储设备采用非易失性闪存芯片而不是磁性盘片组成。它们也被称为NVRAM，或非易失性随机存取存储器。<br>SSD(固态硬盘)和PCIe卡。<br>SSD通过实现SATA(串行高级技术附件)接口来模拟标准硬盘，所以可以替代硬盘驱动器，直接插入服务器机箱中的现有插槽。PCIe卡使用特殊的操作系统驱动程序，把存储设备作为一个块设备输出。<br>最重要的事情是提升随机I/O和并发性。<br>闪存的最重要的特征是可以迅速完成多次小单位读取，但是写入更有挑战性。<br>速度下降是由于没有空闲块时必须等待擦写完成所造成的。<br>两种主要的闪存设备类型:单层单元(SLC)和多层单元(MLC)。<br>平衡磨损和重映射的算法是非常重要的<br>对SATA SSD盘使用RAID(Redundant Array of Inexpensive Disks，磁盘冗余阵列)。<br>增加InnoDB的I/O容量； 让InnoDB日志文件更大；把一些文件从闪存转移到RAID；禁用预读；配置InnoDB刷新算法；禁用双写缓冲的可能；限制插入缓冲大小</p>
+<h4 id="9-5-为备库选择硬件"><a href="#9-5-为备库选择硬件" class="headerlink" title="9.5 为备库选择硬件"></a>9.5 为备库选择硬件</h4><p>主备使用相同的硬件，或为主库购买新的硬件，然后让备库使用主库淘汰的老硬件。</p>
+<h4 id="9-6-RAID-性能优化"><a href="#9-6-RAID-性能优化" class="headerlink" title="9.6 RAID 性能优化"></a>9.6 RAID 性能优化</h4><p>RAID不能消除甚至减少备份的需求。当出现问题的时候，恢复时间要看控制器、RAID等级、阵列大小、硬盘速度，以及重建阵列时是否需要保持服务器在线。<br>除了监控硬盘失效，还应该监控RAID控制器的电池备份单元以及写缓存策略。<br>操作系统、文件系统和操作系统看到的驱动器数量之间的相互作用可以是复杂的。Bug、限制或只是错误配置，都可能会把性能降低到远远低于理论值。<br>串行化可能发生在任何的软件或硬件堆栈层。<br>一是条带化阵列的块大小(Chunk Size)，还有就是控制器板载缓存(也称为RAID缓存)。<br>可以配置系统以便从应用到底层存储所有的块都对齐:InnoDB的块、文件系统的块、LVM，分区偏移、RAID条带、磁盘扇区。<br>RAID卡使用缓存:缓存读取；缓存预读数据；缓冲写入；内部操作</p>
+<h4 id="9-7-SAN-和-NAS"><a href="#9-7-SAN-和-NAS" class="headerlink" title="9.7 SAN 和 NAS"></a>9.7 SAN 和 NAS</h4><p>SAN(Storage Area Network)和NAS (Network-Attached Storage)是两个外部文件存储设备加载到服务器的方法。不同的是访问存储的方式。主要区别在于作为文件还是块设备访问存储<br>块接口在服务器上以逻辑单元号(LUN)或者虚拟卷(除非使用NFS)出现。许多SAN也允许多节点组成集群来获得更好的性能或者增加存储容量。<br>备份 简化容量规划 存储整合还是服务器整合 高可用 服务器之间的交互 成本</p>
+<h4 id="9-8-使用多磁盘卷"><a href="#9-8-使用多磁盘卷" class="headerlink" title="9.8 使用多磁盘卷"></a>9.8 使用多磁盘卷</h4><p>数据和索引文件 事务日志文件 二进制日志文件 常规日志(例如，错误日志、查询日志和慢查询日志) 临时文件和临时表<br>二进制日志和数据文件分离的真正的优势，是减少事故中同时丢失数据和日志文件的可能性。</p>
+<h4 id="9-9-网络配置"><a href="#9-9-网络配置" class="headerlink" title="9.9 网络配置"></a>9.9 网络配置</h4><p>就像延迟和吞吐量是硬盘驱动器的限制因素一样，延迟和带宽(实际上和吞吐量是同一回事)也是网络连接的限制因素。<br>监控网络性能和所有网络端口的错误是正确的做法，要监控服务器、路由器和交换机的每个端口。</p>
+<h4 id="9-10-选择操作系统"><a href="#9-10-选择操作系统" class="headerlink" title="9.10 选择操作系统"></a>9.10 选择操作系统</h4><h4 id="9-11-选择文件系统"><a href="#9-11-选择文件系统" class="headerlink" title="9.11 选择文件系统"></a>9.11 选择文件系统</h4><p>如果可能，最好使用日志文件系统，例如ext3、ext4、XFS、ZFS或者JFS。<br>data-writeback data=ordered data=journal<br>noatime,nodiratime,data=writeback 0 1</p>
+<h4 id="9-12-选择磁盘队列调度策略"><a href="#9-12-选择磁盘队列调度策略" class="headerlink" title="9.12 选择磁盘队列调度策略"></a>9.12 选择磁盘队列调度策略</h4><p>在GNU / Linux上，队列调度决定了到块设备的请求实际上发送到底层设备的顺序。默认情况下使用cfq(Completely Fair Queueing，完全公平排队)策略。<br>查看系统所有支持的以及当前在用的调度策略:<br>$ cat /sys/block/sda/queue/scheduler</p>
+<h4 id="9-13-线程"><a href="#9-13-线程" class="headerlink" title="9.13 线程"></a>9.13 线程</h4><p>MySQL每个连接使用一个线程，另外还有内部处理线程、特殊用途的线程，以及所有存储引擎创建的线程。<br>GNU/Linux提供两个线程库:LinuxThreads和新的原生POSIX线程库(NPTL)。</p>
+<h4 id="9-14-内存交换区"><a href="#9-14-内存交换区" class="headerlink" title="9.14 内存交换区"></a>9.14 内存交换区</h4><p>当操作系统因为没有足够的内存而将一些虚拟内存写到磁盘就会发生内存交换<br>极端的场景下，太多的内存交换可能导致操作系统交换空间溢出。<br>$ cat /proc/sys/vm/swappiness<br>修改存储引擎怎么读取和写入数据。<br>可以使用大页，不参与换入换出。<br>使用MySQ 的memlock配置项，可以把 MySQL锁定在内存。</p>
+<h4 id="9-15-操作系统状态"><a href="#9-15-操作系统状态" class="headerlink" title="9.15 操作系统状态"></a>9.15 操作系统状态</h4><p>iostat和vmstat mpstat或者sar ifconfig netstat<br>默认情况下，vmstat和iostat只是生成一个报告，展示自系统启动以来很多计数器的平均值。两个工具都可以给出一个间隔参数，让它们生成增量值的报告，展示服务器正在做什么，这更有用。<br>procs(r b) memory(swpd free buff cache) swap(si so) io(bi bo) system(in cs) cpu(us sy id wa st)<br>rrqm/s和wrqm/s r/s和w/s rsec/s和wsec/s avgrq-sz avgqu-sz await svctm %util<br>利用利特尔法则(Little’s Law)得到下面的公式，计算出设备服务的并发请求数<br>concurrency = (r/s + w/s) * (svctm/1000)<br>dstat(http.:lldag.wieers.com/home-madeldstatl)）或collectl(http:l/collectl.sourceforge.net) blktrace pt-diskstats<br>密集型的机器<br>CPU密集型服务器的vmstat输出通常在us列会有一个很高的值，报告了花费在非内核代码上的CPU时钟﹔也可能在sv列有很高的值，表示系统CPU利用率</p>
+<h4 id="9-16-总结"><a href="#9-16-总结" class="headerlink" title="9.16 总结"></a>9.16 总结</h4>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/%E9%85%8D%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E9%AB%98%E6%80%A7%E8%83%BDMySQL&#x2F;%E9%85%8D%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E9%AB%98%E6%80%A7%E8%83%BDMySQL&#x2F;%E9%85%8D%E7%BD%AE%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/%E4%BD%9C%E4%B8%BA%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%BB%84%E4%BB%B6%E7%9A%84MySQL/"><i class="iconfont iconleft"></i>作为基础设施组件的MySQL</a>
+    <a href="/2022/02/22/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/%E6%89%93%E9%80%A0%E5%9D%9A%E5%AE%9E%E7%9A%84%E5%9F%BA%E7%A1%80/">打造坚实的基础<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E4%BC%98%E5%8C%96%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE"><span class="toc-text">第8章 优化服务器设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A1%AC%E4%BB%B6%E4%BC%98%E5%8C%96"><span class="toc-text">第9章 操作系统和硬件优化</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

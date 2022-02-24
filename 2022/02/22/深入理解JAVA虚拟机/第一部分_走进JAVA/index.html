@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第一部分_走进JAVA - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="JVM高级特性与最佳实践JAVA技术体系：虚拟机 + ...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第一部分_走进JAVA</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第一部分_走进JAVA</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3874</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>JVM高级特性与最佳实践<br>JAVA技术体系：虚拟机 + JAVA类库 + JAVA编程语言 + 第三方JAVA框架<br>在任意一台Java虚拟机上编译的程序，都能在任何其他Java虚拟机上正常运行。<br>Java虚拟机规范 Java语言规范 垃圾回收算法手册：自动内存管理的艺术 Virtual Machines:Versatile Platforms for Systems and Processes Java性能优化权威指南</p>
+<h3 id="第一部分-走进Java"><a href="#第一部分-走进Java" class="headerlink" title="第一部分 走进Java"></a>第一部分 走进Java</h3><h4 id="第一章-走进Java"><a href="#第一章-走进Java" class="headerlink" title="第一章 走进Java"></a>第一章 走进Java</h4><p><strong>概述</strong><br>结构严谨、面向对象的编程语言；摆脱硬件平台的束缚，”一次编写，到处运行”；提供一种相对安全的内存管理和访问机制，避免绝大部分内存泄漏和指针越界问题；实现热点代码检测和运行时编译及优化；有一套完善的应用程序接口；第三方类库；<br><strong>JAVA技术体系</strong><br>JCP:Java Community Process “Java社区” 由业界多家技术巨头组成的社区组织，用于定义和发展Java的技术规范<br>JAVA技术体系：Java程序设计语言；各种硬件平台上的Java虚拟机实现；Class文件格式；Java类库API；来自商业机构和开源社区的第三方Java类库<br>JDK(Java Development Kit):支持Java程序开发的最小环境 = Java程序设计语言 + Java虚拟机 + Java类库<br>JRE(Java Runtime Environment):支持ava程序运行的标准环境 = Java SE API子集 +  Java虚拟机<br>按照技术所服务的领域(或者按照技术关注的重点业务来划分)：Java Card; Java ME; Java SE; Java EE;<br><img    class="lazyload" data-original="https://s2.loli.net/2022/01/21/JgWQCFfkxXjIRcv.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">Java技术体系所包括的内容</span><br><strong>JAVA发展史</strong><br>Java语言的前身：Oak<br>JEP（JDK Enhancement Proposals）<br><strong>虚拟机家族</strong><br><em>虚拟机始祖：Sun Classic/Exact VM</em><br>Sun Classic：世界上第一款商业Java虚拟机<br>sunwjit(Sun Workshop JIT)-外挂编译器-SymantecJIT; shuJIT<br>Exact VM 准确式内存管理(Exact Memory Management)<br><em>武林盟主：HotSpot VM</em><br>Longview Technologies<br>热点代码探测技术<br>标准即时编译和栈上替换编译(On-Stack Replacement, OSR)<br><em>小家碧玉：Mobile/Embedded VM</em><br>CDC-HI(C Virtual Machine, CVM)和CLDC-HI(Monty VM)<br>CDC/CLDC(Connected (limited) Device Configuration)<br>HI(HotSpot Implementation)<br>Java ME的KVM<br><em>天下第二：BEA JRockit/IBM J9 VM</em><br>BEA JRockit:专门为服务器硬件和服务器应用场景高度优化的虚拟机；<br>IBM J9 VM：市场定位于HotSpot接近：服务端、桌面应用、嵌入式 IBM Technology for Java Virtual Machine<br><em>软硬合璧：BEA Liquid VM/Azul VM</em><br>与特定硬件平台绑定、软硬件配合工作的专有虚拟机，往往能够实现更高的执行性能，或提供某些特殊的功能特性<br>Liquid VM = JRockit VE(Virtual Edition, VE)<br>Azul VM在HotSpot基础上进行大量改进，运行与Azul Systems公司的专有硬件Vega系统上 PGC C4收集器<br>Zing Zulu<br><em>挑战者：Apache Harmony/Google Android Dalvik VM</em><br>Apache Harmony是一个Apache软件基金会旗下以Apache License协议开源的实际兼容于JDK 5和JDK 6的Java程序运行平台，未通过TCK(Technology Compatibility Kit)认证<br>如果一个公司要宣称自己的运行平台“兼容于Java技术体系”，那该运行平台就必须要通过TCK的兼容性测试，<br>Dalvik虚拟机曾经是Android平台的核心组成部分之一，并不是一个Java虚拟机，它没有遵循《Java虚拟机规范》，不能直接执行Java的 Class文件，使用寄存器架构而不是Java虚拟机中常见的栈架构。DEX(Dalvik Executable)<br>支持提前编译(Ahead of Time Compilation，AOT)的ART虚拟机<br><em>没有成功，但并非失败：Microsoft JVM及其他</em><br>微软为了在Internet Explorer 3浏览器中支持Java Applets应用而开发了 自己的Java虚拟机，只有Windows平台的版本<br>*百家争鸣 *<br>KVM：“Kilobyte” 简单、轻量、高度可移植，但是运行速度比较慢<br>Java Card VM：裁减了许多模块但通常支持绝大多数的常用加密算法。<br>Squawk VM：运行于Sun SPOT（Sun Small Programmable Object Tech-nology，一种手 持的Wi-Fi设备），也曾经运用于Java Card。<br>JavaInJava：试图以Java语言来实现Java语言本身的运行环境，既所谓的“元循环”(Meta-Circular，是指使用语言自身来实现其运行环境)虚拟机。<br>Maxine VM：一个几乎全部以Java代码实现(只有用于启动Java虚拟机的加载器使用C语言编写)的元循环Java虚拟机。从C1X编译器演进而来的Graal编译器<br>Jikes RVM：元循环虚拟机<br>IKVM.NET：基于微软.NET框架实现<br><strong>展望Java技术的未来</strong><br><em>无语言倾向</em><br>庞大的用户群和极其成熟的软件生态<br>Oracle Labs：Graal VM “Run Programs Faster Anywhere” “Universal VM”和“Polyglot VM”<br>在HotSpot虚拟机基础上增强而成的跨语言全栈虚拟机，可以作为“任何语言”的运行平台使用，<br>Graal VM可以无额外开销地混合使用这些编程语言，支持不同语言中混用对方的接口和对象，也能够支持这些语言使用已经编写好的本地库文件。<br>程序特化(Specialized，也常被称为Partial Evaluation):将这些语言的源代码(例如JavaScript)或源代码编译后的中间格式(例如LLVM字节码)通过解释器转换为能被Graal VM接受的中间表示(Intermediate Representation， IR)<br>Graal VM提供了Truffle工具集来快速构建面向一种新语言的解释器，并用它构建了一个称为Sulong的高性能LLVM字节码解释器。<br><em>新一代即时编译器</em><br>HotSpot虚拟机中含有两个即时编译器，分别是编译耗时短但输出代码优化程度较低的客户端编译器(简称为C1)以及编译耗时长但输出代码优化质量也更高的服务端编译器(简称为C2)，通常它们会在分层编译机制下与解释器互相配合来共同构成HotSpot虚拟机的执行子系统<br>Graal编译器<br>“Sea-of-Nodes”的高级中间表示(High IR)形式<br>“部分逃逸分析”(Partial Escape Analysis)<br>激进预测性优化(Aggressive Speculative Optimization)<br><em>向Native迈进</em><br>跨进程的、可以面向用户程序的类型信息共享(Application Class Data Sharing，AppCDS)，允许把加载解析后的类型信息缓存起来，从而提升下次启动速度<br>无操作的垃圾收集器(Epsilon，只做内存分配而不做回收的收集器，对于运行完就退出的应用十分合适)<br>逐步开始对提前编译(Ahead of Time Compilation，AOT)提供支持<br>Jaotc命令; Excelsior JET; Substrate VM;<br><em>灵活的胖子</em><br>HotSpot的定位是面向各种不同应用场景的全功能Java虚拟机<br>模块化是HotSpot的弱项，监控、执行、编译、内存管理等多个子系统的代码相互纠缠<br>ava虚拟机信息监控接口(Java Virtual Machine Profiler Interface，JVMPI)与Java虚拟机调试接口(Java Virtual Machine Debug Interface，JVMDI)<br>Java虚拟机工具接口(Java Virtual Machine Tool Interface，JVMTI)<br>Java语言级别的编译器接口(Java Virtual Machine Compiler Interface，JVMCI)<br>Java虚拟机的垃圾收集器接口(Java Virtual Machine Compiler Interface)<br><em>语言语法持续增强</em><br>一门语言的功能、语法又是影响语言生产力和效率的重要因素<br><strong>实战：自己编译JDK</strong><br>MacOS：XCode和Command Line Tools for XCode<br>Linux系统：GCC或CLang来进行编译<br>编译OpenJDK 12时， Bootstrap JDK必须使用JDK 11及之后的版本。<br>查询OpenJDK提供的编译参数：bash configure –help<br>configure命令承担了依赖项检查、参数配置和构建输出目录结构等多项职责</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86_%E8%B5%B0%E8%BF%9BJAVA/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA&#x2F;%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86_%E8%B5%B0%E8%BF%9BJAVA&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA&#x2F;%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86_%E8%B5%B0%E8%BF%9BJAVA&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86_%E8%87%AA%E5%8A%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"><i class="iconfont iconleft"></i>第二部分_自动内存管理</a>
+    <a href="/2022/02/22/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/%E4%BD%9C%E4%B8%BA%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%BB%84%E4%BB%B6%E7%9A%84MySQL/">作为基础设施组件的MySQL<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E8%B5%B0%E8%BF%9BJava"><span class="toc-text">第一部分 走进Java</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

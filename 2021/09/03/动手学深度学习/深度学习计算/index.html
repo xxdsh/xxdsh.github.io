@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第五章 深度学习计算 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="5.1 层和块单个神经元（1）接受一些输入；（2）生成...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第五章 深度学习计算</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/Our%20Furry%20Friends/img-4.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第五章 深度学习计算</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 03, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>10286</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h2 id="5-1-层和块"><a href="#5-1-层和块" class="headerlink" title="5.1 层和块"></a>5.1 层和块</h2><p>单个神经元（1）接受一些输入；（2）生成相应的标量输出；（3）具有一组相关 <em>参数</em>（parameters），这些参数可以更新以优化某些感兴趣的目标函数。<br>层以各种重复模式排列的类似结构现在也是普遍存在。<br>块可以描述单个层、由多个层组成的组件或整个模型本身。<br>从编程的角度来看，块由<em>类</em>（class）表示。它的任何子类都必须定义一个将其输入转换为输出的正向传播函数，并且必须存储任何必需的参数。注意，有些块不需要任何参数。最后，为了计算梯度，块必须具有反向传播函数。<br>(<strong>回顾一下多层感知机</strong>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><span class="hljs-keyword">from</span> torch.nn <span class="hljs-keyword">import</span> functional <span class="hljs-keyword">as</span> F<br><span class="hljs-comment"># `nn.Sequential`定义了一种特殊的`Module`</span><br>net = nn.Sequential(nn.Linear(<span class="hljs-number">20</span>, <span class="hljs-number">256</span>), nn.ReLU(), nn.Linear(<span class="hljs-number">256</span>, <span class="hljs-number">10</span>))<br><br>X = torch.rand(<span class="hljs-number">2</span>, <span class="hljs-number">20</span>)<br>net(X) <span class="hljs-comment"># net.__call__(X)的简写</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-1-1-自定义块"><a href="#5-1-1-自定义块" class="headerlink" title="5.1.1 自定义块"></a>5.1.1 自定义块</h3><ol>
+<li>将输入数据作为其正向传播函数的参数。</li>
+<li>通过正向传播函数来生成输出。</li>
+<li>计算其输出关于输入的梯度，可通过其反向传播函数进行访问。通常这是自动发生的。</li>
+<li>存储和访问正向传播计算所需的参数。</li>
+<li>根据需要初始化模型参数。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-comment"># 用模型参数声明层。声明两个全连接的层</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-comment"># 调用`MLP`的父类`Block`的构造函数来执行必要的初始化。</span><br>        <span class="hljs-comment"># 这样，在类实例化时也可以指定其他函数参数，例如模型参数`params`（稍后将介绍）</span><br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.hidden = nn.Linear(<span class="hljs-number">20</span>, <span class="hljs-number">256</span>)  <span class="hljs-comment"># 隐藏层</span><br>        self.out = nn.Linear(<span class="hljs-number">256</span>, <span class="hljs-number">10</span>)  <span class="hljs-comment"># 输出层</span><br><br>    <span class="hljs-comment"># 定义模型的正向传播，即如何根据输入`X`返回所需的模型输出</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, X</span>):</span><br>        <span class="hljs-comment"># 注意，使用ReLU的函数版本，其在nn.functional模块中定义。</span><br>        <span class="hljs-keyword">return</span> self.out(F.relu(self.hidden(X)))<br>net = MLP()<br>net(X)<br></code></pre></td></tr></table></figure>
+
+<p>[<strong>实例化多层感知机的层，然后在每次调用正向传播函数时调用这些层</strong>]</p>
+<h3 id="5-1-2-顺序块"><a href="#5-1-2-顺序块" class="headerlink" title="5.1.2 顺序块"></a>5.1.2 顺序块</h3><ol>
+<li>一种将块逐个追加到列表中的函数。</li>
+<li>一种正向传播函数，用于将输入按追加块的顺序传递给块组成的“链条”。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MySequential</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, *args</span>):</span><br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-keyword">for</span> block <span class="hljs-keyword">in</span> args:<br>            <span class="hljs-comment"># 这里，`block`是`Module`子类的一个实例。把它保存在&#x27;Module&#x27;类的成员变量</span><br>            <span class="hljs-comment"># `_modules` 中。`block`的类型是OrderedDict。</span><br>            self._modules[block] = block<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, X</span>):</span><br>        <span class="hljs-comment"># OrderedDict保证了按照成员添加的顺序遍历它们</span><br>        <span class="hljs-keyword">for</span> block <span class="hljs-keyword">in</span> self._modules.values():<br>            X = block(X)<br>        <span class="hljs-keyword">return</span> X<br><br>net = MySequential(nn.Linear(<span class="hljs-number">20</span>, <span class="hljs-number">256</span>), nn.ReLU(), nn.Linear(<span class="hljs-number">256</span>, <span class="hljs-number">10</span>))<br>net(X)<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-1-3-在正向传播函数中执行代码"><a href="#5-1-3-在正向传播函数中执行代码" class="headerlink" title="5.1.3 在正向传播函数中执行代码"></a>5.1.3 在正向传播函数中执行代码</h3><p>需要一个计算函数<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="18.101ex" height="3.176ex" style="vertical-align: -0.838ex;" viewBox="0 -1006.6 7793.6 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">f(\mathbf{x},\mathbf{w}) = c \cdot \mathbf{w}^\top \mathbf{x}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-66" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMAINB-78" d="M227 0Q212 3 121 3Q40 3 28 0H21V62H117L245 213L109 382H26V444H34Q49 441 143 441Q247 441 265 444H274V382H246L281 339Q315 297 316 297Q320 297 354 341L389 382H352V444H360Q375 441 466 441Q547 441 559 444H566V382H471L355 246L504 63L545 62H586V0H578Q563 3 469 3Q365 3 347 0H338V62H366Q366 63 326 112T285 163L198 63L217 62H235V0H227Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+<path stroke-width="1" id="E1-MJMAINB-77" d="M624 444Q636 441 722 441Q797 441 800 444H805V382H741L593 11Q592 10 590 8T586 4T584 2T581 0T579 -2T575 -3T571 -3T567 -4T561 -4T553 -4H542Q525 -4 518 6T490 70Q474 110 463 137L415 257L367 137Q357 111 341 72Q320 17 313 7T289 -4H277Q259 -4 253 -2T238 11L90 382H25V444H32Q47 441 140 441Q243 441 261 444H270V382H222L310 164L382 342L366 382H303V444H310Q322 441 407 441Q508 441 523 444H531V382H506Q481 382 481 380Q482 376 529 259T577 142L674 382H617V444H624Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-22A4" d="M55 642T55 648T59 659T66 666T71 668H708Q723 660 723 648T708 628H409V15Q402 2 391 0Q387 0 384 1T379 3T375 6T373 9T371 13T369 16V628H71Q70 628 67 630T59 637Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-66" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-28" x="550" y="0"></use>
+ <use xlink:href="#E1-MJMAINB-78" x="940" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2C" x="1547" y="0"></use>
+ <use xlink:href="#E1-MJMAINB-77" x="1992" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-29" x="2824" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-3D" x="3491" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-63" x="4547" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-22C5" x="5203" y="0"></use>
+<g transform="translate(5704,0)">
+ <use xlink:href="#E1-MJMAINB-77" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-22A4" x="1175" y="583"></use>
+</g>
+ <use xlink:href="#E1-MJMAINB-78" x="7186" y="0"></use>
+</g>
+</svg>的层，其中<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.411ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 607.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\mathbf{x}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAINB-78" d="M227 0Q212 3 121 3Q40 3 28 0H21V62H117L245 213L109 382H26V444H34Q49 441 143 441Q247 441 265 444H274V382H246L281 339Q315 297 316 297Q320 297 354 341L389 382H352V444H360Q375 441 466 441Q547 441 559 444H566V382H471L355 246L504 63L545 62H586V0H578Q563 3 469 3Q365 3 347 0H338V62H366Q366 63 326 112T285 163L198 63L217 62H235V0H227Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAINB-78" x="0" y="0"></use>
+</g>
+</svg>是输入，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.931ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 831.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\mathbf{w}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAINB-77" d="M624 444Q636 441 722 441Q797 441 800 444H805V382H741L593 11Q592 10 590 8T586 4T584 2T581 0T579 -2T575 -3T571 -3T567 -4T561 -4T553 -4H542Q525 -4 518 6T490 70Q474 110 463 137L415 257L367 137Q357 111 341 72Q320 17 313 7T289 -4H277Q259 -4 253 -2T238 11L90 382H25V444H32Q47 441 140 441Q243 441 261 444H270V382H222L310 164L382 342L366 382H303V444H310Q322 441 407 441Q508 441 523 444H531V382H506Q481 382 481 380Q482 376 529 259T577 142L674 382H617V444H624Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAINB-77" x="0" y="0"></use>
+</g>
+</svg>是参数，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">c</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-63" x="0" y="0"></use>
+</g>
+</svg>是某个在优化过程中没有更新的指定常量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FixedHiddenMLP</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-comment"># 不计算梯度的随机权重参数。因此其在训练期间保持不变。</span><br>        self.rand_weight = torch.rand((<span class="hljs-number">20</span>, <span class="hljs-number">20</span>), requires_grad=<span class="hljs-literal">False</span>)<br>        self.linear = nn.Linear(<span class="hljs-number">20</span>, <span class="hljs-number">20</span>)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, X</span>):</span><br>        X = self.linear(X)<br>        <span class="hljs-comment"># 使用创建的常量参数以及`relu`和`dot`函数。</span><br>        X = F.relu(torch.mm(X, self.rand_weight) + <span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># 复用全连接层。这相当于两个全连接层共享参数。</span><br>        X = self.linear(X)<br>        <span class="hljs-comment"># 控制流</span><br>        <span class="hljs-keyword">while</span> X.<span class="hljs-built_in">abs</span>().<span class="hljs-built_in">sum</span>() &gt; <span class="hljs-number">1</span>:<br>            X /= <span class="hljs-number">2</span><br>        <span class="hljs-keyword">return</span> X.<span class="hljs-built_in">sum</span>()<br>net = FixedHiddenMLP()<br>net(X)<br></code></pre></td></tr></table></figure>
+
+<p>[<strong>混合搭配各种组合块的方法</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NestMLP</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.net = nn.Sequential(nn.Linear(<span class="hljs-number">20</span>, <span class="hljs-number">64</span>), nn.ReLU(),<br>                                 nn.Linear(<span class="hljs-number">64</span>, <span class="hljs-number">32</span>), nn.ReLU())<br>        self.linear = nn.Linear(<span class="hljs-number">32</span>, <span class="hljs-number">16</span>)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, X</span>):</span><br>        <span class="hljs-keyword">return</span> self.linear(self.net(X))<br><br>chimera = nn.Sequential(NestMLP(), nn.Linear(<span class="hljs-number">16</span>, <span class="hljs-number">20</span>), FixedHiddenMLP())<br>chimera(X)<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-1-4-效率"><a href="#5-1-4-效率" class="headerlink" title="5.1.4 效率"></a>5.1.4 效率</h3><h3 id="5-1-5-小结"><a href="#5-1-5-小结" class="headerlink" title="5.1.5 小结"></a>5.1.5 小结</h3><ul>
+<li>层也是块。</li>
+<li>一个块可以由许多层组成。</li>
+<li>一个块可以由许多块组成。</li>
+<li>块可以包含代码。</li>
+<li>块负责大量的内部处理，包括参数初始化和反向传播。</li>
+<li>层和块的顺序连接由<code>Sequential</code>块处理。</li>
+</ul>
+<h2 id="5-2-参数管理"><a href="#5-2-参数管理" class="headerlink" title="5.2 参数管理"></a>5.2 参数管理</h2><p>目标是找到使损失函数最小化的参数值</p>
+<ul>
+<li>访问参数，用于调试、诊断和可视化。</li>
+<li>参数初始化。</li>
+<li>在不同模型组件间共享参数。</li>
+</ul>
+<p>(<strong>具有单隐藏层的多层感知机。</strong>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><br>net = nn.Sequential(nn.Linear(<span class="hljs-number">4</span>, <span class="hljs-number">8</span>), nn.ReLU(), nn.Linear(<span class="hljs-number">8</span>, <span class="hljs-number">1</span>))<br>X = torch.rand(size=(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>))<br>net(X)<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-2-1-参数访问"><a href="#5-2-1-参数访问" class="headerlink" title="5.2.1 参数访问"></a>5.2.1 参数访问</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 检查第二个全连接层的参数</span><br><span class="hljs-built_in">print</span>(net[<span class="hljs-number">2</span>].state_dict())<br></code></pre></td></tr></table></figure>
+
+<h4 id="目标参数"><a href="#目标参数" class="headerlink" title="目标参数"></a>目标参数</h4><p>参数是复合的对象，包含值、梯度和额外信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(net[<span class="hljs-number">2</span>].bias))<br><span class="hljs-built_in">print</span>(net[<span class="hljs-number">2</span>].bias)<br><span class="hljs-built_in">print</span>(net[<span class="hljs-number">2</span>].bias.data)<br><span class="hljs-comment"># 访问每个参数的梯度</span><br>net[<span class="hljs-number">2</span>].weight.grad == <span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="一次性访问所有参数"><a href="#一次性访问所有参数" class="headerlink" title="一次性访问所有参数"></a>一次性访问所有参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(*[(name, param.shape) <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> net[<span class="hljs-number">0</span>].named_parameters()])<br><span class="hljs-built_in">print</span>(*[(name, param.shape) <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> net.named_parameters()])<br><span class="hljs-comment"># 另一种访问网络参数的方式</span><br>net.state_dict()[<span class="hljs-string">&#x27;2.bias&#x27;</span>].data<br></code></pre></td></tr></table></figure>
+
+<h4 id="从嵌套块收集参数"><a href="#从嵌套块收集参数" class="headerlink" title="从嵌套块收集参数"></a>从嵌套块收集参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">block1</span>():</span><br>    <span class="hljs-keyword">return</span> nn.Sequential(nn.Linear(<span class="hljs-number">4</span>, <span class="hljs-number">8</span>), nn.ReLU(),<br>                         nn.Linear(<span class="hljs-number">8</span>, <span class="hljs-number">4</span>), nn.ReLU())<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">block2</span>():</span><br>    net = nn.Sequential()<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>        <span class="hljs-comment"># 在这里嵌套</span><br>        net.add_module(<span class="hljs-string">f&#x27;block <span class="hljs-subst">&#123;i&#125;</span>&#x27;</span>, block1())<br>    <span class="hljs-keyword">return</span> net<br><br>rgnet = nn.Sequential(block2(), nn.Linear(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>))<br>rgnet(X)<br><span class="hljs-comment"># 打印网络</span><br><span class="hljs-built_in">print</span>(rgnet)<br><span class="hljs-comment"># 访问第一个主要的块，其中第二个子块的第一层的偏置项</span><br>rgnet[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>].bias.data<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-2-2-参数初始化"><a href="#5-2-2-参数初始化" class="headerlink" title="5.2.2 参数初始化"></a>5.2.2 参数初始化</h3><p>PyTorch的<code>nn.init</code>模块提供了多种预置初始化方法。</p>
+<h4 id="内置初始化"><a href="#内置初始化" class="headerlink" title="内置初始化"></a>内置初始化</h4><p>将所有权重参数初始化为标准差为0.01的高斯随机变量，且将偏置参数设置为0。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 将所有权重参数初始化为标准差为0.01的高斯随机变量，且将偏置参数设置为0。</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_normal</span>(<span class="hljs-params">m</span>):</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(m) == nn.Linear:<br>        nn.init.normal_(m.weight, mean=<span class="hljs-number">0</span>, std=<span class="hljs-number">0.01</span>)<br>        nn.init.zeros_(m.bias)<br>net.apply(init_normal)<br>net[<span class="hljs-number">0</span>].weight.data[<span class="hljs-number">0</span>], net[<span class="hljs-number">0</span>].bias.data[<span class="hljs-number">0</span>]<br><span class="hljs-comment"># 将所有参数初始化为给定的常数</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_constant</span>(<span class="hljs-params">m</span>):</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(m) == nn.Linear:<br>        nn.init.constant_(m.weight, <span class="hljs-number">1</span>)<br>        nn.init.zeros_(m.bias)<br>net.apply(init_constant)<br>net[<span class="hljs-number">0</span>].weight.data[<span class="hljs-number">0</span>], net[<span class="hljs-number">0</span>].bias.data[<span class="hljs-number">0</span>]<br><span class="hljs-comment"># 对某些块应用不同的初始化方法</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">xavier</span>(<span class="hljs-params">m</span>):</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(m) == nn.Linear:<br>        nn.init.xavier_uniform_(m.weight)<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_42</span>(<span class="hljs-params">m</span>):</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(m) == nn.Linear:<br>        nn.init.constant_(m.weight, <span class="hljs-number">42</span>)<br>net[<span class="hljs-number">0</span>].apply(xavier)<br>net[<span class="hljs-number">2</span>].apply(init_42)<br><span class="hljs-built_in">print</span>(net[<span class="hljs-number">0</span>].weight.data[<span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(net[<span class="hljs-number">2</span>].weight.data)<br></code></pre></td></tr></table></figure>
+
+<h4 id="自定义初始化"><a href="#自定义初始化" class="headerlink" title="自定义初始化"></a>自定义初始化</h4><p>使用以下的分布为任意权重参数<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.664ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 716.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">w</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-77" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-77" x="0" y="0"></use>
+</g>
+</svg>定义初始化方法：</p>
+<p style="text-align:center"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="41.492ex" height="10.843ex" style="vertical-align: -4.838ex;" viewBox="0 -2585.3 17864.7 4668.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\begin{aligned}
+    w \sim \begin{cases}
+        U(5, 10) &amp; \text{ with probability } \frac{1}{4} \\
+            0    &amp; \text{ with probability } \frac{1}{2} \\
+        U(-10, -5) &amp; \text{ with probability } \frac{1}{4}
+    \end{cases}
+\end{aligned}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-77" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-223C" d="M55 166Q55 241 101 304T222 367Q260 367 296 349T362 304T421 252T484 208T554 189Q616 189 655 236T694 338Q694 350 698 358T708 367Q722 367 722 334Q722 260 677 197T562 134H554Q517 134 481 152T414 196T355 248T292 293T223 311Q179 311 145 286Q109 257 96 218T80 156T69 133Q55 133 55 166Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-7B" d="M434 -231Q434 -244 428 -250H410Q281 -250 230 -184Q225 -177 222 -172T217 -161T213 -148T211 -133T210 -111T209 -84T209 -47T209 0Q209 21 209 53Q208 142 204 153Q203 154 203 155Q189 191 153 211T82 231Q71 231 68 234T65 250T68 266T82 269Q116 269 152 289T203 345Q208 356 208 377T209 529V579Q209 634 215 656T244 698Q270 724 324 740Q361 748 377 749Q379 749 390 749T408 750H428Q434 744 434 732Q434 719 431 716Q429 713 415 713Q362 710 332 689T296 647Q291 634 291 499V417Q291 370 288 353T271 314Q240 271 184 255L170 250L184 245Q202 239 220 230T262 196T290 137Q291 131 291 1Q291 -134 296 -147Q306 -174 339 -192T415 -213Q429 -213 431 -216Q434 -219 434 -231Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-55" d="M107 637Q73 637 71 641Q70 643 70 649Q70 673 81 682Q83 683 98 683Q139 681 234 681Q268 681 297 681T342 682T362 682Q378 682 378 672Q378 670 376 658Q371 641 366 638H364Q362 638 359 638T352 638T343 637T334 637Q295 636 284 634T266 623Q265 621 238 518T184 302T154 169Q152 155 152 140Q152 86 183 55T269 24Q336 24 403 69T501 205L552 406Q599 598 599 606Q599 633 535 637Q511 637 511 648Q511 650 513 660Q517 676 519 679T529 683Q532 683 561 682T645 680Q696 680 723 681T752 682Q767 682 767 672Q767 650 759 642Q756 637 737 637Q666 633 648 597Q646 592 598 404Q557 235 548 205Q515 105 433 42T263 -22Q171 -22 116 34T60 167V183Q60 201 115 421Q164 622 164 628Q164 635 107 637Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-77" d="M90 368Q84 378 76 380T40 385H18V431H24L43 430Q62 430 84 429T116 428Q206 428 221 431H229V385H215Q177 383 177 368Q177 367 221 239L265 113L339 328L333 345Q323 374 316 379Q308 384 278 385H258V431H264Q270 428 348 428Q439 428 454 431H461V385H452Q404 385 404 369Q404 366 418 324T449 234T481 143L496 100L537 219Q579 341 579 347Q579 363 564 373T530 385H522V431H529Q541 428 624 428Q692 428 698 431H703V385H697Q696 385 691 385T682 384Q635 377 619 334L559 161Q546 124 528 71Q508 12 503 1T487 -11H479Q460 -11 456 -4Q455 -3 407 133L361 267Q359 263 266 -4Q261 -11 243 -11H238Q225 -11 220 -3L90 368Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-74" d="M27 422Q80 426 109 478T141 600V615H181V431H316V385H181V241Q182 116 182 100T189 68Q203 29 238 29Q282 29 292 100Q293 108 293 146V181H333V146V134Q333 57 291 17Q264 -10 221 -10Q187 -10 162 2T124 33T105 68T98 100Q97 107 97 248V385H18V422H27Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-68" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 124T102 167T103 217T103 272T103 329Q103 366 103 407T103 482T102 542T102 586T102 603Q99 622 88 628T43 637H25V660Q25 683 27 683L37 684Q47 685 66 686T103 688Q120 689 140 690T170 693T181 694H184V367Q244 442 328 442Q451 442 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-70" d="M36 -148H50Q89 -148 97 -134V-126Q97 -119 97 -107T97 -77T98 -38T98 6T98 55T98 106Q98 140 98 177T98 243T98 296T97 335T97 351Q94 370 83 376T38 385H20V408Q20 431 22 431L32 432Q42 433 61 434T98 436Q115 437 135 438T165 441T176 442H179V416L180 390L188 397Q247 441 326 441Q407 441 464 377T522 216Q522 115 457 52T310 -11Q242 -11 190 33L182 40V-45V-101Q182 -128 184 -134T195 -145Q216 -148 244 -148H260V-194H252L228 -193Q205 -192 178 -192T140 -191Q37 -191 28 -194H20V-148H36ZM424 218Q424 292 390 347T305 402Q234 402 182 337V98Q222 26 294 26Q345 26 384 80T424 218Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-72" d="M36 46H50Q89 46 97 60V68Q97 77 97 91T98 122T98 161T98 203Q98 234 98 269T98 328L97 351Q94 370 83 376T38 385H20V408Q20 431 22 431L32 432Q42 433 60 434T96 436Q112 437 131 438T160 441T171 442H174V373Q213 441 271 441H277Q322 441 343 419T364 373Q364 352 351 337T313 322Q288 322 276 338T263 372Q263 381 265 388T270 400T273 405Q271 407 250 401Q234 393 226 386Q179 341 179 207V154Q179 141 179 127T179 101T180 81T180 66V61Q181 59 183 57T188 54T193 51T200 49T207 48T216 47T225 47T235 46T245 46H276V0H267Q249 3 140 3Q37 3 28 0H20V46H36Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-62" d="M307 -11Q234 -11 168 55L158 37Q156 34 153 28T147 17T143 10L138 1L118 0H98V298Q98 599 97 603Q94 622 83 628T38 637H20V660Q20 683 22 683L32 684Q42 685 61 686T98 688Q115 689 135 690T165 693T176 694H179V543Q179 391 180 391L183 394Q186 397 192 401T207 411T228 421T254 431T286 439T323 442Q401 442 461 379T522 216Q522 115 458 52T307 -11ZM182 98Q182 97 187 90T196 79T206 67T218 55T233 44T250 35T271 29T295 26Q330 26 363 46T412 113Q424 148 424 212Q424 287 412 323Q385 405 300 405Q270 405 239 390T188 347L182 339V98Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-61" d="M137 305T115 305T78 320T63 359Q63 394 97 421T218 448Q291 448 336 416T396 340Q401 326 401 309T402 194V124Q402 76 407 58T428 40Q443 40 448 56T453 109V145H493V106Q492 66 490 59Q481 29 455 12T400 -6T353 12T329 54V58L327 55Q325 52 322 49T314 40T302 29T287 17T269 6T247 -2T221 -8T190 -11Q130 -11 82 20T34 107Q34 128 41 147T68 188T116 225T194 253T304 268H318V290Q318 324 312 340Q290 411 215 411Q197 411 181 410T156 406T148 403Q170 388 170 359Q170 334 154 320ZM126 106Q126 75 150 51T209 26Q247 26 276 49T315 109Q317 116 318 175Q318 233 317 233Q309 233 296 232T251 223T193 203T147 166T126 106Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-79" d="M69 -66Q91 -66 104 -80T118 -116Q118 -134 109 -145T91 -160Q84 -163 97 -166Q104 -168 111 -168Q131 -168 148 -159T175 -138T197 -106T213 -75T225 -43L242 0L170 183Q150 233 125 297Q101 358 96 368T80 381Q79 382 78 382Q66 385 34 385H19V431H26L46 430Q65 430 88 429T122 428Q129 428 142 428T171 429T200 430T224 430L233 431H241V385H232Q183 385 185 366L286 112Q286 113 332 227L376 341V350Q376 365 366 373T348 383T334 385H331V431H337H344Q351 431 361 431T382 430T405 429T422 429Q477 429 503 431H508V385H497Q441 380 422 345Q420 343 378 235T289 9T227 -131Q180 -204 113 -204Q69 -204 44 -177T19 -116Q19 -89 35 -78T69 -66Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-23A7" d="M712 899L718 893V876V865Q718 854 704 846Q627 793 577 710T510 525Q510 524 509 521Q505 493 504 349Q504 345 504 334Q504 277 504 240Q504 -2 503 -4Q502 -8 494 -9T444 -10Q392 -10 390 -9Q387 -8 386 -5Q384 5 384 230Q384 262 384 312T383 382Q383 481 392 535T434 656Q510 806 664 892L677 899H712Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-23A9" d="M718 -893L712 -899H677L666 -893Q542 -825 468 -714T385 -476Q384 -466 384 -282Q384 3 385 5L389 9Q392 10 444 10Q486 10 494 9T503 4Q504 2 504 -239V-310V-366Q504 -470 508 -513T530 -609Q546 -657 569 -698T617 -767T661 -812T699 -843T717 -856T718 -876V-893Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-23A8" d="M389 1159Q391 1160 455 1160Q496 1160 498 1159Q501 1158 502 1155Q504 1145 504 924Q504 691 503 682Q494 549 425 439T243 259L229 250L243 241Q349 175 421 66T503 -182Q504 -191 504 -424Q504 -600 504 -629T499 -659H498Q496 -660 444 -660T390 -659Q387 -658 386 -655Q384 -645 384 -425V-282Q384 -176 377 -116T342 10Q325 54 301 92T255 155T214 196T183 222T171 232Q170 233 170 250T171 268Q171 269 191 284T240 331T300 407T354 524T383 679Q384 691 384 925Q384 1152 385 1155L389 1159Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-23AA" d="M384 150V266Q384 304 389 309Q391 310 455 310Q496 310 498 309Q502 308 503 298Q504 283 504 150Q504 32 504 12T499 -9H498Q496 -10 444 -10T390 -9Q386 -8 385 2Q384 17 384 150Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(167,0)">
+<g transform="translate(-11,0)">
+ <use xlink:href="#E1-MJMATHI-77" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-223C" x="994" y="0"></use>
+<g transform="translate(2050,0)">
+<g transform="translate(0,2458)">
+ <use xlink:href="#E1-MJSZ4-23A7" x="0" y="-900"></use>
+<g transform="translate(0,-1330.846185271018) scale(1,1.5107594381704756)">
+ <use xlink:href="#E1-MJSZ4-23AA"></use>
+</g>
+ <use xlink:href="#E1-MJSZ4-23A8" x="0" y="-2459"></use>
+<g transform="translate(0,-3539.310724361911) scale(1,1.5107594381704756)">
+ <use xlink:href="#E1-MJSZ4-23AA"></use>
+</g>
+ <use xlink:href="#E1-MJSZ4-23A9" x="0" y="-3517"></use>
+</g>
+<g transform="translate(1056,0)">
+<g transform="translate(-11,0)">
+<g transform="translate(0,1541)">
+ <use xlink:href="#E1-MJMATHI-55" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-28" x="767" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-35" x="1157" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2C" x="1657" y="0"></use>
+<g transform="translate(2102,0)">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+ <use xlink:href="#E1-MJMAIN-30" x="500" y="0"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-29" x="3103" y="0"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-30" x="0" y="0"></use>
+<g transform="translate(0,-1534)">
+ <use xlink:href="#E1-MJMATHI-55" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-28" x="767" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2212" x="1157" y="0"></use>
+<g transform="translate(1935,0)">
+ <use xlink:href="#E1-MJMAIN-31"></use>
+ <use xlink:href="#E1-MJMAIN-30" x="500" y="0"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-2C" x="2936" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2212" x="3381" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-35" x="4160" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-29" x="4660" y="0"></use>
+</g>
+</g>
+<g transform="translate(6039,0)">
+<g transform="translate(0,1541)">
+ <use xlink:href="#E1-MJMAIN-77" x="250" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="972" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-74" x="1251" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-68" x="1640" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-70" x="2447" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-72" x="3003" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-6F" x="3396" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-62" x="3896" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-61" x="4453" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-62" x="4953" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="5510" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-6C" x="5788" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="6067" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-74" x="6345" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-79" x="6735" y="0"></use>
+<g transform="translate(7513,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="473" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="84" y="629"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-34" x="84" y="-600"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#E1-MJMAIN-77" x="250" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="972" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-74" x="1251" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-68" x="1640" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-70" x="2447" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-72" x="3003" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-6F" x="3396" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-62" x="3896" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-61" x="4453" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-62" x="4953" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="5510" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-6C" x="5788" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="6067" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-74" x="6345" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-79" x="6735" y="0"></use>
+<g transform="translate(7513,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="473" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="84" y="629"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-32" x="84" y="-589"></use>
+</g>
+</g>
+<g transform="translate(0,-1534)">
+ <use xlink:href="#E1-MJMAIN-77" x="250" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="972" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-74" x="1251" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-68" x="1640" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-70" x="2447" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-72" x="3003" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-6F" x="3396" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-62" x="3896" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-61" x="4453" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-62" x="4953" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="5510" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-6C" x="5788" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-69" x="6067" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-74" x="6345" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-79" x="6735" y="0"></use>
+<g transform="translate(7513,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="473" height="60" x="0" y="220"></rect>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="84" y="629"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-34" x="84" y="-600"></use>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_init</span>(<span class="hljs-params">m</span>):</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(m) == nn.Linear:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Init&quot;</span>, *[(name, param.shape)<br>                        <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> m.named_parameters()][<span class="hljs-number">0</span>])<br>        nn.init.uniform_(m.weight, -<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)<br>        m.weight.data *= m.weight.data.<span class="hljs-built_in">abs</span>() &gt;= <span class="hljs-number">5</span><br><br>net.apply(my_init)<br>net[<span class="hljs-number">0</span>].weight[:<span class="hljs-number">2</span>]<br><span class="hljs-comment"># 可以直接设置参数</span><br>net[<span class="hljs-number">0</span>].weight.data[:] += <span class="hljs-number">1</span><br>net[<span class="hljs-number">0</span>].weight.data[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">42</span><br>net[<span class="hljs-number">0</span>].weight.data[<span class="hljs-number">0</span>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-2-3-参数绑定"><a href="#5-2-3-参数绑定" class="headerlink" title="5.2.3 参数绑定"></a>5.2.3 参数绑定</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 我们需要给共享层一个名称，以便可以引用它的参数。</span><br><br>shared = nn.Linear(<span class="hljs-number">8</span>, <span class="hljs-number">8</span>)<br>net = nn.Sequential(nn.Linear(<span class="hljs-number">4</span>, <span class="hljs-number">8</span>), nn.ReLU(),<br>                    shared, nn.ReLU(),<br>                    shared, nn.ReLU(),<br>                    nn.Linear(<span class="hljs-number">8</span>, <span class="hljs-number">1</span>))<br>net(X)<br><br><span class="hljs-comment"># 检查参数是否相同</span><br><span class="hljs-built_in">print</span>(net[<span class="hljs-number">2</span>].weight.data[<span class="hljs-number">0</span>] == net[<span class="hljs-number">4</span>].weight.data[<span class="hljs-number">0</span>])<br>net[<span class="hljs-number">2</span>].weight.data[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>] = <span class="hljs-number">100</span><br><br><span class="hljs-comment"># 确保它们实际上是同一个对象，而不只是有相同的值。</span><br><span class="hljs-built_in">print</span>(net[<span class="hljs-number">2</span>].weight.data[<span class="hljs-number">0</span>] == net[<span class="hljs-number">4</span>].weight.data[<span class="hljs-number">0</span>])<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>有几种方法可以访问、初始化和绑定模型参数。</li>
+<li>可以使用自定义初始化方法。</li>
+</ul>
+<h2 id="5-3-自定义层"><a href="#5-3-自定义层" class="headerlink" title="5.3 自定义层"></a>5.3 自定义层</h2><h3 id="5-3-1-不带参数的层"><a href="#5-3-1-不带参数的层" class="headerlink" title="5.3.1 不带参数的层"></a>5.3.1 不带参数的层</h3><p>(<strong>构造一个没有任何参数的自定义层</strong>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CenteredLayer</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">super</span>().__init__()<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, X</span>):</span><br>        <span class="hljs-keyword">return</span> X - X.mean()<br><span class="hljs-comment"># 验证层是否按预期工作</span><br>layer = CenteredLayer()<br>layer(torch.FloatTensor([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]))<br><span class="hljs-comment"># [**将层作为组件合并到构建更复杂的模型中**]</span><br>net = nn.Sequential(nn.Linear(<span class="hljs-number">8</span>, <span class="hljs-number">128</span>), CenteredLayer())<br><span class="hljs-comment"># 健全性检查</span><br>Y = net(torch.rand(<span class="hljs-number">4</span>, <span class="hljs-number">8</span>))<br>Y.mean()<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-3-2-带参数的层"><a href="#5-3-2-带参数的层" class="headerlink" title="5.3.2 带参数的层"></a>5.3.2 带参数的层</h3><p>管理访问、初始化、共享、保存和加载模型参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyLinear</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, in_units, units</span>):</span><br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.weight = nn.Parameter(torch.randn(in_units, units))<br>        self.bias = nn.Parameter(torch.randn(units,))<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, X</span>):</span><br>        linear = torch.matmul(X, self.weight.data) + self.bias.data<br>        <span class="hljs-keyword">return</span> F.relu(linear)<br><span class="hljs-comment"># 实例化MyLinear类并访问其模型参数</span><br>linear = MyLinear(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)<br>linear.weight<br><span class="hljs-comment"># 使用自定义层直接执行正向传播计算</span><br>linear(torch.rand(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>))<br><span class="hljs-comment"># 使用自定义层构建模型</span><br>net = nn.Sequential(MyLinear(<span class="hljs-number">64</span>, <span class="hljs-number">8</span>), MyLinear(<span class="hljs-number">8</span>, <span class="hljs-number">1</span>))<br>net(torch.rand(<span class="hljs-number">2</span>, <span class="hljs-number">64</span>))<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-3-3-小结"><a href="#5-3-3-小结" class="headerlink" title="5.3.3 小结"></a>5.3.3 小结</h3><ul>
+<li>可以通过基本层类设计自定义层。这允许定义灵活的新层，其行为与库中的任何现有层不同。</li>
+<li>在自定义层定义完成后，就可以在任意环境和网络结构中调用该自定义层。</li>
+<li>层可以有局部参数，这些参数可以通过内置函数创建。</li>
+</ul>
+<h2 id="5-4-读写文件"><a href="#5-4-读写文件" class="headerlink" title="5.4 读写文件"></a>5.4 读写文件</h2><p>如何加载和存储权重向量和整个模型</p>
+<h3 id="5-4-1-加载和保存张量"><a href="#5-4-1-加载和保存张量" class="headerlink" title="5.4.1 加载和保存张量"></a>5.4.1 加载和保存张量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><span class="hljs-keyword">from</span> torch.nn <span class="hljs-keyword">import</span> functional <span class="hljs-keyword">as</span> F<br><span class="hljs-comment"># save要求将要保存的变量作为输入</span><br>x = torch.arange(<span class="hljs-number">4</span>)<br>torch.save(x, <span class="hljs-string">&#x27;x-file&#x27;</span>)<br><span class="hljs-comment"># 将存储在文件中的数据读回内存</span><br>x2 = torch.load(<span class="hljs-string">&#x27;x-file&#x27;</span>)<br>x2<br><span class="hljs-comment"># 存储一个张量列表，然后把它们读回内存</span><br>y = torch.zeros(<span class="hljs-number">4</span>)<br>torch.save([x, y],<span class="hljs-string">&#x27;x-files&#x27;</span>)<br>x2, y2 = torch.load(<span class="hljs-string">&#x27;x-files&#x27;</span>)<br>(x2, y2)<br><span class="hljs-comment"># 写入或读取从字符串映射到张量的字典</span><br>mydict = &#123;<span class="hljs-string">&#x27;x&#x27;</span>: x, <span class="hljs-string">&#x27;y&#x27;</span>: y&#125;<br>torch.save(mydict, <span class="hljs-string">&#x27;mydict&#x27;</span>)<br>mydict2 = torch.load(<span class="hljs-string">&#x27;mydict&#x27;</span>)<br>mydict2<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-4-2-加载和保存模型参数"><a href="#5-4-2-加载和保存模型参数" class="headerlink" title="5.4.2 加载和保存模型参数"></a>5.4.2 加载和保存模型参数</h3><p>深度学习框架提供了内置函数来保存和加载整个网络</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MLP</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.hidden = nn.Linear(<span class="hljs-number">20</span>, <span class="hljs-number">256</span>)<br>        self.output = nn.Linear(<span class="hljs-number">256</span>, <span class="hljs-number">10</span>)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, x</span>):</span><br>        <span class="hljs-keyword">return</span> self.output(F.relu(self.hidden(x)))<br><br>net = MLP()<br>X = torch.randn(size=(<span class="hljs-number">2</span>, <span class="hljs-number">20</span>))<br>Y = net(X)<br><span class="hljs-comment"># 将模型的参数存储为一个叫做“mlp.params”的文件</span><br>torch.save(net.state_dict(), <span class="hljs-string">&#x27;mlp.params&#x27;</span>)<br><span class="hljs-comment"># 实例化了原始多层感知机模型的一个备份</span><br>clone = MLP()<br>clone.load_state_dict(torch.load(<span class="hljs-string">&#x27;mlp.params&#x27;</span>))<br>clone.<span class="hljs-built_in">eval</span>()<br><span class="hljs-comment"># 由于两个实例具有相同的模型参数，在输入相同的`X`时，两个实例的计算结果应该相同</span><br>Y_clone = clone(X)<br>Y_clone == Y<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-4-3-小结"><a href="#5-4-3-小结" class="headerlink" title="5.4.3 小结"></a>5.4.3 小结</h3><ul>
+<li><code>save</code>和<code>load</code>函数可用于张量对象的文件读写。</li>
+<li>可以通过参数字典保存和加载网络的全部参数。</li>
+<li>保存结构必须在代码中完成，而不是在参数中完成。</li>
+</ul>
+<h2 id="5-5-GPU"><a href="#5-5-GPU" class="headerlink" title="5.5 GPU"></a>5.5 GPU</h2><p>(<strong>查看显卡信息。</strong>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">!nvidia-smi<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-5-1-计算设备"><a href="#5-5-1-计算设备" class="headerlink" title="5.5.1 计算设备"></a>5.5.1 计算设备</h3><p>在PyTorch中，CPU和GPU可以用<code>torch.device(&#39;cpu&#39;)</code>和<code>torch.cuda.device(&#39;cuda&#39;)</code>表示。<br><code>torch.cuda.device(f&#39;cuda:&#123;i&#125;&#39;)</code>来表示第<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg>块GPU（<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.802ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 345.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">i</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-69" x="0" y="0"></use>
+</g>
+</svg>从0开始）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><br>torch.device(<span class="hljs-string">&#x27;cpu&#x27;</span>), torch.cuda.device(<span class="hljs-string">&#x27;cuda&#x27;</span>), torch.cuda.device(<span class="hljs-string">&#x27;cuda:1&#x27;</span>)<br><span class="hljs-comment"># 查询可用gpu的数量</span><br>torch.cuda.device_count()<br><span class="hljs-comment"># 在请求的GPU不存在的情况下运行代码</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">try_gpu</span>(<span class="hljs-params">i=<span class="hljs-number">0</span></span>):</span>  <span class="hljs-comment">#@save</span><br>    <span class="hljs-string">&quot;&quot;&quot;如果存在，则返回gpu(i)，否则返回cpu()。&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> torch.cuda.device_count() &gt;= i + <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">return</span> torch.device(<span class="hljs-string">f&#x27;cuda:<span class="hljs-subst">&#123;i&#125;</span>&#x27;</span>)<br>    <span class="hljs-keyword">return</span> torch.device(<span class="hljs-string">&#x27;cpu&#x27;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">try_all_gpus</span>():</span>  <span class="hljs-comment">#@save</span><br>    <span class="hljs-string">&quot;&quot;&quot;返回所有可用的GPU，如果没有GPU，则返回[cpu(),]。&quot;&quot;&quot;</span><br>    devices = [torch.device(<span class="hljs-string">f&#x27;cuda:<span class="hljs-subst">&#123;i&#125;</span>&#x27;</span>)<br>             <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(torch.cuda.device_count())]<br>    <span class="hljs-keyword">return</span> devices <span class="hljs-keyword">if</span> devices <span class="hljs-keyword">else</span> [torch.device(<span class="hljs-string">&#x27;cpu&#x27;</span>)]<br><br>try_gpu(), try_gpu(<span class="hljs-number">10</span>), try_all_gpus()<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-2-2-张量与gpu"><a href="#5-2-2-张量与gpu" class="headerlink" title="5.2.2 张量与gpu"></a>5.2.2 张量与gpu</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 查询张量所在的设备</span><br>x = torch.tensor([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br>x.device<br></code></pre></td></tr></table></figure>
+
+<h4 id="存储在GPU上"><a href="#存储在GPU上" class="headerlink" title="存储在GPU上"></a>存储在GPU上</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">X = torch.ones(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, device=try_gpu())<br>X<br><span class="hljs-comment"># 第二个GPU上创建一个随机张量</span><br>Y = torch.rand(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, device=try_gpu(<span class="hljs-number">1</span>))<br>Y<br></code></pre></td></tr></table></figure>
+
+<h4 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h4><p>[<strong>要计算<code>X + Y</code>，需要决定在哪里执行这个操作</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">Z = X.cuda(<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(X)<br><span class="hljs-built_in">print</span>(Z)<br><span class="hljs-comment"># 数据在同一个GPU上（`Z`和`Y`都在）,可以将它们相加</span><br>Y + Z<br>Z.cuda(<span class="hljs-number">1</span>) <span class="hljs-keyword">is</span> Z <span class="hljs-comment"># True</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="旁注"><a href="#旁注" class="headerlink" title="旁注"></a>旁注</h4><h3 id="5-2-3-神经网络与GPU"><a href="#5-2-3-神经网络与GPU" class="headerlink" title="5.2.3 神经网络与GPU"></a>5.2.3 神经网络与GPU</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">net = nn.Sequential(nn.Linear(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>))<br>net = net.to(device=try_gpu())<br>net(X)<br><span class="hljs-comment"># 确认模型参数存储在同一个GPU上</span><br>net[<span class="hljs-number">0</span>].weight.data.device<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-5-4-小结"><a href="#5-5-4-小结" class="headerlink" title="5.5.4 小结"></a>5.5.4 小结</h3><ul>
+<li>可以指定用于存储和计算的设备，例如CPU或GPU。默认情况下，数据在主内存中创建，然后使用CPU进行计算。</li>
+<li>深度学习框架要求计算的所有输入数据都在同一设备上，无论是CPU还是GPU。</li>
+<li>不经意地移动数据可能会显著降低性能。一个典型的错误如下：计算GPU上每个小批量的损失，并在命令行中将其报告给用户（或将其记录在NumPy <code>ndarray</code>中）时，将触发全局解释器锁，从而使所有GPU阻塞。最好是为GPU内部的日志分配内存，并且只移动较大的日志。</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/09/03/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;09&#x2F;03&#x2F;%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0&#x2F;%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;09&#x2F;03&#x2F;%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0&#x2F;%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/09/03/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"><i class="iconfont iconleft"></i>第六章 卷积神经网络</a>
+    <a href="/2021/09/03/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/">第四章 多层感知机<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%B1%82%E5%92%8C%E5%9D%97"><span class="toc-text">5.1 层和块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9D%97"><span class="toc-text">5.1.1 自定义块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-%E9%A1%BA%E5%BA%8F%E5%9D%97"><span class="toc-text">5.1.2 顺序块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-3-%E5%9C%A8%E6%AD%A3%E5%90%91%E4%BC%A0%E6%92%AD%E5%87%BD%E6%95%B0%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">5.1.3 在正向传播函数中执行代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-4-%E6%95%88%E7%8E%87"><span class="toc-text">5.1.4 效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-5-%E5%B0%8F%E7%BB%93"><span class="toc-text">5.1.5 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86"><span class="toc-text">5.2 参数管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-%E5%8F%82%E6%95%B0%E8%AE%BF%E9%97%AE"><span class="toc-text">5.2.1 参数访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">5.2.2 参数初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3-%E5%8F%82%E6%95%B0%E7%BB%91%E5%AE%9A"><span class="toc-text">5.2.3 参数绑定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%82"><span class="toc-text">5.3 自定义层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-1-%E4%B8%8D%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E5%B1%82"><span class="toc-text">5.3.1 不带参数的层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-2-%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E5%B1%82"><span class="toc-text">5.3.2 带参数的层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-3-%E5%B0%8F%E7%BB%93"><span class="toc-text">5.3.3 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6"><span class="toc-text">5.4 读写文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-1-%E5%8A%A0%E8%BD%BD%E5%92%8C%E4%BF%9D%E5%AD%98%E5%BC%A0%E9%87%8F"><span class="toc-text">5.4.1 加载和保存张量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-2-%E5%8A%A0%E8%BD%BD%E5%92%8C%E4%BF%9D%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="toc-text">5.4.2 加载和保存模型参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-3-%E5%B0%8F%E7%BB%93"><span class="toc-text">5.4.3 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-GPU"><span class="toc-text">5.5 GPU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-1-%E8%AE%A1%E7%AE%97%E8%AE%BE%E5%A4%87"><span class="toc-text">5.5.1 计算设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-%E5%BC%A0%E9%87%8F%E4%B8%8Egpu"><span class="toc-text">5.2.2 张量与gpu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EGPU"><span class="toc-text">5.2.3 神经网络与GPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-4-%E5%B0%8F%E7%BB%93"><span class="toc-text">5.5.4 小结</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

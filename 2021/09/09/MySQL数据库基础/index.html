@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MySQL数据库基础 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="数据库 数据表 列 行 冗余 主键 外键 复合键 索引...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">MySQL数据库基础</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%BC%80%E5%BC%80%E5%BF%83%E5%BF%83%E6%B5%AA%E6%B5%AA%E9%92%89/%E8%B5%B7%E6%9D%A5%E8%B5%9A%E9%92%B1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">MySQL数据库基础</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 09, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>10960</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>数据库 数据表 列 行 冗余 主键 外键 复合键 索引 参照完整性</p>
+<h4 id="管理MySQL的命令"><a href="#管理MySQL的命令" class="headerlink" title="管理MySQL的命令"></a>管理MySQL的命令</h4><ul>
+<li>USE 数据库名</li>
+<li>SHOW DATABASES</li>
+<li>SHOW TABLES</li>
+<li>SHOW COLUMNS FROM 数据表</li>
+<li>SHOW INDEX FROM 数据表</li>
+<li>SHOW TABLE STATUS [FROM db_name] [LIKE ‘pattern’] \G:</li>
+</ul>
+<h4 id="MySQL连接"><a href="#MySQL连接" class="headerlink" title="MySQL连接"></a>MySQL连接</h4><p>mysql -u root -p</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pymysql<br> <br><span class="hljs-comment"># 打开数据库连接</span><br>db = pymysql.connect(<span class="hljs-string">&quot;localhost&quot;</span>,<span class="hljs-string">&quot;testuser&quot;</span>,<span class="hljs-string">&quot;test123&quot;</span>,<span class="hljs-string">&quot;TESTDB&quot;</span> )<br> <br><span class="hljs-comment"># 使用 cursor() 方法创建一个游标对象 cursor</span><br>cursor = db.cursor()<br> <br><span class="hljs-comment"># 使用 execute()  方法执行 SQL 查询 </span><br>cursor.execute(<span class="hljs-string">&quot;SELECT VERSION()&quot;</span>)<br> <br><span class="hljs-comment"># 使用 fetchone() 方法获取单条数据.</span><br>data = cursor.fetchone()<br> <br><span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;Database version : %s &quot;</span> % data)<br> <br><span class="hljs-comment"># 关闭数据库连接</span><br>db.close()<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL创建数据库"><a href="#MySQL创建数据库" class="headerlink" title="MySQL创建数据库"></a>MySQL创建数据库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE DATABASE 数据库名;<br>mysqladmin -u root -p create 数据库名<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL删除数据库"><a href="#MySQL删除数据库" class="headerlink" title="MySQL删除数据库"></a>MySQL删除数据库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">drop database 数据库名;<br>mysqladmin -u root -p drop 数据库名<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL选择数据库"><a href="#MySQL选择数据库" class="headerlink" title="MySQL选择数据库"></a>MySQL选择数据库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql -u root -p<br>use 数据库名;<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL数据类型"><a href="#MySQL数据类型" class="headerlink" title="MySQL数据类型"></a>MySQL数据类型</h4><p>数值、日期/时间和字符串(字符)类型</p>
+<p>严格数值数据类型(INTEGER、SMALLINT、DECIMAL和NUMERIC)，以及近似数值数据类型(FLOAT、REAL和DOUBLE PRECISION)</p>
+<p>表示时间值的日期和时间类型为DATETIME、DATE、TIMESTAMP、TIME和YEAR</p>
+<p>字符串类型指CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM和SET。</p>
+<h4 id="MySQL创建数据表"><a href="#MySQL创建数据表" class="headerlink" title="MySQL创建数据表"></a>MySQL创建数据表</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE table_name (column_name column_type);<br><br>CREATE TABLE IF NOT EXISTS `runoob_tbl`(<br>   `runoob_id` INT UNSIGNED AUTO_INCREMENT,<br>   `runoob_title` VARCHAR(100) NOT NULL,<br>   `runoob_author` VARCHAR(40) NOT NULL,<br>   `submission_date` DATE,<br>   PRIMARY KEY ( `runoob_id` )<br>)ENGINE=InnoDB DEFAULT CHARSET=utf8;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pymysql<br> <br><span class="hljs-comment"># 打开数据库连接</span><br>db = pymysql.connect(<span class="hljs-string">&quot;localhost&quot;</span>,<span class="hljs-string">&quot;testuser&quot;</span>,<span class="hljs-string">&quot;test123&quot;</span>,<span class="hljs-string">&quot;TESTDB&quot;</span> )<br> <br><span class="hljs-comment"># 使用 cursor() 方法创建一个游标对象 cursor</span><br>cursor = db.cursor()<br> <br><span class="hljs-comment"># 使用 execute() 方法执行 SQL，如果表存在则删除</span><br>cursor.execute(<span class="hljs-string">&quot;DROP TABLE IF EXISTS EMPLOYEE&quot;</span>)<br> <br><span class="hljs-comment"># 使用预处理语句创建表</span><br>sql = <span class="hljs-string">&quot;&quot;&quot;CREATE TABLE EMPLOYEE (</span><br><span class="hljs-string">         FIRST_NAME  CHAR(20) NOT NULL,</span><br><span class="hljs-string">         LAST_NAME  CHAR(20),</span><br><span class="hljs-string">         AGE INT,  </span><br><span class="hljs-string">         SEX CHAR(1),</span><br><span class="hljs-string">         INCOME FLOAT )&quot;&quot;&quot;</span><br> <br>cursor.execute(sql)<br> <br><span class="hljs-comment"># 关闭数据库连接</span><br>db.close()<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL删除数据表"><a href="#MySQL删除数据表" class="headerlink" title="MySQL删除数据表"></a>MySQL删除数据表</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">DROP TABLE table_name;<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL插入数据"><a href="#MySQL插入数据" class="headerlink" title="MySQL插入数据"></a>MySQL插入数据</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">INSERT INTO table_name ( field1, field2,...fieldN )<br>                       VALUES<br>                       ( value1, value2,...valueN );<br># 插入多条数据<br>INSERT INTO table_name  (field1, field2,...fieldN)  VALUES  (valueA1,valueA2,...valueAN),(valueB1,valueB2,...valueBN),(valueC1,valueC2,...valueCN)......;<br># 添加数据的时候可以规定列进行添加。如果所有的列都要添加数据可以不规定列进行添加数据<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># SQL 插入语句</span><br>sql = <span class="hljs-string">&quot;&quot;&quot;INSERT INTO EMPLOYEE(FIRST_NAME,</span><br><span class="hljs-string">         LAST_NAME, AGE, SEX, INCOME)</span><br><span class="hljs-string">         VALUES (&#x27;Mac&#x27;, &#x27;Mohan&#x27;, 20, &#x27;M&#x27;, 2000)&quot;&quot;&quot;</span><br><span class="hljs-keyword">try</span>:<br>   <span class="hljs-comment"># 执行sql语句</span><br>   cursor.execute(sql)<br>   <span class="hljs-comment"># 提交到数据库执行</span><br>   db.commit()<br><span class="hljs-keyword">except</span>:<br>   <span class="hljs-comment"># 如果发生错误则回滚</span><br>   db.rollback()<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL查询数据"><a href="#MySQL查询数据" class="headerlink" title="MySQL查询数据"></a>MySQL查询数据</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT column_name,column_name<br>FROM table_name<br>[WHERE Clause]<br>[LIMIT N][ OFFSET M]<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-WHERE-子句"><a href="#MySQL-WHERE-子句" class="headerlink" title="MySQL WHERE 子句"></a>MySQL WHERE 子句</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT field1, field2,...fieldN FROM table_name1, table_name2...<br>[WHERE condition1 [AND [OR]] condition2.....<br></code></pre></td></tr></table></figure>
+
+<p>操作符</p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>等号，检测两个值是否相等，如果相等返回true</td>
+</tr>
+<tr>
+<td>&lt;&gt;, !=</td>
+<td>不等于，检测两个值是否相等，如果不相等返回true</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于号，检测左边的值是否大于右边的值, 如果左边的值大于右边的值返回true</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于号，检测左边的值是否小于右边的值, 如果左边的值小于右边的值返回true</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于号，检测左边的值是否大于或等于右边的值, 如果左边的值大于或等于右边的值返回true</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于号，检测左边的值是否小于或等于右边的值, 如果左边的值小于或等于右边的值返回true</td>
+</tr>
+</tbody></table>
+<p>MySQL 的 WHERE 子句的字符串比较是不区分大小写的。 可以使用 BINARY 关键字来设定 WHERE 子句的字符串比较是区分大小写的。</p>
+<h4 id="MySQL-UPDATE-更新"><a href="#MySQL-UPDATE-更新" class="headerlink" title="MySQL UPDATE 更新"></a>MySQL UPDATE 更新</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">UPDATE table_name SET field1=new-value1, field2=new-value2<br>[WHERE Clause]<br># 将字段中的特定字符串批量修改为其他字符串时<br>UPDATE table_name SET field=REPLACE(field, &#x27;old-string&#x27;, &#x27;new-string&#x27;) <br>[WHERE Clause]<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-DELETE-语句"><a href="#MySQL-DELETE-语句" class="headerlink" title="MySQL DELETE 语句"></a>MySQL DELETE 语句</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">DELETE FROM table_name [WHERE Clause]<br># 如果没有指定 WHERE 子句，MySQL 表中的所有记录将被删除。<br># 可以在 WHERE 子句中指定任何条件<br># 可以在单个表中一次性删除记录。<br></code></pre></td></tr></table></figure>
+
+<p>delete，drop，truncate 都有删除表的作用，区别在于：</p>
+<ul>
+<li> 1、delete 和 truncate 仅仅删除表数据，drop 连表数据和表结构一起删除，</li>
+<li> 2、delete 是 DML 语句，操作完以后如果没有不想提交事务还可以回滚，truncate 和 drop 是 DDL 语句，操作完马上生效，不能回滚</li>
+<li> 3、执行的速度上，<strong>drop&gt;truncate&gt;delete</strong></li>
+</ul>
+<h4 id="MySQL-LIKE-子句"><a href="#MySQL-LIKE-子句" class="headerlink" title="MySQL LIKE 子句"></a>MySQL LIKE 子句</h4><p>SQL LIKE 子句中使用百分号 **%**字符来表示任意字符，类似于UNIX或正则表达式中的星号 *****。</p>
+<p>如果没有使用百分号 <strong>%</strong>, LIKE 子句与等号 <strong>=</strong> 的效果是一样的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT field1, field2,...fieldN <br>FROM table_name<br>WHERE field1 LIKE condition1 [AND [OR]] filed2 = &#x27;somevalue&#x27;<br># 可以在 WHERE 子句中指定任何条件。<br># 可以在 WHERE 子句中使用LIKE子句。<br># 可以使用LIKE子句代替等号 =。<br># LIKE 通常与 % 一同使用，类似于一个元字符的搜索。<br># 可以使用 AND 或者 OR 指定一个或多个条件。<br># 可以在 DELETE 或 UPDATE 命令中使用 WHERE...LIKE 子句来指定条件。<br></code></pre></td></tr></table></figure>
+
+<p>like 匹配/模糊匹配，会与 <strong>%</strong> 和 <strong>_</strong> 结合使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">&#x27;%a&#x27;     //以a结尾的数据<br>&#x27;a%&#x27;     //以a开头的数据<br>&#x27;%a%&#x27;    //含有a的数据<br>&#x27;_a_&#x27;    //三位且中间字母是a的<br>&#x27;_a&#x27;     //两位且结尾字母是a的<br>&#x27;a_&#x27;     //两位且开头字母是a的<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>**%**：表示任意 0 个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示。</li>
+<li>**_**：表示任意单个字符。匹配单个任意字符，它常用来限制表达式的字符长度语句。</li>
+<li>**[]**：表示括号内所列字符中的一个（类似正则表达式）。指定一个字符、字符串或范围，要求所匹配对象为它们中的任一个。</li>
+<li><strong>[^]</strong> ：表示不在括号所列之内的单个字符。其取值和 [] 相同，但它要求所匹配对象为指定字符以外的任一个字符。</li>
+<li>查询内容包含通配符时,由于通配符的缘故，导致查询特殊字符 “%”、“_”、“[” 的语句无法正常实现，而把特殊字符用 “[ ]” 括起便可正常查询。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">模式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">^</td>
+<td align="left">匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 ‘\n’ 或 ‘\r’ 之后的位置。</td>
+</tr>
+<tr>
+<td align="left"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="70.966ex" height="3.343ex" style="vertical-align: -1.171ex;" viewBox="0 -934.9 30554.8 1439.2" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">          | 匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-52" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-67" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-45" d="M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-70" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-4D" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-75" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6C" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-74" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-7C" x="0" y="0"></use>
+<g transform="translate(278,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">匹</text>
+</g>
+<g transform="translate(1211,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">配</text>
+</g>
+<g transform="translate(2144,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">输</text>
+</g>
+<g transform="translate(3077,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">入</text>
+</g>
+<g transform="translate(4009,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">字</text>
+</g>
+<g transform="translate(4942,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">符</text>
+</g>
+<g transform="translate(5875,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">串</text>
+</g>
+<g transform="translate(6808,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">的</text>
+</g>
+<g transform="translate(7741,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">结</text>
+</g>
+<g transform="translate(8674,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">束</text>
+</g>
+<g transform="translate(9607,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">位</text>
+</g>
+<g transform="translate(10540,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">置</text>
+</g>
+<g transform="translate(11472,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">。</text>
+</g>
+<g transform="translate(12405,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">如</text>
+</g>
+<g transform="translate(13338,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">果</text>
+</g>
+<g transform="translate(14271,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">设</text>
+</g>
+<g transform="translate(15204,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">置</text>
+</g>
+<g transform="translate(16137,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">了</text>
+</g>
+ <use xlink:href="#E1-MJMATHI-52" x="17070" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-65" x="17829" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-67" x="18296" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-45" x="18776" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-78" x="19541" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-70" x="20113" y="0"></use>
+<g transform="translate(20617,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">对</text>
+</g>
+<g transform="translate(21549,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">象</text>
+</g>
+<g transform="translate(22482,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">的</text>
+</g>
+ <use xlink:href="#E1-MJMATHI-4D" x="23415" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-75" x="24467" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-6C" x="25039" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-74" x="25338" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-69" x="25699" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-6C" x="26045" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-69" x="26343" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-6E" x="26689" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-65" x="27289" y="0"></use>
+<g transform="translate(27756,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">属</text>
+</g>
+<g transform="translate(28689,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">性</text>
+</g>
+<g transform="translate(29621,0)">
+<text font-family="monospace" stroke="none" transform="scale(71.759) matrix(1 0 0 -1 0 0)">，</text>
+</g>
+</g>
+</svg> 也匹配 ‘\n’ 或 ‘\r’ 之前的位置。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="left">匹配除 “\n” 之外的任何单个字符。要匹配包括 ‘\n’ 在内的任何字符，请使用像 ‘[.\n]’ 的模式。</td>
+</tr>
+<tr>
+<td align="left">[…]</td>
+<td align="left">字符集合。匹配所包含的任意一个字符。例如， ‘[abc]’ 可以匹配 “plain” 中的 ‘a’。</td>
+</tr>
+<tr>
+<td align="left">[^…]</td>
+<td align="left">负值字符集合。匹配未包含的任意字符。例如， ‘[^abc]’ 可以匹配 “plain” 中的’p’。</td>
+</tr>
+<tr>
+<td align="left">p1|p2|p3</td>
+<td align="left">匹配 p1 或 p2 或 p3。例如，’z|food’ 能匹配 “z” 或 “food”。’(z|f)ood’ 则匹配 “zood” 或 “food”。</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">匹配前面的子表达式零次或多次。例如，zo* 能匹配 “z” 以及 “zoo”。* 等价于{0,}。</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}。</td>
+</tr>
+<tr>
+<td align="left">{n}</td>
+<td align="left">n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ‘o’，但是能匹配 “food” 中的两个 o。</td>
+</tr>
+<tr>
+<td align="left">{n,m}</td>
+<td align="left">m 和 n 均为非负整数，其中n &lt;= m。最少匹配 n 次且最多匹配 m 次。</td>
+</tr>
+</tbody></table>
+<h4 id="MySQL-UNION-操作符"><a href="#MySQL-UNION-操作符" class="headerlink" title="MySQL UNION 操作符"></a>MySQL UNION 操作符</h4><p>MySQL UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。</p>
+<p><strong>UNION 语句</strong>：用于将不同表中相同列中查询的数据展示出来；（不包括重复数据）</p>
+<p><strong>UNION ALL 语句</strong>：用于将不同表中相同列中查询的数据展示出来；（包括重复数据）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT expression1, expression2, ... expression_n<br>FROM tables<br>[WHERE conditions]<br>UNION [ALL | DISTINCT]<br>SELECT expression1, expression2, ... expression_n<br>FROM tables<br>[WHERE conditions];<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-排序"><a href="#MySQL-排序" class="headerlink" title="MySQL 排序"></a>MySQL 排序</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT field1, field2,...fieldN FROM table_name1, table_name2...<br>ORDER BY field1 [ASC [DESC][默认 ASC]], [field2...] [ASC [DESC][默认 ASC]]<br># 可以使用任何字段来作为排序的条件，从而返回排序后的查询结果。<br># 可以设定多个字段来排序。<br># 可以使用 ASC 或 DESC 关键字来设置查询结果是按升序或降序排列。 默认情况下，它是按升序排列。<br># 可以添加 WHERE...LIKE 子句来设置条件。<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-GROUP-BY-语句"><a href="#MySQL-GROUP-BY-语句" class="headerlink" title="MySQL GROUP BY 语句"></a>MySQL GROUP BY 语句</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT column_name, function(column_name)<br>FROM table_name<br>WHERE column_name operator value<br>GROUP BY column_name;<br></code></pre></td></tr></table></figure>
+
+<p>WITH ROLLUP 可以实现在分组统计数据基础上再进行相同的统计（SUM,AVG,COUNT…）。</p>
+<h4 id="MySQL-连接的使用"><a href="#MySQL-连接的使用" class="headerlink" title="MySQL 连接的使用"></a>MySQL 连接的使用</h4><ul>
+<li><strong>INNER JOIN（内连接,或等值连接）</strong>：获取两个表中字段匹配关系的记录。</li>
+<li><strong>LEFT JOIN（左连接）：</strong>获取左表所有记录，即使右表没有对应匹配的记录。</li>
+<li><strong>RIGHT JOIN（右连接）：</strong> 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># inner join<br>SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a INNER JOIN tcount_tbl b ON a.runoob_author = b.runoob_author;<br># same as inner join<br>SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a, tcount_tbl b WHERE a.runoob_author = b.runoob_author;<br># left join<br>SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a LEFT JOIN tcount_tbl b ON a.runoob_author = b.runoob_author;<br># right join<br>SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a RIGHT JOIN tcount_tbl b ON a.runoob_author = b.runoob_author;<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-NULL-值处理"><a href="#MySQL-NULL-值处理" class="headerlink" title="MySQL NULL 值处理"></a>MySQL NULL 值处理</h4><ul>
+<li><strong>IS NULL:</strong> 当列的值是 NULL,此运算符返回 true。</li>
+<li><strong>IS NOT NULL:</strong> 当列的值不为 NULL, 运算符返回 true。</li>
+<li><strong>&lt;=&gt;:</strong> 比较操作符（不同于 = 运算符），当比较的的两个值相等或者都为 NULL 时返回 true。</li>
+</ul>
+<h4 id="MySQL-ALTER命令"><a href="#MySQL-ALTER命令" class="headerlink" title="MySQL ALTER命令"></a>MySQL ALTER命令</h4><ul>
+<li><p>删除，添加或修改表字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 删除字段<br>ALTER TABLE testalter_tbl  DROP i;<br># 添加字段(添加到数据表字段的末尾)<br>ALTER TABLE testalter_tbl ADD i INT;<br>SHOW COLUMNS FROM testalter_tbl;<br># FIRST 和 AFTER 关键字可用于 ADD 与 MODIFY 子句<br>ALTER TABLE testalter_tbl ADD i INT FIRST;<br></code></pre></td></tr></table></figure></li>
+<li><p>修改字段类型及名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">ALTER TABLE testalter_tbl MODIFY c CHAR(10);<br># 在 CHANGE 关键字之后，紧跟着的是你要修改的字段名，然后指定新字段名及类型<br>ALTER TABLE testalter_tbl CHANGE i j BIGINT;<br></code></pre></td></tr></table></figure></li>
+<li><p>ALTER TABLE 对 Null 值和默认值的影响</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 指定字段 j 为 NOT NULL 且默认值为100 <br>ALTER TABLE testalter_tbl MODIFY j BIGINT NOT NULL DEFAULT 100;<br></code></pre></td></tr></table></figure></li>
+<li><p>修改字段默认值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">ALTER TABLE testalter_tbl ALTER i SET DEFAULT 1000;<br># 使用 ALTER 命令及 DROP子句来删除字段的默认值<br>ALTER TABLE testalter_tbl ALTER i DROP DEFAULT;<br></code></pre></td></tr></table></figure></li>
+<li><p>修改表名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">ALTER TABLE testalter_tbl RENAME TO alter_tbl;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="MySQL-索引"><a href="#MySQL-索引" class="headerlink" title="MySQL 索引"></a>MySQL 索引</h4><p>普通索引</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 创建索引<br>CREATE INDEX indexName ON table_name (column_name)<br># 修改表结构(添加索引)<br>ALTER table tableName ADD INDEX indexName(columnName)<br># 创建表的时候直接指定<br>CREATE TABLE mytable(  <br> <br>ID INT NOT NULL,   <br> <br>username VARCHAR(16) NOT NULL,  <br> <br>INDEX [indexName] (username(length))  <br> <br>);  <br># 删除索引的语法<br>DROP INDEX [indexName] ON mytable;<br></code></pre></td></tr></table></figure>
+
+<p>唯一索引<br>索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 创建索引<br>CREATE UNIQUE INDEX indexName ON mytable(username(length)) <br># 修改表结构<br>ALTER table mytable ADD UNIQUE [indexName] (username(length))<br># 创建表的时候直接指定<br>CREATE TABLE mytable(  <br> <br>ID INT NOT NULL,   <br> <br>username VARCHAR(16) NOT NULL,  <br> <br>UNIQUE [indexName] (username(length))  <br> <br>);  <br></code></pre></td></tr></table></figure>
+
+<p>使用ALTER 命令添加和删除索引<br>有四种方式来添加数据表的索引：</p>
+<ul>
+<li>ALTER TABLE tbl_name ADD PRIMARY KEY (column_list): 该语句添加一个主键，这意味着索引值必须是唯一的，且不能为NULL。</li>
+<li>ALTER TABLE tbl_name ADD UNIQUE index_name (column_list): 这条语句创建索引的值必须是唯一的（除了NULL外，NULL可能会出现多次）。</li>
+<li>ALTER TABLE tbl_name ADD INDEX index_name (column_list): 添加普通索引，索引值可出现多次。</li>
+<li>ALTER TABLE tbl_name ADD FULLTEXT index_name (column_list):该语句指定了索引为 FULLTEXT ，用于全文索引。<br>使用 ALTER 命令添加和删除主键</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 添加主键索引时，需要确保该主键默认不为空（NOT NULL）<br>ALTER TABLE testalter_tbl MODIFY i INT NOT NULL;<br>ALTER TABLE testalter_tbl ADD PRIMARY KEY (i);<br># 删除主键<br>ALTER TABLE testalter_tbl DROP PRIMARY KEY;<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-临时表"><a href="#MySQL-临时表" class="headerlink" title="MySQL 临时表"></a>MySQL 临时表</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">用查询直接创建临时表的方式<br>CREATE TEMPORARY TABLE 临时表名 AS<br>(<br>    SELECT *  FROM 旧的表名<br>    LIMIT 0,10000<br>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-复制表"><a href="#MySQL-复制表" class="headerlink" title="MySQL 复制表"></a>MySQL 复制表</h4><p>方法一：</p>
+<ol>
+<li>使用 SHOW CREATE TABLE 命令获取创建数据表(CREATE TABLE) 语句，该语句包含了原数据表的结构，索引等。</li>
+<li>复制以下命令显示的SQL语句，修改数据表名，并执行SQL语句，通过以上命令将完全的复制数据表结构。</li>
+<li>如果想复制表的内容，可以使用 INSERT INTO … SELECT 语句来实现。<br>方法二：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE targetTable LIKE sourceTable;<br>INSERT INTO targetTable SELECT * FROM sourceTable;<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-元数据"><a href="#MySQL-元数据" class="headerlink" title="MySQL 元数据"></a>MySQL 元数据</h4><ul>
+<li>查询结果信息： SELECT, UPDATE 或 DELETE语句影响的记录数。</li>
+<li>数据库和数据表的信息： 包含了数据库及数据表的结构信息。</li>
+<li>MySQL服务器信息： 包含了数据库服务器的当前状态，版本号等。<br>获取查询语句影响的记录数<br>数据库和数据表列表<br>获取服务器元数据<br>命令    描述<br>SELECT VERSION( )    服务器版本信息<br>SELECT DATABASE( )    当前数据库名 (或者返回空)<br>SELECT USER( )    当前用户名<br>SHOW STATUS    服务器状态<br>SHOW VARIABLES    服务器配置变量</li>
+</ul>
+<h4 id="MySQL-序列使用"><a href="#MySQL-序列使用" class="headerlink" title="MySQL 序列使用"></a>MySQL 序列使用</h4><p>使用 AUTO_INCREMENT<br>获取AUTO_INCREMENT值<br>重置序列<br>设置序列的开始值</p>
+<h4 id="MySQL-处理重复数据"><a href="#MySQL-处理重复数据" class="headerlink" title="MySQL 处理重复数据"></a>MySQL 处理重复数据</h4><ol>
+<li>防止表中出现重复数据<br>在 MySQL 数据表中设置指定的字段为 PRIMARY KEY（主键） 或者 UNIQUE（唯一） 索引来保证数据的唯一性<br>INSERT IGNORE INTO 与 INSERT INTO 的区别就是 INSERT IGNORE INTO 会忽略数据库中已经存在的数据，如果数据库没有数据，就插入新的数据，如果有数据的话就跳过这条数据。这样就可以保留数据库中已经存在数据，达到在间隙中插入数据的目的。</li>
+<li>统计重复数据</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 列名1，count（1） as count <br>from 表名<br>group by  列名1<br>having count&gt;1  and 其他条件<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>过滤重复数据<br>在 SELECT 语句中使用 DISTINCT 关键字来过滤重复数据； 也可以使用 GROUP BY 来读取数据表中不重复的数据；</li>
+<li>删除重复数据</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE tmp SELECT last_name, first_name, sex FROM person_tbl  GROUP BY (last_name, first_name, sex);<br>DROP TABLE person_tbl;<br>ALTER TABLE tmp RENAME TO person_tbl;<br></code></pre></td></tr></table></figure>
+
+<h4 id="MySQL-及-SQL-注入"><a href="#MySQL-及-SQL-注入" class="headerlink" title="MySQL 及 SQL 注入"></a>MySQL 及 SQL 注入</h4><p>NULL 值与任何其它值的比较（即使是 NULL）永远返回 NULL</p>
+<ol>
+<li>FROM, including JOINs</li>
+<li>WHERE</li>
+<li>GROUP BY</li>
+<li>HAVING</li>
+<li>WINDOW functions</li>
+<li>SELECT</li>
+<li>DISTINCT</li>
+<li>UNION</li>
+<li>ORDER BY</li>
+<li>LIMIT and OFFSET</li>
+</ol>
+<p>事务是必须满足4个条件（ACID）：：原子性（<strong>A</strong>tomicity，或称不可分割性）、一致性（<strong>C</strong>onsistency）、隔离性（<strong>I</strong>solation，又称独立性）、持久性（<strong>D</strong>urability）。</p>
+<p><strong>MYSQL 事务处理主要有两种方法：</strong></p>
+<p>1、用 BEGIN, ROLLBACK, COMMIT来实现</p>
+<ul>
+<li><strong>BEGIN</strong> 开始一个事务</li>
+<li><strong>ROLLBACK</strong> 事务回滚</li>
+<li><strong>COMMIT</strong> 事务确认</li>
+</ul>
+<p>2、直接用 SET 来改变 MySQL 的自动提交模式:</p>
+<ul>
+<li><strong>SET AUTOCOMMIT=0</strong> 禁止自动提交</li>
+<li><strong>SET AUTOCOMMIT=1</strong> 开启自动提交</li>
+</ul>
+<p>savepoint 是在数据库事务处理中实现“子事务”（subtransaction），也称为嵌套事务的方法。事务可以回滚到 savepoint 而不影响 savepoint 创建前的变化, 不需要放弃整个事务。</p>
+<p>ROLLBACK 回滚的用法可以设置保留点 SAVEPOINT，执行多条操作时，回滚到想要的那条语句之前。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/09/09/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;09&#x2F;09&#x2F;MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;09&#x2F;09&#x2F;MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/09/11/LeetCode/Design%E8%AE%BE%E8%AE%A1/"><i class="iconfont iconleft"></i>Design设计</a>
+    <a href="/2021/09/03/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%8E%B0%E4%BB%A3%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">第九章 现代循环神经网络<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

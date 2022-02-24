@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第十五章_C 语言扩展 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="15.1 使用 ctypes 访问 C 代码使用 Py...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第十五章_C 语言扩展</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第十五章_C 语言扩展</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2130</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="15-1-使用-ctypes-访问-C-代码"><a href="#15-1-使用-ctypes-访问-C-代码" class="headerlink" title="15.1 使用 ctypes 访问 C 代码"></a>15.1 使用 ctypes 访问 C 代码</h4><p>使用 Python 标准库中的 ctypes 模块<br>确保你要访问的C代码已经被编译到和Python解释器兼容(同样的架构、字大小、编译器等)的某个共享库中了。</p>
+<h4 id="15-2-简单的-C-扩展模块"><a href="#15-2-简单的-C-扩展模块" class="headerlink" title="15.2 简单的 C 扩展模块"></a>15.2 简单的 C 扩展模块</h4><p>PyObject 是一个能表示任何 Python 对象的 C 数据类型。<br>在一个高级层面，一个扩展函数就是一个接受一个 Python 对象(在PyObject *args中)元组并返回一个新Python对象的C函数。<br>PyArg_ParseTuple() 函数被用来将 Python 中的值转换成 C 中对应表示。<br>Py_BuildValue() 函数被用来根据 C 数据类型创建 Python 对象。</p>
+<h4 id="15-3-编写扩展函数操作数组"><a href="#15-3-编写扩展函数操作数组" class="headerlink" title="15.3 编写扩展函数操作数组"></a>15.3 编写扩展函数操作数组</h4><p>为了能让接受和处理数组具有可移植性，需要使用到 Buffer Protocol . </p>
+<h4 id="15-4-在-C-扩展模块中操作隐形指针"><a href="#15-4-在-C-扩展模块中操作隐形指针" class="headerlink" title="15.4 在 C 扩展模块中操作隐形指针"></a>15.4 在 C 扩展模块中操作隐形指针</h4><p>隐形结构体可以很容易的通过将它们包装在胶囊对象中来处理。</p>
+<h4 id="15-5-从扩展模块中定义和导出-C-的-API"><a href="#15-5-从扩展模块中定义和导出-C-的-API" class="headerlink" title="15.5 从扩展模块中定义和导出 C 的 API"></a>15.5 从扩展模块中定义和导出 C 的 API</h4><p>函数指针表 _PointAPIMethods</p>
+<h4 id="15-6-从-C-语言中调用-Python-代码"><a href="#15-6-从-C-语言中调用-Python-代码" class="headerlink" title="15.6 从 C 语言中调用 Python 代码"></a>15.6 从 C 语言中调用 Python 代码</h4><p>PyGILState_Ensure() 可以确保调用线程独占 Python 解释器。<br>调用成功后，PyGILState_Release()被用来将解释器恢复到原始状态。 </p>
+<h4 id="15-7-从-C-扩展中释放全局锁"><a href="#15-7-从-C-扩展中释放全局锁" class="headerlink" title="15.7 从 C 扩展中释放全局锁"></a>15.7 从 C 扩展中释放全局锁</h4><p>只有当你确保没有Python C API函数在C中执行的时候才能安全的释放 GIL。<br>Py_BEGIN_ALLOW_THREADS<br>// Threaded C code. Must not use Python API functions<br>Py_END_ALLOW_THREADS</p>
+<h4 id="15-8-C-和-Python-中的线程混用"><a href="#15-8-C-和-Python-中的线程混用" class="headerlink" title="15.8 C 和 Python 中的线程混用"></a>15.8 C 和 Python 中的线程混用</h4><p>PyGILState_STATE state = PyGILState_Ensure();<br>PyGILState_Release(state);<br>调用PyGILState_Ensure()并不会立刻抢占或中断解释器。</p>
+<h4 id="15-9-用-WSIG-包装-C-代码"><a href="#15-9-用-WSIG-包装-C-代码" class="headerlink" title="15.9 用 WSIG 包装 C 代码"></a>15.9 用 WSIG 包装 C 代码</h4><p>Swig通过解析C头文件并自动创建扩展代码来操作。<br>bash % swig -python -py3 sample.i </p>
+<h4 id="15-10-用-Cython-包装-C-代码"><a href="#15-10-用-Cython-包装-C-代码" class="headerlink" title="15.10 用 Cython 包装 C 代码"></a>15.10 用 Cython 包装 C 代码</h4><h4 id="15-11-用-Cython-写高性能的数组操作"><a href="#15-11-用-Cython-写高性能的数组操作" class="headerlink" title="15.11 用 Cython 写高性能的数组操作"></a>15.11 用 Cython 写高性能的数组操作</h4><h4 id="15-12-将函数指针转换为可调用对象"><a href="#15-12-将函数指针转换为可调用对象" class="headerlink" title="15.12 将函数指针转换为可调用对象"></a>15.12 将函数指针转换为可调用对象</h4><p>ctypes 模块可被用来创建包装任意内存地址的 Python 可调用对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">lib = ctypes.cdll.LoadLibrary(<span class="hljs-literal">None</span>) <br>addr = ctypes.cast(lib.sin, ctypes.c_void_p).value <br>functype = ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double) <br>func = functype(addr) <br></code></pre></td></tr></table></figure>
+<h4 id="15-13-传递-NULL-结尾的字符串给-C-函数库"><a href="#15-13-传递-NULL-结尾的字符串给-C-函数库" class="headerlink" title="15.13 传递 NULL 结尾的字符串给 C 函数库"></a>15.13 传递 NULL 结尾的字符串给 C 函数库</h4><h4 id="15-14-传递-Unicode-字符串给-C-函数库"><a href="#15-14-传递-Unicode-字符串给-C-函数库" class="headerlink" title="15.14 传递 Unicode 字符串给 C 函数库"></a>15.14 传递 Unicode 字符串给 C 函数库</h4><h4 id="15-15-C-字符串转换为-Python-字符串"><a href="#15-15-C-字符串转换为-Python-字符串" class="headerlink" title="15.15 C 字符串转换为 Python 字符串"></a>15.15 C 字符串转换为 Python 字符串</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">PyObject *obj = Py_BuildValue(<span class="hljs-string">&quot;s#&quot;</span>, s, <span class="hljs-built_in">len</span>); <br>PyObject *obj = PyUnicode_Decode(s, <span class="hljs-built_in">len</span>, <span class="hljs-string">&quot;encoding&quot;</span>, <span class="hljs-string">&quot;errors&quot;</span>); <br>obj = PyUnicode_Decode(s, <span class="hljs-built_in">len</span>, <span class="hljs-string">&quot;latin-1&quot;</span>, <span class="hljs-string">&quot;strict&quot;</span>); <br>PyObject *obj = Py_BuildValue(<span class="hljs-string">&quot;u#&quot;</span>, w, <span class="hljs-built_in">len</span>); <br>PyObject *obj = PyUnicode_FromWideChar(w, <span class="hljs-built_in">len</span>); <br></code></pre></td></tr></table></figure>
+<h4 id="15-16-不确定编码格式的-C-字符串"><a href="#15-16-不确定编码格式的-C-字符串" class="headerlink" title="15.16 不确定编码格式的 C 字符串"></a>15.16 不确定编码格式的 C 字符串</h4><p>在扩展中的 C 字符串可能不会严格遵循 Python 所期望的 Unicode 编码/解码规则。</p>
+<h4 id="15-17-传递文件名给-C-扩展"><a href="#15-17-传递文件名给-C-扩展" class="headerlink" title="15.17 传递文件名给 C 扩展"></a>15.17 传递文件名给 C 扩展</h4><p>需要确保文件名根据系统期望的文件名编码 方式编码过。 </p>
+<h4 id="15-18-传递已打开的文件给-C-扩展"><a href="#15-18-传递已打开的文件给-C-扩展" class="headerlink" title="15.18 传递已打开的文件给 C 扩展"></a>15.18 传递已打开的文件给 C 扩展</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 将一个文件转换为一个整型的文件描述符</span><br><span class="hljs-built_in">int</span> fd = PyObject_AsFileDescriptor(fobj);<br><span class="hljs-comment"># 换一个整型文件描述符为一个Python 对象 </span><br>PyObject *fobj = PyFile_FromFd(fd, <span class="hljs-string">&quot;filename&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,-<span class="hljs-number">1</span>,NULL,NULL,NULL,<span class="hljs-number">1</span>); <br></code></pre></td></tr></table></figure>
+<h4 id="15-19-从-C-语言中读取类文件对象"><a href="#15-19-从-C-语言中读取类文件对象" class="headerlink" title="15.19 从 C 语言中读取类文件对象"></a>15.19 从 C 语言中读取类文件对象</h4><h4 id="15-20-处理-C-语言中的可迭代对象"><a href="#15-20-处理-C-语言中的可迭代对象" class="headerlink" title="15.20 处理 C 语言中的可迭代对象"></a>15.20 处理 C 语言中的可迭代对象</h4><h4 id="15-21-诊断分段错误"><a href="#15-21-诊断分段错误" class="headerlink" title="15.21 诊断分段错误"></a>15.21 诊断分段错误</h4><p>faulthandler 模块能被用来获得 Python 堆栈信息，从而找出在发生错误的时候程序运行点。<br>faulthandler.enable()<br>bash % python3 -Xfaulthandler program.py<br>设置 PYTHONFAULTHANDLER 环境变量</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0_C%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0_C%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0_C%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/%E6%A6%82%E8%BF%B0/"><i class="iconfont iconleft"></i>概述</a>
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0_%E6%B5%8B%E8%AF%95%E8%B0%83%E8%AF%95%E5%92%8C%E5%BC%82%E5%B8%B8/">第十四章_测试调试和异常<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

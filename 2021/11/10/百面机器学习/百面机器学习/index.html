@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>百面机器学习 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="第一章 特征工程数据和特征往往决定了结果的上限，而模型...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">百面机器学习</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">百面机器学习</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 10, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7778</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h2 id="第一章-特征工程"><a href="#第一章-特征工程" class="headerlink" title="第一章 特征工程"></a>第一章 特征工程</h2><p>数据和特征往往决定了结果的上限，而模型、算法的选择及优化则是在逐步接近这个上限。<br>(1)结构化数据(2)非结构化数据<br>特征归一化(Normalization):线性函数归一化，零均值归一化<br>在实际应用中，通过梯度下降法求解的模型通常是需要归一化的，包括线性回归、逻辑回归、支持向量机、神经网络等模型。<br>类别型特征如何处理: 序号编码、独热编码、二进制编码<br>文本表示模型: Bag of Words, TF-IDF, 主题模型，词嵌入模型<br>主题模型和词嵌入两类方法最大的不同其实在于模型本身，主题模型是一种基于概率图模型的生成式模型，其似然函数可以写成若干条件概率连乘的形式，其中包括需要推测的隐含变量（即主题）；而词嵌入模型一般表达为神经网络的形式，似然函数定义在网络的输出之上，需要通过学习网络的权重以得到单词的稠密向量表示。<br>迁移学习（Transfer Learning），生成对抗网络，图像处理，上采样技术，数据扩充<br>一个模型所能提供的信息一般来源于两个方面，一是训练数据中蕴含的信息；二是在模型的形成过程中（包括构造、学习、推理等），人们提供的先验信息。<br>先验信息可以作用在模型上，例如让模型采用特定的内在结构、条件假设或添加其他一些约束条件；先验信息也可以直接施加在数据集上，即根据特定的先验假设去调整、变换或扩展训练数据，让其展现出更多的、更有用的信息，以利于后续模型的训练和学习。<br>一是基于模型的方法，主要是采用降低过拟合风险的措施，包括简化模型（如将非线性模型简化为线性模型）、添加约束项以缩小假设空间（如L1/L2正则项）、集成学习、Dropout超参数等；二是基于数据的方法，主要通过数据扩充（Data Augmentation），即根据一些先验知识，在保持特定信息的前提下，对原始数据进行适当变换以达到扩充数据集的效果。<br>SMOTE（Synthetic Minority Over-sampling Technique）算法</p>
+<h2 id="第二章-模型评估"><a href="#第二章-模型评估" class="headerlink" title="第二章 模型评估"></a>第二章 模型评估</h2><p>准确率，精确率，召回率，均方根误差RMSE，P-R曲线，平均绝对百分比误差MAPE，ROC曲线（TPR-FPR曲线TPR = TP/P  FPR = FP/N）,AUC<br>评估指标的选择、模型过拟合或欠拟合、测试集和训练集划分不合理、线下评估与线上测试的样本分布存在差异<br>ROC曲线能够尽量降低不同测试集带来的干扰，更加客观地衡量模型本身的性能， 能够更加稳定地反映模型本身的好坏。<br>余弦相似度 余弦距离 欧氏距离 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="31.961ex" height="4.843ex" style="vertical-align: -1.838ex;" viewBox="0 -1293.7 13761 2085" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">||A-B||_2 = \sqrt{2(1 - cos(A, B))}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-7C" d="M139 -249H137Q125 -249 119 -235V251L120 737Q130 750 139 750Q152 750 159 735V-235Q151 -249 141 -249H139Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-41" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-42" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6F" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+<path stroke-width="1" id="E1-MJSZ2-221A" d="M1001 1150Q1017 1150 1020 1132Q1020 1127 741 244L460 -643Q453 -650 436 -650H424Q423 -647 423 -645T421 -640T419 -631T415 -617T408 -594T399 -560T385 -512T367 -448T343 -364T312 -259L203 119L138 41L111 67L212 188L264 248L472 -474L983 1140Q988 1150 1001 1150Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-7C" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-7C" x="278" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-41" x="557" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2212" x="1529" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-42" x="2530" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-7C" x="3289" y="0"></use>
+<g transform="translate(3568,0)">
+ <use xlink:href="#E1-MJMAIN-7C" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-32" x="393" y="-404"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-3D" x="4578" y="0"></use>
+<g transform="translate(5634,0)">
+ <use xlink:href="#E1-MJSZ2-221A" x="0" y="-24"></use>
+<rect stroke="none" width="7125" height="60" x="1000" y="1067"></rect>
+<g transform="translate(1000,0)">
+ <use xlink:href="#E1-MJMAIN-32" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-28" x="500" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-31" x="890" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2212" x="1612" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-63" x="2613" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-6F" x="3046" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-73" x="3532" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-28" x="4001" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-41" x="4391" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2C" x="5141" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-42" x="5587" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-29" x="6346" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-29" x="6736" y="0"></use>
+</g>
+</g>
+</g>
+</svg><br>欧氏距离体现数值上的绝对差异，而余弦距离体现方向上的相对差异。<br>余弦距离满足正定性、对称性、不满足三角不等式（{1,0}，{1,1}，{0,1}）<br>A/B测试: 离线评估无法完全消除模型过拟合的影响; 离线评估无法完全还原线上的工程环境; 线上系统的某些商业指标在离线评估中无法计算;<br>Holdout检验、交叉验证、自助法、微积分<br>超参数调优: 网格搜索 随机搜索  贝叶斯优化算法<br>降低“过拟合”风险的方法 :  使用更多的训练数据; 降低模型复杂度; 正则化方法; 集成学习方法;<br>降低“欠拟合”风险的方法: 添加新特征; 增加模型复杂度; 减小正则化系数;</p>
+<h2 id="第三章-经典算法"><a href="#第三章-经典算法" class="headerlink" title="第三章 经典算法"></a>第三章 经典算法</h2><p>SVM使用核函数可以向高维空间进行映射；可以解决非线性分类；样本与决策面的间隔最大化；分类效果较好；对大规模训练样本难以实施；解决多分类问题存在困难；对缺失数据、参数和核函数的选择敏感<br>逻辑回归： Logistic Model - 分类模型 - 线性模型<br>区分线性与非线性分类器的标准是什么？是决策边界（Decision Boundary）<br>虽然逻辑回归的模型特征经过非线性函数Sigmoid的转换，但是它的决策边界是线性方程，所以逻辑回归LR是非常典型的线性分类器。<br>预剪枝(Pre-Pruning)：深度 结点样本数量 准确度提升<br>后剪枝(Post-Pruning)：错误率降低剪枝（Reduced Error Pruning，REP）、悲观剪枝（Pessimistic Error Pruning，PEP）、代价复杂度剪枝（Cost Complexity Pruning，CCP）、最小误差剪枝（Minimum Error Pruning，MEP）、CVP（Critical Value Pruning）、OPP(Optimal Pruning)</p>
+<h2 id="第四章-降维"><a href="#第四章-降维" class="headerlink" title="第四章 降维"></a>第四章 降维</h2><p>常见的降维方法有主成分分析、线性判别分析、等距映射、局部线性嵌入、拉普拉斯特征映 射、局部保留投影等。<br>高维空间中，包含很多的冗余和噪声,通过降维的方式来寻找数据内部的特性，从而提升特征表达能力，降低训练复杂度。<br>主成分分析(Principal Components Analysis，PCA): 线性、非监督、全局 最大投影方差 最小平方误差<br>线性判别分析(Linear Discriminant Analysis，LDA):有监督<br>思路一：PCA的目标：最大化投影方差；最大方差 = 协方差矩阵的最大特征值；最佳投影方向=最大特征值对应的特征向量<br>思路二：最小平方误差<br>LDA:类间距离最大化，类内距离最小化</p>
+<h2 id="第五章-非监督学习"><a href="#第五章-非监督学习" class="headerlink" title="第五章 非监督学习"></a>第五章 非监督学习</h2><p>数据聚类和特征变量关联<br><strong>K均值聚类（K-Means Clustering）</strong>是最基础和最常用的聚类算法。它的基本思想是，通过迭代方式寻找K个簇（Cluster）的一种划分方案，使得聚类结果对应的代价函数最小。<br>K均值聚类算法，ISODATA算法，EM算法（Expectation-Maximization Algorithm，最大期望算法）<br>K均值算法有一些缺点，例如受初值和离群点的影响每次的结果不稳定、结果通常不是全局最优而是局部最优解、无法很好地解决数据簇分布差别比较大的情况（比如一类是另一类样本数量的100倍）、不太适用于离散分类等。<br>对于大数据集，K均值聚类算法相对是可伸缩和高效的，它的计算复杂度是O(NKt)接近于线性，其中N是数据对象的数目，K是聚类的簇数，t是迭代的轮数。<br>（1）数据归一化和离群点处理； （2）合理选择K值。Gap Statistic （3）采用核函数。<br><strong>K-means++算法</strong>: 假设已经选取了n个初始聚类中心（0&lt;n&lt;K），则在选取第n+1个聚类中心时，距离当前n个聚类中心越远的点会有更高的概率被选为第n+1个聚类中心。<br>ISODATA算法:迭代自组织数据分析法 分裂操作，对应着增加聚类中心数；合并操作，对应着减少聚类中心数。 预期的聚类中心数目K 每个类所要求的最少样本数目Nmin 最大方差Sigma 两个聚类中心之间所允许最小距离Dmin<br>模糊C均值或者高斯混合模型: 样本不划分到单一的类中<br>K均值聚类的迭代算法实际上是一种最大期望算法(Expectation-Maximization algorithm)<br>高斯混合模型（Gaussian Mixed Model，GMM）:生成式模型<br>自组织映射神经网络（Self-Organizing Map，SOM）：竞争学习 激活节点 初始化 竞争 合作 适应 迭代 保序映射 输出层神经 元的空间位置对应于输入空间的特定域或特征 设定输出层神经元的数量  设计输出层节点的排列  初始化权值  设计拓扑领域  设计学习率<br>数据的聚类依赖于实际需求，同时也依赖于数据的特征度量以及评估数据相似性的方法。<br>以中心定义的数据簇 以密度定义的数据簇 以连通定义的数据簇 以概念定义的数据簇<br>估计聚类趋势：检测数据分布中是否存在非随机的簇结构；判定数据簇数； 测定聚类质量：轮廓系数 均方根标准偏差RMSSTD R方R-Square 改进的HubertΓ统计</p>
+<h2 id="第六章-概率图模型"><a href="#第六章-概率图模型" class="headerlink" title="第六章 概率图模型"></a>第六章 概率图模型</h2><p>概率图模型构建了这样一幅图，用观测结点表示观测到的数据，用隐含结点表示潜在的知识，用边来描述知识与数据的相互关系，最后基于这样的关系图获得一个概率分布，非常“优雅”地解决了问题。<br>概率图模型分为贝叶斯网络（Bayesian Network）和马尔可夫网络（Markov Network）两大类<br>概率图模型包括了朴素贝叶斯模型、 最大熵模型、隐马尔可夫模型、条件随机场、主题模型等<br>信息是指人们对事物理解的不确定性的降低或消除<br>最大熵原理是概率模型学习的一个准则，指导思想是在满足约束条件的模型集合中选取熵最大的模型，即不确定性最大的模型。<br>最大熵模型就是要学习到合适的分布P(y|x)，使得条件熵H(P)的取值最大。<br>假设可观测到的变量集合为X，需要预测的变量集合为Y，其他的变量集合为Z。生成式模型是对联合概率分布P(X,Y,Z)进行建模，在给定观测集合X的条件下，通过计算边缘分布来得到对变量集合Y的推断: 朴素贝叶斯、贝叶斯网络、隐马尔可夫模型、pLSA、LDA等<br>判别式模型是直接对条件概率分布P(Y,Z|X)进行建模，然后消掉无关变量Z就可以得到对变量集合Y的预测，有判别边界:最大熵模型、条件随机场、神经网络模型、SVM、perceptron、LR、DT</p>
+<p>马尔可夫过程是满足无后效性的随机过程。假设一个随机过程中，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.058ex" height="2.343ex" style="vertical-align: -0.671ex;" viewBox="0 -719.6 886.1 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">t_n</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-74" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-74" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-6E" x="511" y="-213"></use>
+</g>
+</svg>时刻的状态<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.548ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1097.1 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">x_n</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-6E" x="809" y="-213"></use>
+</g>
+</svg>的条件分布，仅仅与其前一个状态<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.649ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 2001.5 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">x_{n−1}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
+<g transform="translate(572,-150)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-6E" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-2212" x="600" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="1379" y="0"></use>
+</g>
+</g>
+</svg>有关，即P(x_n |x_1 ,x_2 …x_{n−1} )=P(x_n |x_{n−1} )，则将其称为马尔可夫过程，时间和状态的取值都是离散的马尔可夫过程也称为马尔可夫链，</p>
+<p>隐马尔可夫模型是对含有未知参数（隐状态）的马尔可夫链进行建模的生成模型<br>隐马尔可夫模型包括概率计算问题(已知参数，计算观测序列Y出现的概率)、预测问题(已知参数和观测序列，计算隐状态序列X，维比特算法)、学习问题(已知观测序列Y，求解使得该观测序列概率最大的模型参数，极大似然估计(有隐状态序列)或Baum-Welch(无隐状态序列 类似EM算法))三个基本问题<br>标注偏置问题（Label Bias Problem）: 隐马尔可夫模型建模时考虑了隐状态间的转移概率和隐状态到观测状态的输出概率; 在序列标注问题中，隐状态（标注）不仅和单个观测状态相关，还和观察序列的长度、上下文等信息相关。MEMM模型能够直接允许“定义特征”，直接学习条件概率。<br>最大熵马尔可夫模型（Maximum Entropy Markov Model， MEMM)<br>由于局部归一化的影响，隐状态会倾向于转移到那些后续状态可能更少的状态上，以提高整体的后验概率。 这就是标注偏置问题<br>条件随机场（Conditional Random Field，CRF）在最大熵马尔可夫模型的基础上，进行了全局归一化，从而解决了局部归一化带来的标注偏置问题。<br>为了建一个条件随机场，我们首先要定义一个特征函数集，每个特征函数都以整个句子s，当前位置i，位置i和i-1的标签为输入。然后为每一个特征函数赋予一个权重，然后针对每一个标注序列l，对所有的特征函数加权求和，必要的话，可以把求和的值转化为一个概率值。</p>
+<p>pLSA（Probabilistic Latent Semantic Analysis）：整个语料库中的文本生成概率可以用似然函数表示 由于参数中包含隐含变量（即无法直接观测到的变量），因此 无法用最大似然估计直接求解，可以利用最大期望算法来解决</p>
+<p>LDA（Latent Dirichlet Allocation）：选择狄利克雷分布作为先验分布，是因为它为多项式分布的共轭先验概率分布，后验概率依然服从狄利克雷分布，这样做可以为计算带来便利。<br>从超参数为α的狄利克雷分布中抽样生成文档di的主题分布θi<br>困惑度(perplexity)</p>
+<h2 id="第七章-优化算法"><a href="#第七章-优化算法" class="headerlink" title="第七章 优化算法"></a>第七章 优化算法</h2><p>机器学习算法 = 模型表征 + 模型评估 + 优化算法<br>0-1损失函数：直观地刻画分类的错误率，但是由于其非凸、非光滑的特点， 使得算法很难直接对该函数进行优化。<br>Hinge损失函数：是0-1损失函数相对紧的凸上界<br>Logistic损失函数：是0-1损失函数的凸上界，且该函数处处光滑<br>交叉熵(Cross Entropy)损失函数:是0-1损失函数的光滑凸上界<br>平方损失函数:对异常点比较敏感<br>绝对损失函数 : f=y处无法求导数<br>Huber损失函数:<br>直接法要求目标函数需要满足两个条件。第一个条件是，L(·)是凸函数。若L(·)是凸函数，那么θ是最优解的充分必要条 件是L(·)在θ处的梯度为0; 第二个条件是，有闭式解<br>二阶法的收敛速度一般要远快于一阶法，但是在高维情况下，Hessian矩阵求逆的计算复杂度很大，而且当目标函数非凸时，二阶法有可能会收敛到鞍点（Saddle Point）。</p>
+<p>为什么希望模型参数具有稀疏性呢？稀疏性:模型的很多参数是0。相当于对模型进行了一次特征选择，只留下一些比较重要的特征，提高模型的泛化能力，降低过拟合的可能。<br>“带正则项”和“带约束条件”是等价<br>L1正则化相当于对模型参数w引入了拉普拉斯先验，L2正则化相当于引入了高斯先验，而拉普拉斯先验使参数为0的可能性更大。<br>高斯分布在极值点（0点）处是平滑的，也就是高斯先验分布认为w在极值点附近取不同值的可能性是接近的;拉普拉斯分布在极值点（0点）处是一个尖峰，所以拉普拉斯先验分布中参数w取值为0的可能性要更高。</p>
+<h2 id="第八章-采样"><a href="#第八章-采样" class="headerlink" title="第八章 采样"></a>第八章 采样</h2><p>采样是从特定的概率分布中抽取对应的样本点。<br>模型在总体分布上的期望损失(期望风险) 最小化模型在训练集上损失函数(经验风险)<br>利用重采样来处理分类模型的训练样本不均衡问题。<br>基于采样的随机模拟方法是数值型的近似求解方法<br>某些函数在特定分布下的积分或期望，或者是求某些随机变量或参数在给定数据下的后验分布</p>
+<p>均匀分布是指整个样本空间中的每一个样本点对应的概率（密度）都是相等的。<br>函数变换法 逆变换采样(Inverse Transform Sampling) 拒绝采样(Rejection Sampling) 重要性采样(Importance Sampling) 参考分布q(x) 均匀分布U(0,1) 如果u_i &lt; \frac{p(x_i)}{Mq(x_i)} -&gt; 接受 包络函数M·q(x) 自适应拒绝采样(Adaptive Rejection Sampling)<br>重要性采样就是用于计算函数f(x)在目标分布p(x)上的积分（函数期望）<br>如果是高维空间的随机向量，拒绝采样和重要性重采样经常 难以寻找合适的参考分布，采样效率低下（样本的接受概率小或重要性权重低）<br>马尔可夫蒙特卡洛(Markov Chain Monte Carlo，MCMC)采样法<br>蒙特卡洛法是指基于采样的数值型近似求解方法，而马尔可夫链则用于进行采样<br>针对待采样的目标分布，构造一个马尔可夫链，使得该马尔可夫链的平稳分布就是目标分布；然后，从任何一个初始状态出发，沿着马尔可夫链进行状态转移，最终得到的状态转移序列会收敛到目标分布，由此可以得到目标分布的一系列样本。<br>马尔可夫链的相关知识点，如时齐性、细致平衡条件、可遍历性、平稳分布等<br>Metropolis-Hastings采样法和吉布斯采样法<br>在拒绝采样中，如果在某一步中采样被拒绝，则该步不会产生新样本，需要重新进行采样。与此不同，MCMC采样法每一步都会产生一个样本，只是有时候这个样本与之前的样本一样而已。另外，MCMC采样法是在不断迭代过程中逐渐收敛到平稳分布的，因此实际应用中一般会对得到的样本序列进行“burn-in”处理，即截除掉序列中最开始的一部分样本，只保留后面的样本。 </p>
+<p>对一个没有观测变量的贝叶斯网络进行采样，最简单的方法是祖先采样 （Ancestral Sampling），它的核心思想是根据有向图的顺序，先对祖先节点进行采样，只有当某个节点的所有父节点都已完成采样，才对该节点进行采样。<br>似然加权采样(Likelihood Weighted Sampling)</p>
+<p>训练数据不均衡时:本质原因是模型在训练时优化的目标函数和人们在测试时使用的评价标准不一致; 基于数据的方法：随机采样 过采样(Over-sampling)和欠采样(Under-sampling) SMOTE算法<br>Informed Undersampling<br>改变模型训练时的目标函数(如代价敏感学习中不同类别有不同的权重) 单类学习(one-class learning)、异常检测(anomaly detection)</p>
+<h2 id="第九章-前向神经网络"><a href="#第九章-前向神经网络" class="headerlink" title="第九章 前向神经网络"></a>第九章 前向神经网络</h2><p>深度前馈网络（Deep Feedforward Networks）<br>多层感知机(Multi-Layer Perceptron，MLP)网络<br>包含n元输入的任意布尔函数可以唯一表示为析取范式（Disjunctive Normal Form，DNF）（由有限个简单合取式构成的析取式）的形式。<br>L2正则化项(权重衰减项)，目的是减小权重的幅度，防止过拟合。<br>平方损失函数更适合输出为连续，并且最后一层不含Sigmoid或 Softmax激活函数的神经网络；交叉熵损失则更适合二分类或多分类的场景。</p>
+<p>解决“过拟合”:包括数据集增强 （Data Augmentation）、参数范数惩罚/正则化（Regularization）、模型集成 （Model Ensemble）等；</p>
+<p>在前向传播的计算时，每个神经元的参数要预先乘以概率系数p，以恢复在训练中该神经元只有p的概率被用于整个神经网络的前向传播计算。<br>批量归一化：对数据的分布进行额外的约束，从而增强模型的泛化能力；批量归一化同时也降低了模型的拟合能力，归一化之后的输入分布被强制为0均值和1标准差。为了恢复原始数据分布，具体实现中引入了变换重构以及可学习参数γ和β</p>
+<p>卷积神经网络（Convolutional Neural Networks，CNN）： 稀疏交互（Sparse Interaction）  参数共享（Parameter Sharing）<br>均值池化通过对邻域内特征数值求平均来实现，能够抑制由于邻域大小受限造成估计值方差增大的现象，特点是对背景的保留效果更好。最大池化则通过取邻域内特征的最大值来实现，能够抑制网络参数误差造成估计均值偏移的现象，特点是更好地提取纹理信息。<br>对相邻重叠区域的池化 空间金字塔池化<br>池化操作除了能显著降低参数量外，还能够保持对平移、伸缩、旋转操作的不变性。</p>
+<h2 id="第十章-循环神经网络"><a href="#第十章-循环神经网络" class="headerlink" title="第十章 循环神经网络"></a>第十章 循环神经网络</h2><p>当采用ReLU作为循环神经网络中隐含层的激活函数时，只有当W的取值在单位矩阵附近时才能取得比较好的效果，因此需要将W初始化为单位矩阵。<br>Sigmoid函数的输出在0～1之间，符合门控的物理定义。且当输入较大或较小时，其输出会非常接近1或0，从而保证该门开或关。在生成候选记忆时，使用Tanh函数，是因为其输出在−1～1之间，这与大多数场景下特征分布是0中心的吻合。此外，Tanh函数在输入为0附近相比Sigmoid函数有更大的梯度，通常使模型收敛更快。 </p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/11/10/%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;10&#x2F;%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&#x2F;%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;10&#x2F;%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&#x2F;%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/11/10/JAVA%E7%9B%B8%E5%85%B3/JAVA%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/"><i class="iconfont iconleft"></i>JAVA编程思想</a>
+    <a href="/2021/10/06/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">第十三章 计算机视觉<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="toc-text">第一章 特征工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="toc-text">第二章 模型评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95"><span class="toc-text">第三章 经典算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E9%99%8D%E7%BB%B4"><span class="toc-text">第四章 降维</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E9%9D%9E%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="toc-text">第五章 非监督学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%A6%82%E7%8E%87%E5%9B%BE%E6%A8%A1%E5%9E%8B"><span class="toc-text">第六章 概率图模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-text">第七章 优化算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E9%87%87%E6%A0%B7"><span class="toc-text">第八章 采样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%89%8D%E5%90%91%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">第九章 前向神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">第十章 循环神经网络</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

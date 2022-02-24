@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第六章_数据编码和处理 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="6.1 读写 CSV 数据12345678910111...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第六章_数据编码和处理</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第六章_数据编码和处理</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 15, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3994</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="6-1-读写-CSV-数据"><a href="#6-1-读写-CSV-数据" class="headerlink" title="6.1 读写 CSV 数据"></a>6.1 读写 CSV 数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python">f_csv = csv.reader(f) <br>headers = <span class="hljs-built_in">next</span>(f_csv) <br><span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> f_csv: <br>	row = <span class="hljs-built_in">tuple</span>(convert(value) <span class="hljs-keyword">for</span> convert, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(col_types, row))<br><span class="hljs-comment"># 使用列名代替下标访问</span><br>headings = <span class="hljs-built_in">next</span>(f_csv) <br>headings = [ re.sub(<span class="hljs-string">&#x27;[^a-zA-Z_]&#x27;</span>, <span class="hljs-string">&#x27;_&#x27;</span>, h) <span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> <span class="hljs-built_in">next</span>(f_csv) ] <br>Row = namedtuple(<span class="hljs-string">&#x27;Row&#x27;</span>, headings) <br><span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> f_csv: <br>	row = Row(*r)<br><span class="hljs-comment"># 将数据读取到一个字典序列中去。</span><br>f_csv = csv.DictReader(f) <br><span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> csv.DictReader(f): <br>	row.update((key, conversion(row[key])) <span class="hljs-keyword">for</span> key, conversion <span class="hljs-keyword">in</span> field_types) <br><br>f_csv = csv.writer(f) <br>f_csv.writerow(headers)<br>f_csv.writerows(rows) <br><br>f_csv = csv.DictWriter(f, headers)<br>f_csv.writeheader() <br>f_csv.writerows(rows)<br><br>f_tsv = csv.reader(f, delimiter=<span class="hljs-string">&#x27;\t&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="6-2-读写-JSON-数据"><a href="#6-2-读写-JSON-数据" class="headerlink" title="6.2 读写 JSON 数据"></a>6.2 读写 JSON 数据</h4><p>json.dumps() 和 json.loads()<br>json.dump() 和 json.load()<br>True 会被映射为 true，False 被映射为 false，而 None 会被映射为 null<br>pprint 模块的 pprint() 函数会按照 key 的字母顺序并以一种更加美观的方式输出。<br>一般来讲，JSON解码会根据提供的数据创建dicts或lists。如果你想要创建其他类型的对象，可以给json.loads()传递object_pairs_hook或object_hook 参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">data = json.loads(s, object_pairs_hook=OrderedDict) <br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JSONObject</span>:</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, d</span>):</span> <br>		self.__dict__ = d <br>data = json.loads(s, object_hook=JSONObject) <br><br><span class="hljs-built_in">print</span>(json.dumps(data, indent=<span class="hljs-number">4</span>)) <br><span class="hljs-built_in">print</span>(json.dumps(data, sort_keys=<span class="hljs-literal">True</span>))<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">serialize_instance</span>(<span class="hljs-params">obj</span>):</span> <br>	d = &#123; <span class="hljs-string">&#x27;__classname__&#x27;</span> : <span class="hljs-built_in">type</span>(obj).__name__ &#125; <br>	d.update(<span class="hljs-built_in">vars</span>(obj)) <br>	<span class="hljs-keyword">return</span> d <br></code></pre></td></tr></table></figure>
+<h4 id="6-3-解析简单的-XML-数据"><a href="#6-3-解析简单的-XML-数据" class="headerlink" title="6.3 解析简单的 XML 数据"></a>6.3 解析简单的 XML 数据</h4><p>xml.etree.ElementTree 模块</p>
+<h4 id="6-4-增量式解析大型-XML-文件"><a href="#6-4-增量式解析大型-XML-文件" class="headerlink" title="6.4 增量式解析大型 XML 文件"></a>6.4 增量式解析大型 XML 文件</h4><p>对节点的迭代式解析和删除的最终效果就是一个在文档上高效的增量式清扫过程。 </p>
+<h4 id="6-5-将字典转换为-XML"><a href="#6-5-将字典转换为-XML" class="headerlink" title="6.5 将字典转换为 XML"></a>6.5 将字典转换为 XML</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dict_to_xml</span>(<span class="hljs-params">tag, d</span>):</span> <br>	<span class="hljs-string">&#x27;&#x27;&#x27; Turn a simple dict of key/value pairs into XML &#x27;&#x27;&#x27;</span> <br>	elem = Element(tag) <br>	<span class="hljs-keyword">for</span> key, val <span class="hljs-keyword">in</span> d.items(): <br>		child = Element(key) <br>		child.text = <span class="hljs-built_in">str</span>(val) <br>		elem.append(child) <br>	<span class="hljs-keyword">return</span> elem <br>s = &#123; <span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;GOOG&#x27;</span>, <span class="hljs-string">&#x27;shares&#x27;</span>: <span class="hljs-number">100</span>, <span class="hljs-string">&#x27;price&#x27;</span>:<span class="hljs-number">490.1</span> &#125; <br>e = dict_to_xml(<span class="hljs-string">&#x27;stock&#x27;</span>, s) <br>e e.<span class="hljs-built_in">set</span>(<span class="hljs-string">&#x27;_id&#x27;</span>,<span class="hljs-string">&#x27;1234&#x27;</span>) tostring(e)  <br></code></pre></td></tr></table></figure>
+<h4 id="6-6-解析和修改-XML"><a href="#6-6-解析和修改-XML" class="headerlink" title="6.6 解析和修改 XML"></a>6.6 解析和修改 XML</h4><p>所有的修改都是针对父节点元素，将它作为一个列表来处理。</p>
+<h4 id="6-7-利用命名空间解析-XML-文档"><a href="#6-7-利用命名空间解析-XML-文档" class="headerlink" title="6.7 利用命名空间解析 XML 文档"></a>6.7 利用命名空间解析 XML 文档</h4><h4 id="6-8-与关系型数据库的交互"><a href="#6-8-与关系型数据库的交互" class="headerlink" title="6.8 与关系型数据库的交互"></a>6.8 与关系型数据库的交互</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 连接到数据库。connect()函数，提供数据库名、主机、用户名、密码和其他必要的一些参数。</span><br>db = sqlite3.connect(<span class="hljs-string">&#x27;database.db&#x27;</span>) <br>c = db.cursor() <br>c.excute()<br>c.executemany(<span class="hljs-string">&#x27;insert into portfolio values (?,?,?)&#x27;</span>, stocks))<br>db.commit()<br></code></pre></td></tr></table></figure>
+<h4 id="6-9-编码和解码十六进制数"><a href="#6-9-编码和解码十六进制数" class="headerlink" title="6.9 编码和解码十六进制数"></a>6.9 编码和解码十六进制数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">s = <span class="hljs-string">b&#x27;hello&#x27;</span> <br><span class="hljs-comment"># 将字节字符串 编码成 十六进制字符串</span><br>h = binascii.b2a_hex(s)  <span class="hljs-comment"># 大小写都能处理</span><br>h = base64.b16encode(s)  <span class="hljs-comment"># 只能操作大写形式的十六进制字母</span><br><span class="hljs-comment"># 解码</span><br>binascii.a2b_hex(h) <br>base64.b16decode(h) <br></code></pre></td></tr></table></figure>
+<h4 id="6-10-编码解码-Base64-数据"><a href="#6-10-编码解码-Base64-数据" class="headerlink" title="6.10 编码解码 Base64 数据"></a>6.10 编码解码 Base64 数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">s = <span class="hljs-string">b&#x27;hello&#x27;</span> <br>a = base64.b64encode(s) <br>base64.b64decode(a) <br></code></pre></td></tr></table></figure>
+<h4 id="6-11-读写二进制数组数据"><a href="#6-11-读写二进制数组数据" class="headerlink" title="6.11 读写二进制数组数据"></a>6.11 读写二进制数组数据</h4><p>可以使用struct模块处理二进制数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> struct <span class="hljs-keyword">import</span> Struct <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">write_records</span>(<span class="hljs-params">records, <span class="hljs-built_in">format</span>, f</span>):</span> <br>	<span class="hljs-string">&#x27;&#x27;&#x27;Write a sequence of tuples to a binary file of structures. &#x27;&#x27;&#x27;</span><br>	record_struct = Struct(<span class="hljs-built_in">format</span>) <br>	<span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> records: 		<br>		f.write(record_struct.pack(*r))<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read_records</span>(<span class="hljs-params"><span class="hljs-built_in">format</span>, f</span>):</span> <br>	record_struct = Struct(<span class="hljs-built_in">format</span>) <br>	chunks = <span class="hljs-built_in">iter</span>(<span class="hljs-keyword">lambda</span>: f.read(record_struct.size), <span class="hljs-string">b&#x27;&#x27;</span>) <span class="hljs-keyword">return</span> (record_struct.unpack(chunk) <span class="hljs-keyword">for</span> chunk <span class="hljs-keyword">in</span> chunks) <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">unpack_records</span>(<span class="hljs-params"><span class="hljs-built_in">format</span>, data</span>):</span> <br>	record_struct = Struct(<span class="hljs-built_in">format</span>) <br>	<span class="hljs-keyword">return</span> (record_struct.unpack_from(data, offset) <span class="hljs-keyword">for</span> offset <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(data), record_struct.size)) <br>	<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>: <br>	records = [ (<span class="hljs-number">1</span>, <span class="hljs-number">2.3</span>, <span class="hljs-number">4.5</span>), (<span class="hljs-number">6</span>, <span class="hljs-number">7.8</span>, <span class="hljs-number">9.0</span>), (<span class="hljs-number">12</span>, <span class="hljs-number">13.4</span>, <span class="hljs-number">56.7</span>) ] <br>	<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data.b&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f: <br>		write_records(records, <span class="hljs-string">&#x27;&lt;idd&#x27;</span>, f)<br>		<br>	<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data.b&#x27;</span>,<span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f: <br>		<span class="hljs-keyword">for</span> rec <span class="hljs-keyword">in</span> read_records(<span class="hljs-string">&#x27;&lt;idd&#x27;</span>, f): <br><br>	<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data.b&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f: <br>		data = f.read() <br>	<span class="hljs-keyword">for</span> rec <span class="hljs-keyword">in</span> unpack_records(<span class="hljs-string">&#x27;&lt;idd&#x27;</span>, data): <br></code></pre></td></tr></table></figure>
+<h4 id="6-12-读取嵌套和可变长二进制数据"><a href="#6-12-读取嵌套和可变长二进制数据" class="headerlink" title="6.12 读取嵌套和可变长二进制数据"></a>6.12 读取嵌套和可变长二进制数据</h4><p>描述器，延迟计算，元类，类变量和内存视图</p>
+<h4 id="6-13-数据的累加与统计操作"><a href="#6-13-数据的累加与统计操作" class="headerlink" title="6.13 数据的累加与统计操作"></a>6.13 数据的累加与统计操作</h4><p>对于任何涉及到统计、时间序列以及其他相关技术的数据分析问题，都可以考虑使用Pandas库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">rats = pandas.read_csv(<span class="hljs-string">&#x27;rats.csv&#x27;</span>, skip_footer=<span class="hljs-number">1</span>) <br>rats[<span class="hljs-string">&#x27;Current Activity&#x27;</span>].unique() <br>crew_dispatched = rats[rats[<span class="hljs-string">&#x27;Current Activity&#x27;</span>] == <span class="hljs-string">&#x27;Dispatch Crew&#x27;</span>] <br>dates = crew_dispatched.groupby(<span class="hljs-string">&#x27;Completion Date&#x27;</span>) <br>date_counts = dates.size() <br>date_counts.sort() <br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/15/Python_Codebook/%E7%AC%AC%E5%85%AD%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E5%92%8C%E5%A4%84%E7%90%86/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;15&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%85%AD%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E5%92%8C%E5%A4%84%E7%90%86&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;15&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%85%AD%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E5%92%8C%E5%A4%84%E7%90%86&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/15/Python_Codebook/%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%87%BD%E6%95%B0/"><i class="iconfont iconleft"></i>第七章_函数</a>
+    <a href="/2022/02/15/Python_Codebook/%E7%AC%AC%E4%BA%94%E7%AB%A0_%E6%96%87%E4%BB%B6%E4%B8%8EIO/">第五章_文件与 IO<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

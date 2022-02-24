@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第五部分_高效并发 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="第12章 Java内存模型与线程并发处理的广泛应用是A...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第五部分_高效并发</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第五部分_高效并发</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5500</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="第12章-Java内存模型与线程"><a href="#第12章-Java内存模型与线程" class="headerlink" title="第12章 Java内存模型与线程"></a>第12章 Java内存模型与线程</h4><p>并发处理的广泛应用是Amdahl定律代替摩尔定律成为计算机性能发展源动力的根本原因，也是人类压榨计算机运算能力的最有力武器。<br>Amdahl定律通过系统中并行化与串行化的比重来描述多处理器系统能获得的运算加速能力，摩尔定律则用于描述处理器晶体管数量与运行效率之间的发展关系。<br>这两个定律的更替代表了近年来硬件发展从追求处理器频率到追求多核心并行处理的发展过程。<br><strong>12.1 概述</strong><br>每秒事务处理数(Transactions Per Second， TPS)代表着一秒内服务端平均能响应的请求总数，TPS值与程序的并发能力有非常密切的关系。<br><strong>12.2 硬件的效率与一致性</strong><br>共享内存多核系统(Shared Memory Multiprocessors System)<br>缓存一致性(Cache Coherence)<br>协议: 在读写时要根据协议来进行操作:MSI、MESI(Illinois Protocol)、MOSI、 Synapse、Firefly及Dragon Protocol等。<br>“内存模型”:在特定的操作协议下，对特定的内存或高速缓存进行读写访问的过程抽象。<br>乱序执行(Out-Of-Order Execution)优化:处理器会在计算之后将乱序执行的结果重组，保证该结果与顺序执行的结果是一致的，但并不保证程序中各个语句计算的先后顺序与输入代码中的顺序一致<br>Java虚拟机的即时编译器中有指令重排序(Instruction Reorder)优化。<br><strong>12.3 Java内存模型</strong><br>“Java内存模型”(Java Memory Model，JMM): 屏蔽各种硬件和操作系统的内存访问差异，以实现让Java程序在各种平台下都能达到一致的内存访问效果<br>Java内存模型的主要目的是定义程序中各种变量的访问规则，即关注在虚拟机中把变量值存储到内存和从内存中取出变量值这样的底层细节。<br>变量(Variables)与Java编程中所说的变量有所区别，它包括了实例字段、静态字段和构成数组对象的元素，但是不包括局部变量与方法参数，因为后者是线程私有的，不会被共享，自然就不会存在竞争问题。<br>所有的变量都存储在主内存(Main Memory)中，每条线程还有自己的工作内存(Working Memory)<br>线程的工作内存中保存了被该线程使用的变量的主内存副本，线程对变量的所有操作(读取、赋值等)都必须在工作内存中进行，而不能直接读写主内存中的数据。不同的线程之间也无法直接访问对方工作内存中的变量，线程间变量值的传递均需要通过主内存来完成<br>Java虚拟机实现时必须保证下面提及的每一种操作都是原子的、不可再分的(对于double和long类型的变量来说， load、store、read和write操作在某些平台上允许有例外):lock(锁定); unlock(解锁); read(读取); load(载入); use(使用); assign(赋值); store(存储); write(写入)<br>一个等效判断原则——先行发生原则，用来确定一个操作在并发环境下是否安全的。<br><em>对于volatile型变量的特殊规则</em> 关键字volatile是Java虚拟机提供的最轻量级的同步机制<br>当一个变量被定义成volatile之后，它将具备两项特性：第一项是保证此变量对所有线程的可见性，这里的“可见性”是指当一条线程修改了这个变量的值，新值对于其他线程来说是可以立即得知的。而普通变量并不能做到这一点，普通变量的值在线程间传递时均需要通过主内存来完成。<br>Java里面的运算操作符并非原子操作，导致volatile变量的运算在并发下一样是不安全的。使用volatile变量的第二个语义是禁止指令重排序优化<br><em>针对long和double型变量的特殊规则</em> 允许虚拟机将没有被volatile修饰的64位数据的读写操作划分为两次32位的操作来进行，即允许虚拟机实现自行选择是否要保证64位数据类型的load、store、read和write这四个操作的原子性，这就是所谓的”long和double的非原子性协定”(Non-Atomic Treatment of double and long Variables)<br><strong>原子性、可见性与有序性</strong><br>Java内存模型是围绕着在并发过程中如何处理原子性、可见性和有序性这三个特征来建立的<br>1.原子性(Atomicity): 由Java内存模型来直接保证的原子性变量操作包括read、load、assign、use、store和write这六个; 在synchronized块之间的操作也具备原子性。<br>2.可见性(Visibility): 指当一个线程修改了共享变量的值时，其他线程能够立即得知这个修改。volatile synchronized和final<br>3.有序性(Ordering):如果在本线程内观察，所有的操作都是有序的；如果在一个线程中观察另一个线程，所有的操作都是无序的。volatile和synchronize<br><em>先行发生原则</em><br>“先行发生”(Happens-Before)的原则是判断数据是否存在竞争，线程是否安全的非常有用的手段。<br>先行发生是Java内存模型中定义的两项操作之间的偏序关系，比如说操作A先行发生于操作B，其实就是说在发生操作B之前，操作A产生的影响能被操作B观察到，”影响”包括修改了内存中共享变量的值、发送了消息、调用了方法等。<br>程序次序规则(Program Order Rule); 管程锁定规则(Monitor Lock Rule); volatile变量规则(Volatile Variable Rule); 线程启动规则(Thread Start Rule); 线程终止规则(Thread Termination Rule); 线程中断规则(Thread Interruption Rule); 对象终结规则(Finalizer Rule); 传递性(Transitivity)<br>时间先后顺序与先行发生原则之间基本没有因果关系<br><strong>12.4 Java与线程</strong><br><em>线程的实现</em><br>线程是比进程更轻量级的调度执行单位，线程的引入，可以把一个进程的资源分配和执行调度分开，各个线程既可以共享进程资源(内存地址、文件I/O等)，又可以独立调度。<br>线程是Java里面进行处理器资源调度的最基本单位<br>每个已经调用过start()方法且还未结束的java.lang.Thread类的实例就代表着一个线程。<br>实现线程主要有三种方式：使用内核线程实现(1：1实现)，使用用户线程实现(1：N实现)，使用用户线程加轻量级进程混合实现（N：M实现）。<br>内核线程(Kernel-Level Thread，KLT)是直接由操作系统内核(Kernel，下称内核）支持的线程，由内核来完成线程切换，内核通过操纵调度器(Scheduler)对线程进行调度，并负责将线程的任务映射到各个处理器上。<br>程序一般不会直接使用内核线程，而是使用内核线程的一种高级接口——轻量级进程(Light Weight Process，LWP)<br>线程除了依赖内核线程实现和完全由用户程序自己实现之外，还有一种将内核线程与用户线程一起使用的实现方式，被称为N：M实现。<br>操作系统支持的轻量级进程作为用户线程和内核线程之间的桥梁<br>“主流”平台上的”主流”商用Java虚拟机的线程模型普遍都被替换为基于操作系统原生线程模型来实现，即采用1：1的线程模型。<br><em>Java线程调度</em><br>线程调度是指系统为线程分配处理器使用权的过程，调度主要方式有两种，分别是协同式(Cooperative Threads-Scheduling)线程调度和抢占式(Preemptive Threads-Scheduling)线程调度。<br>Thread.MIN_PRIORITY至Thread.MAX_PRIORITY<br><em>状态转换</em><br>新建(New) 运行(Runnable) 无限期等待(Waiting) 限期等待(Timed Waiting) 阻塞(Blocked) 结束(Terminated)<br><img    class="lazyload" data-original="https://s2.loli.net/2022/02/14/LNkO7SgFVzRW5rh.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="    style="zoom:50%;" /><span class="image-caption">线程状态转换关系</span><br><strong>12.5 Java与协程</strong><br><em>内核线程的局限</em><br>用户态与核心态之间的状态转换的开销主要来自于响应中断、保护和恢复执行现场的成本。<br>程序是数据与代码的组合体<br>栈纠缠(Stack Twine)的、由用户自己模拟多线程、自己保护恢复现场的工作模式。<br>由于最初多数的用户线程是被设计成协同式调度(Cooperative Scheduling)的，所以它有了一个别名——“协程”(Coroutine)<br>协程会完整地做调用栈的保护、恢复工作，所以也被称为”有栈协程”(Stackfull Coroutine)<br>无栈协程本质上是一种有限状态机，状态保存在闭包里，比有栈协程恢复调用栈要轻量得多，但功能也相对更有 限。<br>非协同式、可自定义调度的协程<br>对于有栈协程，有一种特例实现名为纤程(Fiber)<br>在新并发模型下，一段使用纤程并发的代码会被分为两部分——执行过程(Continuation)和调度器(Scheduler)。</p>
+<h4 id="第13章-线程安全与锁优化"><a href="#第13章-线程安全与锁优化" class="headerlink" title="第13章 线程安全与锁优化"></a>第13章 线程安全与锁优化</h4><p><strong>13.1 概述</strong><br>站在计算机的角度去抽象问题和解决问题，被称为面向过程的编程思想。<br>面向对象的编程思想则站在现实世界的角度去抽象和解决问题<br><strong>13.2 线程安全</strong> “当多个线程同时访问一个对象时，如果不用考虑这些线程在运行时环境下的调度和交替执行，也不需要进行额外的同步，或者在调用方进行任何其他的协调操作，调用这个对象的行为都可以获得正确的结果，那就称这个对象是线程安全的。”<br><em>Java语言中的线程安全</em><br>将Java语言中各种操作共享的数据分为以下五类：不可变、绝对线程安全、相对线程安全、线程兼容和线程对立。<br><em>线程安全的实现方法</em><br>互斥同步(Mutual Exclusion &amp; Synchronization)是一种最常见也是最主要的并发正确性保障手段<br>同步是指在多个线程并发访问共享数据时，保证共享数据在同一个时刻只被一条(或者是一些，当使用信号量的时候)线程使用。<br>互斥是实现同步的一种手段，临界区(Critical Section)、互斥量(Mutex)和信号量(Semaphore)都是常见的互斥实现方式。<br>互斥是因，同步是果；互斥是方法，同步是目的。<br>最基本的互斥同步手段就是synchronized关键字，这是一种块结构(Block Structured)的同步语法。<br>synchronized关键字经过Javac编译之后，会在同步块的前后分别形成monitorenter和monitorexit这两个字节码指令。<br>重入锁(Reentrant Lock)是Lock接口最常见的一种实现<br>等待可中断、可实现公平锁及锁可以绑定多个条件<br>基于冲突检测的乐观并发策略 非阻塞同步(Non-Blocking Synchronization)<br>硬件保证某些从语义上看起来需要多次操作的行为可以只通过一条处理器指令就能完成<br>测试并设置(Test-and-Set)；获取并增加(Fetch-and-Increment)；交换(Swap)；比较并交换(Compare-and-Swap，下文称CAS)；加载链接/条件储存(Load-Linked/Store-Conditional，LL/SC)<br>同步与线程安全两者没有必然的联系。同步只是保障存在共享数据争用时正确性的手段，如果能让一个方法本来就不涉及共享数据，那它自然就不需要任何同步措施去保证其正确性<br>可重入代码(Reentrant Code)：不依赖全局变量、存储在堆上的数据和公用的系统资源，用到的状态量都由参数中传入，不调用非可重入的方法等。<br>所有可重入的代码都是线程安全的，但并非所有的线程安全的代码都是可重入的。<br>线程本地存储(Thread Local Storage)：如果一段代码中所需要的数据必须与其他代码共享，那就看看这些共享数据的代码是否能保证在同一个线程中执行。<br><strong>13.3 锁优化</strong><br>适应性自旋(Adaptive Spinning)、锁消除(Lock Elimination)、锁膨胀(Lock Coarsening)、轻量级锁(Lightweight Locking)、偏向锁(Biased Locking)<br><em>自旋锁与自适应自旋</em><br><em>锁消除</em> 锁消除是指虚拟机即时编译器在运行时，对一些代码要求同步，但是对被检测到不可能存在共享数据竞争的锁进行消除。<br><em>锁粗化</em><br><em>轻量级锁</em><br>设计的初衷是在没有多线程竞争的前提下，减少传统的重量级锁使用操作系统互斥量产生的性能消耗。<br>HotSpot虚拟机的对象头(Object Header)分为两部分，第一部分用于存储对象自身的运行时数据，如哈希码(HashCode)、GC分代年龄(Generational GC Age)等。这部分数据的长度在32位和64位的Java虚拟机中分别会占用32个或64个比特，官方称它为”Mark Word”。这部分是实现轻量级锁和偏向锁的关键。另外一部分用于存储指向方法区对象类型数据的指针，如果是数组对象，还会有一个额外的部分用于存储数组长度。<br>虚拟机首先将在当前线程的栈帧中建立一个名为锁记录(Lock Record)的空间，用于存储锁对象目前的Mark Word的拷贝<br>“对于绝大部分的锁，在整个同步周期内都是不存在竞争的”<br><em>偏向锁</em><br>目的是消除数据在无竞争情况下的同步原语，进一步提高程序的运行性能。<br>轻量级锁是在无竞争的情况下使用CAS操作去消除同步使用的互斥量，那偏向锁就是在无竞争的情况下把整个同步都消除掉，连CAS操作都不去做了。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86_%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA&#x2F;%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86_%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA&#x2F;%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86_%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/02/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86_%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E4%B8%8E%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/">第四部分_程序编译与代码优化<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

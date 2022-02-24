@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第二章_字符串和文本 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="2.1 使用多个界定符分割字符串需要更加灵活的切割字符...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第二章_字符串和文本</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第二章_字符串和文本</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 14, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8707</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="2-1-使用多个界定符分割字符串"><a href="#2-1-使用多个界定符分割字符串" class="headerlink" title="2.1 使用多个界定符分割字符串"></a>2.1 使用多个界定符分割字符串</h4><p>需要更加灵活的切割字符串的时候，使用 re.split() 方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">line = <span class="hljs-string">&#x27;asdf fjdk; afed, fjek,asdf, foo&#x27;</span> <br><span class="hljs-keyword">import</span> re<br><span class="hljs-comment"># 注意区别，()捕获分组，被匹配的文本也将出现在结果列表中</span><br>fields = re.split(<span class="hljs-string">r&#x27;[;,\s]\s*&#x27;</span>, line) <br>fields = re.split(<span class="hljs-string">r&#x27;(;|,|\s)\s*&#x27;</span>, line)<br>values = fields[::<span class="hljs-number">2</span>] <br>delimiters = fields[<span class="hljs-number">1</span>::<span class="hljs-number">2</span>] + [<span class="hljs-string">&#x27;&#x27;</span>] <br><span class="hljs-string">&#x27;&#x27;</span>.join(v+d <span class="hljs-keyword">for</span> v,d <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(values, delimiters)) <br></code></pre></td></tr></table></figure>
+<h4 id="2-2-字符串开头或结尾匹配"><a href="#2-2-字符串开头或结尾匹配" class="headerlink" title="2.2 字符串开头或结尾匹配"></a>2.2 字符串开头或结尾匹配</h4><p>str.startswith() 或者是 str. endswith() 方法。<br>检查多种匹配可能，将所有的匹配项放入到一个<strong>元组</strong>中，然后传给startswith()或者endswith()方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">[name <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> filenames <span class="hljs-keyword">if</span> name.endswith((<span class="hljs-string">&#x27;.c&#x27;</span>, <span class="hljs-string">&#x27;.h&#x27;</span>)) ] <br><span class="hljs-keyword">if</span> <span class="hljs-built_in">any</span>(name.endswith((<span class="hljs-string">&#x27;.c&#x27;</span>, <span class="hljs-string">&#x27;.h&#x27;</span>)) <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> listdir(dirname)): <br></code></pre></td></tr></table></figure>
+<h4 id="2-3-用-Shell-通配符匹配字符串"><a href="#2-3-用-Shell-通配符匹配字符串" class="headerlink" title="2.3 用 Shell 通配符匹配字符串"></a>2.3 用 Shell 通配符匹配字符串</h4><p>fnmatch 模块提供了两个函数——fnmatch() 和 fnmatchcase()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> fnmatch <span class="hljs-keyword">import</span> fnmatch, fnmatchcase <br>fnmatch(<span class="hljs-string">&#x27;foo.txt&#x27;</span>, <span class="hljs-string">&#x27;*.txt&#x27;</span>) <span class="hljs-comment"># True </span><br></code></pre></td></tr></table></figure>
+<h4 id="2-4-字符串匹配和搜索"><a href="#2-4-字符串匹配和搜索" class="headerlink" title="2.4 字符串匹配和搜索"></a>2.4 字符串匹配和搜索</h4><p>str.find() , str.endswith() , str.startswith() </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">text1 = <span class="hljs-string">&#x27;11/27/2012&#x27;</span> <br>re.match(<span class="hljs-string">r&#x27;\d+/\d+/\d+&#x27;</span>, text1)<br><span class="hljs-comment"># 使用同一个模式去做多次匹配，先将模式字符串预编译为模式对象</span><br>datepat = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;\d+/\d+/\d+&#x27;</span>) <br>datepat.match(text1)<br><span class="hljs-comment"># match()从字符串开始匹配，如果想查找字符串任意部分的模式出现位置，使用 findall() 方法。</span><br>datepat.findall(text)<br><span class="hljs-comment"># 利用括号去捕获分组</span><br>datepat = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;(\d+)/(\d+)/(\d+)&#x27;</span>) <br>m = datepat.match(<span class="hljs-string">&#x27;11/27/2012&#x27;</span>) <br><span class="hljs-built_in">print</span>(m.groups(), m.group(<span class="hljs-number">0</span>), m.group(<span class="hljs-number">1</span>), m.group(<span class="hljs-number">2</span>), m.group(<span class="hljs-number">3</span>))<br><span class="hljs-comment"># findall()搜索文本并以列表形式返回所有的匹配;  finditer()以迭代方式返回匹配 </span><br></code></pre></td></tr></table></figure>
+<p>原始字符串将不去解析反斜杠</p>
+<h4 id="2-5-字符串搜索和替换"><a href="#2-5-字符串搜索和替换" class="headerlink" title="2.5 字符串搜索和替换"></a>2.5 字符串搜索和替换</h4><p>简单的字面模式：str.replace()方法<br>复杂的模式： re模块中的sub()函数<br>sub()函数中的第一个参数是被匹配的模式，第二个参数是替换模式。反斜杠数字指向前面模式的捕获组号。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">text = <span class="hljs-string">&#x27;Today is 11/27/2012. PyCon starts 3/13/2013.&#x27;</span> <br>re.sub(<span class="hljs-string">r&#x27;(\d+)/(\d+)/(\d+)&#x27;</span>, <span class="hljs-string">r&#x27;\3-\1-\2&#x27;</span>, text) <br><span class="hljs-comment"># 编译</span><br>datepat = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;(\d+)/(\d+)/(\d+)&#x27;</span>) <br>datepat.sub(<span class="hljs-string">r&#x27;\3-\1-\2&#x27;</span>, text) <br><span class="hljs-comment"># 传递一个替换回调函数来代替</span><br><span class="hljs-keyword">from</span> calendar <span class="hljs-keyword">import</span> month_abbr<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change_date</span>(<span class="hljs-params">m</span>):</span> <span class="hljs-comment"># m是一个match对象</span><br>	mon_name = month_abbr[<span class="hljs-built_in">int</span>(m.group(<span class="hljs-number">1</span>))]<br>	<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#123;&#125; &#123;&#125; &#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(m.group(<span class="hljs-number">2</span>), mon_name, m.group(<span class="hljs-number">3</span>)) <br>datepat.sub(change_date, text)<br><span class="hljs-comment"># 多少替换发生re.subn()  </span><br></code></pre></td></tr></table></figure>
+<h4 id="2-6-字符串忽略大小写的搜索替换"><a href="#2-6-字符串忽略大小写的搜索替换" class="headerlink" title="2.6 字符串忽略大小写的搜索替换"></a>2.6 字符串忽略大小写的搜索替换</h4><p>使用re模块的时候给操作提供re.IGNORECASE 标志参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python">re.findall(<span class="hljs-string">&#x27;python&#x27;</span>, text, flags=re.IGNORECASE) <br><span class="hljs-comment"># 替换字符串并不会自动跟被匹配字符串的大小写保持一致，通过辅助函数解决</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">matchcase</span>(<span class="hljs-params">word</span>):</span> <br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">replace</span>(<span class="hljs-params">m</span>):</span> <br>		text = m.group() <br>		<span class="hljs-keyword">if</span> text.isupper(): <br>			<span class="hljs-keyword">return</span> word.upper() <br>		<span class="hljs-keyword">elif</span> text.islower(): <br>			<span class="hljs-keyword">return</span> word.lower() <br>		<span class="hljs-keyword">elif</span> text[<span class="hljs-number">0</span>].isupper(): <br>			<span class="hljs-keyword">return</span> word.capitalize() <br>		<span class="hljs-keyword">else</span>: <br>			<span class="hljs-keyword">return</span> word <br>	<span class="hljs-keyword">return</span> replace <br>re.sub(<span class="hljs-string">&#x27;python&#x27;</span>, matchcase(<span class="hljs-string">&#x27;snake&#x27;</span>), text, flags=re.IGNORECASE) <br></code></pre></td></tr></table></figure>
+<h4 id="2-7-最短匹配模式"><a href="#2-7-最短匹配模式" class="headerlink" title="2.7 最短匹配模式"></a>2.7 最短匹配模式</h4><p>这个问题一般出现在需要匹配一对分隔符之间的文本的时候</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">str_pat = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;\&quot;(.*)\&quot;&#x27;</span>) <br>text1 = <span class="hljs-string">&#x27;Computer says &quot;no.&quot;&#x27;</span> <br>str_pat.findall(text1)  <span class="hljs-comment"># [&#x27;no.&#x27;] </span><br>text2 = <span class="hljs-string">&#x27;Computer says &quot;no.&quot; Phone says &quot;yes.&quot;&#x27;</span> <br>str_pat.findall(text2) <span class="hljs-comment"># [&#x27;no.&quot; Phone says &quot;yes.&#x27;] </span><br><span class="hljs-comment"># 匹配变成非贪婪模式</span><br>str_pat = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;\&quot;(.*?)\&quot;&#x27;</span>) <br>str_pat.findall(text2)  <span class="hljs-comment"># [&#x27;no.&#x27;, &#x27;yes.&#x27;] </span><br></code></pre></td></tr></table></figure>
+<h4 id="2-8-多行匹配模式"><a href="#2-8-多行匹配模式" class="headerlink" title="2.8 多行匹配模式"></a>2.8 多行匹配模式</h4><p>用点(.)去匹配任意字符，但点(.)不能匹配换行符<br>非捕获组：定义了一个仅仅用来做匹配，而不能通过单独捕获或者编号的组<br>re.DOTALL可以让正则表达式中的点(.)匹配包括换行符在内的任意字符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">comment = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;/\*(.*?)\*/&#x27;</span>) <br>comment = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;/\*((?:.|\n)*?)\*/&#x27;</span>)<br>comment = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;/\*(.*?)\*/&#x27;</span>, re.DOTALL)  <br></code></pre></td></tr></table></figure>
+<h4 id="2-9-将-Unicode-文本标准化"><a href="#2-9-将-Unicode-文本标准化" class="headerlink" title="2.9 将 Unicode 文本标准化"></a>2.9 将 Unicode 文本标准化</h4><p>在Unicode中，某些字符能够用多个合法的编码表示。<br>NFC表示字符应该是整体组成(比如可能的话就使用单一编码)，而NFD表示字符应该分解为多个组合字符表示。<br>NFKC and NFKD<br>标准化对于任何需要以一致的方式处理Unicode文本的程序都是非常重要的。<br>清理和过滤文本的时候字符的标准化也是很重要的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python">s1 = <span class="hljs-string">&#x27;Spicy Jalape\u00f1o&#x27;</span> <br>s2 = <span class="hljs-string">&#x27;Spicy Jalapen\u0303o&#x27;</span><br>s1 == s2  <span class="hljs-comment"># False</span><br><span class="hljs-built_in">len</span>(s1), <span class="hljs-built_in">len</span>(s2) <span class="hljs-comment"># 14 15</span><br><br>t1 = unicodedata.normalize(<span class="hljs-string">&#x27;NFC&#x27;</span>, s1) <br>t2 = unicodedata.normalize(<span class="hljs-string">&#x27;NFC&#x27;</span>, s2)<br>t1 == t2 <span class="hljs-comment"># True  </span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">ascii</span>(t1)) <br><br>t3 = unicodedata.normalize(<span class="hljs-string">&#x27;NFD&#x27;</span>, s1)<br>t4 = unicodedata.normalize(<span class="hljs-string">&#x27;NFD&#x27;</span>, s2) <br>t3 == t4 <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">ascii</span>(t3)) <br><br>t1 = unicodedata.normalize(<span class="hljs-string">&#x27;NFD&#x27;</span>, s1)<br><span class="hljs-string">&#x27;&#x27;</span>.join(c <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> t1 <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> unicodedata.combining(c))  <br></code></pre></td></tr></table></figure>
+<h4 id="2-10-在正则式中使用-Unicode"><a href="#2-10-在正则式中使用-Unicode" class="headerlink" title="2.10 在正则式中使用 Unicode"></a>2.10 在正则式中使用 Unicode</h4><p>\d匹配任意的unicode数字字符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">num = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">&#x27;\d+&#x27;</span>) <br>num.match(<span class="hljs-string">&#x27;123&#x27;</span>) <br>num.match(<span class="hljs-string">&#x27;\u0661\u0662\u0663&#x27;</span>) <br>arabic = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">&#x27;[\u0600-\u06ff\u0750-\u077f\u08a0-\u08ff]+&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="2-11-删除字符串中不需要的字符"><a href="#2-11-删除字符串中不需要的字符" class="headerlink" title="2.11 删除字符串中不需要的字符"></a>2.11 删除字符串中不需要的字符</h4><p>strip()  lstrip()  rstrip():去除操作不会对字符串的中间的文本产生任何影响</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">t = <span class="hljs-string">&#x27;-----hello=====&#x27;</span> <br>t.strip(<span class="hljs-string">&#x27;-=&#x27;</span>) <span class="hljs-comment"># &#x27;hello&#x27;</span><br><br>lines = (line.strip() <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f)  <br></code></pre></td></tr></table></figure>
+<h4 id="2-12-审查清理文本字符串"><a href="#2-12-审查清理文本字符串" class="headerlink" title="2.12 审查清理文本字符串"></a>2.12 审查清理文本字符串</h4><p>文本清理问题会涉及到包括文本解析与数据处理等一系列问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">a = s.translate(remap) <br>cmb_chrs = <span class="hljs-built_in">dict</span>.fromkeys(c <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(sys.maxunicode) <span class="hljs-keyword">if</span> unicodedata.combining(<span class="hljs-built_in">chr</span>(c))) <br>b = unicodedata.normalize(<span class="hljs-string">&#x27;NFD&#x27;</span>, a) <br>b.translate(cmb_chrs) <br><br><span class="hljs-comment"># 构造一个将所有Unicode数字字符映射到对应的ASCII字符上的表格</span><br>digitmap = &#123; c: <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;0&#x27;</span>) + unicodedata.digit(<span class="hljs-built_in">chr</span>(c)) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(sys.maxunicode) <span class="hljs-keyword">if</span> unicodedata.category(<span class="hljs-built_in">chr</span>(c)) == <span class="hljs-string">&#x27;Nd&#x27;</span> &#125; <br>x = <span class="hljs-string">&#x27;\u0661\u0662\u0663&#x27;</span> <br>x.translate(digitmap)  <span class="hljs-comment"># &#x27;123&#x27; </span><br><br><span class="hljs-comment"># I/O 解码与编码函数</span><br>b = unicodedata.normalize(<span class="hljs-string">&#x27;NFD&#x27;</span>, a) <br>b.encode(<span class="hljs-string">&#x27;ascii&#x27;</span>, <span class="hljs-string">&#x27;ignore&#x27;</span>).decode(<span class="hljs-string">&#x27;ascii&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="2-13-字符串对齐"><a href="#2-13-字符串对齐" class="headerlink" title="2.13 字符串对齐"></a>2.13 字符串对齐</h4><p>ljust() , rjust() 和 center() </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">text = <span class="hljs-string">&#x27;Hello World&#x27;</span> <br>text.ljust(<span class="hljs-number">20</span>) <br>text.rjust(<span class="hljs-number">20</span>) <br>text.center(<span class="hljs-number">20</span>)<br><span class="hljs-comment"># 接受一个可选的填充字符</span><br>text.rjust(<span class="hljs-number">20</span>,<span class="hljs-string">&#x27;=&#x27;</span>) <br><span class="hljs-comment"># format()对齐字符串</span><br><span class="hljs-built_in">format</span>(text, <span class="hljs-string">&#x27;&gt;20&#x27;</span>) <br><span class="hljs-built_in">format</span>(text, <span class="hljs-string">&#x27;^20&#x27;</span>) <br><span class="hljs-comment"># 指定一个非空格的填充字符</span><br><span class="hljs-built_in">format</span>(text, <span class="hljs-string">&#x27;=&gt;20s&#x27;</span>)<br><span class="hljs-comment"># 格式化多个值</span><br><span class="hljs-string">&#x27;&#123;:&gt;10s&#125; &#123;:&gt;10s&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;Hello&#x27;</span>, <span class="hljs-string">&#x27;World&#x27;</span>)  <br></code></pre></td></tr></table></figure>
+<h4 id="2-14-合并拼接字符串"><a href="#2-14-合并拼接字符串" class="headerlink" title="2.14 合并拼接字符串"></a>2.14 合并拼接字符串</h4><p>每一次执行+=操作的时候会创建一个新的字符串对象。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">parts = [<span class="hljs-string">&#x27;Is&#x27;</span>, <span class="hljs-string">&#x27;Chicago&#x27;</span>, <span class="hljs-string">&#x27;Not&#x27;</span>, <span class="hljs-string">&#x27;Chicago?&#x27;</span>] <br><span class="hljs-string">&#x27; &#x27;</span>.join(parts) <br><br><span class="hljs-built_in">print</span>(a + <span class="hljs-string">&#x27;:&#x27;</span> + b + <span class="hljs-string">&#x27;:&#x27;</span> + c) <span class="hljs-comment"># Ugly </span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;:&#x27;</span>.join([a, b, c])) <span class="hljs-comment"># Still ugly </span><br><span class="hljs-built_in">print</span>(a, b, c, sep=<span class="hljs-string">&#x27;:&#x27;</span>) <span class="hljs-comment"># Better </span><br></code></pre></td></tr></table></figure>
+<h4 id="2-15-字符串中插入变量"><a href="#2-15-字符串中插入变量" class="headerlink" title="2.15 字符串中插入变量"></a>2.15 字符串中插入变量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python">s = <span class="hljs-string">&#x27;&#123;name&#125; has &#123;n&#125; messages.&#x27;</span> <br>s.<span class="hljs-built_in">format</span>(name=<span class="hljs-string">&#x27;Guido&#x27;</span>, n=<span class="hljs-number">37</span>)<br><br><span class="hljs-comment">#  如果要被替换的变量能在变量域中找到</span><br>name = <span class="hljs-string">&#x27;Guido&#x27;</span><br>n = <span class="hljs-number">37</span><br>s.format_map(<span class="hljs-built_in">vars</span>()) <br><br><span class="hljs-comment"># vars()适用于对象实例</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Info</span>:</span> <br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, name, n</span>):</span><br>		self.name = name<br>		self.n = n 		<br>a = Info(<span class="hljs-string">&#x27;Guido&#x27;</span>,<span class="hljs-number">37</span>) <br>s.format_map(<span class="hljs-built_in">vars</span>(a)) <br><br><span class="hljs-comment"># 缺陷: 不能很好的处理变量缺失的情况</span><br><span class="hljs-comment"># 解决：另外定义一个含有 __missing__() 方法的字典对象</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">safesub</span>(<span class="hljs-params"><span class="hljs-built_in">dict</span></span>):</span> <br>	<span class="hljs-string">&quot;&quot;&quot; 防止 key 找不到&quot;&quot;&quot;</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__missing__</span>(<span class="hljs-params">self, key</span>):</span><br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#123;&#x27;</span> + key + <span class="hljs-string">&#x27;&#125;&#x27;</span><br><span class="hljs-keyword">del</span> n<br>s.format_map(safesub(<span class="hljs-built_in">vars</span>())) <br><br><span class="hljs-comment"># 将变量替换步骤用一个工具函数封装起来</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sub</span>(<span class="hljs-params">text</span>):</span> <br>	<span class="hljs-keyword">return</span> text.format_map(safesub(sys._getframe(<span class="hljs-number">1</span>).f_locals)) <br><span class="hljs-built_in">print</span>(sub(<span class="hljs-string">&#x27;Your favorite color is &#123;color&#125;&#x27;</span>)) <br><br><span class="hljs-comment"># 替代方法	</span><br><span class="hljs-string">&#x27;%(name) has %(n) messages.&#x27;</span> % <span class="hljs-built_in">vars</span>() <br><br>s = string.Template(<span class="hljs-string">&#x27;<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.408ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 4050.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">name has </title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-6D" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-65" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-68" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-6E" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-61" x="600" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-6D" x="1130" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-65" x="2008" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-68" x="2475" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-61" x="3051" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-73" x="3581" y="0"></use>
+</g>
+</svg>n messages.&#x27;</span>) <br>s.substitute(<span class="hljs-built_in">vars</span>()) 		<br></code></pre></td></tr></table></figure>
+<h4 id="2-16-以指定列宽格式化字符串"><a href="#2-16-以指定列宽格式化字符串" class="headerlink" title="2.16 以指定列宽格式化字符串"></a>2.16 以指定列宽格式化字符串</h4><p>使用 textwrap 模块来格式化字符串的输出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(textwrap.fill(s, <span class="hljs-number">40</span>, initial_indent=<span class="hljs-string">&#x27; &#x27;</span>)) <br><span class="hljs-built_in">print</span>(textwrap.fill(s, <span class="hljs-number">40</span>, subsequent_indent=<span class="hljs-string">&#x27; &#x27;</span>)) <br>os.get_terminal_size().columns  <span class="hljs-comment"># 获取终端的大小尺寸</span><br></code></pre></td></tr></table></figure>
+<h4 id="2-17-在字符串中处理-html-和-xml"><a href="#2-17-在字符串中处理-html-和-xml" class="headerlink" title="2.17 在字符串中处理 html 和 xml"></a>2.17 在字符串中处理 html 和 xml</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 替换文本字符串中的‘&lt;’或者‘&gt;’: html.escape()函数</span><br><span class="hljs-built_in">print</span>(html.escape(s, quote=<span class="hljs-literal">False</span>))<br><br><span class="hljs-comment"># 将非 ASCII 文本对应的编码实体嵌入</span><br>s.encode(<span class="hljs-string">&#x27;ascii&#x27;</span>, errors=<span class="hljs-string">&#x27;xmlcharrefreplace&#x27;</span>)  <br><br><span class="hljs-comment"># </span><br>p = HTMLParser()<br>p.unescape(s) <br><br><span class="hljs-keyword">from</span> xml.sax.saxutils <span class="hljs-keyword">import</span> unescape <br>unescape(t) <br></code></pre></td></tr></table></figure>
+<h4 id="2-18-字符串令牌解析"><a href="#2-18-字符串令牌解析" class="headerlink" title="2.18 字符串令牌解析"></a>2.18 字符串令牌解析</h4><p>?P<TOKENNAME> 用于给一个模式命名，供后面使用。<br>定义的模式必须包含文本中所有出现的模式，且更长模式写在前面</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 利用命名捕获组的正则表达式来定义所有可能的令牌</span><br>NAME = <span class="hljs-string">r&#x27;(?P&lt;NAME&gt;[a-zA-Z_][a-zA-Z_0-9]*)&#x27;</span> <br>NUM = <span class="hljs-string">r&#x27;(?P&lt;NUM&gt;\d+)&#x27;</span> <br>PLUS = <span class="hljs-string">r&#x27;(?P&lt;PLUS&gt;\+)&#x27;</span> <br>TIMES = <span class="hljs-string">r&#x27;(?P&lt;TIMES&gt;\*)&#x27;</span> <br>EQ = <span class="hljs-string">r&#x27;(?P&lt;EQ&gt;=)&#x27;</span> <br>WS = <span class="hljs-string">r&#x27;(?P&lt;WS&gt;\s+)&#x27;</span> <br>master_pat = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">&#x27;|&#x27;</span>.join([NAME, NUM, PLUS, TIMES, EQ, WS])) <br><br><span class="hljs-comment"># scanner()方法创建一个scanner对象，在这个对象上不断的调用match()方法会一步步的扫描目标文本</span><br>scanner = master_pat.scanner(<span class="hljs-string">&#x27;foo = 42&#x27;</span>)<br>scanner.match()<br>_.lastgroup, _.group() <span class="hljs-comment"># (&#x27;NAME&#x27;, &#x27;foo&#x27;) </span><br><br><span class="hljs-comment"># 打包到一个生成器中</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_tokens</span>(<span class="hljs-params">pat, text</span>):</span> <br>	Token = namedtuple(<span class="hljs-string">&#x27;Token&#x27;</span>, [<span class="hljs-string">&#x27;type&#x27;</span>, <span class="hljs-string">&#x27;value&#x27;</span>]) <br>	scanner = pat.scanner(text) <br>	<span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> <span class="hljs-built_in">iter</span>(scanner.match, <span class="hljs-literal">None</span>): 	<br>		<span class="hljs-keyword">yield</span> Token(m.lastgroup, m.group()) <br><span class="hljs-comment"># Example use </span><br><span class="hljs-keyword">for</span> tok <span class="hljs-keyword">in</span> generate_tokens(master_pat, <span class="hljs-string">&#x27;foo = 42&#x27;</span>): <br>	<span class="hljs-built_in">print</span>(tok) <br></code></pre></td></tr></table></figure>
+
+<h4 id="2-19-实现一个简单的递归下降分析器"><a href="#2-19-实现一个简单的递归下降分析器" class="headerlink" title="2.19 实现一个简单的递归下降分析器"></a>2.19 实现一个简单的递归下降分析器</h4><p>Python语言本身就是通过一个递归下降解析器去解释的。<br>局限：不能被用于包含任何左递归的语法规则中。<br>解析工具：PyParsing或者是PLY</p>
+<h4 id="2-20-字节字符串上的字符串操作"><a href="#2-20-字节字符串上的字符串操作" class="headerlink" title="2.20 字节字符串上的字符串操作"></a>2.20 字节字符串上的字符串操作</h4><p>支持内置操作：startswith() 切片 split() replace() </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">data = <span class="hljs-string">b&#x27;Hello World&#x27;</span> <br>data = <span class="hljs-built_in">bytearray</span>(<span class="hljs-string">b&#x27;Hello World&#x27;</span>) <br><br><span class="hljs-comment"># 可以使用正则表达式匹配字节字符串，但是正则表达式本身必须也是字节串</span><br><br><span class="hljs-comment"># 字节字符串的索引操作返回整数而不是单独字符</span><br>a = <span class="hljs-string">&#x27;Hello World&#x27;</span> <span class="hljs-comment"># Text string </span><br>a[<span class="hljs-number">0</span>] <span class="hljs-comment"># &#x27;H&#x27;</span><br>b = <span class="hljs-string">b&#x27;Hello World&#x27;</span> <span class="hljs-comment"># Byte string </span><br>b[<span class="hljs-number">0</span>] <span class="hljs-comment"># 72 </span><br><span class="hljs-built_in">print</span>(b)<br><span class="hljs-built_in">print</span>(b.decode(<span class="hljs-string">&#x27;ascii&#x27;</span>))<br><br><span class="hljs-comment"># 不存在任何适用于字节字符串的格式化操作</span><br><span class="hljs-comment"># 格式化字节字符串，先使用标准的文本字符串，然后将其编码为字节字符串。</span><br><span class="hljs-string">&#x27;&#123;:10s&#125; &#123;:10d&#125; &#123;:10.2f&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;ACME&#x27;</span>, <span class="hljs-number">100</span>, <span class="hljs-number">490.1</span>).encode(<span class="hljs-string">&#x27;ascii&#x27;</span>) <br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/14/Python_Codebook/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%96%87%E6%9C%AC/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;14&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%96%87%E6%9C%AC&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;14&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%96%87%E6%9C%AC&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/15/Python_Codebook/%E7%AC%AC%E4%B8%89%E7%AB%A0_%E6%95%B0%E5%AD%97%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4/"><i class="iconfont iconleft"></i>第三章_数字日期和时间</a>
+    <a href="/2022/02/14/Python_Codebook/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">第一章_数据结构和算法<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

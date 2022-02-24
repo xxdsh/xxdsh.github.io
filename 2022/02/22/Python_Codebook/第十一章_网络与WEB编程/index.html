@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第十一章_网络与Web编程 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="11.1 作为客户端与 HTTP 服务交互urllib...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第十一章_网络与Web编程</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB%E5%B0%8F%E8%AE%B0%E5%BD%95/img-1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第十一章_网络与Web编程</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1233</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="11-1-作为客户端与-HTTP-服务交互"><a href="#11-1-作为客户端与-HTTP-服务交互" class="headerlink" title="11.1 作为客户端与 HTTP 服务交互"></a>11.1 作为客户端与 HTTP 服务交互</h4><p>urllib   requests</p>
+<h4 id="11-2-创建-TCP-服务器"><a href="#11-2-创建-TCP-服务器" class="headerlink" title="11.2 创建 TCP 服务器"></a>11.2 创建 TCP 服务器</h4><p>创建一个 TCP 服务器的一个简单方法是使用 socketserver 库。<br>想处理多个客户端，可以初始化一个 ForkingTCPServer 或者是 ThreadingTCPServer 对象。</p>
+<h4 id="11-3-创建-UDP-服务器"><a href="#11-3-创建-UDP-服务器" class="headerlink" title="11.3 创建 UDP 服务器"></a>11.3 创建 UDP 服务器</h4><h4 id="11-4-通过-CIDR-地址生成对应的-IP-地址集"><a href="#11-4-通过-CIDR-地址生成对应的-IP-地址集" class="headerlink" title="11.4 通过 CIDR 地址生成对应的 IP 地址集"></a>11.4 通过 CIDR 地址生成对应的 IP 地址集</h4><p>可以使用ipaddress模块很容易的实现这样的计算。<br>IP 地址、网络和接口: IP addresses, networks, and interfaces.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">net = ipaddress.ip_network(<span class="hljs-string">&#x27;123.45.67.64/27&#x27;</span>) <br><span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> net:<br>	<span class="hljs-built_in">print</span>(a) <br>net.num_addresses <br>net[<span class="hljs-number">0</span>] <br>a = ipaddress.ip_address(<span class="hljs-string">&#x27;123.45.67.69&#x27;</span>) <br>a <span class="hljs-keyword">in</span> net <br>inet = ipaddress.ip_interface(<span class="hljs-string">&#x27;123.45.67.73/27&#x27;</span>) <br>inet.network <span class="hljs-comment"># IPv4Network(&#x27;123.45.67.64/27&#x27;) </span><br>inet.ip  <span class="hljs-comment"># IPv4Address(&#x27;123.45.67.73&#x27;) </span><br></code></pre></td></tr></table></figure>
+<h4 id="11-5-创建一个简单的-REST-接口"><a href="#11-5-创建一个简单的-REST-接口" class="headerlink" title="11.5 创建一个简单的 REST 接口"></a>11.5 创建一个简单的 REST 接口</h4><p>构建一个REST风格的接口最简单的方法是创建一个基于WSGI标准（PEP 3333）的很小的库，<br>environ[‘REQUEST_METHOD’] 代表请求类型如 GET、 POST、HEAD 等。environ[‘PATH_INFO’] 表示被请求资源的路径</p>
+<h4 id="11-6-通过-XML-RPC-实现简单的远程调用"><a href="#11-6-通过-XML-RPC-实现简单的远程调用" class="headerlink" title="11.6 通过 XML-RPC 实现简单的远程调用"></a>11.6 通过 XML-RPC 实现简单的远程调用</h4><p>实现一个远程方法调用的最简单方式是使用 XML-RPC。 </p>
+<h4 id="11-7-在不同的-Python-解释器之间交互"><a href="#11-7-在不同的-Python-解释器之间交互" class="headerlink" title="11.7 在不同的 Python 解释器之间交互"></a>11.7 在不同的 Python 解释器之间交互</h4><p>通过使用 multiprocessing.connection 模块可以很容易的实现解释器之间的通信。</p>
+<h4 id="11-8-实现远程方法调用"><a href="#11-8-实现远程方法调用" class="headerlink" title="11.8 实现远程方法调用"></a>11.8 实现远程方法调用</h4><p>远程过程调用（RPC）<br>将函数请求、参数和返回值使用 pickle 编码后，在不同的解释器直接传送 pickle 字节字符串，可以很容易的实现 RPC。</p>
+<h4 id="11-9-简单的客户端认证"><a href="#11-9-简单的客户端认证" class="headerlink" title="11.9 简单的客户端认证"></a>11.9 简单的客户端认证</h4><p>可以利用hmac模块实现一个连接握手，从而实现一个简单而高效的认证过程。</p>
+<h4 id="11-10-在网络服务中加入-SSL"><a href="#11-10-在网络服务中加入-SSL" class="headerlink" title="11.10 在网络服务中加入 SSL"></a>11.10 在网络服务中加入 SSL</h4><p>ssl模块能为底层socket连接添加SSL的支持。ssl.wrap_socket()函数接受一个已存在的socket作为参数并使用SSL层来包装它。</p>
+<h4 id="11-11-进程间传递-Socket-文件描述符"><a href="#11-11-进程间传递-Socket-文件描述符" class="headerlink" title="11.11 进程间传递 Socket 文件描述符"></a>11.11 进程间传递 Socket 文件描述符</h4><h4 id="11-12-理解事件驱动的-IO"><a href="#11-12-理解事件驱动的-IO" class="headerlink" title="11.12 理解事件驱动的 IO"></a>11.12 理解事件驱动的 IO</h4><p>事件驱动 I/O 本质上来讲就是将基本 I/O 操作（比如读和写）转化为程序需要 处理的事件。</p>
+<h4 id="11-13-发送与接收大型数组"><a href="#11-13-发送与接收大型数组" class="headerlink" title="11.13 发送与接收大型数组"></a>11.13 发送与接收大型数组</h4>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0_%E7%BD%91%E7%BB%9C%E4%B8%8EWEB%E7%BC%96%E7%A8%8B/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0_%E7%BD%91%E7%BB%9C%E4%B8%8EWEB%E7%BC%96%E7%A8%8B&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0_%E7%BD%91%E7%BB%9C%E4%B8%8EWEB%E7%BC%96%E7%A8%8B&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"><i class="iconfont iconleft"></i>第十二章_并发编程</a>
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E7%AB%A0_%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%8C%85/">第十章_模块与包<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

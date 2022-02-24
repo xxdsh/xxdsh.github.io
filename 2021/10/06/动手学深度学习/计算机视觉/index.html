@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第十三章 计算机视觉 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="计算机视觉对象检测、图像语义分割 和 样式迁移。  
+...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第十三章 计算机视觉</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/Our%20Furry%20Friends/img-9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第十三章 计算机视觉</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 06, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>23449</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="计算机视觉"><a href="#计算机视觉" class="headerlink" title="计算机视觉"></a>计算机视觉</h1><p><em>对象检测、图像语义分割 和 样式迁移</em>。  </p>
+<h2 id="13-1-图像增广"><a href="#13-1-图像增广" class="headerlink" title="13.1 图像增广"></a>13.1 图像增广</h2><p>应用图像增广的原因是，随机改变训练样本可以减少模型对某些属性的依赖，从而提高模型的泛化能力。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">%matplotlib inline<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torchvision<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><span class="hljs-keyword">from</span> d2l <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> d2l<br></code></pre></td></tr></table></figure>
+
+<h3 id="13-1-1-常用的图像增广方法"><a href="#13-1-1-常用的图像增广方法" class="headerlink" title="13.1.1 常用的图像增广方法"></a>13.1.1 常用的图像增广方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">d2l.set_figsize()<br>img = d2l.Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;../img/cat1.jpg&#x27;</span>)<br>d2l.plt.imshow(img);<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">apply</span>(<span class="hljs-params">img, aug, num_rows=<span class="hljs-number">2</span>, num_cols=<span class="hljs-number">4</span>, scale=<span class="hljs-number">1.5</span></span>):</span><br>    Y = [aug(img) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_rows * num_cols)]<br>    d2l.show_images(Y, num_rows, num_cols, scale=scale)<br></code></pre></td></tr></table></figure>
+<h4 id="翻转和裁剪"><a href="#翻转和裁剪" class="headerlink" title="翻转和裁剪"></a>翻转和裁剪</h4><p>[<strong>左右翻转图像</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">apply(img, torchvision.transforms.RandomHorizontalFlip())<br></code></pre></td></tr></table></figure>
+<p>[<strong>上下翻转图像</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">apply(img, torchvision.transforms.RandomVerticalFlip())<br></code></pre></td></tr></table></figure>
+<p>汇聚层可以降低卷积层对目标位置的敏感性<br>[<strong>随机裁剪</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">shape_aug = torchvision.transforms.RandomResizedCrop(<br>    (<span class="hljs-number">200</span>, <span class="hljs-number">200</span>), scale=(<span class="hljs-number">0.1</span>, <span class="hljs-number">1</span>), ratio=(<span class="hljs-number">0.5</span>, <span class="hljs-number">2</span>))<br>apply(img, shape_aug)<br></code></pre></td></tr></table></figure>
+<h4 id="改变颜色"><a href="#改变颜色" class="headerlink" title="改变颜色"></a>改变颜色</h4><p>亮度、对比度、饱和度和色调<br>[<strong>随机更改图像的亮度</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">apply(img, torchvision.transforms.ColorJitter(<br>    brightness=<span class="hljs-number">0.5</span>, contrast=<span class="hljs-number">0</span>, saturation=<span class="hljs-number">0</span>, hue=<span class="hljs-number">0</span>))<br></code></pre></td></tr></table></figure>
+<p>[<strong>随机更改图像的色调</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">apply(img, torchvision.transforms.ColorJitter(<br>    brightness=<span class="hljs-number">0</span>, contrast=<span class="hljs-number">0</span>, saturation=<span class="hljs-number">0</span>, hue=<span class="hljs-number">0.5</span>))<br></code></pre></td></tr></table></figure>
+<p>[<strong>随机更改图像的亮度（<code>brightness</code>）、对比度（<code>contrast</code>）、饱和度（<code>saturation</code>）和色调（<code>hue</code>）</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">color_aug = torchvision.transforms.ColorJitter(<br>    brightness=<span class="hljs-number">0.5</span>, contrast=<span class="hljs-number">0.5</span>, saturation=<span class="hljs-number">0.5</span>, hue=<span class="hljs-number">0.5</span>)<br>apply(img, color_aug)<br></code></pre></td></tr></table></figure>
+<h4 id="结合多种图像增广方法"><a href="#结合多种图像增广方法" class="headerlink" title="结合多种图像增广方法"></a>结合多种图像增广方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">augs = torchvision.transforms.Compose([<br>    torchvision.transforms.RandomHorizontalFlip(), color_aug, shape_aug])<br>apply(img, augs)<br></code></pre></td></tr></table></figure>
+<h3 id="13-1-2-使用图像增广进行训练"><a href="#13-1-2-使用图像增广进行训练" class="headerlink" title="13.1.2 使用图像增广进行训练"></a>13.1.2 使用图像增广进行训练</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">all_images = torchvision.datasets.CIFAR10(train=<span class="hljs-literal">True</span>, root=<span class="hljs-string">&quot;../data&quot;</span>,<br>                                          download=<span class="hljs-literal">True</span>)<br>d2l.show_images([all_images[i][<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">32</span>)], <span class="hljs-number">4</span>, <span class="hljs-number">8</span>, scale=<span class="hljs-number">0.8</span>);<br></code></pre></td></tr></table></figure>
+<p>[<strong>只使用最简单的随机左右翻转</strong>]。<br>（批量大小，通道数，高度，宽度）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">train_augs = torchvision.transforms.Compose([<br>     torchvision.transforms.RandomHorizontalFlip(),<br>     torchvision.transforms.ToTensor()])<br><br>test_augs = torchvision.transforms.Compose([<br>     torchvision.transforms.ToTensor()])<br>```[**定义一个辅助函数，以便于读取图像和应用图像增广**]<br>```python<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">load_cifar10</span>(<span class="hljs-params">is_train, augs, batch_size</span>):</span><br>    dataset = torchvision.datasets.CIFAR10(root=<span class="hljs-string">&quot;../data&quot;</span>, train=is_train,<br>                                           transform=augs, download=<span class="hljs-literal">True</span>)<br>    dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size,<br>                    shuffle=is_train, num_workers=d2l.get_dataloader_workers())<br>    <span class="hljs-keyword">return</span> dataloader<br></code></pre></td></tr></table></figure>
+<h4 id="多GPU训练"><a href="#多GPU训练" class="headerlink" title="多GPU训练"></a>多GPU训练</h4><p>[<strong>定义一个函数，使用多GPU对模型进行训练和评估</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_batch_ch13</span>(<span class="hljs-params">net, X, y, loss, trainer, devices</span>):</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(X, <span class="hljs-built_in">list</span>):<br>        <span class="hljs-comment"># 微调BERT中所需（稍后讨论）</span><br>        X = [x.to(devices[<span class="hljs-number">0</span>]) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> X]<br>    <span class="hljs-keyword">else</span>:<br>        X = X.to(devices[<span class="hljs-number">0</span>])<br>    y = y.to(devices[<span class="hljs-number">0</span>])<br>    net.train()<br>    trainer.zero_grad()<br>    pred = net(X)<br>    l = loss(pred, y)<br>    l.<span class="hljs-built_in">sum</span>().backward()<br>    trainer.step()<br>    train_loss_sum = l.<span class="hljs-built_in">sum</span>()<br>    train_acc_sum = d2l.accuracy(pred, y)<br>    <span class="hljs-keyword">return</span> train_loss_sum, train_acc_sum<br><br><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_ch13</span>(<span class="hljs-params">net, train_iter, test_iter, loss, trainer, num_epochs,</span></span><br><span class="hljs-params"><span class="hljs-function">               devices=d2l.try_all_gpus(<span class="hljs-params"></span>)</span>):</span><br>    timer, num_batches = d2l.Timer(), <span class="hljs-built_in">len</span>(train_iter)<br>    animator = d2l.Animator(xlabel=<span class="hljs-string">&#x27;epoch&#x27;</span>, xlim=[<span class="hljs-number">1</span>, num_epochs], ylim=[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>],<br>                            legend=[<span class="hljs-string">&#x27;train loss&#x27;</span>, <span class="hljs-string">&#x27;train acc&#x27;</span>, <span class="hljs-string">&#x27;test acc&#x27;</span>])<br>    net = nn.DataParallel(net, device_ids=devices).to(devices[<span class="hljs-number">0</span>])<br>    <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_epochs):<br>        <span class="hljs-comment"># 4个维度：储存训练损失，训练准确度，实例数，特点数</span><br>        metric = d2l.Accumulator(<span class="hljs-number">4</span>)<br>        <span class="hljs-keyword">for</span> i, (features, labels) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(train_iter):<br>            timer.start()<br>            l, acc = train_batch_ch13(<br>                net, features, labels, loss, trainer, devices)<br>            metric.add(l, acc, labels.shape[<span class="hljs-number">0</span>], labels.numel())<br>            timer.stop()<br>            <span class="hljs-keyword">if</span> (i + <span class="hljs-number">1</span>) % (num_batches // <span class="hljs-number">5</span>) == <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> i == num_batches - <span class="hljs-number">1</span>:<br>                animator.add(epoch + (i + <span class="hljs-number">1</span>) / num_batches,<br>                             (metric[<span class="hljs-number">0</span>] / metric[<span class="hljs-number">2</span>], metric[<span class="hljs-number">1</span>] / metric[<span class="hljs-number">3</span>],<br>                              <span class="hljs-literal">None</span>))<br>        test_acc = d2l.evaluate_accuracy_gpu(net, test_iter)<br>        animator.add(epoch + <span class="hljs-number">1</span>, (<span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>, test_acc))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;loss <span class="hljs-subst">&#123;metric[<span class="hljs-number">0</span>] / metric[<span class="hljs-number">2</span>]:<span class="hljs-number">.3</span>f&#125;</span>, train acc &#x27;</span><br>          <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;metric[<span class="hljs-number">1</span>] / metric[<span class="hljs-number">3</span>]:<span class="hljs-number">.3</span>f&#125;</span>, test acc <span class="hljs-subst">&#123;test_acc:<span class="hljs-number">.3</span>f&#125;</span>&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;metric[<span class="hljs-number">2</span>] * num_epochs / timer.<span class="hljs-built_in">sum</span>():<span class="hljs-number">.1</span>f&#125;</span> examples/sec on &#x27;</span><br>          <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;<span class="hljs-built_in">str</span>(devices)&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>[<strong>定义 <code>train_with_data_aug</code> 函数，使用图像增广来训练模型</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">batch_size, devices, net = <span class="hljs-number">256</span>, d2l.try_all_gpus(), d2l.resnet18(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_weights</span>(<span class="hljs-params">m</span>):</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(m) <span class="hljs-keyword">in</span> [nn.Linear, nn.Conv2d]:<br>        nn.init.xavier_uniform_(m.weight)<br><br>net.apply(init_weights)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_with_data_aug</span>(<span class="hljs-params">train_augs, test_augs, net, lr=<span class="hljs-number">0.001</span></span>):</span><br>    train_iter = load_cifar10(<span class="hljs-literal">True</span>, train_augs, batch_size)<br>    test_iter = load_cifar10(<span class="hljs-literal">False</span>, test_augs, batch_size)<br>    loss = nn.CrossEntropyLoss(reduction=<span class="hljs-string">&quot;none&quot;</span>)<br>    trainer = torch.optim.Adam(net.parameters(), lr=lr)<br>    train_ch13(net, train_iter, test_iter, loss, trainer, <span class="hljs-number">10</span>, devices)<br></code></pre></td></tr></table></figure>
+<p>[<strong>训练模型</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">train_with_data_aug(train_augs, test_augs, net)<br></code></pre></td></tr></table></figure>
+<h3 id="13-1-3-小结"><a href="#13-1-3-小结" class="headerlink" title="13.1.3 小结"></a>13.1.3 小结</h3><ul>
+<li>图像增广基于现有的训练数据生成随机图像，来提高模型的概化能力。</li>
+<li>为了在预测过程中得到确切的结果，通常对训练样本只进行图像增广，而在预测过程中不使用随机操作的图像增广。</li>
+<li>深度学习框架提供了许多不同的图像增广方法，这些方法可以被同时应用。</li>
+</ul>
+<h2 id="13-2-微调"><a href="#13-2-微调" class="headerlink" title="13.2 微调"></a>13.2 微调</h2><p>应用 <em>迁移学习</em>（transfer learning） 将从 <em>源数据集</em> 学到的知识迁移到 <em>目标数据集</em>。</p>
+<h3 id="13-2-1-步骤"><a href="#13-2-1-步骤" class="headerlink" title="13.2.1 步骤"></a>13.2.1 步骤</h3><p><em>微调</em>（fine-tuning）</p>
+<ol>
+<li>在源数据集（例如 ImageNet 数据集）上预训练神经网络模型，即 <em>源模型</em>。</li>
+<li>创建一个新的神经网络模型，即 <em>目标模型</em>。这将复制源模型上的所有模型设计及其参数，但输出层除外。</li>
+<li>向目标模型添加输出层，其输出数量是目标数据集中的类别数。然后随机初始化该层的模型参数。</li>
+<li>在目标数据集上训练目标模型。输出层将从头开始进行训练，而所有其他层的参数将根据源模型的参数进行微调。</li>
+</ol>
+<h3 id="13-2-2-热狗识别"><a href="#13-2-2-热狗识别" class="headerlink" title="13.2.2 热狗识别"></a>13.2.2 热狗识别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">%matplotlib inline<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torchvision<br><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn<br><span class="hljs-keyword">from</span> d2l <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> d2l<br></code></pre></td></tr></table></figure>
+
+<p>##@# 获取数据集<br>[<strong>热狗数据集来源于网络</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br>d2l.DATA_HUB[<span class="hljs-string">&#x27;hotdog&#x27;</span>] = (d2l.DATA_URL + <span class="hljs-string">&#x27;hotdog.zip&#x27;</span>, <br>                         <span class="hljs-string">&#x27;fba480ffa8aa7e0febbb511d181409f899b9baa5&#x27;</span>)<br><br>data_dir = d2l.download_extract(<span class="hljs-string">&#x27;hotdog&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">train_imgs = torchvision.datasets.ImageFolder(os.path.join(data_dir, <span class="hljs-string">&#x27;train&#x27;</span>))<br>test_imgs = torchvision.datasets.ImageFolder(os.path.join(data_dir, <span class="hljs-string">&#x27;test&#x27;</span>))<br></code></pre></td></tr></table></figure>
+<p>显示前 8 个正面示例和最后 8 张负面图片。<br>[<strong>图像的大小和纵横比各有不同</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">hotdogs = [train_imgs[i][<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">8</span>)]<br>not_hotdogs = [train_imgs[-i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">8</span>)]<br>d2l.show_images(hotdogs + not_hotdogs, <span class="hljs-number">2</span>, <span class="hljs-number">8</span>, scale=<span class="hljs-number">1.4</span>);<br></code></pre></td></tr></table></figure>
+<p>[<del>数据增广</del>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用三个RGB通道的均值和标准偏差，以标准化每个通道</span><br>normalize = torchvision.transforms.Normalize(<br>    [<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>])<br><br>train_augs = torchvision.transforms.Compose([<br>    torchvision.transforms.RandomResizedCrop(<span class="hljs-number">224</span>),<br>    torchvision.transforms.RandomHorizontalFlip(),<br>    torchvision.transforms.ToTensor(),<br>    normalize])<br><br>test_augs = torchvision.transforms.Compose([<br>    torchvision.transforms.Resize(<span class="hljs-number">256</span>),<br>    torchvision.transforms.CenterCrop(<span class="hljs-number">224</span>),<br>    torchvision.transforms.ToTensor(),<br>    normalize])<br></code></pre></td></tr></table></figure>
+<h4 id="定义和初始化模型"><a href="#定义和初始化模型" class="headerlink" title="定义和初始化模型"></a>定义和初始化模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pretrained_net = torchvision.models.resnet18(pretrained=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pretrained_net.fc<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">finetune_net = torchvision.models.resnet18(pretrained=<span class="hljs-literal">True</span>)<br>finetune_net.fc = nn.Linear(finetune_net.fc.in_features, <span class="hljs-number">2</span>)<br>nn.init.xavier_uniform_(finetune_net.fc.weight);<br></code></pre></td></tr></table></figure>
+<h4 id="微调模型"><a href="#微调模型" class="headerlink" title="微调模型"></a>微调模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 如果 `param_group=True`，输出层中的模型参数将使用十倍的学习率</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_fine_tuning</span>(<span class="hljs-params">net, learning_rate, batch_size=<span class="hljs-number">128</span>, num_epochs=<span class="hljs-number">5</span>,</span></span><br><span class="hljs-params"><span class="hljs-function">                      param_group=<span class="hljs-literal">True</span></span>):</span><br>    train_iter = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder(<br>        os.path.join(data_dir, <span class="hljs-string">&#x27;train&#x27;</span>), transform=train_augs),<br>        batch_size=batch_size, shuffle=<span class="hljs-literal">True</span>)<br>    test_iter = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder(<br>        os.path.join(data_dir, <span class="hljs-string">&#x27;test&#x27;</span>), transform=test_augs),<br>        batch_size=batch_size)<br>    devices = d2l.try_all_gpus()<br>    loss = nn.CrossEntropyLoss(reduction=<span class="hljs-string">&quot;none&quot;</span>)<br>    <span class="hljs-keyword">if</span> param_group:<br>        params_1x = [param <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> net.named_parameters()<br>             <span class="hljs-keyword">if</span> name <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;fc.weight&quot;</span>, <span class="hljs-string">&quot;fc.bias&quot;</span>]]<br>        trainer = torch.optim.SGD([&#123;<span class="hljs-string">&#x27;params&#x27;</span>: params_1x&#125;,<br>                                   &#123;<span class="hljs-string">&#x27;params&#x27;</span>: net.fc.parameters(),<br>                                    <span class="hljs-string">&#x27;lr&#x27;</span>: learning_rate * <span class="hljs-number">10</span>&#125;],<br>                                lr=learning_rate, weight_decay=<span class="hljs-number">0.001</span>)<br>    <span class="hljs-keyword">else</span>:<br>        trainer = torch.optim.SGD(net.parameters(), lr=learning_rate,<br>                                  weight_decay=<span class="hljs-number">0.001</span>)    <br>    d2l.train_ch13(net, train_iter, test_iter, loss, trainer, num_epochs,<br>                   devices)<br></code></pre></td></tr></table></figure>
+<p>[<strong>使用较小的学习率</strong>]，通过<em>微调</em>预训练获得的模型参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">train_fine_tuning(finetune_net, <span class="hljs-number">5e-5</span>)<br></code></pre></td></tr></table></figure>
+<p>[<strong>为了进行比较，</strong>]<strong>所有模型参数初始化为随机值</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">scratch_net = torchvision.models.resnet18()<br>scratch_net.fc = nn.Linear(scratch_net.fc.in_features, <span class="hljs-number">2</span>)<br>train_fine_tuning(scratch_net, <span class="hljs-number">5e-4</span>, param_group=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="13-2-3-小结"><a href="#13-2-3-小结" class="headerlink" title="13.2.3 小结"></a>13.2.3 小结</h3><ul>
+<li>迁移学习将从源数据集中学到的知识“迁移”到目标数据集，微调是迁移学习的常见技巧。</li>
+<li>除输出层外，目标模型从源模型中复制所有模型设计及其参数，并根据目标数据集对这些参数进行微调。但是，目标模型的输出层需要从头开始训练。</li>
+<li>通常，微调参数使用较小的学习率，而从头开始训练输出层可以使用更大的学习率。</li>
+</ul>
+<h2 id="13-3-目标检测和边界框"><a href="#13-3-目标检测和边界框" class="headerlink" title="13.3 目标检测和边界框"></a>13.3 目标检测和边界框</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">%matplotlib inline<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> d2l <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> d2l<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">d2l.set_figsize()<br>img = d2l.plt.imread(<span class="hljs-string">&#x27;../img/catdog.jpg&#x27;</span>)<br>d2l.plt.imshow(img);<br></code></pre></td></tr></table></figure>
+<h3 id="13-3-1-边界框"><a href="#13-3-1-边界框" class="headerlink" title="13.3.1 边界框"></a>13.3.1 边界框</h3><p><em>边界框</em>（bounding box）<br>[<strong>定义在这两种表示之间进行转换的函数</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">box_corner_to_center</span>(<span class="hljs-params">boxes</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;从（左上，右下）转换到（中间，宽度，高度）&quot;&quot;&quot;</span><br>    x1, y1, x2, y2 = boxes[:, <span class="hljs-number">0</span>], boxes[:, <span class="hljs-number">1</span>], boxes[:, <span class="hljs-number">2</span>], boxes[:, <span class="hljs-number">3</span>]<br>    cx = (x1 + x2) / <span class="hljs-number">2</span><br>    cy = (y1 + y2) / <span class="hljs-number">2</span><br>    w = x2 - x1<br>    h = y2 - y1<br>    boxes = torch.stack((cx, cy, w, h), axis=-<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> boxes<br><br><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">box_center_to_corner</span>(<span class="hljs-params">boxes</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;从（中间，宽度，高度）转换到（左上，右下）&quot;&quot;&quot;</span><br>    cx, cy, w, h = boxes[:, <span class="hljs-number">0</span>], boxes[:, <span class="hljs-number">1</span>], boxes[:, <span class="hljs-number">2</span>], boxes[:, <span class="hljs-number">3</span>]<br>    x1 = cx - <span class="hljs-number">0.5</span> * w<br>    y1 = cy - <span class="hljs-number">0.5</span> * h<br>    x2 = cx + <span class="hljs-number">0.5</span> * w<br>    y2 = cy + <span class="hljs-number">0.5</span> * h<br>    boxes = torch.stack((x1, y1, x2, y2), axis=-<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> boxes<br></code></pre></td></tr></table></figure>
+<p>[<strong>定义图像中狗和猫的边界框</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># bbox是边界框的英文缩写</span><br>dog_bbox, cat_bbox = [<span class="hljs-number">60.0</span>, <span class="hljs-number">45.0</span>, <span class="hljs-number">378.0</span>, <span class="hljs-number">516.0</span>], [<span class="hljs-number">400.0</span>, <span class="hljs-number">112.0</span>, <span class="hljs-number">655.0</span>, <span class="hljs-number">493.0</span>]<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 验证转换的正确性</span><br>boxes = torch.tensor((dog_bbox, cat_bbox))<br>box_center_to_corner(box_corner_to_center(boxes)) == boxes<br></code></pre></td></tr></table></figure>
+<p>[<strong>将边界框在图中画出</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bbox_to_rect</span>(<span class="hljs-params">bbox, color</span>):</span><br>    <span class="hljs-comment"># 将边界框 (左上x, 左上y, 右下x, 右下y) 格式转换成 matplotlib 格式：</span><br>    <span class="hljs-comment"># ((左上x, 左上y), 宽, 高)</span><br>    <span class="hljs-keyword">return</span> d2l.plt.Rectangle(<br>        xy=(bbox[<span class="hljs-number">0</span>], bbox[<span class="hljs-number">1</span>]), width=bbox[<span class="hljs-number">2</span>]-bbox[<span class="hljs-number">0</span>], height=bbox[<span class="hljs-number">3</span>]-bbox[<span class="hljs-number">1</span>],<br>        fill=<span class="hljs-literal">False</span>, edgecolor=color, linewidth=<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">fig = d2l.plt.imshow(img)<br>fig.axes.add_patch(bbox_to_rect(dog_bbox, <span class="hljs-string">&#x27;blue&#x27;</span>))<br>fig.axes.add_patch(bbox_to_rect(cat_bbox, <span class="hljs-string">&#x27;red&#x27;</span>));<br></code></pre></td></tr></table></figure>
+<h3 id="13-3-2-小结"><a href="#13-3-2-小结" class="headerlink" title="13.3.2 小结"></a>13.3.2 小结</h3><ul>
+<li>目标检测不仅可以识别图像中所有感兴趣的物体，还能识别它们的位置，该位置通常由矩形边界框表示。</li>
+<li>可以在两种常用的边界框表示（中间，宽度，高度）和（左上，右下）坐标之间进行转换。<h2 id="13-4-锚框"><a href="#13-4-锚框" class="headerlink" title="13.4 锚框"></a>13.4 锚框</h2></li>
+<li>真实边界框*（ground-truth bounding box）</li>
+<li>锚框*（anchor box）<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">%matplotlib inline<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> d2l <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> d2l<br><br>torch.set_printoptions(<span class="hljs-number">2</span>)  <span class="hljs-comment"># 精简打印精度</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="13-4-1-生成多个锚框"><a href="#13-4-1-生成多个锚框" class="headerlink" title="13.4.1 生成多个锚框"></a>13.4.1 生成多个锚框</h3><p>[<strong>锚框的宽度和高度分别是 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.739ex" height="3.009ex" style="vertical-align: -1.005ex;" viewBox="0 -863.1 2471 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">ws\sqrt{r}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-77" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-77" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-73" x="716" y="0"></use>
+<g transform="translate(1186,0)">
+ <use xlink:href="#E1-MJMAIN-221A" x="0" y="-108"></use>
+<rect stroke="none" width="451" height="60" x="833" y="633"></rect>
+ <use xlink:href="#E1-MJMATHI-72" x="833" y="0"></use>
+</g>
+</g>
+</svg> 和 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.576ex" height="3.009ex" style="vertical-align: -1.005ex;" viewBox="0 -863.1 2831.5 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">hs/\sqrt{r}</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-68" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-68" x="0" y="0"></use>
+ <use xlink:href="#E1-MJMATHI-73" x="576" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-2F" x="1046" y="0"></use>
+<g transform="translate(1546,0)">
+ <use xlink:href="#E1-MJMAIN-221A" x="0" y="-108"></use>
+<rect stroke="none" width="451" height="60" x="833" y="633"></rect>
+ <use xlink:href="#E1-MJMATHI-72" x="833" y="0"></use>
+</g>
+</g>
+</svg>。</strong>]<br><strong>只考虑</strong>包含 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.145ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 923.4 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">s_1</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-73" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-73" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="663" y="-213"></use>
+</g>
+</svg> 或 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.103ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 905.4 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">r_1</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-72" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-72" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-31" x="638" y="-213"></use>
+</g>
+</svg> 的<strong>组合：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">multibox_prior</span>(<span class="hljs-params">data, sizes, ratios</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;生成以每个像素为中心具有不同形状的锚框。&quot;&quot;&quot;</span><br>    in_height, in_width = data.shape[-<span class="hljs-number">2</span>:]<br>    device, num_sizes, num_ratios = data.device, <span class="hljs-built_in">len</span>(sizes), <span class="hljs-built_in">len</span>(ratios)<br>    boxes_per_pixel = (num_sizes + num_ratios - <span class="hljs-number">1</span>)<br>    size_tensor = torch.tensor(sizes, device=device)<br>    ratio_tensor = torch.tensor(ratios, device=device)<br><br>    <span class="hljs-comment"># 为了将锚点移动到像素的中心，需要设置偏移量。</span><br>    <span class="hljs-comment"># 因为一个像素的的高为1且宽为1，我们选择偏移我们的中心0.5</span><br>    offset_h, offset_w = <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span><br>    steps_h = <span class="hljs-number">1.0</span> / in_height  <span class="hljs-comment"># Scaled steps in y axis</span><br>    steps_w = <span class="hljs-number">1.0</span> / in_width  <span class="hljs-comment"># Scaled steps in x axis</span><br><br>    <span class="hljs-comment"># 生成锚框的所有中心点</span><br>    center_h = (torch.arange(in_height, device=device) + offset_h) * steps_h<br>    center_w = (torch.arange(in_width, device=device) + offset_w) * steps_w<br>    shift_y, shift_x = torch.meshgrid(center_h, center_w)<br>    shift_y, shift_x = shift_y.reshape(-<span class="hljs-number">1</span>), shift_x.reshape(-<span class="hljs-number">1</span>)<br><br>    <span class="hljs-comment"># 生成“boxes_per_pixel”个高和宽，</span><br>    <span class="hljs-comment"># 之后用于创建锚框的四角坐标 (xmin, xmax, ymin, ymax)</span><br>    w = torch.cat((size_tensor * torch.sqrt(ratio_tensor[<span class="hljs-number">0</span>]),<br>                   sizes[<span class="hljs-number">0</span>] * torch.sqrt(ratio_tensor[<span class="hljs-number">1</span>:])))\<br>                   * in_height / in_width  <span class="hljs-comment"># Handle rectangular inputs</span><br>    h = torch.cat((size_tensor / torch.sqrt(ratio_tensor[<span class="hljs-number">0</span>]),<br>                   sizes[<span class="hljs-number">0</span>] / torch.sqrt(ratio_tensor[<span class="hljs-number">1</span>:])))<br>    <span class="hljs-comment"># 除以2来获得半高和半宽</span><br>    anchor_manipulations = torch.stack((-w, -h, w, h)).T.repeat(<br>                                        in_height * in_width, <span class="hljs-number">1</span>) / <span class="hljs-number">2</span><br><br>    <span class="hljs-comment"># 每个中心点都将有“boxes_per_pixel”个锚框，</span><br>    <span class="hljs-comment"># 所以生成含所有锚框中心的网格，重复了“boxes_per_pixel”次</span><br>    out_grid = torch.stack([shift_x, shift_y, shift_x, shift_y],<br>                dim=<span class="hljs-number">1</span>).repeat_interleave(boxes_per_pixel, dim=<span class="hljs-number">0</span>)<br>    output = out_grid + anchor_manipulations<br>    <span class="hljs-keyword">return</span> output.unsqueeze(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+<p>[<strong>返回的锚框变量 <code>Y</code> 的形状</strong>]是（批量大小，锚框的数量，4）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">img = d2l.plt.imread(<span class="hljs-string">&#x27;../img/catdog.jpg&#x27;</span>)<br>h, w = img.shape[:<span class="hljs-number">2</span>]<br><br><span class="hljs-built_in">print</span>(h, w)<br>X = torch.rand(size=(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, h, w))<br>Y = multibox_prior(X, sizes=[<span class="hljs-number">0.75</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.25</span>], ratios=[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0.5</span>])<br>Y.shape<br></code></pre></td></tr></table></figure>
+
+<p>[<strong>访问以 (250, 250) 为中心的第一个锚框</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">boxes = Y.reshape(h, w, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>)<br>boxes[<span class="hljs-number">250</span>, <span class="hljs-number">250</span>, <span class="hljs-number">0</span>, :]<br></code></pre></td></tr></table></figure>
+<p>[<strong>显示以图像中一个像素为中心的所有锚框</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show_bboxes</span>(<span class="hljs-params">axes, bboxes, labels=<span class="hljs-literal">None</span>, colors=<span class="hljs-literal">None</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;显示所有边界框。&quot;&quot;&quot;</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_make_list</span>(<span class="hljs-params">obj, default_values=<span class="hljs-literal">None</span></span>):</span><br>        <span class="hljs-keyword">if</span> obj <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            obj = default_values<br>        <span class="hljs-keyword">elif</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">isinstance</span>(obj, (<span class="hljs-built_in">list</span>, <span class="hljs-built_in">tuple</span>)):<br>            obj = [obj]<br>        <span class="hljs-keyword">return</span> obj<br>    labels = _make_list(labels)<br>    colors = _make_list(colors, [<span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-string">&#x27;m&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>])<br>    <span class="hljs-keyword">for</span> i, bbox <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(bboxes):<br>        color = colors[i % <span class="hljs-built_in">len</span>(colors)]<br>        rect = d2l.bbox_to_rect(bbox.detach().numpy(), color)<br>        axes.add_patch(rect)<br>        <span class="hljs-keyword">if</span> labels <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(labels) &gt; i:<br>            text_color = <span class="hljs-string">&#x27;k&#x27;</span> <span class="hljs-keyword">if</span> color == <span class="hljs-string">&#x27;w&#x27;</span> <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;w&#x27;</span><br>            axes.text(rect.xy[<span class="hljs-number">0</span>], rect.xy[<span class="hljs-number">1</span>], labels[i],<br>                      va=<span class="hljs-string">&#x27;center&#x27;</span>, ha=<span class="hljs-string">&#x27;center&#x27;</span>, fontsize=<span class="hljs-number">9</span>, color=text_color,<br>                      bbox=<span class="hljs-built_in">dict</span>(facecolor=color, lw=<span class="hljs-number">0</span>))<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">d2l.set_figsize()<br>bbox_scale = torch.tensor((w, h, w, h))<br>fig = d2l.plt.imshow(img)<br>show_bboxes(fig.axes, boxes[<span class="hljs-number">250</span>, <span class="hljs-number">250</span>, :, :] * bbox_scale,<br>            [<span class="hljs-string">&#x27;s=0.75, r=1&#x27;</span>, <span class="hljs-string">&#x27;s=0.5, r=1&#x27;</span>, <span class="hljs-string">&#x27;s=0.25, r=1&#x27;</span>, <span class="hljs-string">&#x27;s=0.75, r=2&#x27;</span>,<br>             <span class="hljs-string">&#x27;s=0.75, r=0.5&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<h3 id="13-4-2-交并比-IoU"><a href="#13-4-2-交并比-IoU" class="headerlink" title="13.4.2 交并比(IoU)"></a>13.4.2 交并比(IoU)</h3><p>可以衡量锚框和真实边界框之间的相似性<br><em>Jaccard 系数</em>可以衡量两组之间的相似性。<br>MATHJAX-SSR-814</p>
+<p>将他们的 Jaccard 指数称为 <em>交并比</em> (intersection over union，IoU)，即两个边界框相交面积与相并面积之比</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">box_iou</span>(<span class="hljs-params">boxes1, boxes2</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;计算两个锚框或边界框列表中成对的交并比。&quot;&quot;&quot;</span><br>    box_area = <span class="hljs-keyword">lambda</span> boxes: ((boxes[:, <span class="hljs-number">2</span>] - boxes[:, <span class="hljs-number">0</span>]) *<br>                              (boxes[:, <span class="hljs-number">3</span>] - boxes[:, <span class="hljs-number">1</span>]))<br>    <span class="hljs-comment"># `boxes1`, `boxes2`, `areas1`, `areas2`的形状: </span><br>    <span class="hljs-comment"># `boxes1`：(boxes1的数量, 4),</span><br>    <span class="hljs-comment"># `boxes2`：(boxes2的数量, 4), </span><br>    <span class="hljs-comment"># `areas1`：(boxes1的数量,), </span><br>    <span class="hljs-comment"># `areas2`：(boxes2的数量,)</span><br>    areas1 = box_area(boxes1)<br>    areas2 = box_area(boxes2)<br>    <span class="hljs-comment">#  `inter_upperlefts`, `inter_lowerrights`, `inters`的形状: </span><br>    <span class="hljs-comment"># (boxes1的数量, boxes2的数量, 2)</span><br>    inter_upperlefts = torch.<span class="hljs-built_in">max</span>(boxes1[:, <span class="hljs-literal">None</span>, :<span class="hljs-number">2</span>], boxes2[:, :<span class="hljs-number">2</span>])<br>    inter_lowerrights = torch.<span class="hljs-built_in">min</span>(boxes1[:, <span class="hljs-literal">None</span>, <span class="hljs-number">2</span>:], boxes2[:, <span class="hljs-number">2</span>:])<br>    inters = (inter_lowerrights - inter_upperlefts).clamp(<span class="hljs-built_in">min</span>=<span class="hljs-number">0</span>)<br>    <span class="hljs-comment"># `inter_areas` and `union_areas`的形状: (boxes1的数量, boxes2的数量)</span><br>    inter_areas = inters[:, :, <span class="hljs-number">0</span>] * inters[:, :, <span class="hljs-number">1</span>]<br>    union_areas = areas1[:, <span class="hljs-literal">None</span>] + areas2 - inter_areas<br>    <span class="hljs-keyword">return</span> inter_areas / union_areas<br></code></pre></td></tr></table></figure>
+<h3 id="13-4-3-标注训练数据的锚框"><a href="#13-4-3-标注训练数据的锚框" class="headerlink" title="13.4.3 标注训练数据的锚框"></a>13.4.3 标注训练数据的锚框</h3><h4 id="将真实边界框分配给锚框"><a href="#将真实边界框分配给锚框" class="headerlink" title="将真实边界框分配给锚框"></a>将真实边界框分配给锚框</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">assign_anchor_to_bbox</span>(<span class="hljs-params">ground_truth, anchors, device, iou_threshold=<span class="hljs-number">0.5</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;将最接近的真实边界框分配给锚框。&quot;&quot;&quot;</span><br>    num_anchors, num_gt_boxes = anchors.shape[<span class="hljs-number">0</span>], ground_truth.shape[<span class="hljs-number">0</span>]<br>    <span class="hljs-comment"># 位于第i行和第j列的元素 x_ij 是锚框i和真实边界框j的IoU</span><br>    jaccard = box_iou(anchors, ground_truth)<br>    <span class="hljs-comment"># 对于每个锚框，分配的真实边界框的张量</span><br>    anchors_bbox_map = torch.full((num_anchors,), -<span class="hljs-number">1</span>, dtype=torch.long,<br>                                  device=device)<br>    <span class="hljs-comment"># 根据阈值，决定是否分配真实边界框</span><br>    max_ious, indices = torch.<span class="hljs-built_in">max</span>(jaccard, dim=<span class="hljs-number">1</span>)<br>    anc_i = torch.nonzero(max_ious &gt;= <span class="hljs-number">0.5</span>).reshape(-<span class="hljs-number">1</span>)<br>    box_j = indices[max_ious &gt;= <span class="hljs-number">0.5</span>]<br>    anchors_bbox_map[anc_i] = box_j<br>    col_discard = torch.full((num_anchors,), -<span class="hljs-number">1</span>)<br>    row_discard = torch.full((num_gt_boxes,), -<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_gt_boxes):<br>        max_idx = torch.argmax(jaccard)<br>        box_idx = (max_idx % num_gt_boxes).long()<br>        anc_idx = (max_idx / num_gt_boxes).long()<br>        anchors_bbox_map[anc_idx] = box_idx<br>        jaccard[:, box_idx] = col_discard<br>        jaccard[anc_idx, :] = row_discard<br>    <span class="hljs-keyword">return</span> anchors_bbox_map<br></code></pre></td></tr></table></figure>
+<h4 id="标记类和偏移"><a href="#标记类和偏移" class="headerlink" title="标记类和偏移"></a>标记类和偏移</h4><p>[**给定框 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.743ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 750.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">A</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-41" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-41" x="0" y="0"></use>
+</g>
+</svg> 和 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.764ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 759.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">B</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-42" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-42" x="0" y="0"></use>
+</g>
+</svg>，中心坐标分别为 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.516ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3236 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">(x_a, y_a)</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-28" x="0" y="0"></use>
+<g transform="translate(389,0)">
+ <use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-61" x="809" y="-213"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-2C" x="1436" y="0"></use>
+<g transform="translate(1881,0)">
+ <use xlink:href="#E1-MJMATHI-79" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-61" x="693" y="-213"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-29" x="2846" y="0"></use>
+</g>
+</svg> 和 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.187ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3094.6 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">(x_b, y_b)</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMAIN-28" x="0" y="0"></use>
+<g transform="translate(389,0)">
+ <use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-62" x="809" y="-213"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-2C" x="1365" y="0"></use>
+<g transform="translate(1810,0)">
+ <use xlink:href="#E1-MJMATHI-79" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-62" x="693" y="-213"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-29" x="2705" y="0"></use>
+</g>
+</svg>，宽度分别为 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.766ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1190.9 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">w_a</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-77" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-77" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-61" x="1013" y="-213"></use>
+</g>
+</svg> 和 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.602ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 1120.2 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">w_b</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-77" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-77" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-62" x="1013" y="-213"></use>
+</g>
+</svg>，高度分别为 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.441ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1050.9 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">h_a</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-68" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-68" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-61" x="815" y="-213"></use>
+</g>
+</svg> 和 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.277ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 980.2 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">h_b</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-68" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-68" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-62" x="815" y="-213"></use>
+</g>
+</svg>。<br>可以将 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.743ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 750.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">A</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMATHI-41" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+ <use xlink:href="#E1-MJMATHI-41" x="0" y="0"></use>
+</g>
+</svg> 的偏移量标记为  </p>
+<p style="text-align:center"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="56.514ex" height="9.509ex" style="vertical-align: -4.171ex;" viewBox="0 -2298.3 24332.5 4094.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<title id="MathJax-SVG-1-Title">\left( \frac{ \frac{x_b - x_a}{w_a} - \mu_x }{\sigma_x},
+\frac{ \frac{y_b - y_a}{h_a} - \mu_y }{\sigma_y},
+\frac{ \log \frac{w_b}{w_a} - \mu_w }{\sigma_w},
+\frac{ \log \frac{h_b}{h_a} - \mu_h }{\sigma_h}\right),</title>
+<defs aria-hidden="true">
+<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-77" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-3BC" d="M58 -216Q44 -216 34 -208T23 -186Q23 -176 96 116T173 414Q186 442 219 442Q231 441 239 435T249 423T251 413Q251 401 220 279T187 142Q185 131 185 107V99Q185 26 252 26Q261 26 270 27T287 31T302 38T315 45T327 55T338 65T348 77T356 88T365 100L372 110L408 253Q444 395 448 404Q461 431 491 431Q504 431 512 424T523 412T525 402L449 84Q448 79 448 68Q448 43 455 35T476 26Q485 27 496 35Q517 55 537 131Q543 151 547 152Q549 153 557 153H561Q580 153 580 144Q580 138 575 117T555 63T523 13Q510 0 491 -8Q483 -10 467 -10Q446 -10 429 -4T402 11T385 29T376 44T374 51L368 45Q362 39 350 30T324 12T288 -4T246 -11Q199 -11 153 12L129 -85Q108 -167 104 -180T92 -202Q76 -216 58 -216Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-3C3" d="M184 -11Q116 -11 74 34T31 147Q31 247 104 333T274 430Q275 431 414 431H552Q553 430 555 429T559 427T562 425T565 422T567 420T569 416T570 412T571 407T572 401Q572 357 507 357Q500 357 490 357T476 358H416L421 348Q439 310 439 263Q439 153 359 71T184 -11ZM361 278Q361 358 276 358Q152 358 115 184Q114 180 114 178Q106 141 106 117Q106 67 131 47T188 26Q242 26 287 73Q316 103 334 153T356 233T361 278Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
+<path stroke-width="1" id="E1-MJMATHI-68" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-67" d="M329 409Q373 453 429 453Q459 453 472 434T485 396Q485 382 476 371T449 360Q416 360 412 390Q410 404 415 411Q415 412 416 414V415Q388 412 363 393Q355 388 355 386Q355 385 359 381T368 369T379 351T388 325T392 292Q392 230 343 187T222 143Q172 143 123 171Q112 153 112 133Q112 98 138 81Q147 75 155 75T227 73Q311 72 335 67Q396 58 431 26Q470 -13 470 -72Q470 -139 392 -175Q332 -206 250 -206Q167 -206 107 -175Q29 -140 29 -75Q29 -39 50 -15T92 18L103 24Q67 55 67 108Q67 155 96 193Q52 237 52 292Q52 355 102 398T223 442Q274 442 318 416L329 409ZM299 343Q294 371 273 387T221 404Q192 404 171 388T145 343Q142 326 142 292Q142 248 149 227T179 192Q196 182 222 182Q244 182 260 189T283 207T294 227T299 242Q302 258 302 292T299 343ZM403 -75Q403 -50 389 -34T348 -11T299 -2T245 0H218Q151 0 138 -6Q118 -15 107 -34T95 -74Q95 -84 101 -97T122 -127T170 -155T250 -167Q319 -167 361 -139T403 -75Z"></path>
+<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-239B" d="M837 1154Q843 1148 843 1145Q843 1141 818 1106T753 1002T667 841T574 604T494 299Q417 -84 417 -609Q417 -641 416 -647T411 -654Q409 -655 366 -655Q299 -655 297 -654Q292 -652 292 -643T291 -583Q293 -400 304 -242T347 110T432 470T574 813T785 1136Q787 1139 790 1142T794 1147T796 1150T799 1152T802 1153T807 1154T813 1154H819H837Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-239D" d="M843 -635Q843 -638 837 -644H820Q801 -644 800 -643Q792 -635 785 -626Q684 -503 605 -363T473 -75T385 216T330 518T302 809T291 1093Q291 1144 291 1153T296 1164Q298 1165 366 1165Q409 1165 411 1164Q415 1163 416 1157T417 1119Q417 529 517 109T833 -617Q843 -631 843 -635Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-239C" d="M413 -9Q412 -9 407 -9T388 -10T354 -10Q300 -10 297 -9Q294 -8 293 -5Q291 5 291 127V300Q291 602 292 605L296 609Q298 610 366 610Q382 610 392 610T407 610T412 609Q416 609 416 592T417 473V127Q417 -9 413 -9Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-239E" d="M31 1143Q31 1154 49 1154H59Q72 1154 75 1152T89 1136Q190 1013 269 873T401 585T489 294T544 -8T572 -299T583 -583Q583 -634 583 -643T577 -654Q575 -655 508 -655Q465 -655 463 -654Q459 -653 458 -647T457 -609Q457 -58 371 340T100 1037Q87 1059 61 1098T31 1143Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-23A0" d="M56 -644H50Q31 -644 31 -635Q31 -632 37 -622Q69 -579 100 -527Q286 -228 371 170T457 1119Q457 1161 462 1164Q464 1165 520 1165Q575 1165 577 1164Q582 1162 582 1153T583 1093Q581 910 570 752T527 400T442 40T300 -303T89 -626Q78 -640 75 -642T61 -644H56Z"></path>
+<path stroke-width="1" id="E1-MJSZ4-239F" d="M579 -9Q578 -9 573 -9T554 -10T520 -10Q466 -10 463 -9Q460 -8 459 -5Q457 5 457 127V300Q457 602 458 605L462 609Q464 610 532 610Q548 610 558 610T573 610T578 609Q582 609 582 592T583 473V127Q583 -9 579 -9Z"></path>
+</defs>
+<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
+<g transform="translate(0,2166)">
+ <use xlink:href="#E1-MJSZ4-239B" x="0" y="-1156"></use>
+<g transform="translate(0,-2065.1732307432544) scale(1,0.49619186701023615)">
+ <use xlink:href="#E1-MJSZ4-239C"></use>
+</g>
+ <use xlink:href="#E1-MJSZ4-239D" x="0" y="-3188"></use>
+</g>
+<g transform="translate(875,0)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="4863" height="60" x="0" y="220"></rect>
+<g transform="translate(60,976)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="2172" height="60" x="0" y="220"></rect>
+<g transform="translate(60,606)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-62" x="705" y="-271"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-2212" x="1021" y="0"></use>
+<g transform="translate(1272,0)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-61" x="705" y="-185"></use>
+</g>
+</g>
+<g transform="translate(645,-345)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-77" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-61" x="882" y="-185"></use>
+</g>
+</g>
+ <use xlink:href="#E1-MJMAIN-2212" x="2634" y="0"></use>
+<g transform="translate(3635,0)">
+ <use xlink:href="#E1-MJMATHI-3BC" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-78" x="853" y="-213"></use>
+</g>
+</g>
+<g transform="translate(1893,-686)">
+ <use xlink:href="#E1-MJMATHI-3C3" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-78" x="808" y="-213"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#E1-MJMAIN-2C" x="5978" y="0"></use>
+<g transform="translate(6257,0)">
+<g transform="translate(286,0)">
+<rect stroke="none" width="4694" height="60" x="0" y="220"></rect>
+<g transform="translate(60,1067)">
+<g transform="translate(120,0)">
+<rect stroke="none" width="2056" height="60" x="0" y="220"></rect>
+<g transform="translate(60,625)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-79" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-62" x="604" y="-304"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-2212" x="939" y="0"></use>
+<g transform="translate(1214,0)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-79" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-61" x="604" y="-304"></use>
+</g>
+</g>
+<g transform="translate(636,-436)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-68" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-61" x="710" y="-185"></use>
+</g>
+</g>
+ <use xlink:href="#E1-MJMAIN-2212" x="2518" y="0"></use>
+<g transform="translate(3519,0)">
+ <use xlink:href="#E1-MJMATHI-3BC" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-79" x="853" y="-213"></use>
+</g>
+</g>
+<g transform="translate(1835,-686)">
+ <use xlink:href="#E1-MJMATHI-3C3" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-79" x="808" y="-213"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#E1-MJMAIN-2C" x="11358" y="0"></use>
+<g transform="translate(11636,0)">
+<g transform="translate(286,0)">
+<rect stroke="none" width="5240" height="60" x="0" y="220"></rect>
+<g transform="translate(60,976)">
+ <use xlink:href="#E1-MJMAIN-6C"></use>
+ <use xlink:href="#E1-MJMAIN-6F" x="278" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-67" x="779" y="0"></use>
+<g transform="translate(1279,0)">
+<g transform="translate(286,0)">
+<rect stroke="none" width="1001" height="60" x="0" y="220"></rect>
+<g transform="translate(88,606)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-77" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-62" x="882" y="-271"></use>
+</g>
+<g transform="translate(60,-345)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-77" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-61" x="882" y="-185"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#E1-MJMAIN-2212" x="2909" y="0"></use>
+<g transform="translate(3910,0)">
+ <use xlink:href="#E1-MJMATHI-3BC" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-77" x="853" y="-213"></use>
+</g>
+</g>
+<g transform="translate(2031,-686)">
+ <use xlink:href="#E1-MJMATHI-3C3" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-77" x="808" y="-213"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#E1-MJMAIN-2C" x="17284" y="0"></use>
+<g transform="translate(17562,0)">
+<g transform="translate(286,0)">
+<rect stroke="none" width="5042" height="60" x="0" y="220"></rect>
+<g transform="translate(60,1067)">
+ <use xlink:href="#E1-MJMAIN-6C"></use>
+ <use xlink:href="#E1-MJMAIN-6F" x="278" y="0"></use>
+ <use xlink:href="#E1-MJMAIN-67" x="779" y="0"></use>
+<g transform="translate(1279,0)">
+<g transform="translate(286,0)">
+<rect stroke="none" width="902" height="60" x="0" y="220"></rect>
+<g transform="translate(88,606)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-68" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-62" x="710" y="-271"></use>
+</g>
+<g transform="translate(60,-436)">
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-68" x="0" y="0"></use>
+ <use transform="scale(0.574)" xlink:href="#E1-MJMATHI-61" x="710" y="-185"></use>
+</g>
+</g>
+</g>
+ <use xlink:href="#E1-MJMAIN-2212" x="2810" y="0"></use>
+<g transform="translate(3811,0)">
+ <use xlink:href="#E1-MJMATHI-3BC" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-68" x="853" y="-213"></use>
+</g>
+</g>
+<g transform="translate(1981,-686)">
+ <use xlink:href="#E1-MJMATHI-3C3" x="0" y="0"></use>
+ <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-68" x="808" y="-213"></use>
+</g>
+</g>
+</g>
+<g transform="translate(23011,2166)">
+ <use xlink:href="#E1-MJSZ4-239E" x="0" y="-1155"></use>
+<g transform="translate(0,-2065.153969106015) scale(1,0.49779700344683325)">
+ <use xlink:href="#E1-MJSZ4-239F"></use>
+</g>
+ <use xlink:href="#E1-MJSZ4-23A0" x="0" y="-3188"></use>
+</g>
+ <use xlink:href="#E1-MJMAIN-2C" x="24054" y="0"></use>
+</g>
+</svg><br>**]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">offset_boxes</span>(<span class="hljs-params">anchors, assigned_bb, eps=<span class="hljs-number">1e-6</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;对锚框偏移量的转换。&quot;&quot;&quot;</span><br>    c_anc = d2l.box_corner_to_center(anchors)<br>    c_assigned_bb = d2l.box_corner_to_center(assigned_bb)<br>    offset_xy = <span class="hljs-number">10</span> * (c_assigned_bb[:, :<span class="hljs-number">2</span>] - c_anc[:, :<span class="hljs-number">2</span>]) / c_anc[:, <span class="hljs-number">2</span>:]<br>    offset_wh = <span class="hljs-number">5</span> * torch.log(eps + c_assigned_bb[:, <span class="hljs-number">2</span>:] / c_anc[:, <span class="hljs-number">2</span>:])<br>    offset = torch.cat([offset_xy, offset_wh], axis=<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> offset<br></code></pre></td></tr></table></figure>
+<p>[<strong>标记锚框的类和偏移量</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">multibox_target</span>(<span class="hljs-params">anchors, labels</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;使用真实边界框标记锚框。&quot;&quot;&quot;</span><br>    batch_size, anchors = labels.shape[<span class="hljs-number">0</span>], anchors.squeeze(<span class="hljs-number">0</span>)<br>    batch_offset, batch_mask, batch_class_labels = [], [], []<br>    device, num_anchors = anchors.device, anchors.shape[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(batch_size):<br>        label = labels[i, :, :]<br>        anchors_bbox_map = assign_anchor_to_bbox(<br>            label[:, <span class="hljs-number">1</span>:], anchors, device)<br>        bbox_mask = ((anchors_bbox_map &gt;= <span class="hljs-number">0</span>).<span class="hljs-built_in">float</span>().unsqueeze(-<span class="hljs-number">1</span>)).repeat(<br>            <span class="hljs-number">1</span>, <span class="hljs-number">4</span>)<br>        <span class="hljs-comment"># 将类标签和分配的边界框坐标初始化为零</span><br>        class_labels = torch.zeros(num_anchors, dtype=torch.long,<br>                                   device=device)<br>        assigned_bb = torch.zeros((num_anchors, <span class="hljs-number">4</span>), dtype=torch.float32,<br>                                  device=device)<br>        <span class="hljs-comment"># 使用真实边界框来标记锚框的类别。</span><br>        <span class="hljs-comment"># 如果一个锚框没有被分配，我们标记其为背景（值为零）</span><br>        indices_true = torch.nonzero(anchors_bbox_map &gt;= <span class="hljs-number">0</span>)<br>        bb_idx = anchors_bbox_map[indices_true]<br>        class_labels[indices_true] = label[bb_idx, <span class="hljs-number">0</span>].long() + <span class="hljs-number">1</span><br>        assigned_bb[indices_true] = label[bb_idx, <span class="hljs-number">1</span>:]<br>        <span class="hljs-comment"># 偏移量转换</span><br>        offset = offset_boxes(anchors, assigned_bb) * bbox_mask<br>        batch_offset.append(offset.reshape(-<span class="hljs-number">1</span>))<br>        batch_mask.append(bbox_mask.reshape(-<span class="hljs-number">1</span>))<br>        batch_class_labels.append(class_labels)<br>    bbox_offset = torch.stack(batch_offset)<br>    bbox_mask = torch.stack(batch_mask)<br>    class_labels = torch.stack(batch_class_labels)<br>    <span class="hljs-keyword">return</span> (bbox_offset, bbox_mask, class_labels)<br></code></pre></td></tr></table></figure>
+<h4 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h4><p>[<strong>在图像中绘制这些地面真相边界框和锚框</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">ground_truth = torch.tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.08</span>, <span class="hljs-number">0.52</span>, <span class="hljs-number">0.92</span>],<br>                         [<span class="hljs-number">1</span>, <span class="hljs-number">0.55</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">0.88</span>]])<br>anchors = torch.tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>], [<span class="hljs-number">0.15</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.4</span>],<br>                    [<span class="hljs-number">0.63</span>, <span class="hljs-number">0.05</span>, <span class="hljs-number">0.88</span>, <span class="hljs-number">0.98</span>], [<span class="hljs-number">0.66</span>, <span class="hljs-number">0.45</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.8</span>],<br>                    [<span class="hljs-number">0.57</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.92</span>, <span class="hljs-number">0.9</span>]])<br><br>fig = d2l.plt.imshow(img)<br>show_bboxes(fig.axes, ground_truth[:, <span class="hljs-number">1</span>:] * bbox_scale, [<span class="hljs-string">&#x27;dog&#x27;</span>, <span class="hljs-string">&#x27;cat&#x27;</span>], <span class="hljs-string">&#x27;k&#x27;</span>)<br>show_bboxes(fig.axes, anchors * bbox_scale, [<span class="hljs-string">&#x27;0&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&#x27;4&#x27;</span>]);<br></code></pre></td></tr></table></figure>
+<p>[<strong>根据狗和猫的真实边界框，标注这些锚框的分类和偏移量</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">labels = multibox_target(anchors.unsqueeze(dim=<span class="hljs-number">0</span>),<br>                         ground_truth.unsqueeze(dim=<span class="hljs-number">0</span>))<br></code></pre></td></tr></table></figure>
+<h3 id="13-4-4-使用非极大值抑制预测边界框"><a href="#13-4-4-使用非极大值抑制预测边界框" class="headerlink" title="13.4.4 使用非极大值抑制预测边界框"></a>13.4.4 使用非极大值抑制预测边界框</h3><p>[<strong>应用逆偏移变换来返回预测的边界框坐标</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">offset_inverse</span>(<span class="hljs-params">anchors, offset_preds</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;根据带有预测偏移量的锚框来预测边界框。&quot;&quot;&quot;</span><br>    anc = d2l.box_corner_to_center(anchors)<br>    pred_bbox_xy = (offset_preds[:, :<span class="hljs-number">2</span>] * anc[:, <span class="hljs-number">2</span>:] / <span class="hljs-number">10</span>) + anc[:, :<span class="hljs-number">2</span>]<br>    pred_bbox_wh = torch.exp(offset_preds[:, <span class="hljs-number">2</span>:] / <span class="hljs-number">5</span>) * anc[:, <span class="hljs-number">2</span>:]<br>    pred_bbox = torch.cat((pred_bbox_xy, pred_bbox_wh), axis=<span class="hljs-number">1</span>)<br>    predicted_bbox = d2l.box_center_to_corner(pred_bbox)<br>    <span class="hljs-keyword">return</span> predicted_bbox<br></code></pre></td></tr></table></figure>
+<p><em>非极大值抑制</em> (non-maximum suppression，NMS)<br>[<strong>以下 <code>nms</code> 函数按降序对置信度进行排序并返回其索引</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nms</span>(<span class="hljs-params">boxes, scores, iou_threshold</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;对预测边界框的置信度进行排序。&quot;&quot;&quot;</span><br>    B = torch.argsort(scores, dim=-<span class="hljs-number">1</span>, descending=<span class="hljs-literal">True</span>)<br>    keep = []  <span class="hljs-comment"># 保留预测边界框的指标</span><br>    <span class="hljs-keyword">while</span> B.numel() &gt; <span class="hljs-number">0</span>:<br>        i = B[<span class="hljs-number">0</span>]<br>        keep.append(i)<br>        <span class="hljs-keyword">if</span> B.numel() == <span class="hljs-number">1</span>: <span class="hljs-keyword">break</span><br>        iou = box_iou(boxes[i, :].reshape(-<span class="hljs-number">1</span>, <span class="hljs-number">4</span>),<br>                      boxes[B[<span class="hljs-number">1</span>:], :].reshape(-<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)).reshape(-<span class="hljs-number">1</span>)<br>        inds = torch.nonzero(iou &lt;= iou_threshold).reshape(-<span class="hljs-number">1</span>)<br>        B = B[inds + <span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">return</span> torch.tensor(keep, device=boxes.device)<br></code></pre></td></tr></table></figure>
+<p>[<strong>将非极大值抑制应用于预测边界框</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#@save</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">multibox_detection</span>(<span class="hljs-params">cls_probs, offset_preds, anchors, nms_threshold=<span class="hljs-number">0.5</span>,</span></span><br><span class="hljs-params"><span class="hljs-function">                       pos_threshold=<span class="hljs-number">0.009999999</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;使用非极大值抑制来预测边界框。&quot;&quot;&quot;</span><br>    device, batch_size = cls_probs.device, cls_probs.shape[<span class="hljs-number">0</span>]<br>    anchors = anchors.squeeze(<span class="hljs-number">0</span>)<br>    num_classes, num_anchors = cls_probs.shape[<span class="hljs-number">1</span>], cls_probs.shape[<span class="hljs-number">2</span>]<br>    out = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(batch_size):<br>        cls_prob, offset_pred = cls_probs[i], offset_preds[i].reshape(-<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)<br>        conf, class_id = torch.<span class="hljs-built_in">max</span>(cls_prob[<span class="hljs-number">1</span>:], <span class="hljs-number">0</span>)<br>        predicted_bb = offset_inverse(anchors, offset_pred)<br>        keep = nms(predicted_bb, conf, nms_threshold)<br><br>        <span class="hljs-comment"># 找到所有的 non_keep 索引，并将类设置为背景</span><br>        all_idx = torch.arange(num_anchors, dtype=torch.long, device=device)<br>        combined = torch.cat((keep, all_idx))<br>        uniques, counts = combined.unique(return_counts=<span class="hljs-literal">True</span>)<br>        non_keep = uniques[counts == <span class="hljs-number">1</span>]<br>        all_id_sorted = torch.cat((keep, non_keep))<br>        class_id[non_keep] = -<span class="hljs-number">1</span><br>        class_id = class_id[all_id_sorted]<br>        conf, predicted_bb = conf[all_id_sorted], predicted_bb[all_id_sorted]<br>        <span class="hljs-comment"># `pos_threshold` 是一个用于非背景预测的阈值</span><br>        below_min_idx = (conf &lt; pos_threshold)<br>        class_id[below_min_idx] = -<span class="hljs-number">1</span><br>        conf[below_min_idx] = <span class="hljs-number">1</span> - conf[below_min_idx]<br>        pred_info = torch.cat((class_id.unsqueeze(<span class="hljs-number">1</span>),<br>                               conf.unsqueeze(<span class="hljs-number">1</span>),<br>                               predicted_bb), dim=<span class="hljs-number">1</span>)<br>        out.append(pred_info)<br>    <span class="hljs-keyword">return</span> torch.stack(out)<br></code></pre></td></tr></table></figure>
+<p>[<strong>将上述算法应用到一个带有四个锚框的具体示例中</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">anchors = torch.tensor([[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.08</span>, <span class="hljs-number">0.52</span>, <span class="hljs-number">0.92</span>], [<span class="hljs-number">0.08</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.56</span>, <span class="hljs-number">0.95</span>],<br>                      [<span class="hljs-number">0.15</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.62</span>, <span class="hljs-number">0.91</span>], [<span class="hljs-number">0.55</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">0.88</span>]])<br>offset_preds = torch.tensor([<span class="hljs-number">0</span>] * anchors.numel())<br>cls_probs = torch.tensor([[<span class="hljs-number">0</span>] * <span class="hljs-number">4</span>,  <span class="hljs-comment"># 背景的预测概率 </span><br>                      [<span class="hljs-number">0.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">0.1</span>],  <span class="hljs-comment"># 狗的预测概率</span><br>                      [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.9</span>]])  <span class="hljs-comment"># 猫的预测概率</span><br>```[**在图像上绘制这些预测边界框和置信度**]<br>```python<br>fig = d2l.plt.imshow(img)<br>show_bboxes(fig.axes, anchors * bbox_scale,<br>            [<span class="hljs-string">&#x27;dog=0.9&#x27;</span>, <span class="hljs-string">&#x27;dog=0.8&#x27;</span>, <span class="hljs-string">&#x27;dog=0.7&#x27;</span>, <span class="hljs-string">&#x27;cat=0.9&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<p>[<strong>返回结果的形状是（批量大小，锚框的数量，6）</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">output = multibox_detection(cls_probs.unsqueeze(dim=<span class="hljs-number">0</span>),<br>                            offset_preds.unsqueeze(dim=<span class="hljs-number">0</span>),<br>                            anchors.unsqueeze(dim=<span class="hljs-number">0</span>),<br>                            nms_threshold=<span class="hljs-number">0.5</span>)<br>output<br></code></pre></td></tr></table></figure>
+<p>[<strong>输出由非极大值抑制保存的最终预测边界框</strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">fig = d2l.plt.imshow(img)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> output[<span class="hljs-number">0</span>].detach().numpy():<br>    <span class="hljs-keyword">if</span> i[<span class="hljs-number">0</span>] == -<span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">continue</span><br>    label = (<span class="hljs-string">&#x27;dog=&#x27;</span>, <span class="hljs-string">&#x27;cat=&#x27;</span>)[<span class="hljs-built_in">int</span>(i[<span class="hljs-number">0</span>])] + <span class="hljs-built_in">str</span>(i[<span class="hljs-number">1</span>])<br>    show_bboxes(fig.axes, [torch.tensor(i[<span class="hljs-number">2</span>:]) * bbox_scale], label)<br></code></pre></td></tr></table></figure>
+<h3 id="13-4-5-小结"><a href="#13-4-5-小结" class="headerlink" title="13.4.5 小结"></a>13.4.5 小结</h3><ul>
+<li>以图像的每个像素为中心生成不同形状的锚框。</li>
+<li>交并比（IoU）也被称为 Jaccard 指数，用于衡量两个边界框的相似性。它是相交面积与相并面积的比率。</li>
+<li>在训练集中，需要给每个锚框两种类型的标签。一个是与锚框中目标检测的类别，另一个是锚框真实相对于边界框的偏移量。</li>
+<li>在预测期间，可以使用非极大值抑制（NMS）来移除类似的预测边界框，从而简化输出。</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/10/06/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;06&#x2F;%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;06&#x2F;%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/11/10/%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="iconfont iconleft"></i>百面机器学习</a>
+    <a href="/2021/10/06/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%80%A7%E8%83%BD/">第十二章 计算性能<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89"><span class="toc-text">计算机视觉</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-1-%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%B9%BF"><span class="toc-text">13.1 图像增广</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-1-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%B9%BF%E6%96%B9%E6%B3%95"><span class="toc-text">13.1.1 常用的图像增广方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-2-%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%B9%BF%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83"><span class="toc-text">13.1.2 使用图像增广进行训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-3-%E5%B0%8F%E7%BB%93"><span class="toc-text">13.1.3 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2-%E5%BE%AE%E8%B0%83"><span class="toc-text">13.2 微调</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-2-1-%E6%AD%A5%E9%AA%A4"><span class="toc-text">13.2.1 步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-2-2-%E7%83%AD%E7%8B%97%E8%AF%86%E5%88%AB"><span class="toc-text">13.2.2 热狗识别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-2-3-%E5%B0%8F%E7%BB%93"><span class="toc-text">13.2.3 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%92%8C%E8%BE%B9%E7%95%8C%E6%A1%86"><span class="toc-text">13.3 目标检测和边界框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-1-%E8%BE%B9%E7%95%8C%E6%A1%86"><span class="toc-text">13.3.1 边界框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-2-%E5%B0%8F%E7%BB%93"><span class="toc-text">13.3.2 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-4-%E9%94%9A%E6%A1%86"><span class="toc-text">13.4 锚框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-4-1-%E7%94%9F%E6%88%90%E5%A4%9A%E4%B8%AA%E9%94%9A%E6%A1%86"><span class="toc-text">13.4.1 生成多个锚框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-4-2-%E4%BA%A4%E5%B9%B6%E6%AF%94-IoU"><span class="toc-text">13.4.2 交并比(IoU)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-4-3-%E6%A0%87%E6%B3%A8%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E7%9A%84%E9%94%9A%E6%A1%86"><span class="toc-text">13.4.3 标注训练数据的锚框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-4-4-%E4%BD%BF%E7%94%A8%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6%E9%A2%84%E6%B5%8B%E8%BE%B9%E7%95%8C%E6%A1%86"><span class="toc-text">13.4.4 使用非极大值抑制预测边界框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-4-5-%E5%B0%8F%E7%BB%93"><span class="toc-text">13.4.5 小结</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

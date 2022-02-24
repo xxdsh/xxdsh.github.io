@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第三章_数字日期和时间 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="3.1 数字的四舍五入使用内置的 round(valu...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第三章_数字日期和时间</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第三章_数字日期和时间</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 15, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5064</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="3-1-数字的四舍五入"><a href="#3-1-数字的四舍五入" class="headerlink" title="3.1 数字的四舍五入"></a>3.1 数字的四舍五入</h4><p>使用内置的 round(value, ndigits) 函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">round</span>(<span class="hljs-number">1.23</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># .5返回离它最近的偶数</span><br><span class="hljs-built_in">round</span>(<span class="hljs-number">1221</span>, -<span class="hljs-number">1</span>) <span class="hljs-comment"># 1220 </span><br><span class="hljs-built_in">format</span>(x, <span class="hljs-string">&#x27;0.2f&#x27;</span>)  <span class="hljs-comment"># 格式化输出</span><br></code></pre></td></tr></table></figure>
+<h4 id="3-2-执行精确的浮点数运算"><a href="#3-2-执行精确的浮点数运算" class="headerlink" title="3.2 执行精确的浮点数运算"></a>3.2 执行精确的浮点数运算</h4><p>浮点数的一个普遍问题是它们并不能精确的表示十进制数。<br>这些错误是由底层 CPU 和 IEEE 754 标准通过自己的浮点单位去执行算术时的特征。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> decimal <span class="hljs-keyword">import</span> Decimal<br>a = Decimal(<span class="hljs-string">&#x27;4.2&#x27;</span>)<br>b = Decimal(<span class="hljs-string">&#x27;2.1&#x27;</span>)<br>a + b <span class="hljs-comment"># Decimal(&#x27;6.3&#x27;)</span><br><span class="hljs-built_in">print</span>(a + b) <span class="hljs-comment"># 6.3 </span><br><br><span class="hljs-comment"># 控制计算的每一方面，包括数字位数和四舍五入运算</span><br><span class="hljs-keyword">with</span> localcontext() <span class="hljs-keyword">as</span> ctx: <br>	ctx.prec = <span class="hljs-number">3</span> <br>	<span class="hljs-built_in">print</span>(a / b) <br><br>nums = [<span class="hljs-number">1.23e+18</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">1.23e+18</span>] <br><span class="hljs-built_in">sum</span>(nums)  <span class="hljs-comment"># 0.0 </span><br>math.fsum(nums)  <span class="hljs-comment"># 1.0</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-3-数字的格式化输出"><a href="#3-3-数字的格式化输出" class="headerlink" title="3.3 数字的格式化输出"></a>3.3 数字的格式化输出</h4><p>同时指定宽度和精度的一般形式是 ‘[&lt;&gt;^]?width[,]?(.digits)?’ </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">format</span>(x, <span class="hljs-string">&#x27;0,.1f&#x27;</span>) <br><span class="hljs-string">&#x27;The value is &#123;:0,.2f&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(x) <br>swap_separators = &#123; <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;.&#x27;</span>):<span class="hljs-string">&#x27;,&#x27;</span>, <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;,&#x27;</span>):<span class="hljs-string">&#x27;.&#x27;</span> &#125; <br><span class="hljs-built_in">format</span>(x, <span class="hljs-string">&#x27;,&#x27;</span>).translate(swap_separators) <br></code></pre></td></tr></table></figure>
+<h4 id="3-4-二八十六进制整数"><a href="#3-4-二八十六进制整数" class="headerlink" title="3.4 二八十六进制整数"></a>3.4 二八十六进制整数</h4><p>将整数转换为二进制、八进制或十六进制的文本串: bin() oct() hex()<br>不想输出 0b , 0o 或者 0x 的前缀:format() 函数 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">format</span>(x, <span class="hljs-string">&#x27;b&#x27;</span>) <span class="hljs-comment"># b o x</span><br><span class="hljs-comment"># 产生一个无符号值</span><br>x = -<span class="hljs-number">1234</span> <br><span class="hljs-built_in">format</span>(<span class="hljs-number">2</span>**<span class="hljs-number">32</span> + x, <span class="hljs-string">&#x27;b&#x27;</span>) <br><span class="hljs-comment"># 以不同的进制转换整数字符串</span><br><span class="hljs-built_in">int</span>(<span class="hljs-string">&#x27;4d2&#x27;</span>, <span class="hljs-number">16</span>)<br><span class="hljs-comment"># 指定八进制</span><br>os.chmod(<span class="hljs-string">&#x27;script.py&#x27;</span>, <span class="hljs-number">0o755</span>)  <br></code></pre></td></tr></table></figure>
+<h3 id="3-5-字节到大整数的打包与解包"><a href="#3-5-字节到大整数的打包与解包" class="headerlink" title="3.5 字节到大整数的打包与解包"></a>3.5 字节到大整数的打包与解包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python">data = <span class="hljs-string">b&#x27;\x00\x124V\x00x\x90\xab\x00\xcd\xef\x01\x00#\x004&#x27;</span> <br><span class="hljs-built_in">len</span>(data) <span class="hljs-comment"># 128 位长的 16 个元素的字节字符串</span><br><span class="hljs-comment"># 将 bytes 解析为整数</span><br><span class="hljs-built_in">int</span>.from_bytes(data, <span class="hljs-string">&#x27;little&#x27;</span>) <br><span class="hljs-comment"># 将一个大整数转换为一个字节字符串</span><br>x = <span class="hljs-number">94522842520747284487117727783387188</span> <br>x.to_bytes(<span class="hljs-number">16</span>, <span class="hljs-string">&#x27;big&#x27;</span>) <br><br><span class="hljs-comment"># 利用 struct 模块来解压对于整数的大小是有限制的</span><br>hi, lo = struct.unpack(<span class="hljs-string">&#x27;&gt;QQ&#x27;</span>, data) <br>(hi &lt;&lt; <span class="hljs-number">64</span>) + lo <br><br><span class="hljs-comment"># 使用 int.bit_length() 方法来决定需要多少字节位来存储大整数</span><br>x.bit_length() <br>nbytes, rem = <span class="hljs-built_in">divmod</span>(x.bit_length(), <span class="hljs-number">8</span>) <br>nbytes = nbytes + (rem ? <span class="hljs-number">1</span>: <span class="hljs-number">0</span>) <br>x.to_bytes(nbytes, <span class="hljs-string">&#x27;little&#x27;</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="3-6-复数的数学运算"><a href="#3-6-复数的数学运算" class="headerlink" title="3.6 复数的数学运算"></a>3.6 复数的数学运算</h4><p>复数可以用使用函数 complex(real, imag) 或者是带有后缀 j 的浮点数来指定。<br>执行复数函数比如正弦、余弦或平方根，使用 cmath 模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">a = <span class="hljs-built_in">complex</span>(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>) <br>b = <span class="hljs-number">3</span> - <span class="hljs-number">5j</span> <br>a.real a.imag a.conjugate() <span class="hljs-comment"># 2.0 4.0 (2-4j) </span><br><br>a = np.array([<span class="hljs-number">2</span>+<span class="hljs-number">3j</span>, <span class="hljs-number">4</span>+<span class="hljs-number">5j</span>, <span class="hljs-number">6</span>-<span class="hljs-number">7j</span>, <span class="hljs-number">8</span>+<span class="hljs-number">9j</span>]) <br></code></pre></td></tr></table></figure>
+<h4 id="3-7-无穷大与-NaN"><a href="#3-7-无穷大与-NaN" class="headerlink" title="3.7 无穷大与 NaN"></a>3.7 无穷大与 NaN</h4><p>正无穷、负无穷或 NaN(非数字) 的浮点数<br>可以使用float()来创建<br>math.isinf() 和 math.isnan() 函数<br>NaN值的一个特别的地方时它们之间的比较操作总是返回False</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">a = <span class="hljs-built_in">float</span>(<span class="hljs-string">&#x27;inf&#x27;</span>)<br>b = <span class="hljs-built_in">float</span>(<span class="hljs-string">&#x27;-inf&#x27;</span>)<br>c = <span class="hljs-built_in">float</span>(<span class="hljs-string">&#x27;nan&#x27;</span>) <br></code></pre></td></tr></table></figure>
+
+<h4 id="3-8-分数运算"><a href="#3-8-分数运算" class="headerlink" title="3.8 分数运算"></a>3.8 分数运算</h4><p>fractions 模块可以被用来执行包含分数的数学运算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> fractions <span class="hljs-keyword">import</span> Fraction<br>a = Fraction(<span class="hljs-number">5</span>, <span class="hljs-number">4</span>)<br>b = Fraction(<span class="hljs-number">7</span>, <span class="hljs-number">16</span>)<br>c = a * b <br>c.numerator  c.denominator <br><span class="hljs-built_in">print</span>(c.limit_denominator(<span class="hljs-number">8</span>))  <span class="hljs-comment"># 4/7 </span><br>x = <span class="hljs-number">3.75</span> <br>y = Fraction(*x.as_integer_ratio()) <br></code></pre></td></tr></table></figure>
+<h4 id="3-9-大型数组运算"><a href="#3-9-大型数组运算" class="headerlink" title="3.9 大型数组运算"></a>3.9 大型数组运算</h4><p>涉及到数组的重量级运算操作，可以使用NumPy库。NumPy的一个主要特征是它会给Python提供一个数组对象，相比标准的Python列表更适合用来做数学运算。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">grid = np.zeros(shape=(<span class="hljs-number">10000</span>,<span class="hljs-number">10000</span>), dtype=<span class="hljs-built_in">float</span>) <br>a = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>], [<span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>]]) <br>np.where(a &lt; <span class="hljs-number">10</span>, a, <span class="hljs-number">10</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="3-10-矩阵与线性代数运算"><a href="#3-10-矩阵与线性代数运算" class="headerlink" title="3.10 矩阵与线性代数运算"></a>3.10 矩阵与线性代数运算</h4><p>numpy.linalg中包含操作函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">m = np.matrix([[<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,-<span class="hljs-number">9</span>]]) <br>m.T  m.I<br>v = np.matrix([[<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>]]) <br>m * v <br>numpy.linalg.det(m) <br>numpy.linalg.eigvals(m) <br>x = numpy.linalg.solve(m, v) <br></code></pre></td></tr></table></figure>
+<h4 id="3-11-随机选择"><a href="#3-11-随机选择" class="headerlink" title="3.11 随机选择"></a>3.11 随机选择</h4><p>random 模块有大量的函数用来产生随机数和随机选择元素。<br>random 模块使用 Mersenne Twister 算法来计算生成随机数。<br>random.uniform()计算均匀分布随机数，random.gauss()计算正态分布随机数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">values = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>] <br>random.choice(values)<br>random.sample(values, <span class="hljs-number">2</span>) <br>random.shuffle(values)<br>random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>) <br>random.random() <span class="hljs-comment"># 生成 0 到 1 范围内均匀分布的浮点数</span><br>random.getrandbits(<span class="hljs-number">200</span>) <span class="hljs-comment"># 获取 N 位随机位 (二进制) 的整数  </span><br></code></pre></td></tr></table></figure>
+<h4 id="3-12-基本的日期与时间转换"><a href="#3-12-基本的日期与时间转换" class="headerlink" title="3.12 基本的日期与时间转换"></a>3.12 基本的日期与时间转换</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> timedelta<br>a = timedelta(days=<span class="hljs-number">2</span>, hours=<span class="hljs-number">6</span>)<br>b = timedelta(hours=<span class="hljs-number">4.5</span>)<br>c = a + b <br><br>a = datetime(<span class="hljs-number">2012</span>, <span class="hljs-number">9</span>, <span class="hljs-number">23</span>) <br><span class="hljs-built_in">print</span>(a + timedelta(days=<span class="hljs-number">10</span>)) <br>now = datetime.today() <br><br><span class="hljs-keyword">from</span> dateutil.relativedelta <span class="hljs-keyword">import</span> relativedelta <br>a + relativedelta(months=+<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-13-计算最后一个周五的日期"><a href="#3-13-计算最后一个周五的日期" class="headerlink" title="3.13 计算最后一个周五的日期"></a>3.13 计算最后一个周五的日期</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime, timedelta <br>weekdays = [<span class="hljs-string">&#x27;Monday&#x27;</span>, <span class="hljs-string">&#x27;Tuesday&#x27;</span>, <span class="hljs-string">&#x27;Wednesday&#x27;</span>, <span class="hljs-string">&#x27;Thursday&#x27;</span>, <span class="hljs-string">&#x27;Friday&#x27;</span>, <span class="hljs-string">&#x27;Saturday&#x27;</span>, <span class="hljs-string">&#x27;Sunday&#x27;</span>] <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_previous_byday</span>(<span class="hljs-params">dayname, start_date=<span class="hljs-literal">None</span></span>):</span> <br>	<span class="hljs-keyword">if</span> start_date <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>: <br>		start_date = datetime.today() <br>	day_num = start_date.weekday() <br>	day_num_target = weekdays.index(dayname) <br>	days_ago = (<span class="hljs-number">7</span> + day_num - day_num_target) % <span class="hljs-number">7</span> <br>	<span class="hljs-keyword">if</span> days_ago == <span class="hljs-number">0</span>: <br>		days_ago = <span class="hljs-number">7</span> <br>	target_date = start_date - timedelta(days=days_ago) <br>	<span class="hljs-keyword">return</span> target_date <br>	<br><span class="hljs-comment"># Next Friday</span><br><span class="hljs-built_in">print</span>(d + relativedelta(weekday=FR)) <br></code></pre></td></tr></table></figure>
+<h4 id="3-14-计算当前月份的日期范围"><a href="#3-14-计算当前月份的日期范围" class="headerlink" title="3.14 计算当前月份的日期范围"></a>3.14 计算当前月份的日期范围</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 接受任意 datetime 对象并返回一个由当前月份开始日和下个月开始日组成的元组对象</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_month_range</span>(<span class="hljs-params">start_date=<span class="hljs-literal">None</span></span>):</span> <br>	<span class="hljs-keyword">if</span> start_date <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>: <br>		start_date = date.today().replace(day=<span class="hljs-number">1</span>) <br>	_, days_in_month = calendar.monthrange(start_date.year, start_date.month) <br>	end_date = start_date + timedelta(days=days_in_month) <br>	<span class="hljs-keyword">return</span> (start_date, end_date) <br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">date_range</span>(<span class="hljs-params">start, stop, step</span>):</span> <br>	<span class="hljs-keyword">while</span> start &lt; stop: <br>		<span class="hljs-keyword">yield</span> start <br>		start += step <br><span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> date_range(datetime(<span class="hljs-number">2012</span>, <span class="hljs-number">9</span>, <span class="hljs-number">1</span>), datetime(<span class="hljs-number">2012</span>,<span class="hljs-number">10</span>,<span class="hljs-number">1</span>), timedelta(hours=<span class="hljs-number">6</span>)): <br></code></pre></td></tr></table></figure>
+<h4 id="3-15-字符串转换为日期"><a href="#3-15-字符串转换为日期" class="headerlink" title="3.15 字符串转换为日期"></a>3.15 字符串转换为日期</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">y = datetime.strptime(text, <span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>) <br>nice_z = datetime.strftime(z, <span class="hljs-string">&#x27;%A %B %d, %Y&#x27;</span>) <span class="hljs-comment"># &#x27;Sunday September 23, 2012&#x27; </span><br></code></pre></td></tr></table></figure>
+<p>strptime()使用纯Python实现，并且必须处理所有的系统本地设置。可以自己实现一套解析方案来获取更好的性能。</p>
+<h4 id="3-16-结合时区的日期操作"><a href="#3-16-结合时区的日期操作" class="headerlink" title="3.16 结合时区的日期操作"></a>3.16 结合时区的日期操作</h4><p>处理本地化日期的通常的策略先将所有日期转换为UTC时间，并用它来执行所有的中间存储和操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 将 datetime 库创建的简单日期对象本地化</span><br>central = timezone(<span class="hljs-string">&#x27;US/Central&#x27;</span>) <br>loc_d = central.localize(d)<br>bang_d = loc_d.astimezone(timezone(<span class="hljs-string">&#x27;Asia/Kolkata&#x27;</span>))<br><br>utc_d = loc_d.astimezone(pytz.utc)<br><span class="hljs-comment"># 可以使 用 ISO 3166 国家代码作为关键字去查阅字典 pytz.country_timezones得到时区的名称</span><br>pytz.country_timezones[<span class="hljs-string">&#x27;IN&#x27;</span>]  <br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/15/Python_Codebook/%E7%AC%AC%E4%B8%89%E7%AB%A0_%E6%95%B0%E5%AD%97%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;15&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%B8%89%E7%AB%A0_%E6%95%B0%E5%AD%97%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;15&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%B8%89%E7%AB%A0_%E6%95%B0%E5%AD%97%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/15/Python_Codebook/%E7%AC%AC%E5%9B%9B%E7%AB%A0_%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%94%9F%E6%88%90%E5%99%A8/"><i class="iconfont iconleft"></i>第四章_迭代器与生成器</a>
+    <a href="/2022/02/14/Python_Codebook/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%96%87%E6%9C%AC/">第二章_字符串和文本<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%AD%97%E8%8A%82%E5%88%B0%E5%A4%A7%E6%95%B4%E6%95%B0%E7%9A%84%E6%89%93%E5%8C%85%E4%B8%8E%E8%A7%A3%E5%8C%85"><span class="toc-text">3.5 字节到大整数的打包与解包</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

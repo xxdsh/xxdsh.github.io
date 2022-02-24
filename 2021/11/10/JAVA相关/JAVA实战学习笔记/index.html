@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JAVA实战学习笔记 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="跨平台/可移植性 安全性 面向对象 简单性 高性能 分...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">JAVA实战学习笔记</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%A4%A7%E5%8C%97%E6%96%97/img-7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">JAVA实战学习笔记</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 10, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6098</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>跨平台/可移植性 安全性 面向对象 简单性 高性能 分布式 多线程 健壮性<br>Java = 编译型(编译器编译成字节码) + 解释型(虚拟机JVM(Java Virtual Machine)(解释器)解释执行 屏蔽底层运行平台差异)<br>Jave Runtime Environment(JRE):Java虚拟机 库函数 运行Java应用程序所必须的文件<br>Java Development Kit(JDK):包含JRE,以及增加编译器和调试器等用于程序开发的文件<br>JavaSE(Java Standard Edition):标准版，个人计算机上的应用；JavaEE(Java Enterprise Edition):企业版，定位在服务器端的应用； JavaME(Java Micro Edition):微型版，定位在消费性电子产品的应用上<br><img    class="lazyload" data-original="https://i.loli.net/2021/10/26/hkEBNZjMHVJrRlt.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">局部变量 成员变量 静态变量的区别</span><br>声明常量：final type varName = value 字符常量 符号常量<br>基本数据类型(数值型(byte short int long float double) 字符型(char) 布尔型(boolean)) + 引用数据类型(类(class) 接口(interface) 数组) BigDecimal和BigInteger 注意浮点数比较(精度影响)<br>BigDecimal bd = BigDecimal.valueOf(1.0);<br>bd = bd.subtract(BigDecimal.valueOf(0.1));<br>char 2个字节 unicode 65535 \u<br>算术运算符 + - * / % 注意运算结果的类型 余数符号和左边操作数相同<br>逻辑与&amp; 短路与&amp;&amp; 位运算<br>面向过程和面向对象 软件分析、设计和开发 面向对象分析(OOA) 面向对象设计(OOD) 面向对象编程(OOP) 面向过程是一种“执行者思维” 面向对象是一种“设计者思维” 面向对象离不开面向过程<br>程序技术器(Program Counter Register 每个线程有自己的程序计数器 存储当前线程正在执行的Java方法的JVM指令地址) 虚拟机栈(Java Virtal Machine Statc 线程私有 栈帧) 本地方法栈(Nativate Method Statck 调用本地方法时使用的栈) 方法区(又叫静态区 所有线程共享，存储被虚拟机加载的元数据，包括类信息、常量、静态变量、即时编译器编译后的代码) 运行时常量池(Run-time Constant Pool 方法区中 存放字面量和符号引用) 堆(几乎所有创建的Java对象实例都是直接分配到堆上的) 新生代 老年代 直接内存(属于Java虚拟机运行时数据区的一部分) 其它内存<br>虚拟机的内存可以分为三个区域：虚拟机栈stack 堆heap 方法区method area<br>同一类的对象有不同的成员变量存储空间； 同一类的每个对象共享该类的方法<br>对中对象的管理 对象空间的分配 对象空间的释放 垃圾回收过程：发现无用的对象；回收无用对象占用的内存空间； 垃圾回收相关算法：引用计数法；引用可达法；<br>分代垃圾回收机制：不同的对象的生命周期是不一样的； 年轻代(Minor  GC 效率较高 操作频繁 浪费内存空间)  年老代(Major GC和Full GC) 持久代(JDK8以后没有，使用metaspace元数据空间和堆替代) Eden Survivor(循环存取 存放垃圾回收后，仍然有用的对象) Tenured/Old 创建大量无用对象 静态集合类的使用(HashMap, Vector, List等) 各种连接对象未关闭(IO流对象 数据库连接对象 网络连接对象) 监听器的使用<br>有如下原因可能导致Full GC: 1. 年老代被写满 2.持久代被写满 3.System.gc()被显式调用 4.上一次GC之后Heap的各域分配策略动态变化<br>this的本质是“创建好的对象的地址” 创建对象的过程：分配空间，赋默认值，调用构造方法(this是隐藏参数)，返回对象的地址给相关的变量。 普通方法中this指向调用该方法的对象，构造方法中，this指向正要初始化的对象；使用this关键字调用重载的方法；this不能用于static方法<br>static方法不能调非静态方法<br>package 域名倒着写 java.lang.Object<br>静态导入(static import)：用于导入指定类的静态属性和静态方法<br><strong>继承</strong>(代码复用，更加容易实现类的扩展；方便建模) <strong>封装</strong> <strong>多态</strong>(同一个方法调用，由于对象不同可能会有不同的行为 条件：继承 方法重写 父类引用指向子类对象) 抽象类 接口 内部类<br>对象 instanceof 类 (对当象是右面类或自雷所创建对象时，返回true)<br>重写Override 方法名、形参列表相同 + 返回值类型和声明异常类型，子类小于等于父类 + 访问权限，子类大于等于父类<br>final关键字的作用：修饰变量(被修饰的变量不可改变)； 修饰方法(该方法不可被子类重写)； 修饰类(修饰的类不能被继承)<br>组合的核心是将父类对象作为子类的属性，然后子类通过调用这个属性来获得父类的属性和方法<br>Object类时所有Java类的根基类，也意味着所有的Java对象都用于Object类的属性<br>toString “类名 + @ + 16进制的hashcode” 在打印输出或者用字符串连接对象时，会自动调用该对象的toString()方法<br>==：基本类型值相等，引用类型地址相等；equals对象内容相等 默认比较两个对象的hashcode<br>super可以看做是直接父类对象的引用，可以通过super来访问父类中被子类覆盖的方法或属性<br>构造方法的第一行代码没有显示的调用super()或者this()，那么Java默认都会调用super()，含义是调用父类的无参数构造方法<br>属性/方法查找顺序； 构造方法调用顺序；<br>封装：高内聚(类的内部数据操作细节自己完成，不允许外部干涉)，低耦合(仅暴露少量的方法给外部使用，经历方便外部调用) 安全性 复用性<br>访问控制符：private,default,protocted,public 同一个类 同一个包中 子类(可位于其他包) 所有类<br>若父类和子类在同一个包中，子类可以访问父类的protocted成员，也可访问父类对象的protocted成员<br>若父类和子类不在同一个包中，子类可以访问父类的protocted成员，不能访问父类对象的protocted成员<br>多态用法一：父类引用作为方法的形参，实参可以是任意的子类对象，可以通过不同的子类对象实现不同的行为方式<br>抽象方法：使用abstract修饰的方法，没有方法体，只有声明；包含抽象方法的类就是抽象类，要求子类必须实现具体实现。<br>接口是比抽象类还抽象的抽象类，可以更加规范的对子类进行约束。规范和具体实现的分离<br>接口定义了可以向外部提供的服务；接口定义了实现者能提供哪些服务<br>接口：访问修饰符(public或默认) 接口名 extentds 常量(public static final) 方法(public abstract) implements 不能创建实例，但是可用于声明引用变量类型 必须实现接口中所有方法<br>接口中定义的静态方法(从属于接口，可以直接通过接口名调用)和默认方法(使用default关键词) 默认方法中可以调用静态方法<br>Java字符串是Unicode字符序列 全局字符串常量池(每个VM中只有一份) class文件常量池(每个clss都有) 运行时常量池(将class常量池中的符号殷涌智转存到运行时常量池中) charAt equals equalsIgnoreCase indexOf lastIndexOf length replace startsWith endsWith substring toLowerCase toUpperCase trim<br>内部类：成员内部类(非静态内部类 + 静态内部类) + 匿名内部类 + 局部内部类； 内部类可以使用public default protected private以及static修饰； 内部类是相对独立的一种存在，其成员变量/方法名可以和外部类的相同 内部类可以直接访问外部类的私有属性， 内部类被当成其外部类的成员。 但外部类 不能访问内部类的内部属性 非静态内部类不能有静态方法、静态属性和静态初始化块 内部类里方法的局部变量：变量名。  内部类属性：this.变量名。  外部类属性：外部类名.this.变量名。 Outer1.Inner1 inner = new Outer1().new Inner1();  静态内部类可以访问外部类的静态成员，不能访问外部类的普通成员。 静态内部类看做外部类的一个静态成员。<br>new 父类构造器(实参类表)\实现接口 (){ //匿名内部类类体！ } </p>
+<p>数组是相同类型数据的有序集合，数组变量属于引用类型，数组也是对象。<br>静态初始化 动态初始化 默认初始化<br>包装类：作为和基本数据类型对应的类型存在，方便涉及到对象的操作； 包含每种基本数据类型的相关属性如最大值、最小值等，以及相关的操作方法<br>Integer int2 = Integer.valueOf(20); // 官方推荐这种写法<br>int a = int2.intValue();<br>Integer int3 = Integer.parseInt(“334”);<br>String str1 = int3.toString();<br>整型、char类型所对应的包装类，在自动装箱时，对于-128~127之间的值会进行缓存 处理，其目的是提高效率。<br>String类(不可变 final) StringBuilder类(线程不安全，不做线程同步检查，因此效率较高) StringBuffer类(线程安全，做线程同步检查， 效率较低)<br>String s1 = new String(“abcdef”);<br>System.out.println(Integer.toHexString(s1.hashCode()));<br>遇到字符串常量之间的拼接时， 编译器会做出优化， 即在编译期间就会完成字符串的拼接。<br>append delete deleteCharAt insert reverse toString indexOf substring length charAt<br>long num1 = Runtime.getRuntime().freeMemory();//获取系统剩余内存空间<br>long time1 = System.currentTimeMillis();//获取系统的当前时间<br>1970 年 1 月 1 日 00:00:00  每个度量单 位是毫秒(1 秒的千分之一)<br>获得现在时刻的“时刻数值”(单位为毫秒):long now = System.currentTimeMillis();<br>Date类的对象表示一个特定的瞬间，精确到毫秒。 Date(long date)<br>System.out.println(d.getTime()); //返回时间对应的毫秒数<br>DateFormat 类的作用：把时间对象转化成指定格式的字符串。反之，把指定格式的字符串转化成时间对象。DateFormat 是一个抽象类，一般使用它的的子类 SimpleDateFormat 类来实现。<br>SimpleDateFormat s1 = new SimpleDateFormat(“yyyy-MM-dd hh:mm:ss”);<br>String daytime = s1.format(new Date());<br>String time = 2027-10-7 20:15:30”;<br>date=s1.parse(time);<br>Calendar 类是一个抽象类，为我们提供了关于日期计算的相关功能，比如：年、月、 日、时、分、秒的展示和计算。GregorianCalendar 是 Calendar 的一个具体子类，提供了世界上大多数国家/地区 使用的标准日历系统。<br>GregorianCalendar calendar = new GregorianCalendar(2999, 10, 9, 22, 10, 50);<br>int year = calendar.get(Calendar.YEAR); // 打印：2999<br>GregorianCalendar calendar2 = new GregorianCalendar(); calendar2.set(Calendar.YEAR, 2999);<br>calendar1.add(Calendar.MONTH, -7); // 月份减 7<br>// 日历对象和时间对象转化<br>Date d = calendar3.getTime();<br>GregorianCalendar calendar4 = new GregorianCalendar();<br>calendar4.setTime(new Date());<br>Random rand = new Random();<br>System.out.println(rand.nextInt());<br>System.out.print(rand.nextInt(10));<br>System.out.print(20 + rand.nextInt(10));<br>java.io.File 类：代表文件和目录。 在开发中，读取文件、生成文件、删除文件、修改 文件的属性时经常会用到本类。<br>System.out.println(System.getProperty(“user.dir”));<br>异常指程序运行过程中出现的非正常现象，例如用户输入错误、除数为零、需要处理的 文件不存在、数组下标越界等。<br>所谓异常处理，就是指程序在出现问题时依然可以正确的执行完。<br>Java 是采用面向对象的方式来处理异常的。<br>处理过程： 抛出异常：在执行一个方法时，如果发生异常，则这个方法生成代表该异常的一个对象，停止当前执行路径，并把异常对象提交给JRE。 <br>捕获异常：JRE得到该异常后，寻找相应的代码来处理该异常。JRE在方法的调用栈中查找，从生成异常的方法开始回溯，直到找到相应的异常处理代码为止。<br>java.lang.Throwable下面派生了两个子类：Error(程序无法处理的错误) 和 Exception(程序本身能够处理的异常)(空指针异常(NullPointerException)、 数组下标越界异常(ArrayIndexOutOfBoundsException)、 类型转换异常(ClassCastException)、算术异常(ArithmeticException)等)(RuntimeException 运行时异常 CheckedException 已检查异常)</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/11/10/JAVA%E7%9B%B8%E5%85%B3/JAVA%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;10&#x2F;JAVA%E7%9B%B8%E5%85%B3&#x2F;JAVA%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;11&#x2F;10&#x2F;JAVA%E7%9B%B8%E5%85%B3&#x2F;JAVA%E5%AE%9E%E6%88%98%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/11/10/%E5%85%AC%E5%8A%A1%E5%91%98%E7%9B%B8%E5%85%B3/%E8%A1%8C%E6%B5%8B/"><i class="iconfont iconleft"></i>行测</a>
+    <a href="/2021/11/10/JAVA%E7%9B%B8%E5%85%B3/JAVA%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">JAVA编程思想<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

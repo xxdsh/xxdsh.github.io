@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第七章_函数 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="7.1 可接受任意数量参数的函数为了能让一个函数接受任...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第七章_函数</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%BC%80%E5%BC%80%E5%BF%83%E5%BF%83%E6%B5%AA%E6%B5%AA%E9%92%89/img-2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第七章_函数</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 15, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1073</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="7-1-可接受任意数量参数的函数"><a href="#7-1-可接受任意数量参数的函数" class="headerlink" title="7.1 可接受任意数量参数的函数"></a>7.1 可接受任意数量参数的函数</h4><p>为了能让一个函数接受任意数量的位置参数，可以使用一个 * 参数<br>为了接受任意数量的关键字参数，使用一个以 ** 开头的参数。</p>
+<h4 id="7-2-只接受关键字参数的函数"><a href="#7-2-只接受关键字参数的函数" class="headerlink" title="7.2 只接受关键字参数的函数"></a>7.2 只接受关键字参数的函数</h4><h4 id="7-3-给函数参数增加元信息"><a href="#7-3-给函数参数增加元信息" class="headerlink" title="7.3 给函数参数增加元信息"></a>7.3 给函数参数增加元信息</h4><p>函数注解只存储在函数的__annotations__属性中。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span>(<span class="hljs-params">x:<span class="hljs-built_in">int</span>, y:<span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:</span> <br></code></pre></td></tr></table></figure>
+
+<h4 id="7-4-返回多个值的函数"><a href="#7-4-返回多个值的函数" class="headerlink" title="7.4 返回多个值的函数"></a>7.4 返回多个值的函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">a = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>b = <span class="hljs-number">1</span>, <span class="hljs-number">2</span> <span class="hljs-comment"># Without parentheses </span><br></code></pre></td></tr></table></figure>
+<h4 id="7-5-定义有默认参数的函数"><a href="#7-5-定义有默认参数的函数" class="headerlink" title="7.5 定义有默认参数的函数"></a>7.5 定义有默认参数的函数</h4><p>默认参数的值应该是不可变的对象，比如 None、True、False、数字或字符串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 问题在于尽管 None 值确实是被当成 False，但是还有其他的对象 (比如长度为 0 的字符串、列表、元组、字典等) 都会被当做 False</span><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> b: <span class="hljs-comment"># NO! Use &#x27;b is None&#x27; instead </span><br></code></pre></td></tr></table></figure>
+<h4 id="7-6-定义匿名或内联函数"><a href="#7-6-定义匿名或内联函数" class="headerlink" title="7.6 定义匿名或内联函数"></a>7.6 定义匿名或内联函数</h4><p>指定单个表达式，它的值就是最后的返回值。即lamda表达式不能包含其他的语言特性了，包括多个语句、条件表达式、迭代以及异常处理等 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">sorted</span>(names, key=<span class="hljs-keyword">lambda</span> name: name.split()[-<span class="hljs-number">1</span>].lower()) <br></code></pre></td></tr></table></figure>
+<h4 id="7-7-匿名函数捕获变量值"><a href="#7-7-匿名函数捕获变量值" class="headerlink" title="7.7 匿名函数捕获变量值"></a>7.7 匿名函数捕获变量值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#  x 是一个自由变量，在运行时绑定值</span><br>x = <span class="hljs-number">10</span> <br>a = <span class="hljs-keyword">lambda</span> y: x + y <br>x = <span class="hljs-number">20</span><br>b = <span class="hljs-keyword">lambda</span> y: x + y <br>a(<span class="hljs-number">10</span>) b(<span class="hljs-number">10</span>) <span class="hljs-comment"># 30 30</span><br><span class="hljs-comment"># 参数值定义成默认参数,在定义时绑定到值</span><br>a = <span class="hljs-keyword">lambda</span> y, x=x: x + y <br>a(<span class="hljs-number">10</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="7-8-减少可调用对象的参数个数"><a href="#7-8-减少可调用对象的参数个数" class="headerlink" title="7.8 减少可调用对象的参数个数"></a>7.8 减少可调用对象的参数个数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">spam</span>(<span class="hljs-params">a, b, c, d</span>):</span> <br>s1 = partial(spam, <span class="hljs-number">1</span>) <span class="hljs-comment"># a = 1 </span><br>s3 = partial(spam, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, d=<span class="hljs-number">42</span>) <span class="hljs-comment"># a = 1, b = 2, d = 42 </span><br></code></pre></td></tr></table></figure>
+<h4 id="7-9-将单方法的类转换为函数"><a href="#7-9-将单方法的类转换为函数" class="headerlink" title="7.9 将单方法的类转换为函数"></a>7.9 将单方法的类转换为函数</h4><p>拥有一个单方法类的原因是需要存储某些额外的状态来给方法使用。<br>一个闭包就是一个函数，只不过在函数内部带上了一个额外的变量环境。闭包关键特点就是它会记住自己被定义时的环境。</p>
+<h4 id="7-10-带额外状态信息的回调函数"><a href="#7-10-带额外状态信息的回调函数" class="headerlink" title="7.10 带额外状态信息的回调函数"></a>7.10 带额外状态信息的回调函数</h4><p>至少有两种主要方式来捕获和保存状态信息，你可以在一个对象实例 (通过一个绑 定方法) 或者在一个闭包中保存它。</p>
+<h4 id="7-11-内联回调函数"><a href="#7-11-内联回调函数" class="headerlink" title="7.11 内联回调函数"></a>7.11 内联回调函数</h4><p>通过使用生成器和协程可以使得回调函数内联在某个函数中。</p>
+<h4 id="7-12-访问闭包中定义的变量"><a href="#7-12-访问闭包中定义的变量" class="headerlink" title="7.12 访问闭包中定义的变量"></a>7.12 访问闭包中定义的变量</h4>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/15/Python_Codebook/%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%87%BD%E6%95%B0/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;15&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%87%BD%E6%95%B0&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;15&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%87%BD%E6%95%B0&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%85%AB%E7%AB%A0_%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/"><i class="iconfont iconleft"></i>第八章_类与对象</a>
+    <a href="/2022/02/15/Python_Codebook/%E7%AC%AC%E5%85%AD%E7%AB%A0_%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E5%92%8C%E5%A4%84%E7%90%86/">第六章_数据编码和处理<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

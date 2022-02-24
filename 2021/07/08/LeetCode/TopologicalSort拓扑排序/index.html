@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TopologicalSort拓扑排序 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="123456789101112131415161718...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">TopologicalSort拓扑排序</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">TopologicalSort拓扑排序</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 08, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>17281</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unordered_map&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TopologicalSort</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> vertices, <span class="hljs-keyword">const</span> vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;<br>		vector&lt;<span class="hljs-keyword">int</span>&gt; sortedOrder;<br>		<span class="hljs-keyword">if</span> (vertices &lt;= <span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">return</span> sortedOrder;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; inDegree;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; graph;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; vertices; i++) &#123;<br>			inDegree[i] = <span class="hljs-number">0</span>;<br>			graph[i] = vector&lt;<span class="hljs-keyword">int</span>&gt;();<br>		&#125;<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; edges.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			<span class="hljs-keyword">int</span> parent = edges[i][<span class="hljs-number">0</span>], child = edges[i][<span class="hljs-number">1</span>];<br>			graph[parent].<span class="hljs-built_in">push_back</span>(child);<br>			inDegree[child]++;<br>		&#125;<br><br>		queue&lt;<span class="hljs-keyword">int</span>&gt; sources;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> item : inDegree) &#123;<br>			<span class="hljs-keyword">if</span> (item.second == <span class="hljs-number">0</span>) &#123;<br>				sources.<span class="hljs-built_in">push</span>(item.first);<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">while</span> (!sources.<span class="hljs-built_in">empty</span>()) &#123;<br>			<span class="hljs-keyword">int</span> vertex = sources.<span class="hljs-built_in">front</span>();<br>			sources.<span class="hljs-built_in">pop</span>();<br>			sortedOrder.<span class="hljs-built_in">push_back</span>(vertex);<br>			vector&lt;<span class="hljs-keyword">int</span>&gt; children = graph[vertex];<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> child : children) &#123;<br>				inDegree[child]--;<br>				<span class="hljs-keyword">if</span> (inDegree[child] == <span class="hljs-number">0</span>) &#123;<br>					sources.<span class="hljs-built_in">push</span>(child);<br>				&#125;<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">if</span> (sortedOrder.<span class="hljs-built_in">size</span>() != vertices)<br>			<span class="hljs-keyword">return</span> vector&lt;<span class="hljs-keyword">int</span>&gt;();<br>		<span class="hljs-keyword">return</span> sortedOrder;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskScheduling</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">isSchedulingPossible</span><span class="hljs-params">(<span class="hljs-keyword">int</span> tasks, <span class="hljs-keyword">const</span> vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;<br>		vector&lt;<span class="hljs-keyword">int</span>&gt; sortedOrder;<br>		<span class="hljs-keyword">if</span> (tasks &lt;= <span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; inDegree;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; graph;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; tasks; i++) &#123;<br>			inDegree[i] = <span class="hljs-number">0</span>;<br>			graph[i] = vector&lt;<span class="hljs-keyword">int</span>&gt;();<br>		&#125;<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; prerequisites.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			<span class="hljs-keyword">int</span> parent = prerequisites[i][<span class="hljs-number">0</span>], child = prerequisites[i][<span class="hljs-number">1</span>];<br>			graph[parent].<span class="hljs-built_in">push_back</span>(child);<br>			inDegree[child]++;<br>		&#125;<br><br>		queue&lt;<span class="hljs-keyword">int</span>&gt; sources;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> item : inDegree) &#123;<br>			<span class="hljs-keyword">if</span> (item.second == <span class="hljs-number">0</span>) &#123;<br>				sources.<span class="hljs-built_in">push</span>(item.first);<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">while</span> (!sources.<span class="hljs-built_in">empty</span>()) &#123;<br>			<span class="hljs-keyword">int</span> vertex = sources.<span class="hljs-built_in">front</span>();<br>			sources.<span class="hljs-built_in">pop</span>();<br>			sortedOrder.<span class="hljs-built_in">push_back</span>(vertex);<br>			vector&lt;<span class="hljs-keyword">int</span>&gt; children = graph[vertex];<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> child : children) &#123;<br>				inDegree[child]--;<br>				<span class="hljs-keyword">if</span> (inDegree[child] == <span class="hljs-number">0</span>) &#123;<br>					sources.<span class="hljs-built_in">push</span>(child);<br>				&#125;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> sortedOrder.<span class="hljs-built_in">size</span>() == tasks;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskSchedulingOrder</span>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">findOrder</span><span class="hljs-params">(<span class="hljs-keyword">int</span> tasks, <span class="hljs-keyword">const</span> vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;<br>		vector&lt;<span class="hljs-keyword">int</span>&gt; sortedOrder;<br>		<span class="hljs-keyword">if</span> (tasks &lt;= <span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">return</span> sortedOrder;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; inDegree;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; graph;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; tasks; i++) &#123;<br>			inDegree[i] = <span class="hljs-number">0</span>;<br>			graph[i] = vector&lt;<span class="hljs-keyword">int</span>&gt;();<br>		&#125;<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; prerequisites.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			<span class="hljs-keyword">int</span> parent = prerequisites[i][<span class="hljs-number">0</span>], child = prerequisites[i][<span class="hljs-number">1</span>];<br>			graph[parent].<span class="hljs-built_in">push_back</span>(child);<br>			inDegree[child]++;<br>		&#125;<br><br>		queue&lt;<span class="hljs-keyword">int</span>&gt; sources;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> item : inDegree) &#123;<br>			<span class="hljs-keyword">if</span> (item.second == <span class="hljs-number">0</span>) &#123;<br>				sources.<span class="hljs-built_in">push</span>(item.first);<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">while</span> (!sources.<span class="hljs-built_in">empty</span>()) &#123;<br>			<span class="hljs-keyword">int</span> vertex = sources.<span class="hljs-built_in">front</span>();<br>			sources.<span class="hljs-built_in">pop</span>();<br>			sortedOrder.<span class="hljs-built_in">push_back</span>(vertex);<br>			vector&lt;<span class="hljs-keyword">int</span>&gt; children = graph[vertex];<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> child : children) &#123;<br>				inDegree[child]--;<br>				<span class="hljs-keyword">if</span> (inDegree[child] == <span class="hljs-number">0</span>) &#123;<br>					sources.<span class="hljs-built_in">push</span>(child);<br>				&#125;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">if</span> (sortedOrder.<span class="hljs-built_in">size</span>() != tasks)<br>			<span class="hljs-keyword">return</span> vector&lt;<span class="hljs-keyword">int</span>&gt;();<br>		<span class="hljs-keyword">return</span> sortedOrder;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AllTaskSchedulingOrders</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printOrders</span><span class="hljs-params">(<span class="hljs-keyword">int</span> tasks, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;<br>		vector&lt;<span class="hljs-keyword">int</span>&gt; sortedOrder;<br>		<span class="hljs-keyword">if</span> (tasks &lt;= <span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">return</span>;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; inDegree;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; graph;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; tasks; i++) &#123;<br>			inDegree[i] = <span class="hljs-number">0</span>;<br>			graph[i] = vector&lt;<span class="hljs-keyword">int</span>&gt;();<br>		&#125;<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; prerequisites.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			<span class="hljs-keyword">int</span> parent = prerequisites[i][<span class="hljs-number">0</span>], child = prerequisites[i][<span class="hljs-number">1</span>];<br>			graph[parent].<span class="hljs-built_in">push_back</span>(child);<br>			inDegree[child]++;<br>		&#125;<br><br>		vector&lt;<span class="hljs-keyword">int</span>&gt; sources;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> item : inDegree) &#123;<br>			<span class="hljs-keyword">if</span> (item.second == <span class="hljs-number">0</span>) &#123;<br>				sources.<span class="hljs-built_in">push_back</span>(item.first);<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-built_in">printAllTopologicalSorts</span>(graph, inDegree, sources, sortedOrder);<br><br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printAllTopologicalSorts</span><span class="hljs-params">(unordered_map&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; graph,</span></span><br><span class="hljs-params"><span class="hljs-function">		unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&amp; inDegree, <span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; sources, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; sortedOrder)</span> </span>&#123;<br>		<span class="hljs-keyword">if</span> (!sources.<span class="hljs-built_in">empty</span>()) &#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> vertex : sources) &#123;<br>				sortedOrder.<span class="hljs-built_in">push_back</span>(vertex);<br>				vector&lt;<span class="hljs-keyword">int</span>&gt; sourcesForNextCall = sources;<br><br>				sourcesForNextCall.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">find</span>(sourcesForNextCall.<span class="hljs-built_in">begin</span>(), sourcesForNextCall.<span class="hljs-built_in">end</span>(), vertex));<br><br>				vector&lt;<span class="hljs-keyword">int</span>&gt; children = graph[vertex];<br>				<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> child : children) &#123;<br>					inDegree[child]--;<br>					<span class="hljs-keyword">if</span> (inDegree[child] == <span class="hljs-number">0</span>) &#123;<br>						sourcesForNextCall.<span class="hljs-built_in">push_back</span>(child);<br>					&#125;<br>				&#125;<br><br>				<span class="hljs-built_in">printAllTopologicalSorts</span>(graph, inDegree, sourcesForNextCall, sortedOrder);<br><br>				sortedOrder.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">find</span>(sortedOrder.<span class="hljs-built_in">begin</span>(), sortedOrder.<span class="hljs-built_in">end</span>(), vertex));<br>				<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> child : children) &#123;<br>					inDegree[child]++;<br>				&#125;<br><br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">if</span> (sortedOrder.<span class="hljs-built_in">size</span>() == inDegree.<span class="hljs-built_in">size</span>()) &#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> num : sortedOrder) &#123;<br>				cout &lt;&lt; num &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>			&#125;<br>			cout &lt;&lt; endl;<br>		&#125;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AlienDictionary</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> string <span class="hljs-title">findOrder</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;string&gt;&amp; words)</span> </span>&#123;<br>		<span class="hljs-keyword">if</span> (words.<span class="hljs-built_in">empty</span>())<br>			<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; inDegree;<br>		unordered_map&lt;<span class="hljs-keyword">char</span>, vector&lt;<span class="hljs-keyword">char</span>&gt;&gt; graph;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; words.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; words[i].<span class="hljs-built_in">length</span>(); j++) &#123;<br>				inDegree[words[i][j]] = <span class="hljs-number">0</span>;<br>				graph[words[i][j]]= vector&lt;<span class="hljs-keyword">char</span>&gt;();<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; words.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i++) &#123;<br>			string w1 = words[i], w2 = words[i+<span class="hljs-number">1</span>];<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-built_in">min</span>(w1.<span class="hljs-built_in">length</span>(), w2.<span class="hljs-built_in">length</span>()); j++) &#123;<br>				<span class="hljs-keyword">char</span> parent = w1[j], child = w2[j];<br>				<span class="hljs-keyword">if</span> (parent != child) &#123;<br>					graph[parent].<span class="hljs-built_in">push_back</span>(child);<br>					inDegree[child]++;<br>					<span class="hljs-keyword">break</span>;<br>				&#125;<br>			&#125;<br>		&#125;<br><br>		queue&lt;<span class="hljs-keyword">char</span>&gt; sources;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> item : inDegree) &#123;<br>			<span class="hljs-keyword">if</span> (item.second == <span class="hljs-number">0</span>) &#123;<br>				sources.<span class="hljs-built_in">push</span>(item.first);<br>			&#125;<br>		&#125;<br>		string sortedOrder;<br>		<span class="hljs-keyword">while</span> (!sources.<span class="hljs-built_in">empty</span>()) &#123;<br>			<span class="hljs-keyword">char</span> vertex = sources.<span class="hljs-built_in">front</span>();<br>			sources.<span class="hljs-built_in">pop</span>();<br>			sortedOrder += vertex;<br>			vector&lt;<span class="hljs-keyword">char</span>&gt; children = graph[vertex];<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> child : children) &#123;<br>				inDegree[child]--;<br>				<span class="hljs-keyword">if</span> (inDegree[child] == <span class="hljs-number">0</span>) &#123;<br>					sources.<span class="hljs-built_in">push</span>(child);<br>				&#125;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">if</span> (sortedOrder.<span class="hljs-built_in">length</span>() != inDegree.<span class="hljs-built_in">size</span>())<br>			<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>		<span class="hljs-keyword">return</span> sortedOrder;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SequenceReconstruction</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">canConstruct</span><span class="hljs-params">(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; originalSeq, <span class="hljs-keyword">const</span> vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; sequences)</span> </span>&#123;<br>		vector&lt;<span class="hljs-keyword">int</span>&gt; sortedOrder;<br>		<span class="hljs-keyword">if</span> (originalSeq.<span class="hljs-built_in">size</span>() &lt;= <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>		&#125;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; inDegree;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; graph;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> seq : sequences) &#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; seq.<span class="hljs-built_in">size</span>(); i++) &#123;<br>				inDegree[seq[i]] = <span class="hljs-number">0</span>;<br>				graph[seq[i]] = vector&lt;<span class="hljs-keyword">int</span>&gt;();<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> seq : sequences) &#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; seq.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i++) &#123;<br>				<span class="hljs-keyword">int</span> parent = seq[i], child = seq[i+<span class="hljs-number">1</span>];<br>				graph[parent].<span class="hljs-built_in">push_back</span>(child);<br>				inDegree[child]++;<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">if</span> (inDegree.<span class="hljs-built_in">size</span>() != originalSeq.<span class="hljs-built_in">size</span>()) &#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>		&#125;<br><br>		queue&lt;<span class="hljs-keyword">int</span>&gt; sources;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> entry : inDegree) &#123;<br>			<span class="hljs-keyword">if</span> (entry.second == <span class="hljs-number">0</span>)<br>				sources.<span class="hljs-built_in">push</span>(entry.first);<br>		&#125;<br><br>		<span class="hljs-keyword">while</span> (!sources.<span class="hljs-built_in">empty</span>()) &#123;<br>			<span class="hljs-keyword">if</span> (sources.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">1</span>) &#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			&#125;<br>			<span class="hljs-keyword">if</span> (originalSeq[sortedOrder.<span class="hljs-built_in">size</span>()] != sources.<span class="hljs-built_in">front</span>()) &#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>			&#125;<br>			<span class="hljs-keyword">int</span> vertex = sources.<span class="hljs-built_in">front</span>();<br>			sources.<span class="hljs-built_in">pop</span>();<br>			sortedOrder.<span class="hljs-built_in">push_back</span>(vertex);<br>			vector&lt;<span class="hljs-keyword">int</span>&gt; children = graph[vertex];<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> child : children) &#123;<br>				inDegree[child]--;<br>				<span class="hljs-keyword">if</span> (inDegree[child] == <span class="hljs-number">0</span>) &#123;<br>					sources.<span class="hljs-built_in">push</span>(child);<br>				&#125;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> sortedOrder.<span class="hljs-built_in">size</span>() == originalSeq.<span class="hljs-built_in">size</span>();<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinimumHeightTrees</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">static</span> vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">findTrees</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nodes, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;<br>		vector&lt;<span class="hljs-keyword">int</span>&gt; minHeightTrees;<br>		<span class="hljs-keyword">if</span> (nodes &lt;= <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-keyword">return</span> minHeightTrees;<br>		&#125;<br>		<span class="hljs-keyword">if</span> (nodes == <span class="hljs-number">1</span>) &#123;<br>			minHeightTrees.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">0</span>);<br>			<span class="hljs-keyword">return</span> minHeightTrees;<br>		&#125;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; inDegree;<br>		unordered_map&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; graph;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nodes; i++) &#123;<br>			inDegree[i] = <span class="hljs-number">0</span>;<br>			graph[i] = vector&lt;<span class="hljs-keyword">int</span>&gt;();<br>		&#125;<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; edges.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			<span class="hljs-keyword">int</span> n1 = edges[i][<span class="hljs-number">0</span>], n2 = edges[i][<span class="hljs-number">1</span>];<br>			graph[n1].<span class="hljs-built_in">push_back</span>(n2);<br>			graph[n2].<span class="hljs-built_in">push_back</span>(n1);<br>			inDegree[n1]++;<br>			inDegree[n2]++;<br>		&#125;<br><br>		deque&lt;<span class="hljs-keyword">int</span>&gt; leaves;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> item : inDegree) &#123;<br>			<span class="hljs-keyword">if</span> (item.second == <span class="hljs-number">1</span>) &#123;<br>				leaves.<span class="hljs-built_in">push_back</span>(item.first);<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">int</span> totalNodes = nodes;<br>		<span class="hljs-keyword">while</span> (totalNodes &gt; <span class="hljs-number">2</span>) &#123;<br>			<span class="hljs-keyword">int</span> leavesSize = leaves.<span class="hljs-built_in">size</span>();<br>			totalNodes = totalNodes - leavesSize;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; leavesSize; i++) &#123;<br>				<span class="hljs-keyword">int</span> vertex = leaves.<span class="hljs-built_in">front</span>();<br>				leaves.<span class="hljs-built_in">pop_front</span>();<br>				vector&lt;<span class="hljs-keyword">int</span>&gt; children = graph[vertex];<br>				<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> child : children) &#123;<br>					inDegree[child]--;<br>					<span class="hljs-keyword">if</span> (inDegree[child] == <span class="hljs-number">1</span>) &#123;<br>						leaves.<span class="hljs-built_in">push_back</span>(child);<br>					&#125;<br>				&#125;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> item : leaves) &#123;<br>			cout &lt;&lt; item &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>		&#125;<br>		cout &lt;&lt; endl;<br>		std::<span class="hljs-built_in">move</span>(std::<span class="hljs-built_in">begin</span>(leaves), std::<span class="hljs-built_in">end</span>(leaves), std::<span class="hljs-built_in">back_inserter</span>(minHeightTrees));<br>		<span class="hljs-keyword">return</span> minHeightTrees;<br>	&#125;<br>&#125;;<br><br><span class="hljs-comment">//int main() &#123;</span><br><span class="hljs-comment">//	/*vector&lt;int&gt; result = TopologicalSort::sort(4, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;3, 2&#125;, vector&lt;int&gt;&#123;3, 0&#125;, vector&lt;int&gt;&#123;2, 0&#125;, vector&lt;int&gt;&#123;2, 1&#125;&#125;);</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = TopologicalSort::sort(5, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;4, 2&#125;, vector&lt;int&gt;&#123;4, 3&#125;, vector&lt;int&gt;&#123;2, 0&#125;, vector&lt;int&gt;&#123;2, 1&#125;, vector&lt;int&gt;&#123;3, 1&#125;&#125;);</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = TopologicalSort::sort(7, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;6, 4&#125;, vector&lt;int&gt;&#123;6, 2&#125;, vector&lt;int&gt;&#123;5, 3&#125;, vector&lt;int&gt;&#123;5, 4&#125;, vector&lt;int&gt;&#123;3, 0&#125;, vector&lt;int&gt;&#123;3, 1&#125;, vector&lt;int&gt;&#123;3, 2&#125;, vector&lt;int&gt;&#123;4, 1&#125;&#125;);</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;*/</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	/*bool result = TaskScheduling::isSchedulingPossible(3, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;0, 1&#125;, vector&lt;int&gt;&#123;1, 2&#125;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Tasks exectution possible: &quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = TaskScheduling::isSchedulingPossible(3, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;0, 1&#125;, vector&lt;int&gt;&#123;1, 2&#125;, vector&lt;int&gt;&#123;2,0&#125;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Tasks exectution possible: &quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = TaskScheduling::isSchedulingPossible(6, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;2, 5&#125;, vector&lt;int&gt;&#123;0, 5&#125;, vector&lt;int&gt;&#123;0, 4&#125;, vector&lt;int&gt;&#123;1, 4&#125;, vector&lt;int&gt;&#123;3, 2&#125;, vector&lt;int&gt;&#123;1, 3&#125;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Tasks exectution possible: &quot; &lt;&lt; result &lt;&lt; endl;*/</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	/*vector&lt;int&gt; result = TaskSchedulingOrder::findOrder(3, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;0, 1&#125;, vector&lt;int&gt;&#123;1, 2&#125;&#125;);</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = TaskSchedulingOrder::findOrder(3, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;0, 1&#125;, vector&lt;int&gt;&#123;1, 2&#125;, vector&lt;int&gt;&#123;2, 0&#125;&#125;);</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = TaskSchedulingOrder::findOrder(6, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;2, 5&#125;, vector&lt;int&gt;&#123;0, 5&#125;, vector&lt;int&gt;&#123;0, 4&#125;, vector&lt;int&gt;&#123;1, 4&#125;, vector&lt;int&gt;&#123;3, 2&#125;, vector&lt;int&gt;&#123;1, 3&#125;&#125;);</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;*/</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	/*vector&lt;vector&lt;int&gt;&gt; vec = &#123; &#123;0,1&#125;,&#123;1,2&#125; &#125;;</span><br><span class="hljs-comment">//	AllTaskSchedulingOrders::printOrders(3, vec);</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	vec = &#123; &#123;3,2&#125;,&#123;3,0&#125;,&#123;2,0&#125;,&#123;2,1&#125; &#125;;</span><br><span class="hljs-comment">//	AllTaskSchedulingOrders::printOrders(4, vec);</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	vec = &#123; &#123;2,5&#125;,&#123;0,5&#125;,&#123;0,4&#125;,&#123;1,4&#125;,&#123;3,2&#125;,&#123;1,3&#125; &#125;;</span><br><span class="hljs-comment">//	AllTaskSchedulingOrders::printOrders(6, vec);</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;*/</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	/*string result = AlienDictionary::findOrder(vector&lt;string&gt;&#123;&quot;ba&quot;, &quot;bc&quot;, &quot;ac&quot;, &quot;cab&quot;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Character order: &quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = AlienDictionary::findOrder(vector&lt;string&gt;&#123;&quot;cab&quot;, &quot;aaa&quot;, &quot;aab&quot;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Character order: &quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = AlienDictionary::findOrder(vector&lt;string&gt;&#123;&quot;ywx&quot;, &quot;wx&quot;, &quot;xww&quot;, &quot;xz&quot;,&quot;zyy&quot;,&quot;zwz&quot;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Character order: &quot; &lt;&lt; result &lt;&lt; endl;*/</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	/*bool result = SequenceReconstruction::canConstruct(vector&lt;int&gt;&#123;1, 2, 3, 4&#125;, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;1, 2&#125;, vector&lt;int&gt;&#123;2, 3&#125;, vector&lt;int&gt;&#123;3, 4&#125;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Can we uniquely construct the sequence: &quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = SequenceReconstruction::canConstruct(vector&lt;int&gt;&#123;1, 2, 3, 4&#125;, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;1, 2&#125;, vector&lt;int&gt;&#123;2, 3&#125;, vector&lt;int&gt;&#123;2, 4&#125;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Can we uniquely construct the sequence: &quot; &lt;&lt; result &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	result = SequenceReconstruction::canConstruct(vector&lt;int&gt;&#123;3, 1, 4, 2, 5&#125;, vector&lt;vector&lt;int&gt;&gt;&#123;vector&lt;int&gt;&#123;3, 1, 5&#125;, vector&lt;int&gt;&#123;1, 4, 2, 5&#125;&#125;);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Can we uniquely construct the sequence: &quot; &lt;&lt; result &lt;&lt; endl;*/</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	vector&lt;vector&lt;int&gt;&gt; vec = &#123; &#123;0,1&#125;,&#123;1,2&#125;,&#123;1,3&#125;,&#123;2,4&#125; &#125;;</span><br><span class="hljs-comment">//	vector&lt;int&gt; result = MinimumHeightTrees::findTrees(5, vec);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Roots of MHTs: &quot;;</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	vec = &#123; &#123;0,1&#125;,&#123;0,2&#125;,&#123;2,3&#125;&#125;;</span><br><span class="hljs-comment">//	result = MinimumHeightTrees::findTrees(4, vec);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Roots of MHTs: &quot;;</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//	vec = &#123; &#123;0,1&#125;,&#123;1,2&#125;,&#123;1,3&#125; &#125;;</span><br><span class="hljs-comment">//	result = MinimumHeightTrees::findTrees(4, vec);</span><br><span class="hljs-comment">//	cout &lt;&lt; &quot;Roots of MHTs: &quot;;</span><br><span class="hljs-comment">//	for (auto num : result) &#123;</span><br><span class="hljs-comment">//		cout &lt;&lt; num &lt;&lt; &quot; &quot;;</span><br><span class="hljs-comment">//	&#125;</span><br><span class="hljs-comment">//	cout &lt;&lt; endl;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/08/LeetCode/TopologicalSort%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;08&#x2F;LeetCode&#x2F;TopologicalSort%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;08&#x2F;LeetCode&#x2F;TopologicalSort%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/TopologicalSort/" rel="tag">TopologicalSort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" rel="tag">拓扑排序</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/08/LeetCode/TopKElements%E6%9C%80%E5%A4%A7%E6%88%96%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0/"><i class="iconfont iconleft"></i>TopKElements最大或最小的K个数</a>
+    <a href="/2021/07/08/LeetCode/01Knapsack01%E8%83%8C%E5%8C%85/">01Knapsack01背包<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第十二章_并发编程 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="12.1 启动与停止线程threading库可以在单独...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第十二章_并发编程</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/%E5%A4%A7%E5%8C%97%E6%96%97/img-9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第十二章_并发编程</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1653</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="12-1-启动与停止线程"><a href="#12-1-启动与停止线程" class="headerlink" title="12.1 启动与停止线程"></a>12.1 启动与停止线程</h4><p>threading库可以在单独的线程中执行任何的在Python中可以调用的对象。<br>可以查询一个线程对象的状态，看它是否还在执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">t = Thread(target=countdown, args=(<span class="hljs-number">10</span>,)) <br>t.start() <br>t.is_alive()<br><span class="hljs-comment"># 将一个线程加入到当前线程，并等待它终止</span><br>t.join()<br><span class="hljs-comment"># 对于需要长时间运行的线程或者需要一直运行的后台任务使用后台线程</span><br>t = Thread(target=countdown, args=(<span class="hljs-number">10</span>,), daemon=<span class="hljs-literal">True</span>) <br></code></pre></td></tr></table></figure>
+<h4 id="12-2-判断线程是否已经启动"><a href="#12-2-判断线程是否已经启动" class="headerlink" title="12.2 判断线程是否已经启动"></a>12.2 判断线程是否已经启动</h4><p>线程的一个关键特性是每个线程都是独立运行且状态不可预测<br>Event对象包含一个可由线程设置的信号标志，它允许线程等待某些事件的发生。</p>
+<h4 id="12-3-线程间通信"><a href="#12-3-线程间通信" class="headerlink" title="12.3 线程间通信"></a>12.3 线程间通信</h4><p>创建一个被多个线程共享的Queue对象，线程通过使用put()和get()操作来向队列中添加或者删除元素</p>
+<h4 id="12-4-给关键部分加锁"><a href="#12-4-给关键部分加锁" class="headerlink" title="12.4 给关键部分加锁"></a>12.4 给关键部分加锁</h4><p>Lock对象和with语句块一起使用可以保证互斥执行<br>with相对于显示调用的缺点：程序员可能会忘记调用release()方法或者程序在获得锁之后产生异常</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">self._value_lock = threading.Lock() <br>self._value_lock.acquire() <br>do something<br>self._value_lock.release() <br><span class="hljs-keyword">with</span> self._value_lock: <br>	do something<br></code></pre></td></tr></table></figure>
+<h4 id="12-5-防止死锁的加锁机制"><a href="#12-5-防止死锁的加锁机制" class="headerlink" title="12.5 防止死锁的加锁机制"></a>12.5 防止死锁的加锁机制</h4><p>在进程获取锁的时候会严格按照对象id升序排列获取</p>
+<h4 id="12-6-保存线程的状态信息"><a href="#12-6-保存线程的状态信息" class="headerlink" title="12.6 保存线程的状态信息"></a>12.6 保存线程的状态信息</h4><p>使用thread.local()创建一个本地线程存储对象。对这个对象的属性的保存和读取操作都只会对执行线程可见，而其他线程并不可见。<br>每个threading.local()实例为每个线程维护着一个单独的实例字典。所有普通实例操作比如获取、修改和删除值仅仅操作这个字典。</p>
+<h4 id="12-7-创建一个线程池"><a href="#12-7-创建一个线程池" class="headerlink" title="12.7 创建一个线程池"></a>12.7 创建一个线程池</h4><p>concurrent.futures函数库有一个ThreadPoolExecutor类<br>全局解释器锁 GIL<br>当创建一个线程时，操作系统会预留一个虚拟内存区域来放置线程的执行栈(通常是8MB大小)<br>threading.stack_size(65536)<br>线程栈大小必须至少为32768字节</p>
+<h4 id="12-8-简单的并行编程"><a href="#12-8-简单的并行编程" class="headerlink" title="12.8 简单的并行编程"></a>12.8 简单的并行编程</h4><p>利用多核 CPU 的优势来运行<br>concurrent.futures库提供了一个ProcessPoolExecutor类，可被用来在一个单独的Python解释器中执行计算密集型函数。<br>一个 ProcessPoolExecutor 创建 N 个独立的 Python 解释器，N 是系统上面可用 CPU 的个数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">with</span> futures.ProcessPoolExecutor() <span class="hljs-keyword">as</span> pool: <br></code></pre></td></tr></table></figure>
+<h4 id="12-9-Python-的全局锁问题"><a href="#12-9-Python-的全局锁问题" class="headerlink" title="12.9 Python 的全局锁问题"></a>12.9 Python 的全局锁问题</h4><p>Global Interpreter Lock (GIL)<br>解释器被一个全局解释器锁保护着，它确保任何时候都只有一个 Python 线程执行。<br>如果完全工作于Python环境中，可以使用multiprocessing模块来创建一个进程池，并像协同处理器一样的使用它。<br>使用 C 扩展编程技术</p>
+<h4 id="12-10-定义一个-Actor-任务"><a href="#12-10-定义一个-Actor-任务" class="headerlink" title="12.10 定义一个 Actor 任务"></a>12.10 定义一个 Actor 任务</h4><p>actor模式是一种最古老的也是最简单的并行和分布式计算解决方案。<br>一个actor就是一个并发执行的任务，只是简单的执行发送给它的消息任务。响应这些消息时，它可能还会给其他actor发送更进一步的消息。actor之间的通信是单向和异步的。</p>
+<h4 id="12-11-实现消息发布-订阅模型"><a href="#12-11-实现消息发布-订阅模型" class="headerlink" title="12.11 实现消息发布/订阅模型"></a>12.11 实现消息发布/订阅模型</h4><p>要实现发布/订阅的消息通信模式，通常要引入一个单独的“交换机”或“网关”对象作为所有消息的中介。</p>
+<h4 id="12-12-使用生成器代替线程"><a href="#12-12-使用生成器代替线程" class="headerlink" title="12.12 使用生成器代替线程"></a>12.12 使用生成器代替线程</h4><h4 id="12-13-多个线程队列轮询"><a href="#12-13-多个线程队列轮询" class="headerlink" title="12.13 多个线程队列轮询"></a>12.13 多个线程队列轮询</h4><p>隐藏的回路网络连接</p>
+<h4 id="12-14-在-Unix-系统上面启动守护进程"><a href="#12-14-在-Unix-系统上面启动守护进程" class="headerlink" title="12.14 在 Unix 系统上面启动守护进程"></a>12.14 在 Unix 系统上面启动守护进程</h4><p>创建一个正确的守护进程需要一个精确的系统调用序列以及对于细节的控制。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0_%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"><i class="iconfont iconleft"></i>第十三章_脚本编程与系统管理</a>
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0_%E7%BD%91%E7%BB%9C%E4%B8%8EWEB%E7%BC%96%E7%A8%8B/">第十一章_网络与Web编程<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

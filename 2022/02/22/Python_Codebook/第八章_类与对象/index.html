@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>第八章_类与对象 - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="8.1 改变对象的字符串显示重新定义它的 __str_...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">第八章_类与对象</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/Our%20Furry%20Friends/img-3.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">第八章_类与对象</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2739</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="8-1-改变对象的字符串显示"><a href="#8-1-改变对象的字符串显示" class="headerlink" title="8.1 改变对象的字符串显示"></a>8.1 改变对象的字符串显示</h4><p>重新定义它的 __str__() 和 __repr__() 方法<br>__repr__()方法返回一个实例的代码表示形式，通常用来重新构造这个实例。<br>!r 格式化代码指明输出使用 __repr__() 来代替默认的 __str__()<br>__repr__()生成的文本字符串标准做法是需要让eval(repr(x)) == x为真。</p>
+<h4 id="8-2-自定义字符串的格式化"><a href="#8-2-自定义字符串的格式化" class="headerlink" title="8.2 自定义字符串的格式化"></a>8.2 自定义字符串的格式化</h4><p>为了自定义字符串的格式化，需要在类上面定义 __format__() 方法。</p>
+<h4 id="8-3-让对象支持上下文管理协议"><a href="#8-3-让对象支持上下文管理协议" class="headerlink" title="8.3 让对象支持上下文管理协议"></a>8.3 让对象支持上下文管理协议</h4><p>需要实现 __enter__() 和 __exit__() 方法</p>
+<h4 id="8-4-创建大量对象时节省内存方法"><a href="#8-4-创建大量对象时节省内存方法" class="headerlink" title="8.4 创建大量对象时节省内存方法"></a>8.4 创建大量对象时节省内存方法</h4><p>当定义__slots__后，Python就会为实例使用一种更加紧凑的内部表示。</p>
+<h4 id="8-5-在类中封装属性名"><a href="#8-5-在类中封装属性名" class="headerlink" title="8.5 在类中封装属性名"></a>8.5 在类中封装属性名</h4><p>遵循一定的属性和方法命名规约<br>任何以单下划线_开头的名字都应该是内部实现。<br>使用下划线开头的约定同样适用于模块名和模 块级别函数。<br>使用双下划线开始会导致访问名称变成其他形式。通过继承是无法被覆盖的。<br>大多数而言，应该让非公共名称以单下划线开头。但是，如果清楚代码会涉及到子类，并且有些内部属性应该在子类中隐藏起来，那么考虑使用双下划线方案。<br>如果定义的一个变量和某个保留关键字冲突，可以使用单下划线作为后缀</p>
+<h4 id="8-6-创建可管理的属性"><a href="#8-6-创建可管理的属性" class="headerlink" title="8.6 创建可管理的属性"></a>8.6 创建可管理的属性</h4><p>自定义某个属性的一种简单方法是将它定义为一个 property<br>property的一个关键特征是它看上去跟普通的attribute没什么两样，但是访问它的时候会自动触发getter、setter和deleter方法。<br>@property  @first_name.setter  @first_name.deleter<br>name = property(get_first_name, set_first_name, del_first_name)<br>一个property属性其实就是一系列相关绑定方法的集合。</p>
+<h4 id="8-7-调用父类方法"><a href="#8-7-调用父类方法" class="headerlink" title="8.7 调用父类方法"></a>8.7 调用父类方法</h4><p>对于定义的每一个类，Python会计算出一个所谓的方法解析顺序(MRO)列表。这个MRO列表就是一个简单的所有基类的线性顺序表。<br>子类会先于父类被检查； 多个父类会根据它们在列表中的顺序被检查； 如果对下一个类存在两个合法的选择，选择第一个父类<br>MRO列表中的类顺序会让你定义的任意类层级关系变得有意义。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">C.__mro__ <br></code></pre></td></tr></table></figure>
+<h4 id="8-8-子类中扩展-property"><a href="#8-8-子类中扩展-property" class="headerlink" title="8.8 子类中扩展 property"></a>8.8 子类中扩展 property</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">super</span>(SubPerson, SubPerson).name.__set__(self, value)<br><span class="hljs-meta">@Person.name.getter </span><br><span class="hljs-meta">@Person.name.setter </span><br></code></pre></td></tr></table></figure>
+<h4 id="8-9-创建新的类或实例属性"><a href="#8-9-创建新的类或实例属性" class="headerlink" title="8.9 创建新的类或实例属性"></a>8.9 创建新的类或实例属性</h4><p>一个描述器就是一个实现了三个核心的属性访问操作 (get, set, delete) 的类，分别 为 __get__() 、__set__() 和 __delete__() 这三个特殊的方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">instance.__dict__[self.name] = value <br></code></pre></td></tr></table></figure>
+
+<h4 id="8-10-使用延迟计算属性"><a href="#8-10-使用延迟计算属性" class="headerlink" title="8.10 使用延迟计算属性"></a>8.10 使用延迟计算属性</h4><p>定义一个延迟属性的一种高效方法是通过使用一个描述器类<br>只有当被访问属性不在实例底层的字典中时__get__()方法才会被触发。 </p>
+<h4 id="8-11-简化数据结构的初始化"><a href="#8-11-简化数据结构的初始化" class="headerlink" title="8.11 简化数据结构的初始化"></a>8.11 简化数据结构的初始化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 一个子类定义了__slots__ 或者通过 property(或描述器) 来包装某个属性，那么直接访问实例字典就 不起作用了</span><br>self.__dict__.update(<span class="hljs-built_in">zip</span>(self._fields,args)) <br><span class="hljs-comment"># 通用</span><br><span class="hljs-keyword">for</span> name, value <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(self._fields, args): <br>	<span class="hljs-built_in">setattr</span>(self, name, value) <br></code></pre></td></tr></table></figure>
+<h4 id="8-12-定义接口或者抽象基类"><a href="#8-12-定义接口或者抽象基类" class="headerlink" title="8.12 定义接口或者抽象基类"></a>8.12 定义接口或者抽象基类</h4><p>使用 abc 模块可以很轻松的定义抽象基类<br>collections模块定义了很多跟容器和迭代器(序列、映射、集合等)有关的抽象基类。numbers库定义了跟数字对象(整数、浮点数、有理数等)有关的基类。io库定义了很多跟I/O操作相关的基类。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IStream</span>(<span class="hljs-params">metaclass=ABCMeta</span>):</span> <br><span class="hljs-meta">	@abstractmethod </span><br></code></pre></td></tr></table></figure>
+<h4 id="8-13-实现数据模型的类型约束"><a href="#8-13-实现数据模型的类型约束" class="headerlink" title="8.13 实现数据模型的类型约束"></a>8.13 实现数据模型的类型约束</h4><p>描述器、混入类、super()的使用、类装饰器和元类</p>
+<h4 id="8-14-实现自定义容器"><a href="#8-14-实现自定义容器" class="headerlink" title="8.14 实现自定义容器"></a>8.14 实现自定义容器</h4><p>collections定义了很多抽象基类，当想自定义容器类的时候它们会非常有用。</p>
+<h4 id="8-15-属性的代理访问"><a href="#8-15-属性的代理访问" class="headerlink" title="8.15 属性的代理访问"></a>8.15 属性的代理访问</h4><p>有大量的方法 需要代理，那么使用__getattr__()方法<br>__getattr__() 对于大部分以双下划线 (__) 开始和结尾的属性并不适用</p>
+<h4 id="8-16-在类中定义多个构造器"><a href="#8-16-在类中定义多个构造器" class="headerlink" title="8.16 在类中定义多个构造器"></a>8.16 在类中定义多个构造器</h4><p>类方法的一个主要用途就是定义多个构造器。</p>
+<h4 id="8-17-创建不调用-init-方法的实例"><a href="#8-17-创建不调用-init-方法的实例" class="headerlink" title="8.17 创建不调用 init 方法的实例"></a>8.17 创建不调用 init 方法的实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 不调用__init__()方法创建实例</span><br>d = Date.__new__(Date) <br></code></pre></td></tr></table></figure>
+<h4 id="8-18-利用-Mixins-扩展类功能"><a href="#8-18-利用-Mixins-扩展类功能" class="headerlink" title="8.18 利用 Mixins 扩展类功能"></a>8.18 利用 Mixins 扩展类功能</h4><p>用途：增强已存在的类的功能和一些可选特征。<br>混入类不能直接被实例化使用。<br>混入类没有自己的状态信息。</p>
+<h4 id="8-19-实现状态对象或者状态机"><a href="#8-19-实现状态对象或者状态机" class="headerlink" title="8.19 实现状态对象或者状态机"></a>8.19 实现状态对象或者状态机</h4><h4 id="8-20-通过字符串调用对象方法"><a href="#8-20-通过字符串调用对象方法" class="headerlink" title="8.20 通过字符串调用对象方法"></a>8.20 通过字符串调用对象方法</h4><p>可以使用 getattr()<br>使用 operator.methodcaller() </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">p = Point(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <br>d = <span class="hljs-built_in">getattr</span>(p, <span class="hljs-string">&#x27;distance&#x27;</span>)(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>) <span class="hljs-comment"># Calls p.distance(0, 0)</span><br>operator.methodcaller(<span class="hljs-string">&#x27;distance&#x27;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)(p)  <br>points.sort(key=operator.methodcaller(<span class="hljs-string">&#x27;distance&#x27;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)) <br></code></pre></td></tr></table></figure>
+<h4 id="8-21-实现访问者模式"><a href="#8-21-实现访问者模式" class="headerlink" title="8.21 实现访问者模式"></a>8.21 实现访问者模式</h4><h4 id="8-22-不用递归实现访问者模式"><a href="#8-22-不用递归实现访问者模式" class="headerlink" title="8.22 不用递归实现访问者模式"></a>8.22 不用递归实现访问者模式</h4><h4 id="8-23-循环引用数据结构的内存管理"><a href="#8-23-循环引用数据结构的内存管理" class="headerlink" title="8.23 循环引用数据结构的内存管理"></a>8.23 循环引用数据结构的内存管理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">a_ref = weakref.ref(a) <br><span class="hljs-built_in">print</span>(a_ref()) <br><span class="hljs-keyword">del</span> a <br><span class="hljs-built_in">print</span>(a_ref()) <br></code></pre></td></tr></table></figure>
+
+<h4 id="8-24-让类支持比较操作"><a href="#8-24-让类支持比较操作" class="headerlink" title="8.24 让类支持比较操作"></a>8.24 让类支持比较操作</h4><p>functools.total_ordering<br>定义一个__eq__() 方法，外加其他方法(__lt__, __le__, __gt__, or__ge__) 中的一个即可。</p>
+<h4 id="8-25-创建缓存实例"><a href="#8-25-创建缓存实例" class="headerlink" title="8.25 创建缓存实例"></a>8.25 创建缓存实例</h4><p>使用一个和类本身分开的工厂函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">a = logging.getLogger(<span class="hljs-string">&#x27;foo&#x27;</span>)<br>b = logging.getLogger(<span class="hljs-string">&#x27;foo&#x27;</span>)<br>a <span class="hljs-keyword">is</span> b <span class="hljs-comment"># True</span><br><br>_spam_cache = weakref.WeakValueDictionary() <br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/02/22/Python_Codebook/%E7%AC%AC%E5%85%AB%E7%AB%A0_%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%85%AB%E7%AB%A0_%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;02&#x2F;22&#x2F;Python_Codebook&#x2F;%E7%AC%AC%E5%85%AB%E7%AB%A0_%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/02/22/Python_Codebook/%E7%AC%AC%E4%B9%9D%E7%AB%A0_%E5%85%83%E7%BC%96%E7%A8%8B/"><i class="iconfont iconleft"></i>第九章_元编程</a>
+    <a href="/2022/02/15/Python_Codebook/%E7%AC%AC%E4%B8%83%E7%AB%A0_%E5%87%BD%E6%95%B0/">第七章_函数<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
