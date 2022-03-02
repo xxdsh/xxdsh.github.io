@@ -189,13 +189,13 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/images/theme/%E5%A4%A7%E5%8C%97%E6%96%97/img-9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">第十一章 优化算法</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 06, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>39434</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>39454</span>
     </div>
   </div>
 </section>
@@ -415,7 +415,7 @@
  <use xlink:href="#E1-MJMAIN-31" x="3030" y="0"></use>
  <use xlink:href="#E1-MJMAIN-5D" x="3531" y="0"></use>
 </g>
-</svg> ，得到MATHJAX-SSR-932</p>
+</svg> ，得到MATHJAX-SSR-1186</p>
 <p>假设 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.875ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 807.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathcal{X}</title>
 <defs aria-hidden="true">
@@ -509,10 +509,10 @@
  <use xlink:href="#E1-MJMAIN-2192" x="2469" y="0"></use>
  <use xlink:href="#E1-MJAMS-52" x="3748" y="0"></use>
 </g>
-</svg> 是凸的，可以得到MATHJAX-SSR-933</p>
+</svg> 是凸的，可以得到MATHJAX-SSR-1187</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">f = <span class="hljs-keyword">lambda</span> x: <span class="hljs-number">0.5</span> * x**<span class="hljs-number">2</span>  <span class="hljs-comment"># 凸函数</span><br>g = <span class="hljs-keyword">lambda</span> x: torch.cos(np.pi * x)  <span class="hljs-comment"># 非凸函数</span><br>h = <span class="hljs-keyword">lambda</span> x: torch.exp(<span class="hljs-number">0.5</span> * x)  <span class="hljs-comment"># 凸函数</span><br><br>x, segment = torch.arange(-<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0.01</span>), torch.tensor([-<span class="hljs-number">1.5</span>, <span class="hljs-number">1</span>])<br>d2l.use_svg_display()<br>_, axes = d2l.plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, figsize=(<span class="hljs-number">9</span>, <span class="hljs-number">3</span>))<br><span class="hljs-keyword">for</span> ax, func <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(axes, [f, g, h]):<br>	d2l.plot([x, segment], [func(x), func(segment)], axes=ax)<br></code></pre></td></tr></table></figure>
 
-<h4 id="詹森不等式"><a href="#詹森不等式" class="headerlink" title="詹森不等式"></a>詹森不等式</h4><p><em>詹森不等式</em>（Jensen’s inequality）<br>MATHJAX-SSR-934<br>凸函数的期望不小于期望的凸函数<br>用一个较简单的表达式约束一个较复杂的表达式。<br>可以应用于部分观察到的随机变量的对数似然。具体地说，由于<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="28.776ex" height="5.676ex" style="vertical-align: -2.338ex;" viewBox="0 -1437.2 12389.8 2443.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<h4 id="詹森不等式"><a href="#詹森不等式" class="headerlink" title="詹森不等式"></a>詹森不等式</h4><p><em>詹森不等式</em>（Jensen’s inequality）<br>MATHJAX-SSR-1188<br>凸函数的期望不小于期望的凸函数<br>用一个较简单的表达式约束一个较复杂的表达式。<br>可以应用于部分观察到的随机变量的对数似然。具体地说，由于<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="28.776ex" height="5.676ex" style="vertical-align: -2.338ex;" viewBox="0 -1437.2 12389.8 2443.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\int P(Y) P(X \mid Y) dY = P(X)</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJSZ2-222B" d="M114 -798Q132 -824 165 -824H167Q195 -824 223 -764T275 -600T320 -391T362 -164Q365 -143 367 -133Q439 292 523 655T645 1127Q651 1145 655 1157T672 1201T699 1257T733 1306T777 1346T828 1360Q884 1360 912 1325T944 1245Q944 1220 932 1205T909 1186T887 1183Q866 1183 849 1198T832 1239Q832 1287 885 1296L882 1300Q879 1303 874 1307T866 1313Q851 1323 833 1323Q819 1323 807 1311T775 1255T736 1139T689 936T633 628Q574 293 510 -5T410 -437T355 -629Q278 -862 165 -862Q125 -862 92 -831T55 -746Q55 -711 74 -698T112 -685Q133 -685 150 -700T167 -741Q167 -789 114 -798Z"></path>
@@ -545,9 +545,9 @@
  <use xlink:href="#E1-MJMATHI-58" x="11147" y="0"></use>
  <use xlink:href="#E1-MJMAIN-29" x="12000" y="0"></use>
 </g>
-</svg>，所以MATHJAX-SSR-935</p>
+</svg>，所以MATHJAX-SSR-1189</p>
 <h3 id="11-2-2-性质"><a href="#11-2-2-性质" class="headerlink" title="11.2.2 性质"></a>11.2.2 性质</h3><h4 id="局部极小值是全局极小值"><a href="#局部极小值是全局极小值" class="headerlink" title="局部极小值是全局极小值"></a>局部极小值是全局极小值</h4><p>凸函数的局部极小值同时也是全局极小值。<br>这并不意味着不能有多个全局最小值，或者可能不存在一个全局最小值。</p>
-<h4 id="水平集的凸函数"><a href="#水平集的凸函数" class="headerlink" title="水平集的凸函数"></a>水平集的凸函数</h4><p>凸函数将凸集定义为<em>水平集</em>（below sets）。它们定义为：MATHJAX-SSR-936这样的集合是凸的。</p>
+<h4 id="水平集的凸函数"><a href="#水平集的凸函数" class="headerlink" title="水平集的凸函数"></a>水平集的凸函数</h4><p>凸函数将凸集定义为<em>水平集</em>（below sets）。它们定义为：MATHJAX-SSR-1190这样的集合是凸的。</p>
 <h4 id="凸性和二阶导数"><a href="#凸性和二阶导数" class="headerlink" title="凸性和二阶导数"></a>凸性和二阶导数</h4><p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.279ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 550.5 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">f</title>
 <defs aria-hidden="true">
@@ -611,7 +611,7 @@
  <use xlink:href="#E1-MJMAIN-30" x="3171" y="0"></use>
 </g>
 </svg>。</p>
-<h3 id="11-2-3-约束"><a href="#11-2-3-约束" class="headerlink" title="11.2.3 约束"></a>11.2.3 约束</h3><p>凸优化的一个很好的特性是能够让我们有效地处理<em>约束</em>（constraints）。即它能够解决以下形式的 <em>约束优化</em>（constrained optimization）问题：<br>MATHJAX-SSR-937</p>
+<h3 id="11-2-3-约束"><a href="#11-2-3-约束" class="headerlink" title="11.2.3 约束"></a>11.2.3 约束</h3><p>凸优化的一个很好的特性是能够让我们有效地处理<em>约束</em>（constraints）。即它能够解决以下形式的 <em>约束优化</em>（constrained optimization）问题：<br>MATHJAX-SSR-1191</p>
 <h4 id="拉格朗日函数"><a href="#拉格朗日函数" class="headerlink" title="拉格朗日函数"></a>拉格朗日函数</h4><p>简略拉格朗日函数 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.583ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 681.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">L</title>
 <defs aria-hidden="true">
@@ -620,7 +620,7 @@
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#E1-MJMATHI-4C" x="0" y="0"></use>
 </g>
-</svg> 的推导，上述推理可以通过以下鞍点优化问题来表示：<br>MATHJAX-SSR-938</p>
+</svg> 的推导，上述推理可以通过以下鞍点优化问题来表示：<br>MATHJAX-SSR-1192</p>
 <p>变量 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.287ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 984.8 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\alpha_i</title>
 <defs aria-hidden="true">
@@ -676,7 +676,7 @@
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#E1-MJCAL-58" x="0" y="0"></use>
 </g>
-</svg> 上的投影被定义为<br>MATHJAX-SSR-939<br>它是 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.875ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 807.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg> 上的投影被定义为<br>MATHJAX-SSR-1193<br>它是 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.875ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 807.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathcal{X}</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJCAL-58" d="M324 614Q291 576 250 573Q231 573 231 584Q231 589 232 592Q235 601 244 614T271 643T324 671T400 683H403Q462 683 481 610Q485 594 490 545T498 454L501 413Q504 413 551 442T648 509T705 561Q707 565 707 578Q707 610 682 614Q667 614 667 626Q667 641 695 662T755 683Q765 683 775 680T796 662T807 623Q807 596 792 572T713 499T530 376L505 361V356Q508 346 511 278T524 148T557 75Q569 69 580 69Q585 69 593 77Q624 108 660 110Q667 110 670 110T676 106T678 94Q668 59 624 30T510 0Q487 0 471 9T445 32T430 71T422 117T417 173Q416 183 416 188Q413 214 411 244T407 286T405 299Q403 299 344 263T223 182T154 122Q152 118 152 105Q152 69 180 69Q183 69 187 66T191 60L192 58V56Q192 41 163 21T105 0Q94 0 84 3T63 21T52 60Q52 77 56 90T85 131T155 191Q197 223 259 263T362 327T402 352L391 489Q391 492 390 505T387 526T384 547T379 568T372 586T361 602T348 611Q346 612 341 613T333 614H324Z"></path>
@@ -747,7 +747,7 @@
  <use xlink:href="#E1-MJMAIN-29" x="13881" y="0"></use>
  <use xlink:href="#E1-MJMAIN-2E" x="14270" y="0"></use>
 </g>
-</svg><br>MATHJAX-SSR-941<br>MATHJAX-SSR-942<br>MATHJAX-SSR-943</p>
+</svg><br>MATHJAX-SSR-1195<br>MATHJAX-SSR-1196<br>MATHJAX-SSR-1197</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python">%matplotlib inline<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> d2l <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> d2l<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span>(<span class="hljs-params">x</span>):</span>  <span class="hljs-comment"># 目标函数</span><br>    <span class="hljs-keyword">return</span> x ** <span class="hljs-number">2</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f_grad</span>(<span class="hljs-params">x</span>):</span>  <span class="hljs-comment"># 目标函数的梯度 (导数)</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * x<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gd</span>(<span class="hljs-params">eta, f_grad</span>):</span><br>    x = <span class="hljs-number">10.0</span><br>    results = [x]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>        x -= eta * f_grad(x)<br>        results.append(<span class="hljs-built_in">float</span>(x))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;epoch 10, x: <span class="hljs-subst">&#123;x:f&#125;</span>&#x27;</span>)<br>    <span class="hljs-keyword">return</span> results<br><br>results = gd(<span class="hljs-number">0.2</span>, f_grad)<br><span class="hljs-comment"># 对进行<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.33ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 572.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">x</title>
 <defs aria-hidden="true">
@@ -1159,7 +1159,7 @@
  <use xlink:href="#E1-MJMAIN-D7" x="745" y="0"></use>
  <use xlink:href="#E1-MJMATHI-64" x="1746" y="0"></use>
 </g>
-</svg>矩阵。<br>导数<br>MATHJAX-SSR-948<br>一种方法是用取Hessian的绝对值来修正，另一个策略是重新引入学习率。拥有二阶信息可以在曲率较大时保持谨慎，而在目标函数较平坦时则采用较大的学习率。</p>
+</svg>矩阵。<br>导数<br>MATHJAX-SSR-1202<br>一种方法是用取Hessian的绝对值来修正，另一个策略是重新引入学习率。拥有二阶信息可以在曲率较大时保持谨慎，而在目标函数较平坦时则采用较大的学习率。</p>
 <h4 id="收敛性分析"><a href="#收敛性分析" class="headerlink" title="收敛性分析"></a>收敛性分析</h4><h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><p style="text-align:center"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="28.025ex" height="3.176ex" style="vertical-align: -0.838ex;" viewBox="0 -1006.6 12066.4 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{x} \leftarrow \mathbf{x} - \eta \mathrm{diag}(\mathbf{H})^{-1} \nabla f(\mathbf{x}).</title>
 <defs aria-hidden="true">
@@ -1446,13 +1446,13 @@
 <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true">
  <use xlink:href="#E1-MJMATHI-3B7" x="0" y="0"></use>
 </g>
-</svg> 增加了控制优化算法收敛的复杂性。<br>MATHJAX-SSR-954</p>
+</svg> 增加了控制优化算法收敛的复杂性。<br>MATHJAX-SSR-1208</p>
 <ul>
 <li>分段常数 * </li>
 <li>指数衰减 * </li>
 <li>多项式衰变 * <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">exponential_lr</span>():</span><br>    <span class="hljs-comment"># Global variable that is defined outside this function and updated inside</span><br>    <span class="hljs-keyword">global</span> t<br>    t += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> math.exp(-<span class="hljs-number">0.1</span> * t)<br><br>t = <span class="hljs-number">1</span><br>lr = exponential_lr<br>d2l.show_trace_2d(f, d2l.train_2d(sgd, steps=<span class="hljs-number">1000</span>, f_grad=f_grad))<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">polynomial_lr</span>():</span><br>    <span class="hljs-comment"># Global variable that is defined outside this function and updated inside</span><br>    <span class="hljs-keyword">global</span> t<br>    t += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span> + <span class="hljs-number">0.1</span> * t) ** (-<span class="hljs-number">0.5</span>)<br><br>t = <span class="hljs-number">1</span><br>lr = polynomial_lr<br>d2l.show_trace_2d(f, d2l.train_2d(sgd, steps=<span class="hljs-number">50</span>, f_grad=f_grad))<br></code></pre></td></tr></table></figure>
-<h3 id="11-4-3-凸目标的收敛性分析"><a href="#11-4-3-凸目标的收敛性分析" class="headerlink" title="11.4.3 凸目标的收敛性分析"></a>11.4.3 凸目标的收敛性分析</h3>MATHJAX-SSR-955</li>
+<h3 id="11-4-3-凸目标的收敛性分析"><a href="#11-4-3-凸目标的收敛性分析" class="headerlink" title="11.4.3 凸目标的收敛性分析"></a>11.4.3 凸目标的收敛性分析</h3>MATHJAX-SSR-1209</li>
 </ul>
 <p>其中 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="16.799ex" height="3.843ex" style="vertical-align: -0.838ex;" viewBox="0 -1293.7 7232.8 1654.5" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">r^2 \stackrel{\mathrm{def}}{=} \|\mathbf{x}_1 - \mathbf{x}^*\|^2</title>
@@ -1520,7 +1520,7 @@
  <use xlink:href="#E1-MJMATHI-72" x="0" y="0"></use>
 </g>
 </svg>）。</p>
-<h3 id="14-4-4-随机梯度和有限样本"><a href="#14-4-4-随机梯度和有限样本" class="headerlink" title="14.4.4 随机梯度和有限样本"></a>14.4.4 随机梯度和有限样本</h3><p>挑选一些样本（即训练示例）<em>至少一次</em> 的概率是由<br>MATHJAX-SSR-956<br>挑选一些样本（即训练示例）<em>恰好一次</em> 的概率是由<br>MATHJAX-SSR-957</p>
+<h3 id="14-4-4-随机梯度和有限样本"><a href="#14-4-4-随机梯度和有限样本" class="headerlink" title="14.4.4 随机梯度和有限样本"></a>14.4.4 随机梯度和有限样本</h3><p>挑选一些样本（即训练示例）<em>至少一次</em> 的概率是由<br>MATHJAX-SSR-1210<br>挑选一些样本（即训练示例）<em>恰好一次</em> 的概率是由<br>MATHJAX-SSR-1211</p>
 <h3 id="11-4-5-摘要"><a href="#11-4-5-摘要" class="headerlink" title="11.4.5 摘要"></a>11.4.5 摘要</h3><ul>
 <li>对于凸出的问题，可以证明，对于广泛的学习率选择，随机梯度下降将收敛到最佳解决方案。</li>
 <li>对于深度学习而言，情况通常并非如此。但是，对凸问题的分析能够深入了解如何进行优化，即逐步降低学习率，尽管不是太快。</li>
@@ -2403,7 +2403,7 @@
  <use xlink:href="#E1-MJMAIN-2B" x="10076" y="0"></use>
  <use xlink:href="#E1-MJMATHI-62" x="11076" y="0"></use>
 </g>
-</svg><br>MATHJAX-SSR-965</p>
+</svg><br>MATHJAX-SSR-1219</p>
 <h3 id="11-7-3-该算法"><a href="#11-7-3-该算法" class="headerlink" title="11.7.3 该算法"></a>11.7.3 该算法</h3><p style="text-align:center"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="27.232ex" height="12.176ex" style="vertical-align: -5.505ex;" viewBox="0 -2872.4 11724.8 5242.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\begin{aligned}
     \mathbf{g}_t &amp; = \partial_{\mathbf{w}} l(y_t, f(\mathbf{x}_t, \mathbf{w})), \\
@@ -2643,7 +2643,7 @@
 </g>
 </g>
 </g>
-</svg><br>MATHJAX-SSR-968</p>
+</svg><br>MATHJAX-SSR-1222</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> d2l <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> d2l<br><br><br>d2l.set_figsize()<br>gammas = [<span class="hljs-number">0.95</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.7</span>]<br><span class="hljs-keyword">for</span> gamma <span class="hljs-keyword">in</span> gammas:<br>    x = torch.arange(<span class="hljs-number">40</span>).detach().numpy()<br>    d2l.plt.plot(x, (<span class="hljs-number">1</span>-gamma) * gamma ** x, label=<span class="hljs-string">f&#x27;gamma = <span class="hljs-subst">&#123;gamma:<span class="hljs-number">.2</span>f&#125;</span>&#x27;</span>)<br>d2l.plt.xlabel(<span class="hljs-string">&#x27;time&#x27;</span>);<br></code></pre></td></tr></table></figure>
 <h3 id="11-8-2-从头开始实施"><a href="#11-8-2-从头开始实施" class="headerlink" title="11.8.2 从头开始实施"></a>11.8.2 从头开始实施</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rmsprop_2d</span>(<span class="hljs-params">x1, x2, s1, s2</span>):</span><br>    g1, g2, eps = <span class="hljs-number">0.2</span> * x1, <span class="hljs-number">4</span> * x2, <span class="hljs-number">1e-6</span><br>    s1 = gamma * s1 + (<span class="hljs-number">1</span> - gamma) * g1 ** <span class="hljs-number">2</span><br>    s2 = gamma * s2 + (<span class="hljs-number">1</span> - gamma) * g2 ** <span class="hljs-number">2</span><br>    x1 -= eta / math.sqrt(s1 + eps) * g1<br>    x2 -= eta / math.sqrt(s2 + eps) * g2<br>    <span class="hljs-keyword">return</span> x1, x2, s1, s2<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f_2d</span>(<span class="hljs-params">x1, x2</span>):</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0.1</span> * x1 ** <span class="hljs-number">2</span> + <span class="hljs-number">2</span> * x2 ** <span class="hljs-number">2</span><br><br>eta, gamma = <span class="hljs-number">0.4</span>, <span class="hljs-number">0.9</span><br>d2l.show_trace_2d(f_2d, d2l.train_2d(rmsprop_2d))<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_rmsprop_states</span>(<span class="hljs-params">feature_dim</span>):</span><br>    s_w = torch.zeros((feature_dim, <span class="hljs-number">1</span>))<br>    s_b = torch.zeros(<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> (s_w, s_b)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rmsprop</span>(<span class="hljs-params">params, states, hyperparams</span>):</span><br>    gamma, eps = hyperparams[<span class="hljs-string">&#x27;gamma&#x27;</span>], <span class="hljs-number">1e-6</span><br>    <span class="hljs-keyword">for</span> p, s <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(params, states):<br>        <span class="hljs-keyword">with</span> torch.no_grad():<br>            s[:] = gamma * s + (<span class="hljs-number">1</span> - gamma) * torch.square(p.grad)<br>            p[:] -= hyperparams[<span class="hljs-string">&#x27;lr&#x27;</span>] * p.grad / torch.sqrt(s + eps)<br>        p.grad.data.zero_()<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">data_iter, feature_dim = d2l.get_data_ch11(batch_size=<span class="hljs-number">10</span>)<br>d2l.train_ch11(rmsprop, init_rmsprop_states(feature_dim),<br>               &#123;<span class="hljs-string">&#x27;lr&#x27;</span>: <span class="hljs-number">0.01</span>, <span class="hljs-string">&#x27;gamma&#x27;</span>: <span class="hljs-number">0.9</span>&#125;, data_iter, feature_dim);<br></code></pre></td></tr></table></figure>
@@ -3223,7 +3223,7 @@
 </g>
 </g>
 </g>
-</svg> 是为了在数值稳定性和保真度之间进行良好的权衡。<br>MATHJAX-SSR-976</p>
+</svg> 是为了在数值稳定性和保真度之间进行良好的权衡。<br>MATHJAX-SSR-1230</p>
 <h3 id="11-10-2-实施"><a href="#11-10-2-实施" class="headerlink" title="11.10.2 实施"></a>11.10.2 实施</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python">%matplotlib inline<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> d2l <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> d2l<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_adam_states</span>(<span class="hljs-params">feature_dim</span>):</span><br>    v_w, v_b = torch.zeros((feature_dim, <span class="hljs-number">1</span>)), torch.zeros(<span class="hljs-number">1</span>)<br>    s_w, s_b = torch.zeros((feature_dim, <span class="hljs-number">1</span>)), torch.zeros(<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> ((v_w, s_w), (v_b, s_b))<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adam</span>(<span class="hljs-params">params, states, hyperparams</span>):</span><br>    beta1, beta2, eps = <span class="hljs-number">0.9</span>, <span class="hljs-number">0.999</span>, <span class="hljs-number">1e-6</span><br>    <span class="hljs-keyword">for</span> p, (v, s) <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(params, states):<br>        <span class="hljs-keyword">with</span> torch.no_grad():<br>            v[:] = beta1 * v + (<span class="hljs-number">1</span> - beta1) * p.grad<br>            s[:] = beta2 * s + (<span class="hljs-number">1</span> - beta2) * torch.square(p.grad)<br>            v_bias_corr = v / (<span class="hljs-number">1</span> - beta1 ** hyperparams[<span class="hljs-string">&#x27;t&#x27;</span>])<br>            s_bias_corr = s / (<span class="hljs-number">1</span> - beta2 ** hyperparams[<span class="hljs-string">&#x27;t&#x27;</span>])<br>            p[:] -= hyperparams[<span class="hljs-string">&#x27;lr&#x27;</span>] * v_bias_corr / (torch.sqrt(s_bias_corr)<br>                                                       + eps)<br>        p.grad.data.zero_()<br>    hyperparams[<span class="hljs-string">&#x27;t&#x27;</span>] += <span class="hljs-number">1</span><br><br>data_iter, feature_dim = d2l.get_data_ch11(batch_size=<span class="hljs-number">10</span>)<br>d2l.train_ch11(adam, init_adam_states(feature_dim),<br>               &#123;<span class="hljs-string">&#x27;lr&#x27;</span>: <span class="hljs-number">0.01</span>, <span class="hljs-string">&#x27;t&#x27;</span>: <span class="hljs-number">1</span>&#125;, data_iter, feature_dim);<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">trainer = torch.optim.Adam<br>d2l.train_concise_ch11(trainer, &#123;<span class="hljs-string">&#x27;lr&#x27;</span>: <span class="hljs-number">0.01</span>&#125;, data_iter)<br></code></pre></td></tr></table></figure>
 <h3 id="11-10-3-瑜珈修行者"><a href="#11-10-3-瑜珈修行者" class="headerlink" title="11.10.3 瑜珈修行者"></a>11.10.3 瑜珈修行者</h3><p>Adam的问题之一是，即使在凸的环境下，它也可能无法收敛，当 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.882ex" height="2.009ex" style="vertical-align: -0.671ex;" viewBox="0 -576.1 810.1 865.1" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
@@ -3236,7 +3236,7 @@
  <use xlink:href="#E1-MJMAINB-73" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-74" x="642" y="-213"></use>
 </g>
-</svg> 的第二时刻估计值爆炸时。<br>MATHJAX-SSR-977</p>
+</svg> 的第二时刻估计值爆炸时。<br>MATHJAX-SSR-1231</p>
 <p style="text-align:center"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="40.772ex" height="3.176ex" style="vertical-align: -1.005ex;" viewBox="0 -934.9 17554.7 1367.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\mathbf{s}_t \leftarrow \mathbf{s}_{t-1} + (1 - \beta_2) \mathbf{g}_t^2 \odot \mathop{\mathrm{sgn}}(\mathbf{g}_t^2 - \mathbf{s}_{t-1}).</title>
 <defs aria-hidden="true">

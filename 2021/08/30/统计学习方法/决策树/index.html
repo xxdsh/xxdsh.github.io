@@ -189,7 +189,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/theme/Our%20Furry%20Friends/img-2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">第五章 决策树</h1>
     <div class="head-info">
@@ -208,7 +208,7 @@
 <h4 id="5-1-3-决策树与条件概率分布"><a href="#5-1-3-决策树与条件概率分布" class="headerlink" title="5.1.3 决策树与条件概率分布"></a>5.1.3 决策树与条件概率分布</h4><p>决策树还表示给定特征条件下类的条件概率分布。这一条件概率分布定义在特征空间的一个划分(partition)上。将特征空间划分为互不相交的单元(cell)或区域(region)，并在每个单元定义一个类的概率分布就构成了一个条件概率分布。</p>
 <h4 id="5-1-4-决策树学习"><a href="#5-1-4-决策树学习" class="headerlink" title="5.1.4 决策树学习"></a>5.1.4 决策树学习</h4><p>决策树学习的目标是根据给定的训练数据集构建一个决策树模型，使它能够对实例进行正确的分类。<br>决策树学习本质上是从训练数据集中归纳出一组分类规则。<br>决策树学习的损失函数通常是正则化的极大似然函数。决策树学习的策略是以损失函数为目标函数的最小化。<br>决策树学习算法包含特征选择、决策树的生成与决策树的剪枝过程。<br>决策树的生成对应于模型的局部选择，决策树的剪枝对应于模型的全局选择。决策树的生成只考虑局部最优，相对地，决策树的剪枝则考虑全局最优。</p>
 <h3 id="5-2-特征选择"><a href="#5-2-特征选择" class="headerlink" title="5.2 特征选择"></a>5.2 特征选择</h3><h4 id="5-2-1-特征选择问题"><a href="#5-2-1-特征选择问题" class="headerlink" title="5.2.1 特征选择问题"></a>5.2.1 特征选择问题</h4><p>选取对训练数据具有分类能力的特征<br>特征选择的准则是信息增益(information gain)或信息增益比<br>特征选择是决定用哪个特征来划分特征空间<br>直观上，如果一个特征具有更好的分类能力，或者说，按照这一特征将训练数据集分割成子集，使得各个子集在当前条件下有最好的分类，那么就更应该选择这个特征。</p>
-<h4 id="5-2-2-信息增益"><a href="#5-2-2-信息增益" class="headerlink" title="5.2.2 信息增益"></a>5.2.2 信息增益</h4><p>熵(entropy)是表示随机变量不确定性的度量。设X是一个取有限个值的离散随机变量，其概率分布为:<br>MATHJAX-SSR-114<br>则随机变量X的熵定义为<br>MATHJAX-SSR-115<br>以2为底或以e为底(自然对数)，这时熵的单位分别称作比特(bit)或纳特(nat)<br>设有随机变量 (X，Y)，其联合概率分布为<br>MATHJAX-SSR-116<br>条件熵H(Y|X)表示在己知随机变量X的条件下随机变量Y的不确定性。随机变量X给定的条件下随机变量Y的条件熵(conditional entropy)H(Y|X)，定义为X给定条件下Y的条件概率分布的熵对X的数学期望<br>MATHJAX-SSR-117<br>经验熵(empirical entropy)和经验条件熵(empirical conditional entropy)<br>信息增益(information gain)表示得知特征X的信息而使得类Y的信息的不确定性减少的程度。<br>特征A对训练数据集D的信息增益g(D，A)，定义为集合D的经验熵H(D)与特征A给定条件下D的经验条件熵H(D|A)之差<br>熵H(Y)与条件熵H(Y|X)之差称为互信息(mutual information)</p>
+<h4 id="5-2-2-信息增益"><a href="#5-2-2-信息增益" class="headerlink" title="5.2.2 信息增益"></a>5.2.2 信息增益</h4><p>熵(entropy)是表示随机变量不确定性的度量。设X是一个取有限个值的离散随机变量，其概率分布为:<br>MATHJAX-SSR-246<br>则随机变量X的熵定义为<br>MATHJAX-SSR-247<br>以2为底或以e为底(自然对数)，这时熵的单位分别称作比特(bit)或纳特(nat)<br>设有随机变量 (X，Y)，其联合概率分布为<br>MATHJAX-SSR-248<br>条件熵H(Y|X)表示在己知随机变量X的条件下随机变量Y的不确定性。随机变量X给定的条件下随机变量Y的条件熵(conditional entropy)H(Y|X)，定义为X给定条件下Y的条件概率分布的熵对X的数学期望<br>MATHJAX-SSR-249<br>经验熵(empirical entropy)和经验条件熵(empirical conditional entropy)<br>信息增益(information gain)表示得知特征X的信息而使得类Y的信息的不确定性减少的程度。<br>特征A对训练数据集D的信息增益g(D，A)，定义为集合D的经验熵H(D)与特征A给定条件下D的经验条件熵H(D|A)之差<br>熵H(Y)与条件熵H(Y|X)之差称为互信息(mutual information)</p>
 <p>设训练数据集为D，|D|表示其样本容量，即样本个数。设有K个类<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="18.689ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 8046.5 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">C_k,k = 1,2,... ,K</title>
 <defs aria-hidden="true">
@@ -497,7 +497,7 @@
 </g>
 </g>
 </svg>的样本个数。</p>
-<p>(1)计算数据集D的经验熵H(D)<br>MATHJAX-SSR-118<br>(2)计算特征A对数据集D的经验条件熵H(D|A)<br>MATHJAX-SSR-119<br>(3)计算信息增益<br>g(D,A) = H(D) - H(D|A)</p>
+<p>(1)计算数据集D的经验熵H(D)<br>MATHJAX-SSR-250<br>(2)计算特征A对数据集D的经验条件熵H(D|A)<br>MATHJAX-SSR-251<br>(3)计算信息增益<br>g(D,A) = H(D) - H(D|A)</p>
 <h4 id="5-2-3-信息增益比"><a href="#5-2-3-信息增益比" class="headerlink" title="5.2.3 信息增益比"></a>5.2.3 信息增益比</h4><p>以信息增益作为划分训练数据集的特征，存在偏向于选择取值较多的特征的问题。<br>特征A对训练数据集D的信息增益比gR(D,A)定义为其信息增益g(D,A)与训练数据集D关于特征A的值的熵<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.13ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3069.7 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">H_A(D)</title>
 <defs aria-hidden="true">
@@ -514,7 +514,7 @@
  <use xlink:href="#E1-MJMATHI-44" x="1851" y="0"></use>
  <use xlink:href="#E1-MJMAIN-29" x="2680" y="0"></use>
 </g>
-</svg>之比，即<br>MATHJAX-SSR-120</p>
+</svg>之比，即<br>MATHJAX-SSR-252</p>
 <h3 id="5-3-决策树的生成"><a href="#5-3-决策树的生成" class="headerlink" title="5.3 决策树的生成"></a>5.3 决策树的生成</h3><h4 id="5-3-1-ID3-算法"><a href="#5-3-1-ID3-算法" class="headerlink" title="5.3.1 ID3 算法"></a>5.3.1 ID3 算法</h4><p>ID3算法的核心是在决策树各个结点上应用信息增益准则选择特征，递归地构建决策树。</p>
 <h4 id="5-3-2-C4-5-的生成算法"><a href="#5-3-2-C4-5-的生成算法" class="headerlink" title="5.3.2 C4.5 的生成算法"></a>5.3.2 C4.5 的生成算法</h4><p>C4.5算法与ID3算法相似，C4.5算法对ID3算法进行了改进。C4.5在生成的过程中，用信息增益比来选择特征。 </p>
 <h3 id="5-4-决策树的剪枝"><a href="#5-4-决策树的剪枝" class="headerlink" title="5.4 决策树的剪枝"></a>5.4 决策树的剪枝</h3><p>在决策树学习中将己生成的树进行简化的过程称为剪枝(pruning)<br>决策树的剪枝往往通过极小化决策树整体的损失函数(loss function)或代价函数(cost function)来实现。<br>设树T的叶结点个数为|T|， t是树|T|的叶结点，该叶结点有<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.692ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1159.1 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
@@ -569,7 +569,7 @@
  <use xlink:href="#E1-MJMAIN-2265" x="918" y="0"></use>
  <use xlink:href="#E1-MJMAIN-30" x="1974" y="0"></use>
 </g>
-</svg>为参数，则决策树学习的损失函数可以定义为<br>MATHJAX-SSR-121<br>其中经验熵为<br>MATHJAX-SSR-122<br>将式上式右端的第 1 项记作<br>MATHJAX-SSR-123<br>这时有<br>MATHJAX-SSR-124<br>C(T)表示模型对训练数据的预测误差，即模型与训练数据的拟合程度，|T|表示模型复杂度，参数<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.488ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 640.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+</svg>为参数，则决策树学习的损失函数可以定义为<br>MATHJAX-SSR-253<br>其中经验熵为<br>MATHJAX-SSR-254<br>将式上式右端的第 1 项记作<br>MATHJAX-SSR-255<br>这时有<br>MATHJAX-SSR-256<br>C(T)表示模型对训练数据的预测误差，即模型与训练数据的拟合程度，|T|表示模型复杂度，参数<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.488ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 640.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\alpha</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-3B1" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"></path>
@@ -649,11 +649,11 @@
 </g>
 </g>
 </svg></p>
-<p>对于给定的样本集合D，其基尼指数为<br>MATHJAX-SSR-126<br>在特征A的条件下，集合D的基尼指数定义为<br>MATHJAX-SSR-127</p>
+<p>对于给定的样本集合D，其基尼指数为<br>MATHJAX-SSR-258<br>在特征A的条件下，集合D的基尼指数定义为<br>MATHJAX-SSR-259</p>
 <h4 id="5-5-2-CART-剪枝"><a href="#5-5-2-CART-剪枝" class="headerlink" title="5.5.2 CART 剪枝"></a>5.5.2 CART 剪枝</h4><ol>
 <li>剪枝， 形成一个子树序列</li>
 </ol>
-<p>在剪枝过程中，计算子树的损失函数:<br>MATHJAX-SSR-128<br>其中,T为任意子树，C(T)为对训练数据的预测误差(如基尼指数)，|T|为子树的叶 结点个数，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.749ex" height="2.343ex" style="vertical-align: -0.505ex;" viewBox="0 -791.3 2475.1 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
+<p>在剪枝过程中，计算子树的损失函数:<br>MATHJAX-SSR-260<br>其中,T为任意子树，C(T)为对训练数据的预测误差(如基尼指数)，|T|为子树的叶 结点个数，<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.749ex" height="2.343ex" style="vertical-align: -0.505ex;" viewBox="0 -791.3 2475.1 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">\alpha \ge 0</title>
 <defs aria-hidden="true">
 <path stroke-width="1" id="E1-MJMATHI-3B1" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"></path>

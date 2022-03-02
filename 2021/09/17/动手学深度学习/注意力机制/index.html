@@ -189,13 +189,13 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/theme/%E5%BC%80%E5%BC%80%E5%BF%83%E5%BF%83%E6%B5%AA%E6%B5%AA%E9%92%89/%E4%B8%BA%E7%88%B1%E9%99%8Dkey.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/images/theme/%E5%8F%AF%E7%88%B1%E6%97%A0%E6%B3%95%E5%A4%8D%E5%88%B6/img-17.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">第十章 注意力机制</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 17, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>37481</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>37478</span>
     </div>
   </div>
 </section>
@@ -409,14 +409,14 @@
 </g>
  <use xlink:href="#E1-MJMAIN-2C" x="12989" y="0"></use>
 </g>
-</svg><br><em>Nadaraya-Watson 核回归</em>（Nadaraya-Watson kernel regression）<br><em>注意力汇聚</em>（attention pooling）公式：<br>MATHJAX-SSR-1251<br>对于任何查询，模型在所有键值对上的注意力权重都是一个有效的概率分布：它们是非负数的，并且总和为1。<br><em>高斯核</em>（Gaussian kernel）<br>MATHJAX-SSR-1252</p>
+</svg><br><em>Nadaraya-Watson 核回归</em>（Nadaraya-Watson kernel regression）<br><em>注意力汇聚</em>（attention pooling）公式：<br>MATHJAX-SSR-910<br>对于任何查询，模型在所有键值对上的注意力权重都是一个有效的概率分布：它们是非负数的，并且总和为1。<br><em>高斯核</em>（Gaussian kernel）<br>MATHJAX-SSR-911</p>
 <p>Nadaraya-Watson 核回归是一个非参数模型。<br><em>非参数的注意力汇聚</em>（nonparametric attention pooling）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># `X_repeat` 的形状: (`n_test`, `n_train`), </span><br><span class="hljs-comment"># 每一行都包含着相同的测试输入（例如：同样的查询）</span><br>X_repeat = x_test.repeat_interleave(n_train).reshape((-<span class="hljs-number">1</span>, n_train))<br><span class="hljs-comment"># `x_train` 包含着键。`attention_weights` 的形状：(`n_test`, `n_train`), </span><br><span class="hljs-comment"># 每一行都包含着要在给定的每个查询的值（`y_train`）之间分配的注意力权重</span><br>attention_weights = nn.functional.softmax(-(X_repeat - x_train)**<span class="hljs-number">2</span> / <span class="hljs-number">2</span>, dim=<span class="hljs-number">1</span>)<br><span class="hljs-comment"># `y_hat` 的每个元素都是值的加权平均值，其中的权重是注意力权重</span><br>y_hat = torch.matmul(attention_weights, y_train)<br>plot_kernel_reg(y_hat)<br></code></pre></td></tr></table></figure>
 
 <p>[<strong>注意力权重</strong>]</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">d2l.show_heatmaps(attention_weights.unsqueeze(<span class="hljs-number">0</span>).unsqueeze(<span class="hljs-number">0</span>),<br>                  xlabel=<span class="hljs-string">&#x27;Sorted training inputs&#x27;</span>,<br>                  ylabel=<span class="hljs-string">&#x27;Sorted testing inputs&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
-<h3 id="10-2-4-带参数注意力汇聚"><a href="#10-2-4-带参数注意力汇聚" class="headerlink" title="10.2.4  带参数注意力汇聚"></a>10.2.4  带参数注意力汇聚</h3><p>非参数的 Nadaraya-Watson 核回归具有 <em>一致性</em>（consistency） 的优点：如果有足够的数据，此模型会收敛到最优结果。<br>MATHJAX-SSR-1253</p>
+<h3 id="10-2-4-带参数注意力汇聚"><a href="#10-2-4-带参数注意力汇聚" class="headerlink" title="10.2.4  带参数注意力汇聚"></a>10.2.4  带参数注意力汇聚</h3><p>非参数的 Nadaraya-Watson 核回归具有 <em>一致性</em>（consistency） 的优点：如果有足够的数据，此模型会收敛到最优结果。<br>MATHJAX-SSR-912</p>
 <h4 id="批量矩阵乘法"><a href="#批量矩阵乘法" class="headerlink" title="批量矩阵乘法"></a>批量矩阵乘法</h4><p>[<strong>假定两个张量的形状分别是 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.499ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3228.8 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
 <title id="MathJax-SVG-1-Title">(n,a,b)</title>
 <defs aria-hidden="true">
