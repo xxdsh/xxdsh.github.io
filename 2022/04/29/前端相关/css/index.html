@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cascading Style Sheets(css) - XXDSHZJ</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="cssCSS代表层叠样式表(Cascading Sty...">
+  <meta name="author" content="Mengyuan Chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://sm.ms/image/Y6TiL7UgNHm2RSl',
+        wechat: 'https://sm.ms/image/aklIG9KSHPFcV8n'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Cascading Style Sheets(css)</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 相册</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/Our%20Furry%20Friends/img-7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Cascading Style Sheets(css)</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 29, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>11729</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h4 id="css"><a href="#css" class="headerlink" title="css"></a>css</h4><p>CSS代表层叠样式表(Cascading Style Sheets)<br>A document is usually a text file structured using a markup language — HTML is the most common markup language, but you may also come across other markup languages such as SVG or XML.</p>
+<p>DOM（Document Object Model）<br>&lt;link rel=”stylesheet” href=”css/styles.css” /&gt;<br>class. id#<br>descendant combinator: a space between two other selectors<br>adjacent sibling combinator: place a + between the selectors<br>链接a: hover link visited<br>css注释 /*  */<br>层叠、优先级和继承:控制继承：inherit initial unset revert<br>the cascade, specificity, and inheritance(inherit initial unset revert)<br>css选择器：Type, class, and ID selectors；<br>Attribute selectors； Pseudo-classes and pseudo-elements； Combinators</p>
+<p>如何定义在多个事物可以设置元素样式时应用哪些 CSS 规则<br>Source order； Specificity； Importance</p>
+<p>浏览器如何计算优先级：千位： 如果声明在 style 的属性（内联样式）则该位得一分。这样的声明没有选择器，所以它得分总是1000。百位： 选择器中包含ID选择器则该位得一分。十位： 选择器中包含类选择器、属性选择器或者伪类则该位得一分。个位：选择器中包含元素、伪元素选择器则该位得一分。<br>CSS选择器：<br>类型、类和ID选择器(类型选择器=标签名称选择器=元素选择器)；<br>通用选择器(* 选择文档中的所有内容)；<br>属性选择器([attr] [attr=value] [attr~=value] [attr|=value]    [attr^=value](属性值以value开头) [attr$=value](属性值以value结尾)    [attr*=value](属性值任意位置包含value) 在大小写不敏感的情况下，匹配属性值，可以在闭合括号之前，使用i值)；<br>伪类和伪元素(伪类就是开头为冒号的关键字)<br>用户行为伪类，有时叫做动态伪类，表现得就像是一个类在用户和元素交互的时候加到了元素上一样。:hover :focus<br>伪类是一个选择器，它选择处于特定状态的元素，例如它们是它们类型的第一个元素，或者它们被鼠标指针悬停在上面。它们往往表现得好像您在文档的某些部分应用了一个类，通常帮助您减少标记中多余的类，并为您提供更灵活、可维护的代码。</p>
+<p>伪元素以类似方式表现，不过表现得是像你往标记文本中加入全新的HTML元素一样，而不是向现有的元素上应用类。伪元素开头为双冒号:: first-line  first-letter after before grammer-error selection spelling-error  生成带有::before和::after的内容); </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">article</span><span class="hljs-selector-pseudo">:first</span>-child  <span class="hljs-selector-tag">article</span> *<span class="hljs-selector-pseudo">:first</span>-child  <span class="hljs-selector-tag">article</span> <span class="hljs-selector-pseudo">:first</span>-child <br><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;This should show before the other content.&quot;</span><br>&#125; <br><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot; ➥&quot;</span><br>&#125; <br></code></pre></td></tr></table></figure>
+
+<p>关系选择器(后代选择器)； 子代关系选择器是个大于号(&gt;)； 邻接兄弟选择器(+)用来选中恰好处于另一个在继承关系上同级的元素旁边的物件； 通用兄弟关系选择器(~))</p>
+<p>Aside: Inner and outer display types<br>outer display type: which details whether the box is block or inline.<br>inner display type: which dictates how elements inside that box are laid out.<br>盒子模型：margin, border, padding, and content</p>
+<p>默认浏览器会使用标准模型(padding 加 border 再加 content box = box的真实大小)。如果需要使用替代模型(content box = height/weight - padding - border)，您可以通过为其设置 box-sizing: border-box 来实现。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">height</span>/weight - <span class="hljs-attribute">padding</span> - <span class="hljs-attribute">border</span>)，您可以通过为其设置 <span class="hljs-attribute">box-sizing</span>: border-box 来实现。<br>html &#123;<br>  box-sizing: border-box;<br>&#125;<br>*, *<span class="hljs-selector-pseudo">::before</span>, *<span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">box-sizing</span>: inherit;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>外边距折叠(margin)<br>inline-block block inline<br>background-color<br>background-image:默认情况下，大图像不会按比例缩小以适合框，而小图像则平铺以填充框； background-repeat 属性用于控制图像的平铺行为:no-repeat repeat-x repeat-y repeat(默认值)； background-size:cover contain 具体宽度和高度值； background-position：top center right 20px 10% 4值语法指示和每条边的距离(top 20px right 10px)<br>CSS渐变生成器：<br>background-attachment：scoll fixed local<br>三种属性示例：<a target="_blank" rel="noopener" href="https://mdn.github.io/learning-area/css/styling-boxes/backgrounds/background-attachment.html">https://mdn.github.io/learning-area/css/styling-boxes/backgrounds/background-attachment.html</a><br>在背景图像或颜色上放置文本时，您应该注意您有足够的对比度使文本对您的访问者清晰易读。如果指定一个图像，并且如果文本将放置在该图像的顶部，您还应该指定一个背景颜色，以便在图像未加载时使文本清晰可见。<br>border: 1px solid(dotted dashed double) black; border-width border-style border-color<br>边框圆角：border-radius：两个值 水平半径 垂直半径 可以只传入一个值用于两者 border-top-right-radius</p>
+<p>CSS中的书写模式是指文本的排列方向是横向还是纵向的。writing-mode 属性从一种模式切换到另一种模式。 horizontal-tb vertical-rl vertical-lr<br>用逻辑（logical）和相对变化（flow relative）代替了像宽width和高height一样的物理属性。<br>横向书写模式下，映射到width的属性被称作内联尺寸(inline-size)——内联维度的尺寸。而映射height的属性被称为块级尺寸(block-size)，这是块级维度的尺寸。<br>margin-top映射到margin-block-start padding-left映射到padding-inline-start border-right映射到border-inline-end<br>物理属性与物理方向联系在一起，逻辑属性与书写模式联系在一起</p>
+<p>控制元素溢出：overflow:visible(默认) hidden scroll auto； overflow-x overflow-y<br>word-break overflow-wrap<br>块级排版上下文（Block Formatting Context，BFC）</p>
+<p>数字 &lt;integer&gt; <number> <dimension>    <percentage><br><dimension> is an umbrella category that includes the <length>, <angle>, <time>, and <resolution> types.<br>长度Lengths: 绝对长度单位：cm mm Q in pc pt px； 相对长度单位: em ex ch rem lh vw vh wmin vmax<br>在排版属性中 em 单位的意思是“父元素的字体大小”<br>rem单位的意思是“根元素的字体大小”。<br>百分比<br><color> 颜色关键字 十六进制 rgb(红色 绿色 蓝色) rgba(红色 绿色 蓝色 透明度(1完全不透明 0完全透明)) 和opacity属性的区别：opacity使元素及其内部的所有内容不透明，RGBA只会是指定的颜色不透明<br>hsl(色调 饱和度 亮度) hsla(色调 饱和度 亮度 透明度)<br><postion> top left right bottom center<br>Strings and identifiers:<br>functions:<br>The natural or intrinsic size of things<br>Setting a specific size: extrinsic size<br>Using percentages<br>Percentage margins and padding<br>When you use margin and padding set in percentages, the value is calculated from the inline size of the containing block — therefore the width when working in a horizontal language.<br>min- and max- sizes<br>图像和视频被描述为替换元素。这意味着CSS不能影响这些元素的内部布局-仅影响它们在页面上其他元素中的位置。<br>纵横比：aspect ratio<br>object-fit属性：cover contain fill<br>在某些浏览器中，表单元素默认不继承字体样式。<br>表格样式：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Styling_tables">https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Styling_tables</a></p>
+<p>通过验证器运行 HTML 和 CSS<br><a target="_blank" rel="noopener" href="https://jigsaw.w3.org/css-validator/">https://jigsaw.w3.org/css-validator/</a><br><a target="_blank" rel="noopener" href="https://validator.w3.org/">https://validator.w3.org/</a><br>/* || GENERAL STYLES <em>/<br>/</em> || UTILITIES <em>/<br>/</em> || SITEWIDE <em>/<br>/</em> || STORE PAGES */<br>CSS方法论：OOCSS  BEM即为块级元素修饰字符（Block Element Modifier） 其他常见体系(Scalable and Modular Architecture for CSS (SMACSS); ITCSS; Atomic CSS (ACSS))<br>CSS的构建体系: 预处理工具和后处理工具<br>Sass 自定义属性 cssnano</p>
+<p>字体样式(font styles)和文本布局样式(text layout styles)<br>基本文本和字体样式：<br>颜色<br>字体种类(font-family: 网页安全字体 cssfontstack.com) serif, sans-serif, monospace, cursive, and fantasy<br>字体大小(px em rem)<br>字体样式(font-style: normal(普通字体) italic(斜体) oblique(模拟斜体))<br>字体粗细(font-weight:-light, -normal, -bold, -extrabold, -black, lighter, bolder 100-900的数字)<br>文本转换(text-transform: none uppercase lowercase capitalize full-width)<br>文本装饰(text-decoration: none underline overline line-through) text-decoration is a shorthand property for text-decoration-line, text-decoration-style, and text-decoration-color.<br>文字阴影(text-shadow: 阴影与原始文本的水平偏移(正值向右移动阴影，负值向左移动阴影) 阴影与原始文本的垂直偏移 模糊半径 阴影的基础颜色)<br>文本布局(文本对齐(text-align:left right center justify) 行高(line-height: ) 字母和单词间距(letter-spacing 和 word-spacing))<br>font-variant font-kerning font-feature-settings font-variant-alternates font-variant-caps font-variant-east-asian font-variant-ligatures font-variant-numeric font-variant-position font-size-adjust font-stretch text-underline-position text-rendering<br>text-indent text-overflow white-space word-break direction hyphens line-break text-align-last text-orientation overflow-wrap writing-mode<br>Font 简写顺序： font-style, font-variant, font-weight, font-stretch, font-size, line-height, and font-family.<br>font: italic normal bold normal 3em/1.5 Helvetica, Arial, sans-serif;<br>样式列表: 处理列表间距 列表特定样式(list-style-type list-style-position list-style-image) 管理列表计数(start reversed value)<br>样式化链接：link visited focus(选中tab) hover active (LoVe Fears HAte)</p>
+<p>Web 字体: @font-face { font-family: “myFont”; src: url(“myFont.ttf”);}<br>CSS 允许您指定 Web 上可用的字体文件，以便在访问您的网站时与它一起下载。<br>WOFF/WOFF2 (Web Open Font Format versions 1 and 2)<br>EOT (Embedded Open Type), TTF (TrueType Font), and SVG web fonts<br>生成所需文件：Fontsquirrel Webfont Generator<br>获取字体途径：A free font distributor；A paid font distributor；An online font service<br>①Go to Font Squirrel and choose two fonts；②Fontsquirrel Webfont Generator；③复制@font-face<br>CSS 布局:<br>正常布局流(Normal flow)  display 属性:block inline inline-block flex grid；<br>它们在正常布局流中的默认位置、它们周围的其他元素、它们的父容器和主视口/窗口。</p>
+<p>弹性盒子(Flexbox): 父元素上应用 display: flex<br>要使用 flexbox，请将 display: flex 应用于要布局的元素的父元素；然后它的所有直接子项都成为弹性项目。<br>main start and main end; cross start and cross end<br>flex-wrap: wrap; flex: 200px;<br>flex-direction: row; + flex-wrap: wrap; = 缩写 flex-flow: row wrap;<br>flex-direction:row column row-reverse column-reverse; flex-wrap:wrap; flex:20px; 缩写flex-flow: row warp; flex: 1 200px; flex: 1 auto;<br>flex是一个可以指定最多三个不同值的缩写属性：flex-grow(无单位比例) flex-shrink(无单位比例) flex-basis(最小值)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">align-items</span>: center;<br>  <span class="hljs-attribute">justify-content</span>: space-around;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>align-items控制flex项在交叉轴上的位置。stretch center flex-start flex-end<br>通过将 align-self 属性应用于它们来覆盖单个弹性项目的 align-items 行为：align-self: flex-end;<br>justify-content 控制 flex 项在主轴上的位置。 flex-start flex-end center space-around space-between<br>flex项排序: order:1 order值大的flex项比order值小的在显示顺序中更靠后。默认为0，可以为负数，排在0前面</p>
+<p>Grid布局：columns, rows, gutters(gaps)<br>display: grid  grid-template-rows：100px 100px; gap  grid-template-columns：1fr 1fr 1fr;   fr单位分配可用空间，而不是所有空间。<br>grid-row：span 2;  grid-column：2 / 4;<br>grid-gap:1em;  grid-gap: 20px; column-gap row-gap gap 有前缀(grid)逐渐不再支持，使用无前缀版本<br>grid-template-columns: repeat(3, 1fr);参数为重复次数和想要重复的tracks； 与grid-template-columns：1fr 1fr 1fr; 含义相同。<br>The explicit grid is the one that you create using grid-template-columns or grid-template-rows.<br>显式网格是您使用 grid-template-columns 或 grid-template-rows 创建的。<br>隐式网格创建的tracks默认是auto调整大小的。可以使用grid-auto-rows和grid-auto-columns属性手动设定隐式网格的大小。 grid-auto-rows: 100px; grid-auto-rows: minmax(100px, auto); 创建尽可能多的列：grid-template-columns：repeat(auto-fill, minmax(200px, 1fr));<br>基于线的元素放置: grid-column-start (en-US) grid-column-end (en-US) grid-row-start (en-US) grid-row-end (en-US)  grid-row：span 2;  grid-column：2 / 4;<br>可以使用值 -1 来定位结束列或结束行，<br>使用grid-template-areas属性放置元素:grid-template-areas: “header header” “sidebar content” “footer footer”; grid-area: content;<br>需要填充网格的每个单元格。要跨越两个单元格，请重复名称。要将单元格留空，请使用(.)。区域必须是矩形。区域不能在不同的位置重复。</p>
+<p>浮动：float:left right none inherit; clear: left right both<br>所有在浮动下面的自身不浮动的内容都将围绕浮动元素进行包装，如果没有处理这些元素，就会变得很糟糕。使用clear属性处理 clear:both left right<br>display: flow-root;</p>
+<p>定位技术: position 属性; 静态定位(Static positioning 默认行为); 相对定位(Relative positioning); 绝对定位(Absolute positioning 偏移量从容器应用); 固定定位(Fixed positioning 偏移量从视口应用); 粘性定位(Sticky positioning)<br>静态定位是默认行为 position: static;<br>top bottom left right<br>相对定位与静态定位非常相似，占据在正常的文档流中，仍然可以修改它的最终位置  position: relative; top: 30px; left: 30px;<br>绝对定位： position: absolute; top: 30px; left: 30px;绝对定位的元素不再存在于正常文档布局流中。相反，它坐在它自己的层独立于一切。<br>定位上下文：哪个元素是绝对定位元素的“包含元素“？这取决于绝对定位元素的父元素的position属性。<br>当元素开始重叠，什么决定哪些元素出现在其他元素的顶部？源顺序中后定位的元素将赢得先定位的元素。可以通过z-index更改<br>绝对定位固定元素是相对于 <html> 元素或其最近的定位祖先，而固定定位固定元素则是相对于浏览器视口本身。<br>position: sticky 的另一种有趣且常用的用法，是创建一个滚动索引页面。<br>Transitions是一个有意思的特性，允许你在状态改变的时候平滑的过渡，而不是粗暴的“开”或“关”。</p>
+<p>表格布局:display: table; display: table-row;  display: table-cell;display: table-caption;  caption-side: bottom;</p>
+<p>多列布局:使用 column-count属性; 使用column-width (en-US)<br><img    class="lazyload" data-original="https://s2.loli.net/2022/03/07/wtxo2D85ySUbNmQ.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">Flex模型说明</span><br>使用 column-gap 改变列间间隙。 使用 column-rule 在列间加入一条分割线。 column-rule 是 column-rule-color 和 column-rule-style的缩写，接受同 border 一样的单位。<br>跨多个列：column-span：none(all);<br>控制多列和分页媒体中内容中断的属性: break-inside: avoid;  page-break-inside: avoid;</p>
+<p>响应式设计（responsive web design，RWD）<br>液态网格 液态图像 媒体查询<br>引入媒体查询和更改布局的点称为断点。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>: <span class="hljs-number">800px</span>) &#123;<br>  <span class="hljs-selector-class">.container</span> &#123;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span> <span class="hljs-number">2em</span>;<br>  &#125;<br>&#125; <br></code></pre></td></tr></table></figure>
+
+<p>&lt;meta name=”viewport” content=”width=device-width,initial-scale=1”&gt;</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@media</span> media-type <span class="hljs-keyword">and</span> (media-feature-rule) &#123;<br>  <span class="hljs-comment">/* CSS rules go here */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>媒体类型media-type: all print screen speech<br>媒体特征media-feature-rule:min-width max-width width orientation: landscape(portrait)<br>引入媒体查询的点就叫做断点。<br>pointer： none, fine and coarse<br>定位实例练习  列表消息盒子 一个固定位置的列表消息盒子 一个滑动隐藏的面板<br>CSS Grid framework： Bootstrap and Foundation；Skeleton<br>功能查询允许您测试浏览器是否支持任何特定的 CSS 功能。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@supports</span> (<span class="hljs-attribute">display</span>: <span class="hljs-attribute">grid</span>) &#123;<br>  <span class="hljs-selector-class">.item</span> &#123;<br>      <span class="hljs-attribute">width</span>: auto;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>inline CSS; internal CSS; external CSS;<br>colors in CSS: color name; html5 color name; hexadecimal; RGB;<br><img    class="lazyload" data-original="https://s2.loli.net/2022/02/27/XGHwoNcVMUtAkE9.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">Box Model</span><br>颜色相关：background-color color background-image background-size(长度 百分比 关键字(cover contain) background-position(左上角(0,0) 长度 百分比 关键字 混合使用):100px 200px;   background-position:center top; background-repeat:no-repeat(repeat repeat-x repeat-y); 线性渐变 linear-gradient(105deg, rgba(255,255,255,.2) 39%, rgba(51,56,57,1) 96%) background-attachment: scroll fixed local;</p>
+<p>边界相关：border:5px red solid; border-right border-left border-bottom border-top border-width border-style border-radius border-top-right-radius: 1em 10%(水平半径 垂直半径);<br>padding相关(内部)：padding padding-top<br>margin相关(外部)：margin margin-top<br>字体相关：font-family font-weight font-style text-decoration text-transform letter-spacing word-spacing text-align line-height<br>list相关：list-style list-style-image<br>链接a相关：a:hover{} a:active{} a:visited{}<br>显示相关：display:block/inline-block<br>float:left; box-sizing:border-box; clear:both; overflow:hidden; min-height:300px;<br>position in CSS: static relative absolute fixed initial inherit<br>.my-list li:first-child{} last-child nth-child(5) nth-child(even)<br>@media(max-width:600px){}</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Mengyuan Chen</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/04/29/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/css/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;04&#x2F;29&#x2F;%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3&#x2F;css&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;04&#x2F;29&#x2F;%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3&#x2F;css&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://sm.ms/image/Y6TiL7UgNHm2RSl" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/04/29/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/javascript/"><i class="iconfont iconleft"></i>javascript</a>
+    <a href="/2022/04/29/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/html/">html<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2274849184 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/xxdsh/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/xxdsh "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:mychen@buaa.edu.cn "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Cure The World </p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
